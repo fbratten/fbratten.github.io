@@ -10,6 +10,3 @@ AI agent orchestration toolkit - from simple loops to production systems.
 ### [8me Showcase](https://github.com/fbratten/8me-showcase)
 Educational platform with tutorials, concepts, and 15 hands-on labs.
 
----
-
-*Part of the [Adaptivearts.ai™](https://adaptivearts.ai) research initiative*
