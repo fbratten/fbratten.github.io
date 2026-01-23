@@ -53,11 +53,11 @@ I build **enterprise AI solutions** and **context engineering systems** - focuse
 <tr>
 <td width="50%" valign="top">
 
-### 🔄 8me Orchestration
-**AI Agent Loop Toolkit**
-
+<h3>🔄 8me Orchestration</h3>
+<strong>AI Agent Loop Toolkit</strong>
+<br/><br/>
 Multi-tiered "Ralph Wiggum" methodology for persistent AI loops. MCP server, Claude Code skill, and 15 progressive hands-on labs.
-
+<br/><br/>
 <a href="https://fbratten.github.io/8me-showcase/">
   <img src="https://img.shields.io/badge/Showcase-Live-green?style=flat-square" alt="Showcase"/>
 </a>
@@ -68,11 +68,11 @@ Multi-tiered "Ralph Wiggum" methodology for persistent AI loops. MCP server, Cla
 </td>
 <td width="50%" valign="top">
 
-### 🔧 SPINE
-**Context Engineering & Multi-Agent Backbone**
-
+<h3>🔧 SPINE</h3>
+<strong>Context Engineering & Multi-Agent Backbone</strong>
+<br/><br/>
 A tiered protocol for AI orchestration with subagent coordination, scenario configs, and atomic tooling.
-
+<br/><br/>
 <a href="https://fbratten.github.io/spine-showcase/">
   <img src="https://img.shields.io/badge/Showcase-Live-green?style=flat-square" alt="Showcase"/>
 </a>
@@ -82,11 +82,11 @@ A tiered protocol for AI orchestration with subagent coordination, scenario conf
 <tr>
 <td width="50%" valign="top">
 
-### 🎯 Adaptive MCP Orchestrator
-**Dynamic AI Service Coordination**
-
+<h3>🎯 Adaptive MCP Orchestrator</h3>
+<strong>Dynamic AI Service Coordination</strong>
+<br/><br/>
 Blueprint for adaptive orchestration of multiple MCP servers with intelligent routing and meta-routing.
-
+<br/><br/>
 <a href="https://fbratten.github.io/Adaptive-MCP-Orchestrator-Blueprint-Showcase/">
   <img src="https://img.shields.io/badge/Showcase-Live-green?style=flat-square" alt="Showcase"/>
 </a>
@@ -97,11 +97,11 @@ Blueprint for adaptive orchestration of multiple MCP servers with intelligent ro
 </td>
 <td width="50%" valign="top">
 
-### 🔒 Security Audit MCP Server
-**Automated Security Analysis**
-
+<h3>🔒 Security Audit MCP Server</h3>
+<strong>Automated Security Analysis</strong>
+<br/><br/>
 MCP server for comprehensive security auditing of codebases and configurations.
-
+<br/><br/>
 <a href="https://fbratten.github.io/Security-Audit-MCP-Server-Showcase/">
   <img src="https://img.shields.io/badge/Showcase-Live-green?style=flat-square" alt="Showcase"/>
 </a>
@@ -111,11 +111,11 @@ MCP server for comprehensive security auditing of codebases and configurations.
 <tr>
 <td width="50%" valign="top">
 
-### 🧵 Golden Thread System
-**Narrative Coherence Framework**
-
+<h3>🧵 Golden Thread System</h3>
+<strong>Narrative Coherence Framework</strong>
+<br/><br/>
 System for maintaining consistent narratives and context across complex AI interactions.
-
+<br/><br/>
 <a href="https://fbratten.github.io/golden-thread-system/">
   <img src="https://img.shields.io/badge/Showcase-Live-green?style=flat-square" alt="Showcase"/>
 </a>
@@ -123,11 +123,11 @@ System for maintaining consistent narratives and context across complex AI inter
 </td>
 <td width="50%" valign="top">
 
-### 🎵 Music Video Creator
-**AI-Powered Visual Generation**
-
+<h3>🎵 Music Video Creator</h3>
+<strong>AI-Powered Visual Generation</strong>
+<br/><br/>
 Create reactive music visualizations with AI-generated imagery and audio-reactive effects.
-
+<br/><br/>
 <a href="https://fbratten.github.io/music-video-creator-showcase/">
   <img src="https://img.shields.io/badge/Showcase-Live-green?style=flat-square" alt="Showcase"/>
 </a>
@@ -137,11 +137,11 @@ Create reactive music visualizations with AI-generated imagery and audio-reactiv
 <tr>
 <td colspan="2" align="center" valign="top">
 
-### 📊 AI-Human Admin Dashboard
-**Collaboration Interface**
-
+<h3>📊 AI-Human Admin Dashboard</h3>
+<strong>Collaboration Interface</strong>
+<br/><br/>
 Dashboard for managing AI-human collaborative workflows and task coordination.
-
+<br/><br/>
 <a href="https://fbratten.github.io/AI-Human-Admin-Dashboard/">
   <img src="https://img.shields.io/badge/Showcase-Live-green?style=flat-square" alt="Showcase"/>
 </a>
@@ -163,11 +163,11 @@ Dashboard for managing AI-human collaborative workflows and task coordination.
 </td>
 <td valign="top">
 
-### From Blueprint to Application
-*A Guide to Enterprise Prompt Engineering*
-
+<h3>From Blueprint to Application</h3>
+<em>A Guide to Enterprise Prompt Engineering</em>
+<br/><br/>
 Transform AI trial-and-error into consistent, time-saving workflows through a structured 90-day journey.
-
+<br/><br/>
 <a href="https://subscribepage.io/from-blueprint-to-application">
   <img src="https://img.shields.io/badge/Pre--Order-40%25_Off-orange?style=for-the-badge" alt="Pre-Order"/>
 </a>
