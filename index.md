@@ -1,5 +1,3 @@
-# Fredrik Bratten
-
 Welcome to my GitHub Pages site.
 
 ## Projects
