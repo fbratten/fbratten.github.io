@@ -21,6 +21,7 @@ Personal landing page for Fredrik Brattén.
 
 ## Projects Showcased
 
+- [Worktrace provenance proof](https://fbratten.github.io/worktrace/) - Synthetic local-first evidence ledger demonstrating temporal honesty, privacy receipts and derived reports
 - [Vertex visual systems proof](https://fbratten.github.io/vertex/) - Synthetic Three.js scene demonstrating the canonical node, edge, event, provenance, focus and replay model
 - [Gate Monitor runtime-governance proof](https://fbratten.github.io/gate-monitor/) - Synthetic decision demonstrator for cost, progress, quality and memory thresholds
 - [Adaptivearts.ai architecture case study](https://fbratten.github.io/adaptivearts-ai/) - Astro, React, Supabase Auth and a server-side Gemini provider boundary
