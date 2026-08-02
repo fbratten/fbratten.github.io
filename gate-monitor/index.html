@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Public-safe recruiter proof for Gate Monitor, a deterministic runtime governor for long-running AI-agent sessions." />
+  <title>Gate Monitor | Runtime Governance Proof of Work</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090b12;
+      --panel: #121724;
+      --panel2: #1a2131;
+      --text: #f2f5fb;
+      --muted: #aab3c7;
+      --line: #30394e;
+      --blue: #77a7ff;
+      --green: #6fe0a0;
+      --amber: #ffc96b;
+      --orange: #ff9f68;
+      --red: #ff7188;
+      --violet: #aa8cff;
+      --code: #090e18;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      line-height: 1.55;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(119,167,255,.14), transparent 34rem),
+        radial-gradient(circle at 100% 12%, rgba(170,140,255,.12), transparent 34rem),
+        var(--bg);
+    }
+    a { color: #9ec0ff; }
+    a:hover { color: #d5e3ff; }
+    code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+    .wrap { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .topbar { position: sticky; top: 0; z-index: 10; background: rgba(9,11,18,.88); backdrop-filter: blur(14px); border-bottom: 1px solid var(--line); }
+    .topbar .wrap { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { color: var(--text); text-decoration: none; font-weight: 850; }
+    .nav { display: flex; flex-wrap: wrap; gap: 17px; font-size: .92rem; }
+    .nav a { color: var(--muted); text-decoration: none; }
+    .nav a:hover { color: var(--text); }
+    .hero { padding: 82px 0 48px; }
+    .eyebrow { color: var(--blue); text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 800; }
+    h1 { font-size: clamp(2.6rem, 6vw, 5.8rem); line-height: .98; letter-spacing: -.055em; max-width: 1000px; margin: 16px 0 24px; }
+    .lead { color: var(--muted); max-width: 810px; font-size: clamp(1.05rem, 2.1vw, 1.28rem); }
+    .badges { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 24px; }
+    .badge { border: 1px solid var(--line); background: rgba(18,23,36,.8); color: var(--muted); border-radius: 999px; padding: 7px 10px; font-size: .86rem; }
+    section { padding: 42px 0; }
+    h2 { margin: 0 0 16px; font-size: clamp(1.75rem, 3vw, 2.5rem); letter-spacing: -.025em; }
+    h3 { margin-top: 0; }
+    .intro { max-width: 830px; color: var(--muted); }
+    .grid { display: grid; gap: 18px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .card { background: linear-gradient(180deg, rgba(26,33,49,.96), rgba(18,23,36,.96)); border: 1px solid var(--line); border-radius: 16px; padding: 21px; }
+    .card p, .card li { color: var(--muted); }
+    .flow { display: grid; gap: 10px; margin-top: 24px; }
+    .flow-step { display: grid; grid-template-columns: 190px 1fr; gap: 17px; border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 15px 17px; }
+    .flow-step strong { color: var(--blue); }
+    .arrow { text-align: center; color: var(--muted); font-size: 1.35rem; }
+    .demo-shell { margin-top: 24px; display: grid; grid-template-columns: 1.1fr .9fr; gap: 18px; align-items: start; }
+    .controls, .decision { border: 1px solid var(--line); border-radius: 17px; background: var(--panel); padding: 22px; }
+    .preset-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+    button, select, input { font: inherit; }
+    .preset { cursor: pointer; border: 1px solid var(--line); color: var(--muted); background: var(--panel2); border-radius: 9px; padding: 9px 11px; font-weight: 750; }
+    .preset:hover { color: var(--text); border-color: var(--blue); }
+    .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    label { display: grid; gap: 7px; color: var(--muted); font-size: .9rem; }
+    input, select { width: 100%; border: 1px solid var(--line); background: var(--code); color: var(--text); border-radius: 9px; padding: 10px; }
+    input:focus, select:focus { outline: 2px solid rgba(119,167,255,.4); border-color: var(--blue); }
+    .decision { position: sticky; top: 82px; }
+    .state { font-size: clamp(2rem, 4vw, 3.3rem); line-height: 1; font-weight: 900; letter-spacing: -.04em; margin: 12px 0 16px; overflow-wrap: anywhere; }
+    .state.continue { color: var(--green); }
+    .state.warn { color: var(--amber); }
+    .state.needs_quality_review { color: var(--orange); }
+    .state.pause { color: var(--red); }
+    .state.escalate_to_human { color: var(--violet); }
+    .state.terminate { color: var(--red); }
+    .reason-list { margin: 0; padding-left: 19px; }
+    .reason-list li { color: var(--muted); margin: 7px 0; }
+    .receipt { margin-top: 18px; background: var(--code); border: 1px solid var(--line); border-radius: 12px; padding: 14px; overflow: auto; }
+    pre { margin: 0; white-space: pre-wrap; color: #dce5f5; font-size: .88rem; }
+    .priority { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 20px; }
+    .priority span { border: 1px solid var(--line); border-radius: 9px; padding: 8px 10px; color: var(--muted); background: var(--panel); font-size: .86rem; }
+    .priority b { color: var(--muted); }
+    .boundary { border-left: 4px solid var(--amber); background: rgba(255,201,107,.08); color: var(--muted); border-radius: 0 12px 12px 0; padding: 16px 18px; }
+    .evidence { width: 100%; border-collapse: collapse; margin-top: 18px; }
+    .evidence th, .evidence td { padding: 12px 9px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    .evidence td { color: var(--muted); }
+    .footer { border-top: 1px solid var(--line); padding: 34px 0 52px; color: var(--muted); }
+    @media (max-width: 860px) {
+      .grid.two, .grid.three, .demo-shell, .form-grid { grid-template-columns: 1fr; }
+      .decision { position: static; }
+      .flow-step { grid-template-columns: 1fr; gap: 5px; }
+      .topbar .wrap { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .hero { padding-top: 54px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="/">Fredrik Brattén</a>
+      <nav class="nav" aria-label="Page navigation">
+        <a href="#problem">Problem</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#demo">Demo</a>
+        <a href="#evidence">Evidence</a>
+        <a href="#limits">Limits</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap">
+        <div class="eyebrow">Private runtime · public-safe synthetic explainer</div>
+        <h1>Gate Monitor makes long-running AI-agent decisions explicit.</h1>
+        <p class="lead">
+          A deterministic runtime governor that folds cost, time, progress, errors, quality and memory signals into bounded decision states with inspectable reasons and reports.
+        </p>
+        <div class="badges">
+          <span class="badge">Python 3.11+</span>
+          <span class="badge">Pydantic</span>
+          <span class="badge">Typer CLI</span>
+          <span class="badge">MCP stdio</span>
+          <span class="badge">JSONL evidence</span>
+          <span class="badge">279 source-reported tests</span>
+          <span class="badge">3 dogfood flows</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem">
+      <div class="wrap">
+        <h2>The engineering problem</h2>
+        <p class="intro">
+          An agent can keep spending time, tokens and money while making little progress. It can repeat the same retrievals, approach context saturation or continue despite failing tests. A useful runtime needs more than a final success/failure flag.
+        </p>
+        <div class="grid three" style="margin-top:22px">
+          <article class="card"><h3>Observe</h3><p>Record structured run events, progress signals, costs, quality results and memory-hygiene measurements.</p></article>
+          <article class="card"><h3>Decide</h3><p>Compare evidence with a policy and select a stable state through an explicit priority order.</p></article>
+          <article class="card"><h3>Explain</h3><p>Return thresholds, findings and reasons through CLI, MCP, JSON and Markdown reports.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="wrap">
+        <h2>Implemented decision path</h2>
+        <div class="flow">
+          <div class="flow-step"><strong>Structured events</strong><span>Start, progress, error and other events carry cost, token, progress, quality and memory metadata.</span></div>
+          <div class="arrow">↓</div>
+          <div class="flow-step"><strong>Deterministic folds</strong><span>Total cost, elapsed time, time since progress, consecutive errors, quality counts and memory peaks are calculated.</span></div>
+          <div class="arrow">↓</div>
+          <div class="flow-step"><strong>Policy comparison</strong><span>Runtime, quality and memory results are checked against configured thresholds and actions.</span></div>
+          <div class="arrow">↓</div>
+          <div class="flow-step"><strong>Priority selection</strong><span>The most severe applicable state wins while lower-priority findings remain attached to the decision.</span></div>
+          <div class="arrow">↓</div>
+          <div class="flow-step"><strong>Evidence surfaces</strong><span>CLI, MCP, JSONL session views and Markdown reports expose the result and supporting reasons.</span></div>
+        </div>
+        <div class="priority" aria-label="Decision priority order">
+          <span>terminate</span><b>&gt;</b><span>escalate_to_human</span><b>&gt;</b><span>pause</span><b>&gt;</b><span>needs_quality_review</span><b>&gt;</b><span>warn</span><b>&gt;</b><span>continue</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="wrap">
+        <h2>Synthetic decision demonstrator</h2>
+        <p class="intro">
+          Select a preset or change the values. The browser reproduces the documented decision ordering for fictional data only. It does not import or execute the private Gate Monitor package.
+        </p>
+        <div class="demo-shell">
+          <div class="controls">
+            <h3>Fictional run evidence</h3>
+            <div class="preset-row">
+              <button class="preset" data-preset="continue">Continue</button>
+              <button class="preset" data-preset="warn">Warn</button>
+              <button class="preset" data-preset="pause">Pause</button>
+              <button class="preset" data-preset="escalate">Escalate</button>
+              <button class="preset" data-preset="quality">Quality review</button>
+              <button class="preset" data-preset="reset">Reset</button>
+            </div>
+            <div class="form-grid">
+              <label>Recorded cost, USD
+                <input id="cost" type="number" min="0" step="0.1" value="1.2" />
+              </label>
+              <label>Elapsed runtime, minutes
+                <input id="runtime" type="number" min="0" step="1" value="18" />
+              </label>
+              <label>Minutes without progress
+                <input id="stall" type="number" min="0" step="1" value="4" />
+              </label>
+              <label>Consecutive errors
+                <input id="errors" type="number" min="0" step="1" value="0" />
+              </label>
+              <label>Peak context usage, 0–1
+                <input id="context" type="number" min="0" max="1" step="0.01" value="0.42" />
+              </label>
+              <label>Peak repeated retrieval count
+                <input id="retrieval" type="number" min="0" step="1" value="1" />
+              </label>
+              <label>Recorded test failures
+                <input id="tests" type="number" min="0" step="1" value="0" />
+              </label>
+              <label>Recorded lint failures
+                <input id="lint" type="number" min="0" step="1" value="0" />
+              </label>
+              <label>Runtime threshold action
+                <select id="runtime-action">
+                  <option value="warn">warn</option>
+                  <option value="pause">pause</option>
+                  <option value="pause_and_escalate">pause_and_escalate</option>
+                  <option value="terminate">terminate</option>
+                </select>
+              </label>
+              <label>Memory threshold action
+                <select id="memory-action">
+                  <option value="warn">warn</option>
+                  <option value="pause">pause</option>
+                </select>
+              </label>
+            </div>
+            <p class="intro" style="margin-bottom:0;margin-top:18px">
+              Demo policy: cost 5 USD, runtime 120 min, no progress 20 min, repeated errors 3, context usage 0.80, repeated retrievals 4, test failures 2, lint failures 3.
+            </p>
+          </div>
+
+          <aside class="decision">
+            <div class="eyebrow">Selected state</div>
+            <div id="state" class="state continue">continue</div>
+            <ul id="reasons" class="reason-list"><li>No threshold or gate is triggered.</li></ul>
+            <div class="receipt"><pre id="receipt"></pre></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="grid two">
+          <article class="card">
+            <h3>CLI and MCP</h3>
+            <p>The private implementation packages the same run, policy, decision and report logic behind a Typer CLI and a local stdio MCP server.</p>
+            <ul>
+              <li>6 MCP tools</li>
+              <li>6 MCP resources and templates</li>
+              <li>strict and resilient session reads</li>
+              <li>structured operator-error payloads</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Filesystem safety</h3>
+            <p>MCP-supplied report paths are confined to the configured Gate Monitor root.</p>
+            <ul>
+              <li>traversal rejected</li>
+              <li>absolute outside-root paths rejected</li>
+              <li>symlink escapes rejected</li>
+              <li>rejection happens before file write</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidence">
+      <div class="wrap">
+        <h2>Evidence record</h2>
+        <table class="evidence">
+          <tr><th>Private source repository</th><td><code>fbratten/gate-monitor</code></td></tr>
+          <tr><th>Current documentation pin</th><td><code>90f9845d6fde1b1ba902473afea2bb79dfab9877</code></td></tr>
+          <tr><th>Inspected runtime pin</th><td><code>193821edcacca87d286292e5f568c6aad9c808df</code></td></tr>
+          <tr><th>Output-confinement implementation</th><td><code>f3c30f4ce7e512cdd92615bd8fa82892843c9455</code></td></tr>
+          <tr><th>Source-reported verification</th><td>279 passing tests, one environment-dependent skip and three green dogfood scripts.</td></tr>
+          <tr><th>Verified</th><td>2026-08-02</td></tr>
+          <tr><th>Public demo execution</th><td>Browser-only synthetic calculation. No filesystem, MCP, model or network operation.</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section id="limits">
+      <div class="wrap">
+        <h2>Explicit limitations</h2>
+        <div class="boundary">
+          This page explains a deterministic runtime-governance design. It is not the private Python runtime, not a hosted multi-tenant service and not a live view of any real AI session.
+        </div>
+        <div class="grid two" style="margin-top:20px">
+          <article class="card"><h3>Supported</h3><ul><li>policy-driven decision states</li><li>quality and memory findings</li><li>CLI and local MCP surfaces</li><li>source-reported tests and dogfood</li><li>bounded report-path handling</li></ul></article>
+          <article class="card"><h3>Not claimed</h3><ul><li>remote authenticated control plane</li><li>container or kernel isolation</li><li>autonomous LLM quality judgement</li><li>distributed concurrent event log</li><li>new verification run by this showcase</li></ul></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>Gate Monitor recruiter proof</strong><br />
+      Synthetic public evidence for a private-source runtime. Verified 2026-08-02.
+    </div>
+  </footer>
+
+  <script>
+    const ids = ['cost','runtime','stall','errors','context','retrieval','tests','lint','runtime-action','memory-action'];
+    const fields = Object.fromEntries(ids.map(id => [id, document.getElementById(id)]));
+    const stateEl = document.getElementById('state');
+    const reasonsEl = document.getElementById('reasons');
+    const receiptEl = document.getElementById('receipt');
+
+    const policy = {
+      maxCost: 5,
+      maxRuntime: 120,
+      maxStall: 20,
+      maxErrors: 3,
+      maxContext: 0.8,
+      maxRetrieval: 4,
+      maxTests: 2,
+      maxLint: 3
+    };
+
+    const presets = {
+      continue: { cost:1.2, runtime:18, stall:4, errors:0, context:.42, retrieval:1, tests:0, lint:0, runtimeAction:'warn', memoryAction:'warn' },
+      warn: { cost:1.8, runtime:40, stall:8, errors:0, context:.86, retrieval:2, tests:0, lint:0, runtimeAction:'warn', memoryAction:'warn' },
+      pause: { cost:2.1, runtime:55, stall:27, errors:1, context:.6, retrieval:2, tests:0, lint:0, runtimeAction:'pause', memoryAction:'warn' },
+      escalate: { cost:6.4, runtime:70, stall:7, errors:0, context:.5, retrieval:1, tests:0, lint:0, runtimeAction:'pause_and_escalate', memoryAction:'warn' },
+      quality: { cost:2.4, runtime:45, stall:6, errors:0, context:.5, retrieval:1, tests:4, lint:5, runtimeAction:'warn', memoryAction:'warn' },
+      reset: { cost:1.2, runtime:18, stall:4, errors:0, context:.42, retrieval:1, tests:0, lint:0, runtimeAction:'warn', memoryAction:'warn' }
+    };
+
+    function number(id) {
+      const value = Number(fields[id].value);
+      return Number.isFinite(value) ? value : 0;
+    }
+
+    function evaluate() {
+      const values = {
+        cost: number('cost'),
+        runtime: number('runtime'),
+        stall: number('stall'),
+        errors: number('errors'),
+        context: number('context'),
+        retrieval: number('retrieval'),
+        tests: number('tests'),
+        lint: number('lint')
+      };
+
+      const reasons = [];
+      const thresholds = [];
+      if (values.cost >= policy.maxCost) { reasons.push(`cost_ceiling: $${values.cost.toFixed(2)} >= $${policy.maxCost.toFixed(2)}`); thresholds.push('cost_ceiling'); }
+      if (values.runtime >= policy.maxRuntime) { reasons.push(`time_ceiling: ${values.runtime}min >= ${policy.maxRuntime}min`); thresholds.push('time_ceiling'); }
+      if (values.stall >= policy.maxStall) { reasons.push(`progress_stall: ${values.stall}min >= ${policy.maxStall}min`); thresholds.push('progress_stall'); }
+      if (values.errors >= policy.maxErrors) { reasons.push(`repeated_errors: ${values.errors} >= ${policy.maxErrors}`); thresholds.push('repeated_errors'); }
+
+      const quality = [];
+      if (values.tests > policy.maxTests) quality.push(`max_test_failures: ${values.tests} > ${policy.maxTests}`);
+      if (values.lint > policy.maxLint) quality.push(`max_lint_failures: ${values.lint} > ${policy.maxLint}`);
+
+      const memory = [];
+      if (values.context >= policy.maxContext) memory.push(`max_context_pct: ${values.context.toFixed(2)} >= ${policy.maxContext.toFixed(2)}`);
+      if (values.retrieval >= policy.maxRetrieval) memory.push(`max_repeated_retrievals: ${values.retrieval} >= ${policy.maxRetrieval}`);
+
+      const actionMap = { warn:'warn', pause:'pause', terminate:'terminate', pause_and_escalate:'escalate_to_human' };
+      const runtimeState = actionMap[fields['runtime-action'].value];
+      const severe = ['terminate','escalate_to_human','pause'];
+      let state = 'continue';
+
+      if (thresholds.length && severe.includes(runtimeState)) {
+        state = runtimeState;
+      } else if (memory.length && fields['memory-action'].value === 'pause') {
+        state = 'pause';
+        reasons.push(...memory);
+      } else if (quality.length) {
+        state = 'needs_quality_review';
+        reasons.push(...quality);
+      } else if (memory.length) {
+        state = 'warn';
+        reasons.push(...memory);
+      } else if (thresholds.length) {
+        state = runtimeState;
+      }
+
+      stateEl.textContent = state;
+      stateEl.className = `state ${state}`;
+      reasonsEl.innerHTML = (reasons.length ? reasons : ['No threshold or gate is triggered.']).map(reason => `<li>${reason}</li>`).join('');
+      receiptEl.textContent = JSON.stringify({
+        synthetic: true,
+        state,
+        thresholds_triggered: thresholds,
+        quality_findings: quality,
+        memory_findings: memory,
+        evidence: values
+      }, null, 2);
+    }
+
+    function applyPreset(name) {
+      const p = presets[name];
+      fields.cost.value = p.cost;
+      fields.runtime.value = p.runtime;
+      fields.stall.value = p.stall;
+      fields.errors.value = p.errors;
+      fields.context.value = p.context;
+      fields.retrieval.value = p.retrieval;
+      fields.tests.value = p.tests;
+      fields.lint.value = p.lint;
+      fields['runtime-action'].value = p.runtimeAction;
+      fields['memory-action'].value = p.memoryAction;
+      evaluate();
+    }
+
+    ids.forEach(id => fields[id].addEventListener('input', evaluate));
+    document.querySelectorAll('[data-preset]').forEach(button => button.addEventListener('click', () => applyPreset(button.dataset.preset)));
+    evaluate();
+  </script>
+</body>
+</html>
