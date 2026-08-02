@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Recruiter-facing proof of work for MADS, a local-first human-in-the-loop agentic development environment built with Electron, React and TypeScript." />
+  <title>MADS — Multi-Agent Developer Sandbox | Fredrik Brattén</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #090f1d;
+      --panel: #111a2d;
+      --panel-2: #17233b;
+      --text: #eef4ff;
+      --muted: #aab8d0;
+      --line: #2a3b5e;
+      --accent: #8b7cff;
+      --accent-2: #42d3bd;
+      --warning: #ffca68;
+      --danger: #ff7b91;
+      --success: #74e0a4;
+      --code: #0a1222;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 10% 0%, rgba(139,124,255,.18), transparent 34rem),
+        radial-gradient(circle at 100% 20%, rgba(66,211,189,.12), transparent 30rem),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: #b9afff; }
+    a:hover { color: #d4ceff; }
+    code, pre { font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace; }
+
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      gap: 20px;
+    }
+    .nav a { text-decoration: none; }
+    .brand { font-weight: 760; color: var(--text); }
+    .navlinks { display: flex; flex-wrap: wrap; gap: 16px; font-size: .94rem; }
+
+    .hero { padding: 72px 0 52px; }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      background: rgba(17,26,45,.8);
+      padding: 7px 11px;
+      border-radius: 999px;
+      color: #d8d2ff;
+      font-size: .82rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 900px;
+      margin: 24px 0 18px;
+      font-size: clamp(2.5rem, 7vw, 5.2rem);
+      line-height: 1.02;
+      letter-spacing: -.055em;
+    }
+    .hero p {
+      max-width: 790px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.3rem);
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 16px;
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      text-decoration: none;
+      font-weight: 650;
+      cursor: pointer;
+      background: var(--panel);
+      color: var(--text);
+    }
+    .button.primary { background: linear-gradient(135deg, #7667f8, #5f52df); border-color: #9187ff; }
+    .button.secondary:hover { background: var(--panel-2); }
+
+    section { padding: 44px 0; }
+    h2 { margin: 0 0 14px; font-size: clamp(1.65rem, 4vw, 2.5rem); letter-spacing: -.025em; }
+    h3 { margin: 0 0 10px; font-size: 1.18rem; }
+    .lead { color: var(--muted); max-width: 780px; }
+
+    .grid { display: grid; gap: 18px; }
+    .grid.three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .grid.two { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .card {
+      background: linear-gradient(180deg, rgba(23,35,59,.94), rgba(17,26,45,.94));
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 12px 32px rgba(0,0,0,.16);
+    }
+    .card p { color: var(--muted); margin-bottom: 0; }
+    .metric { font-size: 2rem; font-weight: 780; letter-spacing: -.04em; }
+    .metric-label { color: var(--muted); font-size: .9rem; }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 24px;
+    }
+    .flow div {
+      min-height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--panel);
+      font-size: .91rem;
+    }
+
+    .demo-shell {
+      margin-top: 24px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      overflow: hidden;
+      background: #0d1526;
+      box-shadow: 0 18px 54px rgba(0,0,0,.28);
+    }
+    .demo-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 18px;
+      border-bottom: 1px solid var(--line);
+      background: #131e34;
+    }
+    .dots { display: flex; gap: 7px; }
+    .dot { width: 10px; height: 10px; border-radius: 50%; background: #4a5c7e; }
+    .demo-title { color: var(--muted); font-size: .88rem; }
+    .demo-grid { display: grid; grid-template-columns: 1.25fr .75fr; min-height: 520px; }
+    .pane { padding: 22px; }
+    .pane + .pane { border-left: 1px solid var(--line); background: #101a2d; }
+    .tag {
+      display: inline-flex;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: .78rem;
+      font-weight: 700;
+    }
+    .tag.high { color: var(--danger); border-color: rgba(255,123,145,.45); background: rgba(255,123,145,.08); }
+    .tag.safe { color: var(--success); border-color: rgba(116,224,164,.4); background: rgba(116,224,164,.08); }
+    .tag.synthetic { color: var(--warning); border-color: rgba(255,202,104,.4); background: rgba(255,202,104,.08); }
+    .file-row { display: flex; justify-content: space-between; gap: 12px; margin: 18px 0 10px; color: var(--muted); }
+    pre {
+      overflow-x: auto;
+      padding: 16px;
+      border: 1px solid #243654;
+      border-radius: 12px;
+      background: var(--code);
+      color: #dce7fa;
+      font-size: .86rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+    .minus { color: #ff96a7; }
+    .plus { color: #8fe5b0; }
+    .controls { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+    button.button { font: inherit; }
+    button.button:disabled { opacity: .45; cursor: not-allowed; }
+    .status-box {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 14px;
+      margin: 14px 0;
+      background: var(--panel);
+    }
+    .status-label { color: var(--muted); font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; }
+    .status-value { font-weight: 760; font-size: 1.25rem; margin-top: 3px; }
+    .timeline { list-style: none; padding: 0; margin: 16px 0 0; }
+    .timeline li {
+      position: relative;
+      margin: 0 0 14px;
+      padding: 0 0 0 22px;
+      color: var(--muted);
+      font-size: .9rem;
+    }
+    .timeline li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .42rem;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 4px rgba(66,211,189,.1);
+    }
+
+    table { width: 100%; border-collapse: collapse; margin-top: 18px; }
+    th, td { text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); padding: 12px 9px; }
+    th { color: #dce7fa; font-size: .86rem; }
+    td { color: var(--muted); }
+
+    .callout {
+      border-left: 4px solid var(--accent-2);
+      background: rgba(66,211,189,.07);
+      padding: 18px 20px;
+      border-radius: 0 12px 12px 0;
+      color: #d7e9e5;
+    }
+    .warning { border-left-color: var(--warning); background: rgba(255,202,104,.07); }
+    ul.clean { padding-left: 20px; color: var(--muted); }
+    .footer { padding: 46px 0 60px; color: var(--muted); border-top: 1px solid var(--line); margin-top: 44px; }
+
+    @media (max-width: 900px) {
+      .grid.three, .grid.two, .demo-grid { grid-template-columns: 1fr; }
+      .pane + .pane { border-left: 0; border-top: 1px solid var(--line); }
+      .flow { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 560px) {
+      .nav { align-items: flex-start; flex-direction: column; }
+      .hero { padding-top: 42px; }
+      .flow { grid-template-columns: 1fr; }
+      .demo-bar { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap nav">
+    <a class="brand" href="/">Fredrik Brattén</a>
+    <nav class="navlinks" aria-label="Page navigation">
+      <a href="#product">Product</a>
+      <a href="#demo">Synthetic demo</a>
+      <a href="#evidence">Evidence</a>
+      <a href="#boundaries">Boundaries</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <span class="eyebrow">Public-safe proof of work · verified 2026-08-02</span>
+      <h1>MADS<br />Multi-Agent Developer Sandbox</h1>
+      <p>A local-first Electron application where AI agents can propose code and commands, while typed contracts, policy checks, human approval, reversible ChangeSets and durable audit records keep the human in control.</p>
+      <div class="actions">
+        <a class="button primary" href="#demo">Try the synthetic ChangeSet flow</a>
+        <a class="button secondary" href="#evidence">Review the evidence record</a>
+      </div>
+    </section>
+
+    <section id="product" class="wrap">
+      <h2>What the product demonstrates</h2>
+      <p class="lead">MADS turns agent output into a controlled desktop workflow rather than giving an AI unrestricted access to the host.</p>
+      <div class="grid three">
+        <article class="card">
+          <h3>Modern application engineering</h3>
+          <p>Electron, React 18, TypeScript, Vite, Tailwind, Zustand, Zod, Vitest and Playwright/Electron in one working desktop product.</p>
+        </article>
+        <article class="card">
+          <h3>Human-in-the-loop change control</h3>
+          <p>File mutations become ChangeSets with a diff, risk signals, explicit approval, atomic application and guarded revert.</p>
+        </article>
+        <article class="card">
+          <h3>Agent safety and accountability</h3>
+          <p>Typed actions, path policy, a bounded command runner, main-process provider secrets and a durable JSONL audit trail.</p>
+        </article>
+      </div>
+
+      <div class="flow" aria-label="MADS control flow">
+        <div>Agent proposal</div>
+        <div>Zod schema validation</div>
+        <div>Policy and risk checks</div>
+        <div>Human approval</div>
+        <div>Controlled executor</div>
+        <div>Durable audit</div>
+      </div>
+    </section>
+
+    <section id="demo" class="wrap">
+      <h2>Synthetic ChangeSet demonstration</h2>
+      <p class="lead">The scenario below is fictional and runs only in this browser page. It demonstrates the product contract without exposing a private repository, real prompt, filesystem path, provider response or audit log.</p>
+      <div class="callout warning"><strong>Synthetic fixture:</strong> `demo-calculator` and every event below were written specifically for public demonstration. The buttons do not modify any files.</div>
+
+      <div class="demo-shell">
+        <div class="demo-bar">
+          <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="demo-title">MADS cockpit · fictional workspace `demo-calculator`</div>
+          <span class="tag synthetic">Synthetic</span>
+        </div>
+        <div class="demo-grid">
+          <div class="pane">
+            <div style="display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap">
+              <div>
+                <div class="status-label">ChangeSet</div>
+                <h3 style="margin-top:4px">CS-DEMO-0042 · Guard division by zero</h3>
+              </div>
+              <span class="tag high">Review required</span>
+            </div>
+
+            <div class="file-row"><span>src/calculator.ts</span><span>1 file · 4 changed lines</span></div>
+            <pre aria-label="Synthetic code diff"><span class="minus">- export function divide(a: number, b: number) {
+-   return a / b;
+- }</span>
+<span class="plus">+ export function divide(a: number, b: number) {
++   if (b === 0) throw new Error("Division by zero");
++   return a / b;
++ }</span></pre>
+
+            <div class="grid two">
+              <div class="status-box">
+                <div class="status-label">Intent</div>
+                <div>Modify existing file</div>
+              </div>
+              <div class="status-box">
+                <div class="status-label">Policy result</div>
+                <div>Workspace-confined · approval required</div>
+              </div>
+            </div>
+
+            <div class="controls">
+              <button id="approve" class="button primary" type="button">Approve and apply</button>
+              <button id="revert" class="button secondary" type="button" disabled>Revert</button>
+              <button id="reset" class="button secondary" type="button">Reset demo</button>
+            </div>
+          </div>
+
+          <aside class="pane">
+            <div class="status-label">Current state</div>
+            <div id="state" class="status-value">Awaiting approval</div>
+            <div id="stateBox" class="status-box">
+              <div class="status-label">Executor result</div>
+              <div id="result">No mutation performed.</div>
+            </div>
+            <h3>Audit timeline</h3>
+            <ol id="timeline" class="timeline">
+              <li>proposal.received · typed action accepted</li>
+              <li>policy.evaluated · human approval required</li>
+              <li>changeset.created · synthetic diff prepared</li>
+            </ol>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="evidence" class="wrap">
+      <h2>Evidence record</h2>
+      <div class="grid three">
+        <div class="card"><div class="metric">125</div><div class="metric-label">Vitest unit and integration tests recorded by the implementation commit</div></div>
+        <div class="card"><div class="metric">13</div><div class="metric-label">Playwright/Electron E2E scenarios recorded by the implementation commit</div></div>
+        <div class="card"><div class="metric">v1.2</div><div class="metric-label">Delivered product increment: ChangeSet hardening</div></div>
+      </div>
+
+      <table>
+        <tr><th>Field</th><th>Value</th></tr>
+        <tr><td>Private source repository</td><td><code>fbratten/multi-agent-developer-sandbox</code></td></tr>
+        <tr><td>Current source pin</td><td><code>c84698d91d20bde4771a813029c52e2dfa356827</code></td></tr>
+        <tr><td>Implementation-bearing verification pin</td><td><code>dbd87c532bb01931b980ba2660a7f749b2e8a239</code></td></tr>
+        <tr><td>Verification date for this public package</td><td>2026-08-02</td></tr>
+        <tr><td>Recorded verification gate</td><td>typecheck, lint, 125 Vitest tests, production build and 13 Electron E2E scenarios</td></tr>
+        <tr><td>Public data</td><td>Entirely synthetic fixture and browser-only state transitions</td></tr>
+        <tr><td>Source availability</td><td>Private; this page is a bounded public evidence surface, not the source tree</td></tr>
+      </table>
+
+      <div class="callout" style="margin-top:22px"><strong>Evidence precision:</strong> the verification counts come from the implementation-bearing commit. The later source merge updated documentation and did not claim a new test execution.</div>
+    </section>
+
+    <section class="wrap">
+      <h2>Implemented v1.2 safeguards</h2>
+      <div class="grid two">
+        <article class="card">
+          <h3>Create-over-existing detection</h3>
+          <p>A create action targeting an existing path is classified as an intent mismatch and escalated instead of appearing as a low-risk new-file action.</p>
+        </article>
+        <article class="card">
+          <h3>Newline-only diff visibility</h3>
+          <p>A trailing-newline-only change is shown explicitly rather than being rendered as an empty or invisible diff.</p>
+        </article>
+        <article class="card">
+          <h3>Revert-drift refusal</h3>
+          <p>Revert is refused when subsequent workspace edits would be destroyed by restoring the older state.</p>
+        </article>
+        <article class="card">
+          <h3>Durable ChangeSet audit</h3>
+          <p>ChangeSet lifecycle events are written to the durable audit log, and persistence failure is surfaced rather than represented as success.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="boundaries" class="wrap">
+      <h2>Boundaries and non-claims</h2>
+      <ul class="clean">
+        <li>MADS is a local, single-operator development environment, not a hosted multi-tenant IDE.</li>
+        <li>Application-level policy, approval and workspace confinement are not a kernel or container isolation boundary.</li>
+        <li>The command runner is bounded by implemented policy and path controls. It is not presented as a general hostile-code sandbox.</li>
+        <li>The current provider integration is Anthropic-focused.</li>
+        <li>No real private patch, repository name, prompt, provider output, audit event, credential or filesystem path appears on this page.</li>
+        <li>The demo illustrates the contract and state transitions. It is not a browser port of the private Electron application.</li>
+        <li>Deferred reference material in the private repository is not claimed as implemented.</li>
+      </ul>
+    </section>
+
+    <section class="wrap">
+      <h2>Why this matters for applied AI engineering</h2>
+      <p class="lead">Calling an LLM is the easy part. MADS demonstrates the surrounding engineering needed to turn agent output into a reviewable product workflow: typed contracts, user experience, secret boundaries, controlled execution, reversible change and verifiable state.</p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <strong>Fredrik Brattén</strong><br />
+      Systems, automation and applied AI engineering · <a href="https://adaptivearts.ai">Adaptivearts.ai</a> · <a href="https://github.com/fbratten">GitHub</a>
+    </div>
+  </footer>
+
+  <script>
+    const approve = document.getElementById('approve');
+    const revert = document.getElementById('revert');
+    const reset = document.getElementById('reset');
+    const state = document.getElementById('state');
+    const result = document.getElementById('result');
+    const timeline = document.getElementById('timeline');
+
+    const initialTimeline = [
+      'proposal.received · typed action accepted',
+      'policy.evaluated · human approval required',
+      'changeset.created · synthetic diff prepared'
+    ];
+
+    function render(items) {
+      timeline.innerHTML = '';
+      items.forEach(text => {
+        const li = document.createElement('li');
+        li.textContent = text;
+        timeline.appendChild(li);
+      });
+    }
+
+    approve.addEventListener('click', () => {
+      state.textContent = 'Applied';
+      result.textContent = 'Synthetic ChangeSet applied atomically. No real file was touched.';
+      approve.disabled = true;
+      revert.disabled = false;
+      render([...initialTimeline,
+        'changeset.approved · human decision recorded',
+        'changeset.applied · synthetic executor returned ok',
+        'audit.appended · lifecycle receipt persisted in demo state'
+      ]);
+    });
+
+    revert.addEventListener('click', () => {
+      state.textContent = 'Reverted';
+      result.textContent = 'Synthetic previous state restored. Drift check reported clean.';
+      revert.disabled = true;
+      render([...initialTimeline,
+        'changeset.approved · human decision recorded',
+        'changeset.applied · synthetic executor returned ok',
+        'changeset.revert_checked · no later drift detected',
+        'changeset.reverted · synthetic previous state restored'
+      ]);
+    });
+
+    reset.addEventListener('click', () => {
+      state.textContent = 'Awaiting approval';
+      result.textContent = 'No mutation performed.';
+      approve.disabled = false;
+      revert.disabled = true;
+      render(initialTimeline);
+    });
+  </script>
+</body>
+</html>
