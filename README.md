@@ -21,6 +21,7 @@ Personal landing page for Fredrik Brattén.
 
 ## Projects Showcased
 
+- [Gate Monitor runtime-governance proof](https://fbratten.github.io/gate-monitor/) - Synthetic decision demonstrator for cost, progress, quality and memory thresholds
 - [Adaptivearts.ai architecture case study](https://fbratten.github.io/adaptivearts-ai/) - Astro, React, Supabase Auth and a server-side Gemini provider boundary
 - [MADS — Multi-Agent Developer Sandbox](https://fbratten.github.io/mads/) - Human-in-the-loop agentic development environment with typed actions, reviewable ChangeSets and durable audit evidence
 - [8me](https://fbratten.github.io/8me-showcase/) - Autonomous loop toolkit
