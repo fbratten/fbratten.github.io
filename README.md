@@ -21,6 +21,7 @@ Personal landing page for Fredrik Brattén.
 
 ## Projects Showcased
 
+- [Broker Lane Sandbox evidence card](https://fbratten.github.io/broker-lane-sandbox/) - Source-first orientation for a public default-deny execution boundary with explicit security non-claims
 - [Worktrace provenance proof](https://fbratten.github.io/worktrace/) - Synthetic local-first evidence ledger demonstrating temporal honesty, privacy receipts and derived reports
 - [Vertex visual systems proof](https://fbratten.github.io/vertex/) - Synthetic Three.js scene demonstrating the canonical node, edge, event, provenance, focus and replay model
 - [Gate Monitor runtime-governance proof](https://fbratten.github.io/gate-monitor/) - Synthetic decision demonstrator for cost, progress, quality and memory thresholds
