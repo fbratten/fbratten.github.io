@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Source-first evidence card for broker-lane-sandbox, a public default-deny execution boundary for agent workflows." />
+  <title>Broker Lane Sandbox | Source-first Evidence Card</title>
+  <style>
+    :root{color-scheme:dark;--bg:#070b12;--panel:#111827;--text:#f8fafc;--muted:#a7b0c2;--line:#2b3850;--green:#72e2a7;--cyan:#67dce8;--amber:#ffd071;--red:#ff8998}
+    *{box-sizing:border-box}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(circle at 10% 0%,rgba(114,226,167,.13),transparent 34rem),radial-gradient(circle at 100% 20%,rgba(103,220,232,.1),transparent 30rem),var(--bg);color:var(--text);line-height:1.55}a{color:#8ee8f1}.wrap{width:min(1080px,calc(100% - 32px));margin:auto}.top{padding:18px 0;border-bottom:1px solid var(--line);background:rgba(7,11,18,.88);position:sticky;top:0}.top .wrap{display:flex;justify-content:space-between;gap:18px;align-items:center}.brand{font-weight:850;letter-spacing:.06em}.nav{display:flex;gap:14px;flex-wrap:wrap;font-size:.9rem}header{padding:72px 0 34px}.hero{display:grid;grid-template-columns:1.08fr .92fr;gap:28px;align-items:center}.eyebrow{text-transform:uppercase;letter-spacing:.16em;color:var(--green);font-weight:800;font-size:.78rem}h1{font-size:clamp(2.6rem,7vw,5.2rem);line-height:.97;letter-spacing:-.05em;margin:12px 0 18px}.lede{font-size:1.14rem;color:var(--muted)}.card{border:1px solid var(--line);background:linear-gradient(180deg,rgba(17,24,39,.96),rgba(8,13,22,.98));border-radius:18px;box-shadow:0 24px 80px rgba(0,0,0,.25)}.evidence{padding:20px}.evidence dl{display:grid;grid-template-columns:1fr auto;gap:9px 16px;margin:0}.evidence dt{color:var(--muted)}.evidence dd{margin:0;text-align:right;font-weight:750}section{padding:38px 0}h2{font-size:clamp(1.8rem,4vw,2.7rem);margin:0 0 12px;letter-spacing:-.035em}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.mini{padding:18px}.mini strong{display:block;margin-bottom:6px}.muted{color:var(--muted)}.flow{white-space:pre-wrap;background:#080d16;border:1px solid var(--line);padding:18px;border-radius:14px;overflow:auto;color:#d8e5ef}.table{width:100%;border-collapse:collapse}.table th,.table td{text-align:left;padding:12px;border-bottom:1px solid var(--line);vertical-align:top}.table th{color:var(--muted);font-size:.82rem}.note{border-left:3px solid var(--amber);background:rgba(255,208,113,.07);padding:11px 14px;color:#f5dfad}.warning{border-left-color:var(--red);background:rgba(255,137,152,.07);color:#ffd0d7}.cta{display:inline-block;padding:11px 16px;border-radius:10px;background:#174c35;border:1px solid #2c7e58;color:white;text-decoration:none;font-weight:800}.footer{border-top:1px solid var(--line);padding:30px 0 48px;color:var(--muted)}
+    @media(max-width:840px){.hero,.grid{grid-template-columns:1fr}.top .wrap{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="top"><div class="wrap"><div class="brand">BROKER LANE SANDBOX / EVIDENCE CARD</div><nav class="nav"><a href="#boundary">Boundary</a><a href="#evidence">Evidence</a><a href="../">Portfolio</a></nav></div></div>
+  <header><div class="wrap hero"><div><div class="eyebrow">Public source-first case</div><h1>Default-deny execution for agent lanes.</h1><p class="lede">Broker Lane Sandbox keeps orchestration separate from the act of running a subprocess or local model. It validates policy before spawn, starts the child with a scrubbed environment, applies resource limits and returns structured JSON or JSONL evidence.</p><p><a class="cta" href="https://github.com/fbratten/broker-lane-sandbox">Inspect the public source</a></p></div><aside class="card evidence"><dl><dt>Public source pin</dt><dd><code>aae50e2</code></dd><dt>Verified</dt><dd>2026-08-02</dd><dt>Runtime deps</dt><dd>stdlib-only</dd><dt>Current phases</dt><dd>P0–P4</dd><dt>Test receipt</dt><dd>286 at pinned receipt</dd><dt>License</dt><dd>MIT</dd></dl></aside></div></header>
+
+  <main>
+    <section id="boundary"><div class="wrap"><div class="eyebrow">Execution contract</div><h2>Policy before process</h2><pre class="flow">broker or operator request
+-> validate non-empty argv
+-> require allow_exec
+-> require a bare command name
+-> require command allow-list membership
+-> validate working directory
+-> construct child environment from empty
+-> apply timeout and optional POSIX resource limits
+-> execute in a separate process group
+-> return ExecResult JSON
+
+Optional local-model path:
+manifest + existing weight file + size and sha256 verification
+-> offline local runner
+-> buffered JSON or additive JSONL streaming</pre><div class="grid"><article class="card mini"><strong>Default deny</strong><span class="muted">No process starts unless policy explicitly allows execution and the bare command name.</span></article><article class="card mini"><strong>Credential boundary</strong><span class="muted">The child environment begins empty. Secret-shaped variable names are dropped unless explicitly permitted.</span></article><article class="card mini"><strong>Model-artifact boundary</strong><span class="muted">Model weights remain outside Git. Only manifests, URLs, checksums and licence notes are tracked.</span></article></div></div></section>
+
+    <section id="evidence"><div class="wrap"><div class="eyebrow">Source-first evidence</div><h2>Why this is a card, not a simulated product</h2><table class="table"><thead><tr><th>Surface</th><th>Evidence</th><th>Limit</th></tr></thead><tbody><tr><td>Safe execution core</td><td>Public Python source, policy schema, CLI, threat model and adversarial-review history</td><td>Not a kernel or container isolation boundary</td></tr><tr><td>Environment and network posture</td><td>Empty child environment, allow-listing, secret-name filtering, proxy removal and offline signalling</td><td>Network isolation is best-effort environment-level neutralisation</td></tr><tr><td>Resource controls</td><td>Wall-clock timeout, process-group cleanup and optional POSIX rlimits</td><td>Filesystem access is not jailed and command identity is not hash-pinned</td></tr><tr><td>Local inference</td><td><code>bls infer</code>, llama.cpp-family runners, fake runner for CI and additive JSONL streaming</td><td>Weights are operator-fetched; Ollama and Transformers remain deferred</td></tr><tr><td>Verification</td><td>README receipt records 286 passing tests at implementation head <code>19091b1</code>; current head contains later documentation cleanup</td><td>No test rerun was performed for this static evidence card</td></tr></tbody></table><p class="note"><strong>Source-first rule:</strong> the public repository is the canonical proof. This page only provides recruiter orientation and direct links; it does not replace the README, manual, threat model, CI or test source.</p><p class="note warning"><strong>Honest security posture:</strong> this is a bounded process guardrail for a trusted caller, not a hostile multi-tenant sandbox. The source explicitly documents the missing filesystem jail, best-effort network posture and unpinned executable identity.</p></div></section>
+  </main>
+
+  <footer class="footer"><div class="wrap">Source pin <code>aae50e2d5b3bb3445561396d7cf80cef978bff24</code> · verified 2026-08-02 · <a href="https://github.com/fbratten/broker-lane-sandbox">public repository</a></div></footer>
+</body>
+</html>
