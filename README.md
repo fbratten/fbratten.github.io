@@ -16,12 +16,15 @@ Personal landing page for Fredrik Brattén.
 - Dark theme with card-based project grid
 - Hover effects and gradient accents
 - Responsive mobile layout
-- Links to all project showcases and demos
+- Links to project showcases and demos
+- Public-safe recruiter proof packages for selected private-source projects
 
 ## Projects Showcased
 
+- [MADS — Multi-Agent Developer Sandbox](https://fbratten.github.io/mads/) - Human-in-the-loop agentic development environment with typed actions, reviewable ChangeSets and durable audit evidence
 - [8me](https://fbratten.github.io/8me-showcase/) - Autonomous loop toolkit
 - [SPINE](https://fbratten.github.io/spine-showcase/) - Context engineering backbone
+- [Intelligence Engine](https://fbratten.github.io/intelligence-engine-showcase/) - Schema-driven knowledge graphs and hybrid retrieval
 - [From Blueprint to Application](https://fbratten.github.io/From-Blueprint-to-Application/) - Enterprise Prompt Engineering book
 - And more...
 
