@@ -15,6 +15,7 @@ on:
 
 permissions:
   contents: read
+  statuses: write
 
 jobs:
   verify:
@@ -89,3 +90,32 @@ jobs:
       - name: Show local server log on failure
         if: failure()
         run: cat /tmp/pages-server.log || true
+
+      - name: Publish live acceptance commit status
+        if: github.event_name == 'push' && always()
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          JOB_STATUS: ${{ job.status }}
+        shell: bash
+        run: |
+          if [[ "$JOB_STATUS" == "success" ]]; then
+            state="success"
+            description="Live root and all 10 method interactions passed"
+          else
+            state="failure"
+            description="Live GitHub Pages acceptance failed"
+          fi
+          payload="$(jq -n \
+            --arg state "$state" \
+            --arg context "pages/live-interactions" \
+            --arg description "$description" \
+            --arg target_url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
+            '{state:$state,context:$context,description:$description,target_url:$target_url}')"
+          curl --fail --silent --show-error --location \
+            --request POST \
+            --header "Authorization: Bearer ${GH_TOKEN}" \
+            --header "Accept: application/vnd.github+json" \
+            --header "X-GitHub-Api-Version: 2022-11-28" \
+            --data "$payload" \
+            "https://api.github.com/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}"
