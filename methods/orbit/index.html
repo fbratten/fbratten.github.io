@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A source-pinned, interactive scientific profile of ORBIT, the Orientation-Based Recursive Index Tree.">
+  <title>ORBIT | Methods, Protocols & Prompt Systems</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="./profile.js" defer></script>
+  <script src="./canvas-stability.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../">Methods, Protocols & Prompt Systems</a>
+      <nav aria-label="Primary">
+        <a href="../../">Portfolio</a>
+        <a href="../5pp/">5PP</a>
+        <a href="../dialogue-lifecycle/">Dialogue lifecycle</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell">
+      <div class="eyebrow-row">
+        <span class="eyebrow">Scientific profile 03</span>
+        <span class="status-chip">Accepted specification</span>
+        <span class="status-chip">Interactive orientation model</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1>ORBIT</h1>
+          <p class="subtitle">Orientation-Based Recursive Index Tree</p>
+          <p class="lede">
+            ORBIT specifies typed, provenance-aware orientation nodes that tell a small model, larger agent or human what a body of knowledge covers, what it excludes, how authoritative and current it is, and where attention should route next. The backend node remains complete. Each consumer receives a smaller, target-specific projection bounded by hard token gates.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-button" data-scroll-target="anatomy">Explore node anatomy</button>
+            <button class="secondary-button" data-scroll-target="projection">Test a projection</button>
+          </div>
+        </div>
+        <aside class="source-card" aria-label="Source pins">
+          <h2>Source pins</h2>
+          <dl>
+            <div><dt>Specification</dt><dd>ORBIT Core v0.1</dd></div>
+            <div><dt>Status</dt><dd>ACCEPTED</dd></div>
+            <div><dt>Acceptance</dt><dd>28 Jul 2026</dd></div>
+            <div><dt>Core commit</dt><dd><code>8927506cb3ed…</code></dd></div>
+            <div><dt>Conformance</dt><dd>Manual</dd></div>
+            <div><dt>Library commit</dt><dd><code>e95bdeb18c03…</code></dd></div>
+            <div><dt>Profile verified</dt><dd>3 Aug 2026</dd></div>
+          </dl>
+          <p class="small-note">The canonical repositories are private. This page publishes bounded, public-safe specification facts and synthetic examples rather than private package or project content.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-shell compact-section" aria-labelledby="classification-title">
+      <div class="section-heading">
+        <span class="section-number">01</span>
+        <div>
+          <h2 id="classification-title">Artefact classification</h2>
+          <p>Specification acceptance, reference artefacts, experimental adoption and executable tooling are separate maturity dimensions.</p>
+        </div>
+      </div>
+      <div class="classification-grid">
+        <article class="classification-card">
+          <span class="label">Accepted contract</span>
+          <h3>ORBIT Core v0.1</h3>
+          <p>The normative orientation-node, graph, provenance, epistemic, invalidation, anchor, projection, budget and conformance model.</p>
+        </article>
+        <article class="classification-card">
+          <span class="label">Accepted verification method</span>
+          <h3>Manual Conformance</h3>
+          <p>An evidence-backed, commit-bound human or human-supervised review with explicit PASS, FAIL or NOT APPLICABLE outcomes.</p>
+        </article>
+        <article class="classification-card">
+          <span class="label">Separate operationalization</span>
+          <h3>orbit-library</h3>
+          <p>A maintained library for reusable ORBIT-structured packages and reviewed copies. It does not replace the specification or validate ORBIT Core.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="anatomy" class="section-shell" aria-labelledby="anatomy-title">
+      <div class="section-heading">
+        <span class="section-number">02</span>
+        <div>
+          <h2 id="anatomy-title">Interactive orientation-node anatomy</h2>
+          <p>Drag and select the backend contract blocks. The centre represents the complete stored node, not the smaller client projection.</p>
+        </div>
+      </div>
+      <div class="control-bar"><button class="ghost-button" id="resetNodeLayout">Reset layout</button></div>
+      <div class="visual-grid wide-left">
+        <div class="canvas-panel tall">
+          <canvas id="nodeCanvas" aria-label="Interactive ORBIT orientation-node anatomy"></canvas>
+          <div class="canvas-legend" aria-hidden="true">
+            <span><i class="identity-dot"></i>Envelope and scope</span>
+            <span><i class="graph-dot"></i>Graph and horizon</span>
+            <span><i class="authority-dot"></i>Authority and state</span>
+            <span><i class="projection-dot"></i>Projection and budget</span>
+          </div>
+        </div>
+        <aside class="detail-panel" id="nodeDetail" aria-live="polite">
+          <span class="label">Selected contract block</span>
+          <h3>Identity & typing</h3>
+          <p class="detail-summary"></p>
+          <h4>Representative fields</h4>
+          <ul class="detail-fields"></ul>
+          <h4>Load-bearing invariant</h4>
+          <p class="detail-invariant"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="planes-title">
+      <div class="section-heading">
+        <span class="section-number">03</span>
+        <div>
+          <h2 id="planes-title">Three separate graph planes</h2>
+          <p>Toggle the planes and drag the synthetic nodes. Structural containment, attention routing and semantic association are deliberately not one generic edge type.</p>
+        </div>
+      </div>
+      <div class="control-bar" role="group" aria-label="Graph layers">
+        <span class="control-label">Planes</span>
+        <button class="layer-button active" data-layer="structural">Structural DAG</button>
+        <button class="layer-button active" data-layer="routing">Routing</button>
+        <button class="layer-button active" data-layer="semantic">Semantic</button>
+        <button class="ghost-button" id="resetPlaneLayout">Reset layout</button>
+      </div>
+      <div class="visual-grid wide-left">
+        <div class="canvas-panel tall"><canvas id="planesCanvas" aria-label="Interactive ORBIT structural, routing and semantic graph planes"></canvas></div>
+        <aside class="detail-panel" id="planeDetail" aria-live="polite">
+          <span class="label">Selected graph node</span>
+          <h3>Root index</h3>
+          <p class="detail-summary"></p>
+          <dl class="node-metadata"></dl>
+        </aside>
+      </div>
+      <div class="boundary-callout">
+        <strong>Structural cycles fail.</strong>
+        <span>The structural plane must remain a DAG. Semantic cycles are allowed. Routing cycles require an explicit later traversal process with condition checks, a visited set and a default maximum depth of three. Projection compilation itself never walks the graph.</span>
+      </div>
+    </section>
+
+    <section id="projection" class="section-shell" aria-labelledby="projection-title">
+      <div class="section-heading">
+        <span class="section-number">04</span>
+        <div>
+          <h2 id="projection-title">Synthetic projection-compilation laboratory</h2>
+          <p>Change authority, drift, anchor and budget conditions to see how a bounded client projection would be permitted or blocked. The laboratory is not an official ORBIT compiler or validator.</p>
+        </div>
+      </div>
+      <div class="sandbox-grid">
+        <form class="sandbox-controls" id="projectionForm">
+          <div class="select-grid">
+            <label>Consumer target
+              <select id="projectionTarget">
+                <option value="small_llm">small_llm</option>
+                <option value="agent">agent</option>
+                <option value="human">human</option>
+              </select>
+            </label>
+            <label>Source class
+              <select id="sourceClass">
+                <option value="derived">derived orientation node</option>
+                <option value="source_truth">source truth within scope</option>
+              </select>
+            </label>
+            <label>Sync state
+              <select id="syncState">
+                <option value="clean">clean</option>
+                <option value="dirty" selected>dirty</option>
+                <option value="invalidated">invalidated</option>
+              </select>
+            </label>
+            <label>Invalidation severity
+              <select id="severity">
+                <option value="low">low</option>
+                <option value="medium">medium</option>
+                <option value="high" selected>high</option>
+                <option value="critical">critical</option>
+              </select>
+            </label>
+            <label>Observed projection tokens
+              <input id="observedTokens" type="number" min="0" value="388">
+            </label>
+          </div>
+          <fieldset>
+            <legend>Synthetic contract conditions</legend>
+            <label><input type="checkbox" name="phase1Passed" checked> Backend node passed Phase 1</label>
+            <label><input type="checkbox" name="derivedFrom" checked> Derived node carries non-empty derived_from</label>
+            <label><input type="checkbox" name="gateExists" checked> Requested target gate exists</label>
+            <label><input type="checkbox" name="backendExcluded" checked> Backend-only blocks are excluded</label>
+            <label><input type="checkbox" name="anchorsRequired" checked> Node carries required anchors</label>
+            <label><input type="checkbox" name="anchorsSurvive" checked> Required terms or aliases survive literally</label>
+          </fieldset>
+          <button type="submit" class="primary-button">Compile synthetic projection</button>
+        </form>
+        <div class="sandbox-result" id="projectionResult" aria-live="polite">
+          <div class="result-badge pending">Not evaluated</div>
+          <h3>Projection result</h3>
+          <p>Change the controls and evaluate the synthetic projection.</p>
+          <ul></ul>
+          <div class="receipt-box">
+            <span>Computed status</span><code id="projectionStatus">pending</code>
+            <span>Token receipt</span><code id="projectionReceipt">388 / 500</code>
+          </div>
+          <pre class="projection-preview" id="projectionPreview">No synthetic projection emitted yet.</pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="authority-title">
+      <div class="section-heading">
+        <span class="section-number">05</span>
+        <div>
+          <h2 id="authority-title">Authority, invalidation and projection boundaries</h2>
+          <p>The source-truth barrier remains binding even when a node is confident, clean, highly ranked or projected successfully.</p>
+        </div>
+      </div>
+      <div class="status-table" role="table" aria-label="ORBIT status and authority examples">
+        <div class="status-row" role="row"><strong>Source-truth node</strong><strong class="accepted">Citeable in scope</strong><span>Still carries epistemic and sync state. Source truth is not identical to freshness.</span></div>
+        <div class="status-row" role="row"><strong>Derived, clean node</strong><strong class="experimental">Orientation only</strong><span>May route attention but may not be escalated to source truth by confidence or clean sync.</span></div>
+        <div class="status-row" role="row"><strong>Dirty, medium/high node</strong><strong class="experimental">Navigation only</strong><span>Projection can remain structurally valid while warnings require source verification.</span></div>
+        <div class="status-row" role="row"><strong>Critical invalidation</strong><strong class="deferred">Not safe</strong><span>The projection may be well formed, but its consumer disposition is not_safe and regeneration is immediate.</span></div>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="lineage-title">
+      <div class="section-heading">
+        <span class="section-number">06</span>
+        <div>
+          <h2 id="lineage-title">Specification, dogfood and package lineage</h2>
+          <p>Drag nodes, filter maturity layers and inspect how the accepted contract relates to later experimental and operational surfaces without collapsing their authority.</p>
+        </div>
+      </div>
+      <div class="control-bar" role="group" aria-label="Lineage filters">
+        <button class="graph-filter active" data-filter="all">All</button>
+        <button class="graph-filter" data-filter="origin">Concept</button>
+        <button class="graph-filter" data-filter="core">Accepted core</button>
+        <button class="graph-filter" data-filter="experimental">Experimental</button>
+        <button class="graph-filter" data-filter="library">Library use</button>
+        <button class="ghost-button" id="resetLineageLayout">Reset layout</button>
+      </div>
+      <div class="visual-grid wide-left">
+        <div class="canvas-panel tall"><canvas id="lineageCanvas" aria-label="Interactive ORBIT specification, dogfood and package lineage"></canvas></div>
+        <aside class="detail-panel" id="lineageDetail" aria-live="polite">
+          <span class="label">Graph node</span>
+          <h3>ORBIT v0.1 ACCEPTED</h3>
+          <p class="detail-summary"></p>
+          <dl class="node-metadata"></dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="evidence" class="section-shell" aria-labelledby="evidence-title">
+      <div class="section-heading">
+        <span class="section-number">07</span>
+        <div>
+          <h2 id="evidence-title">Evidence and maturity receipts</h2>
+          <p>Recorded token-gate measurements are separated from maturity coding. Neither graph measures the framework's effect on task outcomes.</p>
+        </div>
+      </div>
+      <div class="chart-grid">
+        <article class="chart-card">
+          <div class="chart-heading">
+            <div><span class="label">Measured acceptance receipt</span><h3>Token gates under char/4</h3></div>
+            <button class="ghost-button" id="exportTokenChart">Export PNG</button>
+          </div>
+          <div class="chart-wrap"><canvas id="tokenChart" aria-label="ORBIT acceptance token counts and hard gates"></canvas></div>
+          <p class="small-note">Acceptance review receipts: Formula 1 was 950/1200, Formula 2 was 388/500 and Formula 3 was 158/500. The deterministic fallback was ceil(character count / 4).</p>
+        </article>
+        <article class="chart-card">
+          <div class="chart-heading">
+            <div><span class="label">Status coding, not efficacy</span><h3>Specification and tooling maturity</h3></div>
+            <button class="ghost-button" id="exportMaturityChart">Export PNG</button>
+          </div>
+          <div class="chart-wrap"><canvas id="maturityChart" aria-label="ORBIT specification and tooling maturity profile"></canvas></div>
+          <p class="small-note">Core, Manual Conformance and canonical references are accepted. Dogfood and adoption are experimental. Official executable tooling remains deferred.</p>
+        </article>
+      </div>
+      <div class="receipt-grid">
+        <article><span class="metric">12</span><h3>Promotion gates</h3><p>All passed in the recorded Phase 3 review.</p></article>
+        <article><span class="metric">5</span><h3>Accepted decisions</h3><p>Graph capability, epistemic bifurcation, scope/routing separation, anchors and budgets.</p></article>
+        <article><span class="metric">5</span><h3>Accepted corpus cases</h3><p>Three positive and two intentional negative manual controls.</p></article>
+        <article><span class="metric">16</span><h3>Extended cases</h3><p>C6–C21 are experimental reference evidence, not an executable suite.</p></article>
+        <article><span class="metric">6</span><h3>Self-orientation nodes</h3><p>Experimental derived navigation over the ORBIT repository.</p></article>
+        <article><span class="metric">4</span><h3>Adoption profiles</h3><p>Repository orientation, agent onboarding, Personal RAG and Observation Flow.</p></article>
+        <article><span class="metric">15</span><h3>Library YAML receipt</h3><p>Source-reported package validation at orbit-library 0.1.1.</p></article>
+        <article><span class="metric">6</span><h3>Library nodes</h3><p>Source-reported orientation-node count in the maintained IE package.</p></article>
+        <article><span class="metric">0</span><h3>Official runtime tools</h3><p>Validator, compiler, runtime and CI conformance remain deferred.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="analysis-title">
+      <div class="section-heading">
+        <span class="section-number">08</span>
+        <div>
+          <h2 id="analysis-title">Scientific interpretation</h2>
+          <p>ORBIT's source set supports a detailed mechanism and conformance contract. It does not yet support a claim of independently measured outcome improvement.</p>
+        </div>
+      </div>
+      <div class="analysis-grid">
+        <article><h3>Problem definition</h3><p>Consumers with limited attention frequently receive either too much source material or summaries that omit exclusions, authority, drift and routing. This creates both context waste and epistemic ambiguity.</p></article>
+        <article><h3>Mechanism hypothesis</h3><p>Typed orientation nodes, explicit exclusions, authority barriers, drift warnings, anchors and target-specific token gates should reduce misrouting, silent source escalation and semantic washout. This is a design hypothesis.</p></article>
+        <article><h3>Operationalization</h3><p>The accepted v0.1 contract defines backend fields, three edge planes, projection steps, three token formulas, validation phases, manual conformance and fail-loud negative controls.</p></article>
+        <article><h3>Evaluation routes</h3><p>Matched studies could measure time-to-correct-source, wrong-route rate, unsupported citation rate, anchor retention, token use, stale-node misuse, regeneration latency and operator correction effort.</p></article>
+      </div>
+      <div class="limits-panel">
+        <h3>Explicit non-claims</h3>
+        <ul>
+          <li>ORBIT is not a runtime, retrieval engine, database, graph engine or RAG product.</li>
+          <li>RAG is one possible consumer and is not the framework's identity.</li>
+          <li>The accepted declarative schema is not an executable validator.</li>
+          <li>Manual Conformance is not automated certification.</li>
+          <li>A successfully compiled projection does not make a derived node source truth.</li>
+          <li>A structurally valid projection may still carry a not_safe consumer disposition.</li>
+          <li>The repository-integrity workflow does not validate ORBIT conformance.</li>
+          <li>The orbit-library consistency script does not certify ORBIT Core conformance.</li>
+          <li>No independent effect study was identified in the inspected source set.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="connections-title">
+      <div class="section-heading">
+        <span class="section-number">09</span>
+        <div><h2 id="connections-title">Representative adoption surfaces</h2><p>Examples are classified by their source status and do not create additional core requirements.</p></div>
+      </div>
+      <div class="connections-grid">
+        <a href="../dialogue-lifecycle/"><strong>Agent onboarding</strong><span>Wake-up sequence, mandatory reads, lane identity, mutation boundaries and completion receipts.</span></a>
+        <a href="../../worktrace/"><strong>Personal RAG orientation</strong><span>Corpus classes, retrieval modes, authority floor, time window and citation requirements.</span></a>
+        <a href="https://fbratten.github.io/spine-showcase/recruiter-proof/"><strong>Repository orientation</strong><span>Canonical entry points, active work surfaces, adjacency and mutation-policy routing.</span></a>
+        <a href="../../bubble-string-mnemonix/"><strong>Observation Flow</strong><span>Capture candidates, possible capabilities and outputs while preserving action_authorized as false.</span></a>
+        <a href="../../intelligence-engine/"><strong>orbit-library IE package</strong><span>Maintained reusable instructions with local-overlay ownership and target-repository authority.</span></a>
+        <a href="../5pp/"><strong>5PP</strong><span>A separate bounded-work protocol that may govern implementation work around ORBIT without becoming part of ORBIT Core.</span></a>
+      </div>
+    </section>
+
+    <section class="section-shell sources-section" aria-labelledby="sources-title">
+      <div class="section-heading">
+        <span class="section-number">10</span>
+        <div><h2 id="sources-title">Sources and reproducibility notes</h2><p>Claims are bounded to the inspected pins and status authority below.</p></div>
+      </div>
+      <div class="source-list">
+        <div><span>Accepted specification pin</span><code>fbratten/recursive-orientation-index-framework @ 8927506cb3ede033cd92c0277bd7ca3f2fbc4273</code></div>
+        <div><span>Status authority</span><code>SPEC-STATUS.md</code></div>
+        <div><span>Core mechanism sources</span><code>CONCEPT.md, NODE-SCHEMA.md, GRAPH-MODEL.md, PROVENANCE-MODEL.md, EPISTEMIC-MODEL.md, INVALIDATION-MODEL.md, ANCHOR-INVARIANT.md</code></div>
+        <div><span>Projection and gates</span><code>CONSUMER-PROJECTION-MODEL.md, PROJECTION-EMISSION-CONTRACT.md, TOKEN-BUDGET.md, VALIDATION-RULES.md</code></div>
+        <div><span>Acceptance evidence</span><code>docs/governance/ORBIT-v0.1-ACCEPTANCE-REVIEW.md</code></div>
+        <div><span>Accepted reference contract</span><code>schemas/orientation-node.schema.yaml</code></div>
+        <div><span>Experimental evidence</span><code>orbit/root-index.yaml, examples/adoption/profiles.yaml, docs/governance/EXTENDED-CONFORMANCE-CORPUS.md</code></div>
+        <div><span>Operational package pin</span><code>fbratten/orbit-library @ e95bdeb18c035527a676c838f7c3f97e964fd385</code></div>
+        <div><span>Publication surface</span><code>fbratten.github.io/methods/orbit/</code></div>
+      </div>
+      <p class="small-note">The page uses only synthetic browser state. It performs no validation, compilation, repository mutation, live graph traversal, source retrieval or LLM operation.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><strong>Methods, Protocols & Prompt Systems</strong><span>Interactive, source-pinned proof of method.</span></div>
+    <a href="../">Back to the methods index</a>
+  </footer>
+</body>
+</html>
