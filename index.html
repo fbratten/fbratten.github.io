@@ -1,455 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fredrik Brattén - AI & Context Engineering</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        .project-card {
-            transition: all 0.3s ease;
-        }
-        .badge-link:hover {
-            transform: translateY(-2px);
-        }
-        .badge-link {
-            transition: all 0.2s ease;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Fredrik Bratten - applied AI, automation, retrieval systems, agent orchestration, security and reliable execution infrastructure.">
+  <title>Fredrik Bratten - Applied AI, Automation and Reliable Agent Systems</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html { scroll-behavior: smooth; }
+    body { background: #071018; }
+    .surface {
+      background: linear-gradient(145deg, rgba(20, 38, 54, 0.96), rgba(10, 22, 33, 0.98));
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+    .lift { transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+    .lift:hover { transform: translateY(-4px); border-color: rgba(94, 234, 212, 0.55); box-shadow: 0 24px 70px rgba(0, 0, 0, 0.38); }
+    .focus-ring:focus-visible { outline: 3px solid #5eead4; outline-offset: 4px; }
+    .grid-glow {
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.055) 1px, transparent 1px);
+      background-size: 38px 38px;
+    }
+  </style>
 </head>
-<body class="bg-slate-900 text-white min-h-screen">
-    <!-- Header -->
-    <header class="bg-slate-800 border-b border-slate-700">
-        <div class="max-w-6xl mx-auto px-6 py-4">
-            <nav class="flex items-center justify-between">
-                <a href="/" class="text-xl font-bold text-indigo-400 hover:text-indigo-300">
-                    Fredrik Brattén
-                </a>
-                <div class="flex gap-6">
-                    <a href="https://adaptivearts.ai" class="text-slate-300 hover:text-white">Adaptivearts.ai</a>
-                    <a href="https://github.com/fbratten" class="text-slate-300 hover:text-white">GitHub</a>
-                </div>
-            </nav>
-        </div>
-    </header>
+<body class="text-slate-100 min-h-screen">
+  <a href="#main" class="focus-ring fixed -top-20 left-4 z-50 rounded bg-white px-4 py-3 text-slate-950 focus:top-4">Skip to content</a>
 
-    <!-- Hero -->
-    <section class="bg-gradient-to-b from-slate-800 to-slate-900 py-16">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&pause=1000&color=6366F1&center=true&vCenter=true&width=500&lines=AI+%26+Prompt+Engineering+Aficionado;Context+Engineering+Architect;Building+Enterprise+AI+Solutions" alt="Typing SVG" class="mx-auto mb-6"/>
-            <p class="text-slate-400 text-lg max-w-2xl mx-auto mb-8">
-                Building <strong class="text-white">enterprise AI solutions</strong> and <strong class="text-white">context engineering systems</strong> -
-                focused on making AI practical, secure, and scalable for real-world applications.
-            </p>
-            <div class="flex flex-wrap justify-center gap-3">
-                <a href="https://adaptivearts.ai" class="badge-link inline-block">
-                    <img src="https://img.shields.io/badge/Adaptivearts.ai-Research-6366F1?style=for-the-badge" alt="Adaptivearts.ai"/>
-                </a>
-                <a href="https://github.com/fbratten" class="badge-link inline-block">
-                    <img src="https://img.shields.io/badge/GitHub-fbratten-181717?style=for-the-badge&logo=github" alt="GitHub"/>
-                </a>
-            </div>
+  <header class="sticky top-0 z-40 border-b border-slate-700/60 bg-slate-950/85 backdrop-blur-xl">
+    <div class="mx-auto flex min-h-16 max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
+      <a class="focus-ring font-bold tracking-tight text-white" href="/">Fredrik Bratten</a>
+      <nav class="hidden items-center gap-5 text-sm text-slate-300 md:flex" aria-label="Primary">
+        <a class="hover:text-white" href="#proof-packages">Proof packages</a>
+        <a class="hover:text-white" href="./methods/">Methods</a>
+        <a class="hover:text-white" href="#showcases">Earlier showcases</a>
+        <a class="hover:text-white" href="https://adaptivearts.ai/">Adaptivearts.ai</a>
+        <a class="hover:text-white" href="https://github.com/fbratten">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="grid-glow border-b border-slate-800 bg-gradient-to-b from-slate-900 to-[#071018]">
+      <div class="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.3fr_.7fr] lg:py-28">
+        <div>
+          <p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-teal-300">Applied AI - Automation - Reliable agent systems</p>
+          <h1 class="max-w-5xl text-5xl font-black leading-[0.95] tracking-[-0.055em] text-white sm:text-6xl lg:text-7xl">
+            Building AI systems that can be inspected, governed and used in practice
+          </h1>
+          <p class="mt-7 max-w-3xl text-lg leading-8 text-slate-300">
+            I combine applied AI with more than 20 years in enterprise IT, automation, operations and cybersecurity. My work covers retrieval systems, agent orchestration, user-facing AI products, provenance, evaluation and controlled execution.
+          </p>
+          <div class="mt-9 flex flex-wrap gap-3">
+            <a class="focus-ring rounded-lg bg-teal-300 px-5 py-3 font-bold text-slate-950 hover:bg-teal-200" href="#proof-packages">Explore proof packages</a>
+            <a class="focus-ring rounded-lg border border-violet-300/45 bg-violet-300/10 px-5 py-3 font-bold text-violet-100 hover:border-violet-200" href="./methods/">Explore methods and protocols</a>
+            <a class="focus-ring rounded-lg border border-slate-600 px-5 py-3 font-bold text-slate-200 hover:border-slate-400" href="https://github.com/fbratten">GitHub profile</a>
+          </div>
         </div>
+
+        <aside class="surface rounded-2xl p-6 lg:mt-8">
+          <p class="text-xs font-bold uppercase tracking-[0.16em] text-teal-300">Current positioning</p>
+          <h2 class="mt-3 text-2xl font-bold text-white">Systems and Automation Engineer</h2>
+          <p class="mt-3 text-slate-300">Applied AI, operations, security, integration and agent-oriented infrastructure.</p>
+          <dl class="mt-6 space-y-4 text-sm">
+            <div class="border-t border-slate-700 pt-4"><dt class="text-slate-400">Primary evidence</dt><dd class="mt-1 text-white">Source-pinned proof packages and interactive method profiles</dd></div>
+            <div class="border-t border-slate-700 pt-4"><dt class="text-slate-400">Engineering posture</dt><dd class="mt-1 text-white">Preserve first, verify claims, constrain risky actions</dd></div>
+            <div class="border-t border-slate-700 pt-4"><dt class="text-slate-400">Independent initiative</dt><dd class="mt-1"><a class="text-teal-300 hover:text-teal-200" href="https://adaptivearts.ai/">Adaptivearts.ai</a></dd></div>
+          </dl>
+        </aside>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="py-12 bg-slate-800/50">
-        <div class="max-w-6xl mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-8 items-center">
-                <div>
-                    <h2 class="text-2xl font-bold mb-4">About Me</h2>
-                    <ul class="space-y-3 text-slate-300">
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-400 shrink-0">→</span>
-                            <span>Currently working on <strong class="text-white">AI orchestration frameworks</strong> and prompt engineering best practices</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-400 shrink-0">→</span>
-                            <span>Author of <strong class="text-white">"From Blueprint to Application"</strong> - Enterprise Prompt Engineering Guide</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-400 shrink-0">→</span>
-                            <span>Creating tools that bridge the gap between AI capabilities and enterprise needs</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <span class="text-indigo-400 shrink-0">→</span>
-                            <span><strong class="text-white">Approach:</strong> Automating everything that can be automated</span>
-                        </li>
-                    </ul>
-                </div>
-                <div class="bg-slate-800 rounded-xl p-6 border border-slate-700">
-                    <h3 class="text-lg font-semibold mb-4 text-indigo-400">Focus Areas</h3>
-                    <div class="space-y-3">
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span>AI & Agentic Systems</span>
-                                <span class="text-slate-400">85%</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span>Context Engineering</span>
-                                <span class="text-slate-400">75%</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full" style="width: 75%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span>MCP Servers & Tools</span>
-                                <span class="text-slate-400">65%</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-orange-500 to-red-500 rounded-full" style="width: 65%"></div>
-                            </div>
-                        </div>
-                        <div>
-                            <div class="flex justify-between text-sm mb-1">
-                                <span>Technical Writing</span>
-                                <span class="text-slate-400">60%</span>
-                            </div>
-                            <div class="h-2 bg-slate-700 rounded-full overflow-hidden">
-                                <div class="h-full bg-gradient-to-r from-pink-500 to-rose-500 rounded-full" style="width: 60%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8" aria-labelledby="start-heading">
+      <div class="max-w-3xl">
+        <p class="text-sm font-bold uppercase tracking-[0.16em] text-teal-300">Start here</p>
+        <h2 id="start-heading" class="mt-2 text-4xl font-black tracking-tight text-white">Two ways to review the work</h2>
+        <p class="mt-4 text-slate-400">The proof packages show implemented systems. The methods collection shows the control models, reasoning structures and verification practices behind them.</p>
+      </div>
+
+      <div class="mt-9 grid gap-6 lg:grid-cols-2">
+        <a class="surface lift focus-ring rounded-2xl p-7" href="#proof-packages">
+          <div class="flex items-start justify-between gap-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.16em] text-teal-300">Recruiter route</p>
+              <h3 class="mt-3 text-3xl font-black text-white">Proof packages</h3>
+              <p class="mt-4 text-slate-300">Review current evidence for retrieval, agent safety, product engineering, provenance and runtime governance.</p>
             </div>
-        </div>
+            <span class="rounded-full border border-teal-300/35 bg-teal-300/10 px-3 py-1 text-sm text-teal-200">Implemented systems</span>
+          </div>
+          <p class="mt-7 font-semibold text-teal-300">Open the proof package index -&gt;</p>
+        </a>
+
+        <a class="surface lift focus-ring rounded-2xl p-7" href="./methods/">
+          <div class="flex items-start justify-between gap-5">
+            <div>
+              <p class="text-xs font-bold uppercase tracking-[0.16em] text-violet-300">Method route</p>
+              <h3 class="mt-3 text-3xl font-black text-white">Methods, protocols and prompt systems</h3>
+              <p class="mt-4 text-slate-300">Explore interactive profiles for 5PP, dialogue lifecycle, ORBIT, AICS, DIALECTIC, RigVedan and the DIAL-4 family.</p>
+            </div>
+            <span class="rounded-full border border-violet-300/35 bg-violet-300/10 px-3 py-1 text-sm text-violet-200">10 profiles</span>
+          </div>
+          <p class="mt-7 font-semibold text-violet-300">Open the methods collection -&gt;</p>
+        </a>
+      </div>
     </section>
 
-    <!-- Projects Grid -->
-    <main class="max-w-6xl mx-auto px-6 py-12">
-        <h2 class="text-2xl font-bold mb-8 text-center">Projects & Frameworks</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-            <!-- 8me Orchestration -->
-            <a href="https://fbratten.github.io/8me-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-blue-500">
-                <div class="h-32 bg-gradient-to-br from-blue-600 to-indigo-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">8me Orchestration</h3>
-                    <p class="text-slate-400 text-sm">Multi-tiered "Ralph Wiggum" methodology for persistent AI loops. MCP server, Claude Code skill, and 15 progressive labs.</p>
-                    <div class="mt-4 flex items-center text-blue-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- SPINE -->
-            <a href="https://fbratten.github.io/spine-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-violet-500">
-                <div class="h-32 bg-gradient-to-br from-violet-600 to-purple-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">SPINE</h3>
-                    <p class="text-slate-400 text-sm">Context Engineering & Multi-Agent Backbone. Tiered protocol for AI orchestration with subagent coordination.</p>
-                    <div class="mt-4 flex items-center text-violet-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Adaptive MCP Orchestrator -->
-            <a href="https://fbratten.github.io/Adaptive-MCP-Orchestrator-Blueprint-Showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-cyan-500">
-                <div class="h-32 bg-gradient-to-br from-cyan-600 to-teal-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">Adaptive MCP Orchestrator</h3>
-                    <p class="text-slate-400 text-sm">Blueprint for adaptive orchestration of multiple MCP servers with intelligent routing and meta-routing.</p>
-                    <div class="mt-4 flex items-center text-cyan-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- arbiter -->
-            <a href="https://fbratten.github.io/arbiter-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-teal-500">
-                <div class="h-32 bg-gradient-to-br from-teal-600 to-cyan-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">arbiter</h3>
-                    <p class="text-slate-400 text-sm">MCP Server Validator. Protocol compliance, code quality, best practices, LLM ergonomics. 4 profiles, 7 fix packs, 177 tests.</p>
-                    <div class="mt-4 flex items-center text-teal-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Security Audit MCP Server -->
-            <a href="https://fbratten.github.io/Security-Audit-MCP-Server-Showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-red-500">
-                <div class="h-32 bg-gradient-to-br from-red-600 to-rose-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">Security Audit MCP Server</h3>
-                    <p class="text-slate-400 text-sm">MCP server for comprehensive security auditing of codebases and configurations.</p>
-                    <div class="mt-4 flex items-center text-red-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Golden Thread System -->
-            <a href="https://fbratten.github.io/golden-thread-system/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-amber-500">
-                <div class="h-32 bg-gradient-to-br from-amber-600 to-orange-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">Golden Thread System</h3>
-                    <p class="text-slate-400 text-sm">Narrative Coherence Framework. Maintaining consistent narratives and context across complex AI interactions.</p>
-                    <div class="mt-4 flex items-center text-amber-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Music Video Creator -->
-            <a href="https://fbratten.github.io/music-video-creator-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-pink-500">
-                <div class="h-32 bg-gradient-to-br from-pink-600 to-fuchsia-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">Music Video Creator</h3>
-                    <p class="text-slate-400 text-sm">AI-Powered Visual Generation. Create reactive music visualizations with AI-generated imagery and audio-reactive effects.</p>
-                    <div class="mt-4 flex items-center text-pink-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- agentspool -->
-            <a href="https://fbratten.github.io/agentspool-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-sky-500">
-                <div class="h-32 bg-gradient-to-br from-sky-600 to-blue-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">agentspool</h3>
-                    <p class="text-slate-400 text-sm">Inter-agent Communication. SQLite-backed message spool with HMAC-authenticated HTTP relay for AI agent coordination.</p>
-                    <div class="mt-4 flex items-center text-sky-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- Intelligence Engine -->
-            <a href="https://fbratten.github.io/intelligence-engine-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-emerald-500">
-                <div class="h-32 bg-gradient-to-br from-emerald-500 to-cyan-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">Intelligence Engine</h3>
-                    <p class="text-slate-400 text-sm">AST-Driven Code Knowledge Graphs. Hybrid search (BM25 + semantic + graph) across 54 projects with KuzuDB, LanceDB & interactive visualization.</p>
-                    <div class="mt-4 flex items-center text-emerald-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- switchcore -->
-            <a href="https://fbratten.github.io/switchcore-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-amber-500">
-                <div class="h-32 bg-gradient-to-br from-amber-600 to-orange-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">switchcore</h3>
-                    <p class="text-slate-400 text-sm">MCP Meta-Router. Discovery, inventory, smart routing, and dynamic management for MCP servers. 12 tools, 152 tests.</p>
-                    <div class="mt-4 flex items-center text-amber-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- vigil -->
-            <a href="https://fbratten.github.io/vigil-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-yellow-500">
-                <div class="h-32 bg-gradient-to-br from-yellow-600 to-amber-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">vigil</h3>
-                    <p class="text-slate-400 text-sm">Self-scheduling follow-up MCP server. No external scheduler, no cron. 11 tools, 13 notification channels, 148 tests.</p>
-                    <div class="mt-4 flex items-center text-yellow-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
-            <!-- spawn -->
-            <a href="https://fbratten.github.io/spawn-showcase/" class="project-card bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-purple-500">
-                <div class="h-32 bg-gradient-to-br from-purple-600 to-violet-700 flex items-center justify-center">
-                    <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
-                    </svg>
-                </div>
-                <div class="p-5">
-                    <h3 class="text-lg font-semibold mb-2">spawn</h3>
-                    <p class="text-slate-400 text-sm">Meta-MCP: the MCP server that builds MCP servers. Analyzes patterns, scores buildability, generates complete implementations. 17 tools, 156 tests.</p>
-                    <div class="mt-4 flex items-center text-purple-400 text-sm">
-                        <span>Showcase</span>
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </div>
-                </div>
-            </a>
-
+    <section id="proof-packages" class="border-y border-slate-800 bg-slate-900/45">
+      <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-bold uppercase tracking-[0.16em] text-teal-300">Recruiter proof packages</p>
+          <h2 class="mt-2 text-4xl font-black tracking-tight text-white">Four current flagships</h2>
+          <p class="mt-4 text-slate-400">Each package separates implementation evidence, public demonstration, source pins, limitations and non-claims.</p>
         </div>
 
-        <!-- AI-Human Admin Dashboard (full width) -->
-        <div class="mt-8">
-            <a href="https://fbratten.github.io/AI-Human-Admin-Dashboard/" class="project-card block bg-slate-800 rounded-xl overflow-hidden border border-slate-700 hover:border-emerald-500">
-                <div class="md:flex">
-                    <div class="md:w-48 h-32 md:h-auto bg-gradient-to-br from-emerald-600 to-green-700 flex items-center justify-center">
-                        <svg class="w-14 h-14 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2"></path>
-                        </svg>
-                    </div>
-                    <div class="p-5 flex-1">
-                        <h3 class="text-lg font-semibold mb-2">AI-Human Admin Dashboard</h3>
-                        <p class="text-slate-400 text-sm">Collaboration Interface. Dashboard for managing AI-human collaborative workflows and task coordination.</p>
-                        <div class="mt-4 flex items-center text-emerald-400 text-sm">
-                            <span>Showcase</span>
-                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    </main>
+        <div class="mt-9 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <a class="surface lift focus-ring rounded-2xl p-6" href="./intelligence-engine-showcase/">
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-teal-300">Retrieval and graphs</p>
+            <h3 class="mt-3 text-2xl font-bold text-white">Intelligence Engine</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-400">Hybrid lexical, semantic and graph retrieval with schema-driven domains, REST, MCP and an interactive web UI.</p>
+            <p class="mt-6 font-semibold text-teal-300">Explore -&gt;</p>
+          </a>
 
-    <!-- Featured Book Section -->
-    <section class="bg-slate-800 py-16">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-2xl font-bold mb-8 text-center">Featured Book</h2>
-            <div class="bg-slate-900 rounded-xl border border-slate-700 overflow-hidden md:flex">
-                <div class="md:w-64 p-8 flex items-center justify-center bg-gradient-to-br from-orange-600/20 to-red-700/20">
-                    <a href="https://fbratten.github.io/From-Blueprint-to-Application/">
-                        <img src="https://raw.githubusercontent.com/fbratten/From-Blueprint-to-Application/main/assets/book-cover.jpg" alt="Book Cover" class="w-40 rounded-lg shadow-2xl hover:scale-105 transition-transform"/>
-                    </a>
-                </div>
-                <div class="p-8 flex-1">
-                    <h3 class="text-2xl font-bold mb-2">From Blueprint to Application</h3>
-                    <p class="text-orange-400 mb-4">A Guide to Enterprise Prompt Engineering</p>
-                    <p class="text-slate-300 mb-6">
-                        Transform AI trial-and-error into consistent, time-saving workflows through a structured 90-day journey.
-                    </p>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="https://subscribepage.io/from-blueprint-to-application" class="badge-link inline-block">
-                            <img src="https://img.shields.io/badge/Pre--Order-40%25_Off-orange?style=for-the-badge" alt="Pre-Order"/>
-                        </a>
-                        <a href="https://fbratten.github.io/From-Blueprint-to-Application/" class="badge-link inline-block">
-                            <img src="https://img.shields.io/badge/Live-Demo-blue?style=for-the-badge" alt="Live Demo"/>
-                        </a>
-                    </div>
-                </div>
-            </div>
+          <a class="surface lift focus-ring rounded-2xl p-6" href="./mads/">
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-violet-300">Human-in-the-loop agents</p>
+            <h3 class="mt-3 text-2xl font-bold text-white">MADS</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-400">A controlled development environment where agent proposals become reviewable ChangeSets rather than uncontrolled host actions.</p>
+            <p class="mt-6 font-semibold text-violet-300">Explore -&gt;</p>
+          </a>
+
+          <a class="surface lift focus-ring rounded-2xl p-6" href="./adaptivearts-ai/">
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-blue-300">AI product engineering</p>
+            <h3 class="mt-3 text-2xl font-bold text-white">Adaptivearts.ai</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-400">Astro, React and Supabase product architecture with editorial workflows and a server-side AI provider boundary.</p>
+            <p class="mt-6 font-semibold text-blue-300">Explore -&gt;</p>
+          </a>
+
+          <a class="surface lift focus-ring rounded-2xl p-6" href="./gate-monitor/">
+            <p class="text-xs font-bold uppercase tracking-[0.14em] text-amber-300">Runtime governance</p>
+            <h3 class="mt-3 text-2xl font-bold text-white">Gate Monitor</h3>
+            <p class="mt-3 text-sm leading-6 text-slate-400">Deterministic policy for long-running agent sessions using evidence, thresholds, findings and explicit decisions.</p>
+            <p class="mt-6 font-semibold text-amber-300">Explore -&gt;</p>
+          </a>
         </div>
+
+        <div class="mt-7 flex flex-wrap gap-3 text-sm">
+          <a class="focus-ring rounded-full border border-slate-700 px-4 py-2 text-slate-300 hover:border-slate-500" href="./vertex/">Vertex visual systems proof</a>
+          <a class="focus-ring rounded-full border border-slate-700 px-4 py-2 text-slate-300 hover:border-slate-500" href="./worktrace/">Worktrace provenance proof</a>
+          <a class="focus-ring rounded-full border border-slate-700 px-4 py-2 text-slate-300 hover:border-slate-500" href="./broker-lane-sandbox/">Broker Lane Sandbox</a>
+          <a class="focus-ring rounded-full border border-slate-700 px-4 py-2 text-slate-300 hover:border-slate-500" href="./spine-showcase/recruiter-proof/">SPINE source-pinned proof</a>
+          <a class="focus-ring rounded-full border border-slate-700 px-4 py-2 text-slate-300 hover:border-slate-500" href="./Adaptive-MCP-Orchestrator-Blueprint-Showcase/recruiter-proof/">Orchestrator evidence route</a>
+        </div>
+      </div>
     </section>
 
-    <!-- Interactive Demos Section -->
-    <section class="py-12">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <h2 class="text-2xl font-bold mb-6">Interactive Demos</h2>
-            <p class="text-slate-400 mb-8">Explore hands-on demonstrations across projects</p>
-            <div class="flex flex-wrap justify-center gap-4">
-                <a href="https://fbratten.github.io/8me-showcase/" class="badge-link inline-block">
-                    <img src="https://img.shields.io/badge/8me-Try_Labs-blue?style=for-the-badge" alt="8me Labs"/>
-                </a>
-                <a href="https://fbratten.github.io/spine-showcase/demos/" class="badge-link inline-block">
-                    <img src="https://img.shields.io/badge/SPINE-Demos-blueviolet?style=for-the-badge" alt="SPINE Demos"/>
-                </a>
-                <a href="https://fbratten.github.io/From-Blueprint-to-Application/demos/" class="badge-link inline-block">
-                    <img src="https://img.shields.io/badge/Book-Interactive_Tools-orange?style=for-the-badge" alt="Book Demos"/>
-                </a>
-                <a href="https://fbratten.github.io/intelligence-engine-showcase/" class="badge-link inline-block">
-                    <img src="https://img.shields.io/badge/IE-Code_Knowledge_Graphs-00ccaa?style=for-the-badge" alt="Intelligence Engine"/>
-                </a>
-            </div>
+    <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+      <div class="grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.16em] text-violet-300">Methods and protocols</p>
+          <h2 class="mt-2 text-4xl font-black tracking-tight text-white">The systems behind the systems</h2>
+          <p class="mt-4 text-slate-400">Interactive profiles explain how work is clarified, scoped, authorized, represented, verified and kept honest about uncertainty.</p>
+          <a class="focus-ring mt-7 inline-flex rounded-lg bg-violet-300 px-5 py-3 font-bold text-slate-950 hover:bg-violet-200" href="./methods/">Browse all method profiles</a>
         </div>
+        <div class="surface rounded-2xl p-6">
+          <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/5pp/"><strong>5PP</strong><span class="mt-1 block text-sm text-slate-400">Clarify, scope, plan, execute, verify</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/dialogue-lifecycle/"><strong>Dialogue lifecycle</strong><span class="mt-1 block text-sm text-slate-400">Explore through close</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/orbit/"><strong>ORBIT</strong><span class="mt-1 block text-sm text-slate-400">Orientation and provenance</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/aics/"><strong>AICS</strong><span class="mt-1 block text-sm text-slate-400">Versioned instruction contracts</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/dialectic/"><strong>DIALECTIC</strong><span class="mt-1 block text-sm text-slate-400">Iterative interpretation</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/rigvedan/"><strong>RigVedan</strong><span class="mt-1 block text-sm text-slate-400">Typed knowledge units</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/hermeneutic-didactic/"><strong>Hermeneutic-didactic</strong><span class="mt-1 block text-sm text-slate-400">Interpretation and teaching</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/dial4/"><strong>DIAL-4</strong><span class="mt-1 block text-sm text-slate-400">Claim-mode separation</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/dial4plus/"><strong>DIAL-4+</strong><span class="mt-1 block text-sm text-slate-400">Confidence, evidence and scope</span></a>
+            <a class="rounded-lg border border-slate-700 p-4 hover:border-teal-300/55" href="./methods/dial4p-possibility/"><strong>DIAL-4P Possibility</strong><span class="mt-1 block text-sm text-slate-400">Bounded possibility governance</span></a>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="bg-slate-900 border-t border-slate-800 py-8">
-        <div class="max-w-6xl mx-auto px-6 text-center">
-            <p class="text-slate-500 italic mb-4">"The best time to master AI was yesterday. The second best time is today."</p>
-            <p class="text-slate-600 text-sm">
-                Projects released as part of <a href="https://adaptivearts.ai" class="text-indigo-400 hover:text-indigo-300"><strong>Adaptivearts.ai™</strong></a>
-            </p>
-            <div class="mt-4 flex justify-center gap-4 text-slate-500 text-sm">
-                <a href="https://github.com/fbratten" class="hover:text-indigo-400">GitHub</a>
-                <span>|</span>
-                <a href="https://adaptivearts.ai" class="hover:text-indigo-400">Research</a>
-            </div>
+    <section id="showcases" class="border-y border-slate-800 bg-slate-900/45">
+      <div class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+        <div class="max-w-3xl">
+          <p class="text-sm font-bold uppercase tracking-[0.16em] text-slate-300">Earlier showcases and experiments</p>
+          <h2 class="mt-2 text-4xl font-black tracking-tight text-white">Broader project archive</h2>
+          <p class="mt-4 text-slate-400">These examples remain available as historical and supporting demonstrations. Current source-pinned proof packages are listed above.</p>
         </div>
-    </footer>
+
+        <div class="mt-9 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <a class="surface lift rounded-xl p-5" href="./8me-showcase/"><h3 class="font-bold text-white">8me Orchestration</h3><p class="mt-2 text-sm text-slate-400">Progressive loop-orchestration labs and persistent AI workflows.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./spine-showcase/"><h3 class="font-bold text-white">SPINE Showcase</h3><p class="mt-2 text-sm text-slate-400">Multi-agent orchestration, context engineering and execution surfaces.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./Adaptive-MCP-Orchestrator-Blueprint-Showcase/"><h3 class="font-bold text-white">Adaptive MCP Orchestrator</h3><p class="mt-2 text-sm text-slate-400">Capability routing, fallback and observability reference implementation.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./arbiter-showcase/"><h3 class="font-bold text-white">arbiter</h3><p class="mt-2 text-sm text-slate-400">MCP protocol validation, quality checks and remediation packs.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./Security-Audit-MCP-Server-Showcase/"><h3 class="font-bold text-white">Security Audit MCP</h3><p class="mt-2 text-sm text-slate-400">Security scanning and isolated analysis patterns.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./agentspool-showcase/"><h3 class="font-bold text-white">agentspool</h3><p class="mt-2 text-sm text-slate-400">Inter-agent messaging and delivery semantics.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./switchcore-showcase/"><h3 class="font-bold text-white">switchcore</h3><p class="mt-2 text-sm text-slate-400">MCP discovery, inventory and bounded workflow recommendations.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./vigil-showcase/"><h3 class="font-bold text-white">vigil</h3><p class="mt-2 text-sm text-slate-400">Durable follow-up checks with retry and expiry.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./spawn-showcase/"><h3 class="font-bold text-white">spawn</h3><p class="mt-2 text-sm text-slate-400">Pattern-driven MCP project generation.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./music-video-creator-showcase/"><h3 class="font-bold text-white">Music Video Creator</h3><p class="mt-2 text-sm text-slate-400">Beat-aware rendering and multimodal output experiments.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./AI-Human-Admin-Dashboard/"><h3 class="font-bold text-white">AI-Human Admin Dashboard</h3><p class="mt-2 text-sm text-slate-400">Human and machine-readable project coordination views.</p></a>
+          <a class="surface lift rounded-xl p-5" href="./From-Blueprint-to-Application/"><h3 class="font-bold text-white">From Blueprint to Application</h3><p class="mt-2 text-sm text-slate-400">Book and interactive demonstrations for structured AI delivery.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+      <div class="surface grid gap-8 rounded-2xl p-7 lg:grid-cols-2 lg:p-10">
+        <div>
+          <p class="text-sm font-bold uppercase tracking-[0.16em] text-teal-300">How I work</p>
+          <h2 class="mt-2 text-3xl font-black text-white">Evidence before confidence</h2>
+          <p class="mt-4 text-slate-300">I prefer systems where implementation claims can be inspected and risky actions remain bounded.</p>
+        </div>
+        <ul class="space-y-3 text-slate-300">
+          <li>- Pin source and implementation receipts.</li>
+          <li>- Separate tests, runtime evidence and documentation claims.</li>
+          <li>- Replace private operational data with synthetic public demonstrations.</li>
+          <li>- Keep limitations and non-claims beside strengths.</li>
+          <li>- Route risky actions through policy or human approval.</li>
+          <li>- Preserve earlier evidence when systems evolve.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-950">
+    <div class="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-10 text-sm text-slate-400 sm:px-8 md:flex-row md:items-center md:justify-between">
+      <div><strong class="text-white">Fredrik Bratten</strong><span class="block">Applied AI, automation, security and reliable agent systems</span></div>
+      <div class="flex flex-wrap gap-5"><a class="hover:text-white" href="https://github.com/fbratten">GitHub</a><a class="hover:text-white" href="https://adaptivearts.ai/">Adaptivearts.ai</a><a class="hover:text-white" href="./methods/">Methods</a></div>
+    </div>
+  </footer>
 </body>
 </html>
