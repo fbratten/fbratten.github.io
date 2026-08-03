@@ -8,6 +8,9 @@ on:
       - "methods/**"
       - "tests/**"
       - ".github/workflows/pages-browser-check.yml"
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -16,7 +19,7 @@ permissions:
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -53,11 +56,36 @@ jobs:
           cat /tmp/pages-server.log
           exit 1
 
-      - name: Exercise method Canvas interactions
+      - name: Exercise method Canvas interactions locally
         env:
           BASE_URL: http://127.0.0.1:4173
         run: node tests/method_interactions.mjs
 
-      - name: Show server log on failure
+      - name: Wait for the merged GitHub Pages build
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          expected='Building AI systems that can be inspected, governed and used in practice'
+          for attempt in {1..60}; do
+            page="$(curl --fail --silent --show-error --location \
+              -H 'Cache-Control: no-cache' \
+              "https://fbratten.github.io/?build=${GITHUB_SHA}-${attempt}" || true)"
+            if grep --fixed-strings --quiet "$expected" <<< "$page"; then
+              echo "The expected GitHub Pages build is externally visible."
+              exit 0
+            fi
+            echo "Waiting for GitHub Pages propagation: attempt ${attempt}/60"
+            sleep 10
+          done
+          echo "The expected root-page content did not become visible within 10 minutes."
+          exit 1
+
+      - name: Exercise live GitHub Pages interactions
+        if: github.event_name == 'push'
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/method_interactions.mjs
+
+      - name: Show local server log on failure
         if: failure()
         run: cat /tmp/pages-server.log || true
