@@ -1,45 +1,11 @@
 (() => {
   'use strict';
-  const A = window.AICSProfile = window.AICSProfile || {};
-  A.atomNodes=[
-    {id:'contract',label:'Canonical\nAICS contract',group:'contract',groupLabel:'Canonical semantic source',x:.50,y:.50,r:64,summary:'One versioned semantic contract remains authoritative across conversation, repository, execution and handover projections.',meta:[['Identity','contract.id + contract.version'],['Status','draft, frozen, executing, verifying or closed'],['Rule','A projection must not add authoritative meaning absent from the contract']]},
-    {id:'parameters',label:'P-*\nParameters',group:'atom',x:.14,y:.18,r:44,summary:'Named input values with semantic binding, type and source.',items:['Do not preserve answers only by position.','Reusable values should leave prose.']},
-    {id:'instructions',label:'I-*\nInstructions',group:'atom',x:.35,y:.13,r:45,summary:'One principal actor, action, object and intended outcome.',items:['Actions remain separate from evidence and constraints.','Accepted or completed instructions support execution profile.']},
-    {id:'requirements',label:'R-*\nRequirements',group:'control',x:.66,y:.13,r:47,summary:'Scope, constraint, process, evidence, output, quality, authority, safety and stop obligations.',items:['Hard requirements must be locked before execution authorization.','Every applicable locked requirement needs verification coverage.']},
-    {id:'insumptions',label:'A-*\nAssumptions',group:'atom',x:.87,y:.19,r:43,summary:'Explicit propositions not yet established as fact.',items:['Status and impact remain visible.','Rejected or unresolved high-impact assumptions cannot silently guide execution.']},
-    {id:'unresolved',label:'U-*\nUnresolved',group:'control',x:.91,y:.45,r:42,summary:'Ambiguity, missing information, conflict or incomplete binding.',items:['Each item states whether it blocks execution.','Resolution may bind to a Q-* question.']},
-    {id:'questions',label:'Q-*\nQuestions',group:'atom',x:.86,y:.74,r:42,summary:'Concrete clarification operations tied to unresolved items.',items:['Questions preserve the semantic binding that bare answers lose.']},
-    {id:'decisions',label:'D-*\nDecisions',group:'control',x:.65,y:.84,r:45,summary:'Accepted, rejected, deferred or superseded commitments bound to a phase and contract version.',items:['Only an accepted decision creates authoritative commitment.','Execution authorization names the exact decision and version.']},
-    {id:'evidence',label:'E-*\nEvidence',group:'evidence',x:.36,y:.85,r:43,summary:'Sources, observations, tests and repository states that support semantic atoms.',items:['Summaries may point to evidence but cannot replace it as source truth.']},
-    {id:'verifications',label:'V-*\nVerifications',group:'evidence',x:.13,y:.74,r:46,summary:'Measurable checks with method, expected result, current status and observed result.',items:['Coverage must be reciprocal with locked requirements.','Closure requires pass or not_applicable for applicable locked requirements.']},
-    {id:'exceptions',label:'X-*\nExceptions',group:'control',x:.08,y:.45,r:43,summary:'Variances between contract and execution with severity, disposition and closure impact.',items:['Open blocking exceptions prevent successful closure.']}
-  ];
-  A.atomEdges=A.atomNodes.filter(n=>n.id!=='contract').map(n=>['contract',n.id,'',n.group==='control'?'rgba(233,183,91,.48)':n.group==='evidence'?'rgba(104,211,145,.48)':'rgba(108,168,255,.42)']);
-  A.projectionNodes=[
-    {id:'contract',label:'Canonical\ncontract',group:'contract',x:.18,y:.50,r:60,summary:'The full semantic contract is the authority surface.',meta:[['Projection rule','Derived or traceable'],['Loss rule','No authoritative meaning may be invented']]},
-    {id:'conversation',label:'Conversation\nprojection',group:'projection',x:.50,y:.16,r:52,summary:'Human-readable 5PP-visible view plus a complete canonical snapshot bounded by stable markers.',meta:[['Minimum surface','phase, atoms, decisions and gate'],['Full-profile rule','snapshot must parse back without drift']]},
-    {id:'repository',label:'Repository\nprojection',group:'projection',x:.55,y:.48,r:50,summary:'YAML or JSON serialization of the canonical contract without semantic loss.',meta:[['Guarantee','Durable representation'],['Non-claim','Repository profile does not grant write permission']]},
-    {id:'execution',label:'Execution report',group:'projection',x:.50,y:.81,r:50,summary:'Exact contract identity, executor, timing, result, verification status, evidence, deviations and closure state.',meta:[['Binding','contract id + version'],['Audit','per-verification status']]},
-    {id:'handover',label:'Agent handover',group:'projection',x:.82,y:.31,r:47,summary:'A task continuation surface derived from the same contract and its current evidence.',meta:[['Purpose','continuity'],['Boundary','not an independent reinterpretation']]},
-    {id:'summary',label:'Rendered summary',group:'projection',x:.84,y:.68,r:45,summary:'Compact presentation for a consumer. It may omit non-blocking detail while the contract remains authoritative.',meta:[['Authority','derived'],['Risk','summary drift if not traceable']]}
-  ];
-  A.projectionEdges=[['contract','conversation','render'],['contract','repository','serialize'],['contract','execution','report'],['contract','handover','project'],['contract','summary','summarize'],['conversation','contract','parse snapshot','rgba(83,211,167,.55)',true]];
-  A.conformanceNodes=[
-    {id:'core',label:'core',group:'contract',x:.18,y:.50,r:52,summary:'Schema and semantic integrity, unique IDs, references, coherent phase gates, verification coverage and truthful profile claim.',meta:[['Executable?','Not implied'],['Dependency','Base for all other profiles']]},
-    {id:'conversation',label:'conversation',group:'projection',x:.46,y:.17,r:49,summary:'Adds source-conversation traceability, visible dialogue phase, visible 5PP and lossless snapshot when rendered.',meta:[['Depends on','core'],['Focus','human–AI conversation continuity']]},
-    {id:'repository',label:'repository',group:'projection',x:.47,y:.50,r:49,summary:'Adds canonical durable system, creator and last modifier provenance.',meta:[['Depends on','core'],['Non-claim','No write authorization']]},
-    {id:'execution',label:'execution',group:'control',x:.46,y:.82,r:49,summary:'Adds status, accepted instruction, exact-version authorization, locked hard requirements and reciprocal verification coverage.',meta:[['Depends on','core'],['Closure','stricter audit when closed']]},
-    {id:'full',label:'full',group:'evidence',x:.81,y:.50,r:59,summary:'All dependency profiles plus deterministic lossless conversation round-trip.',meta:[['Dependencies','core + conversation + repository + execution'],['Round trip','round_trip_verified=true']]}
-  ];
-  A.conformanceEdges=[['core','conversation','depends'],['core','repository','depends'],['core','execution','depends'],['conversation','full',''],['repository','full',''],['execution','full','']];
-  A.lineageNodes=[
-    {id:'contract',label:'Problem framing',group:'contract',x:.10,y:.40,r:44,summary:'Conversation instructions, repository artefacts and executing-agent interpretations can drift apart.',meta:[['Mechanism target','one canonical semantic contract']]},
-    {id:'v01',label:'AICS 0.1\n31 Jul',group:'projection',x:.31,y:.23,r:47,summary:'Initial semantic model, lifecycle, projections, JSON Schema, validator, tests, example contract and CI validation.',meta:[['Source-reported tests','5'],['Commit','ffb6beb1…']]},
-    {id:'v02',label:'AICS 0.2\n31 Jul',group:'contract',x:.51,y:.49,r:58,summary:'Self-hosting contract, five profiles, deterministic round-trip, changesets, CLI, multi-domain examples, negative fixtures and expanded CI.',meta:[['Source-reported tests','15'],['Commit','cd88e41b…']]},
-    {id:'selfhosting',label:'AICS-0002\nself-hosting',group:'control',x:.72,y:.20,r:49,summary:'AICS governs a bounded increment of its own specification and tooling without bypassing independent tests, CI, review or authorization.',meta:[['Profile','full'],['Boundary','Self-hosting is not self-approval']]},
-    {id:'cli',label:'Reference CLI',group:'projection',x:.76,y:.50,r:45,summary:'init, validate, profile, render conversation, roundtrip and apply.',meta:[['Package','aics-validator 0.2.0'],['Python','3.10+']]},
-    {id:'examples',label:'5 valid\ncontracts',group:'evidence',x:.66,y:.79,r:43,summary:'Self-hosting, shoulder exercise, software change, agent handover and changeset-roundtrip base contracts.',meta:[['CI matrix','Python 3.10 and 3.12']]},
-    {id:'negative',label:'3 negative\nfixtures',group:'evidence',x:.89,y:.77,r:43,summary:'Duplicate ID, blocked execution and failed closure expected-failure cases.',meta:[['Purpose','fail-loud semantic controls']]}
-  ];
-  A.lineageEdges=[['contract','v01','formalized'],['v01','v02','expanded'],['v02','selfhosting','governs'],['v02','cli','implements'],['v02','examples','exercises'],['v02','negative','challenges']];
+  const load = src => new Promise((resolve, reject) => {
+    const script = document.createElement('script');
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error(`Failed to load ${src}`));
+    document.head.appendChild(script);
+  });
+  window.AICSProfileDataReady = load('./profile-atoms.js').then(() => load('./profile-systems.js'));
 })();
