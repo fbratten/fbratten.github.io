@@ -1,6 +1,6 @@
 # DIAL-4P Possibility — scientific profile 10
 
-Status: source-pinned public profile under construction.
+Status: source-pinned public profile.
 
 Intended route:
 
