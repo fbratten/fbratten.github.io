@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A source-pinned, interactive scientific profile of the EXPLORE–CLARIFY–DECIDE–EXECUTE–VERIFY–CLOSE dialogue lifecycle.">
+  <title>Dialogue lifecycle | Methods, Protocols & Prompt Systems</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="./profile.js" defer></script>
+  <script src="./canvas-stability.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../">Methods, Protocols & Prompt Systems</a>
+      <nav aria-label="Primary">
+        <a href="../../">Portfolio</a>
+        <a href="https://github.com/fbratten/aics">AICS source</a>
+        <a href="../5pp/">5PP profile</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell">
+      <div class="eyebrow-row">
+        <span class="eyebrow">Scientific profile 02</span>
+        <span class="status-chip">Source-pinned</span>
+        <span class="status-chip">Interactive state model</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1>Dialogue lifecycle</h1>
+          <p class="subtitle">EXPLORE → CLARIFY → DECIDE → EXECUTE → VERIFY → CLOSE</p>
+          <p class="lede">
+            A six-state control model for human–AI work. It keeps investigation, clarification, commitment, action, verification and disposition distinguishable so that a promising idea is not silently treated as an authorized instruction, and a completed action is not mistaken for a verified or properly closed result.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-button" data-scroll-target="state-machine">Explore the state machine</button>
+            <button class="secondary-button" data-scroll-target="comparison">Compare with 5PP</button>
+          </div>
+        </div>
+        <aside class="source-card" aria-label="Source pins">
+          <h2>Source pins</h2>
+          <dl>
+            <div><dt>Canonical formalization</dt><dd><code>AICS 0.2</code></dd></div>
+            <div><dt>AICS commit</dt><dd><code>cd88e41bcadc…</code></dd></div>
+            <div><dt>First formal increment</dt><dd>31 Jul 2026</dd></div>
+            <div><dt>Earliest located formulation</dt><dd>11 Jul 2026</dd></div>
+            <div><dt>Source-reported tests</dt><dd>15</dd></div>
+            <div><dt>Profile verified</dt><dd>3 Aug 2026</dd></div>
+          </dl>
+          <p class="small-note">The earliest date is first-party conversation provenance. The public source authority for mechanical claims is the pinned AICS repository.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-shell compact-section" aria-labelledby="classification-title">
+      <div class="section-heading">
+        <span class="section-number">01</span>
+        <div>
+          <h2 id="classification-title">Artefact classification</h2>
+          <p>The lifecycle, AICS contract and 5PP are related control surfaces, but they solve different problems.</p>
+        </div>
+      </div>
+      <div class="classification-grid">
+        <article class="classification-card">
+          <span class="label">Dialogue control</span>
+          <h3>Six-state lifecycle</h3>
+          <p>Controls <strong>when</strong> work may move from open inquiry to commitment, action, audit and durable closure.</p>
+        </article>
+        <article class="classification-card">
+          <span class="label">Contract representation</span>
+          <h3>AICS</h3>
+          <p>Represents lifecycle phase, decisions, authorization, blockers, evidence and closure as a versioned instruction contract.</p>
+        </article>
+        <article class="classification-card">
+          <span class="label">Execution discipline</span>
+          <h3>5PP Variation A</h3>
+          <p>Controls <strong>how</strong> the instruction envelope is clarified, locked, structured, executed and mechanically audited.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="state-machine" class="section-shell" aria-labelledby="state-title">
+      <div class="section-heading">
+        <span class="section-number">02</span>
+        <div>
+          <h2 id="state-title">Interactive dialogue state machine</h2>
+          <p>Drag the states, select a node and inspect its purpose, exit conditions, authority level and characteristic failure mode.</p>
+        </div>
+      </div>
+      <div class="control-bar" role="group" aria-label="State-machine controls">
+        <span class="control-label">View</span>
+        <button class="view-button active" data-view="all">All states</button>
+        <button class="view-button" data-view="epistemic">Open inquiry</button>
+        <button class="view-button" data-view="authority">Authority and action</button>
+        <button class="view-button" data-view="audit">Audit and disposition</button>
+        <button class="ghost-button" id="resetStateLayout">Reset layout</button>
+      </div>
+      <div class="visual-grid wide-left">
+        <div class="canvas-panel tall">
+          <canvas id="stateCanvas" aria-label="Interactive six-state dialogue lifecycle"></canvas>
+          <div class="canvas-legend" aria-hidden="true">
+            <span><i class="epistemic-dot"></i>Epistemically open</span>
+            <span><i class="authority-dot"></i>Commitment and action</span>
+            <span><i class="audit-dot"></i>Audit and disposition</span>
+            <span><i class="reopen-dot"></i>Explicit reopen path</span>
+          </div>
+        </div>
+        <aside class="detail-panel" id="stateDetail" aria-live="polite">
+          <span class="label">Selected state</span>
+          <h3>EXPLORE</h3>
+          <p class="detail-summary"></p>
+          <h4>Exit conditions</h4>
+          <ul class="detail-exit"></ul>
+          <h4>Authority boundary</h4>
+          <p class="detail-authority"></p>
+          <h4>Typical failure</h4>
+          <p class="detail-failure"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="guard-title">
+      <div class="section-heading">
+        <span class="section-number">03</span>
+        <div>
+          <h2 id="guard-title">Synthetic transition-guard laboratory</h2>
+          <p>Attempt a state transition and see which source-derived guards permit or block it. This browser model is educational and is not the AICS validator.</p>
+        </div>
+      </div>
+      <div class="sandbox-grid">
+        <form class="sandbox-controls" id="transitionForm">
+          <div class="select-grid">
+            <label>From state
+              <select id="fromState"></select>
+            </label>
+            <label>To state
+              <select id="toState"></select>
+            </label>
+          </div>
+          <fieldset>
+            <legend>Synthetic contract conditions</legend>
+            <label><input type="checkbox" name="problemMapped" checked> Problem space sufficiently mapped</label>
+            <label><input type="checkbox" name="candidatesExplicit" checked> Candidate directions explicit</label>
+            <label><input type="checkbox" name="blockersResolved" checked> Blocking questions answered or explicitly deferred</label>
+            <label><input type="checkbox" name="hardRequirementsKnown" checked> Hard requirements identifiable</label>
+            <label><input type="checkbox" name="authorizationAccepted" checked> Accepted authorization decision exists</label>
+            <label><input type="checkbox" name="versionBound" checked> Authorization matches exact contract version</label>
+            <label><input type="checkbox" name="hardRequirementsLocked" checked> Hard requirements are locked</label>
+            <label><input type="checkbox" name="blockingItemsEmpty" checked> Blocking items are empty</label>
+            <label><input type="checkbox" name="contractFrozen" checked> Contract status is frozen</label>
+            <label><input type="checkbox" name="evidenceRetained" checked> Execution evidence and deviations retained</label>
+            <label><input type="checkbox" name="requiredVerificationsPass" checked> Required verifications pass</label>
+            <label><input type="checkbox" name="noBlockingExceptions" checked> No open blocking exceptions</label>
+            <label><input type="checkbox" name="durableWriteback" checked> Outcome and residuals have durable writeback</label>
+            <label><input type="checkbox" name="reopenDecision"> Explicit REOPEN decision exists</label>
+            <label><input type="checkbox" name="newVersion"> Reopened closed work uses a new contract version</label>
+          </fieldset>
+          <button type="submit" class="primary-button">Evaluate transition</button>
+        </form>
+        <div class="sandbox-result" id="transitionResult" aria-live="polite">
+          <div class="result-badge pending">Not evaluated</div>
+          <h3>Transition result</h3>
+          <p>Select a transition and evaluate its synthetic guards.</p>
+          <ul></ul>
+          <div class="receipt-box">
+            <span>Transition</span><code id="transitionReceipt">EXPLORE → CLARIFY</code>
+            <span>Computed status</span><code id="transitionStatus">pending</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="comparison" class="section-shell" aria-labelledby="comparison-title">
+      <div class="section-heading">
+        <span class="section-number">04</span>
+        <div>
+          <h2 id="comparison-title">Dialogue lifecycle versus 5PP</h2>
+          <p>Two parallel control systems. Click either track to inspect the difference. The alignment bands are explanatory, not a normative one-to-one mapping.</p>
+        </div>
+      </div>
+      <div class="control-bar" role="group" aria-label="Comparison controls">
+        <button class="track-button active" data-track="both">Both tracks</button>
+        <button class="track-button" data-track="lifecycle">Lifecycle only</button>
+        <button class="track-button" data-track="fivepp">5PP only</button>
+        <button class="ghost-button" id="resetComparisonLayout">Reset layout</button>
+      </div>
+      <div class="visual-grid wide-left">
+        <div class="canvas-panel tall">
+          <canvas id="comparisonCanvas" aria-label="Interactive comparison of the dialogue lifecycle and 5PP Variation A"></canvas>
+        </div>
+        <aside class="detail-panel" id="comparisonDetail" aria-live="polite">
+          <span class="label">Comparison item</span>
+          <h3>Dialogue lifecycle</h3>
+          <p class="detail-summary">Controls when work advances between epistemic and operational states.</p>
+          <dl class="node-metadata"></dl>
+        </aside>
+      </div>
+      <div class="comparison-callout">
+        <strong>CLOSE is not a sixth 5PP phase.</strong>
+        <span>It is a separate disposition and durable-writeback state that consumes verified evidence and preserves residuals, deviations and re-entry conditions.</span>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="lineage-title">
+      <div class="section-heading">
+        <span class="section-number">05</span>
+        <div>
+          <h2 id="lineage-title">Observable lineage and representative adoption</h2>
+          <p>First-party dialogue provenance, formal AICS increments and selected operational projections. The graph does not claim to expose every internal use.</p>
+        </div>
+      </div>
+      <div class="control-bar" role="group" aria-label="Lineage filters">
+        <button class="graph-filter active" data-filter="all">All</button>
+        <button class="graph-filter" data-filter="origin">Origin</button>
+        <button class="graph-filter" data-filter="formalization">Formalization</button>
+        <button class="graph-filter" data-filter="adoption">Adoption</button>
+        <button class="ghost-button" id="resetLineageLayout">Reset layout</button>
+      </div>
+      <div class="visual-grid wide-left">
+        <div class="canvas-panel tall">
+          <canvas id="lineageCanvas" aria-label="Interactive dialogue lifecycle lineage and adoption graph"></canvas>
+        </div>
+        <aside class="detail-panel" id="lineageDetail" aria-live="polite">
+          <span class="label">Graph node</span>
+          <h3>Dialogue lifecycle</h3>
+          <p class="detail-summary"></p>
+          <dl class="node-metadata"></dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="evidence" class="section-shell" aria-labelledby="evidence-title">
+      <div class="section-heading">
+        <span class="section-number">06</span>
+        <div>
+          <h2 id="evidence-title">Evidence and formalization receipts</h2>
+          <p>Measured repository receipts are separated from analyst-coded evidence coverage.</p>
+        </div>
+      </div>
+      <div class="chart-grid">
+        <article class="chart-card">
+          <div class="chart-heading">
+            <div><span class="label">Measured repository receipt</span><h3>AICS test-suite growth</h3></div>
+            <button class="ghost-button" id="exportTestsChart">Export PNG</button>
+          </div>
+          <div class="chart-wrap"><canvas id="testsChart" aria-label="AICS source-reported test counts for versions 0.1 and 0.2"></canvas></div>
+          <p class="small-note">AICS PR receipts report 5 passing tests for 0.1 and 15 passing tests for 0.2. These tests were not rerun for this publication.</p>
+        </article>
+        <article class="chart-card">
+          <div class="chart-heading">
+            <div><span class="label">Registry coding, not efficacy</span><h3>Current evidence surface</h3></div>
+            <button class="ghost-button" id="exportEvidenceChart">Export PNG</button>
+          </div>
+          <div class="chart-wrap"><canvas id="evidenceChart" aria-label="Evidence coverage profile for the dialogue lifecycle"></canvas></div>
+          <p class="small-note">The profile measures available artefact evidence, not whether the lifecycle improves outcomes. No independent effect study was identified in the inspected source set.</p>
+        </article>
+      </div>
+      <div class="receipt-grid">
+        <article><span class="metric">6</span><h3>Lifecycle states</h3><p>From open inquiry through durable disposition.</p></article>
+        <article><span class="metric">5</span><h3>AICS profiles</h3><p>Core, conversation, repository, execution and full.</p></article>
+        <article><span class="metric">15</span><h3>Tests at AICS 0.2</h3><p>Source-reported in the self-hosting increment.</p></article>
+        <article><span class="metric">3</span><h3>Negative fixtures</h3><p>Duplicate ID, blocked execution and failed closure.</p></article>
+        <article><span class="metric">1</span><h3>Explicit reopen operation</h3><p>REOPEN requires a decision and preserved history.</p></article>
+        <article><span class="metric">0</span><h3>Independent effect studies</h3><p>None identified in the inspected source set.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="analysis-title">
+      <div class="section-heading">
+        <span class="section-number">07</span>
+        <div>
+          <h2 id="analysis-title">Scientific interpretation</h2>
+          <p>Mechanism and implementation evidence are explicit. Outcome efficacy remains an open empirical question.</p>
+        </div>
+      </div>
+      <div class="analysis-grid">
+        <article><h3>Problem definition</h3><p>Human–AI conversations often mix investigation, recommendation, authorization and action. That collapse makes it difficult to know whether a candidate was merely discussed or actually accepted for execution.</p></article>
+        <article><h3>Mechanism hypothesis</h3><p>Explicit state boundaries should make premature commitment, unauthorized execution, incomplete verification and silent closure easier to detect. This is a design hypothesis, not a proven universal effect.</p></article>
+        <article><h3>Operationalization</h3><p>AICS represents the current phase, blockers, accepted decisions, version-bound authorization, verification evidence and closure state in a schema-validated contract.</p></article>
+        <article><h3>Evaluation routes</h3><p>Matched-task studies could measure premature-action rate, unresolved blockers at execution, rework, verification coverage, operator effort, closure defects and recovery quality after reopening.</p></article>
+      </div>
+      <div class="limits-panel">
+        <h3>Explicit non-claims</h3>
+        <ul>
+          <li>The dialogue lifecycle is not the same artefact as 5PP.</li>
+          <li>A visible state label does not prove the participants are cognitively operating in that state.</li>
+          <li>An accepted decision can still be wrong, poorly informed or unethical.</li>
+          <li>Authorization consistency does not substitute for domain, safety or legal review.</li>
+          <li>CLOSE does not mean every future question is resolved.</li>
+          <li>Reopening must preserve prior history rather than silently rewriting the closed state.</li>
+          <li>The earliest located conversation date is first-party provenance, not independent historical validation.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="connections-title">
+      <div class="section-heading">
+        <span class="section-number">08</span>
+        <div><h2 id="connections-title">Representative project connections</h2><p>Selected implementations and operational projections, not a complete estate inventory.</p></div>
+      </div>
+      <div class="connections-grid">
+        <a href="https://github.com/fbratten/aics"><strong>AICS</strong><span>Canonical formalization, schema, validator, self-hosting contract and round-trip projection.</span></a>
+        <a href="https://github.com/fbratten/control-center-ops"><strong>control-center-ops</strong><span>Operational governance, project-change protocol, runbooks and AICS contract use.</span></a>
+        <a href="https://fbratten.github.io/spine-showcase/recruiter-proof/"><strong>SPINE</strong><span>Representative project and agent workflow context in which dialogue modes and 5PP are used together.</span></a>
+        <a href="../5pp/"><strong>5PP profile</strong><span>The separate five-phase protocol that hardens and audits work inside the lifecycle.</span></a>
+        <a href="https://github.com/fbratten/changeplane"><strong>ChangePlane</strong><span>Representative protocol-trace and decision-record operationalization.</span></a>
+        <a href="https://adaptivearts.ai/blog/spine-as-structural-layer/"><strong>Adaptivearts.ai/blog</strong><span>Adjacent public context on structured AI work, SPINE and 5PP. No dedicated lifecycle-origin article is claimed.</span></a>
+      </div>
+    </section>
+
+    <section class="section-shell sources-section" aria-labelledby="sources-title">
+      <div class="section-heading">
+        <span class="section-number">09</span>
+        <div><h2 id="sources-title">Sources and reproducibility notes</h2><p>Claims are bounded to the inspected sources and provenance classes below.</p></div>
+      </div>
+      <div class="source-list">
+        <div><span>Canonical formalization</span><code>fbratten/aics @ cd88e41bcadcdc68155b384ecf723f3b91a80b18</code></div>
+        <div><span>Normative lifecycle</span><code>protocol/lifecycle.md and SPECIFICATION.md</code></div>
+        <div><span>Mechanical representation</span><code>schema/aics.schema.json and tools/validate_contract.py</code></div>
+        <div><span>First formal increment</span><code>AICS 0.1, 31 Jul 2026, 5 source-reported tests</code></div>
+        <div><span>Self-hosting increment</span><code>AICS 0.2, 31 Jul 2026, 15 source-reported tests</code></div>
+        <div><span>Operational projection</span><code>control-center-ops project-change package @ b2f44ab5fc340317a30ac1fbe9d5aacd8b1df53f</code></div>
+        <div><span>Private first-party provenance</span><code>earliest located conversation formulation: 11 Jul 2026; raw transcript not reproduced</code></div>
+        <div><span>Publication surface</span><code>fbratten.github.io/methods/dialogue-lifecycle/</code></div>
+      </div>
+      <p class="small-note">This page performs no AICS validation, repository writes, LLM calls, private-memory access or external state transition. All interactive examples remain in browser memory.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div><strong>Methods, Protocols & Prompt Systems</strong><span>Interactive, source-pinned proof of method.</span></div>
+    <a href="../">Back to the methods index</a>
+  </footer>
+</body>
+</html>
