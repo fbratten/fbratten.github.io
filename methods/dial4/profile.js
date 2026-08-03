@@ -1,0 +1,4 @@
+(() => {
+  'use strict';
+  const boot=()=>{const D=window.Dial4Profile;D.setupScroll();D.initGraph({canvasId:'modeCanvas',detailId:'modeDetail',resetId:'resetModeLayout',nodes:D.modeNodes,edges:D.modeEdges,filterSelector:'[data-mode-filter]',defaultSelected:'source'});D.initGraph({canvasId:'mappingCanvas',detailId:'mappingDetail',resetId:'resetMappingLayout',nodes:D.mappingNodes,edges:D.mappingEdges,defaultSelected:'concept'});D.initGraph({canvasId:'collisionCanvas',detailId:'collisionDetail',resetId:'resetCollisionLayout',nodes:D.collisionNodes,edges:D.collisionEdges,defaultSelected:'label'});D.initGraph({canvasId:'lineageCanvas',detailId:'lineageDetail',resetId:'resetLineageLayout',nodes:D.lineageNodes,edges:D.lineageEdges,defaultSelected:'framework'});D.initClassifier();D.initGrader();D.initRecordBuilder();D.initCharts();};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
