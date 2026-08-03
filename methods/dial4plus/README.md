@@ -1,6 +1,6 @@
-# DIAL-4+ scientific profile
+# DIAL-4+ method profile
 
-Public-safe, interactive scientific profile for claim-strength grading across the conceptual DIAL-4+ model and ChangePlane's operational `Dial4Claim` representation.
+Public-safe, interactive method profile for claim-strength grading across the conceptual DIAL-4+ model and ChangePlane's operational `Dial4Claim` representation.
 
 ## Route
 

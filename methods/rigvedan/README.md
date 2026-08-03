@@ -1,6 +1,6 @@
-# RigVedan / EBNF-RV scientific profile
+# RigVedan / EBNF-RV method profile
 
-Public-safe, interactive scientific profile for the SPINE EBNF-RV knowledge-annotation grammar.
+Public-safe, interactive method profile for the SPINE EBNF-RV knowledge-annotation grammar.
 
 ## Route
 

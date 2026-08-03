@@ -64,7 +64,7 @@
       label: 'Silent',
       required: new Set(['verification']),
       enhanced: new Set(['verification']),
-      note: 'Explicit authorization is required. Steps 1–4 are not heading-required, while verification consequences remain mandatory.'
+      note: 'Explicit authorization is required. Steps 1-4 are not heading-required, while verification consequences remain mandatory.'
     }
   };
 
@@ -176,8 +176,7 @@
       ctx.fill();
     }
 
-    function draw(ctxArg, width, height) {
-      bounds = { width, height };
+    function draw(ctxArg,width,height){width=Number.isFinite(width)?width:bounds.width;height=Number.isFinite(height)?height:bounds.height;if(!width||!height)return;bounds={width:width,height:height};
       const ctx = ctxArg || canvas.getContext('2d');
       ctx.clearRect(0, 0, width, height);
 
@@ -392,8 +391,7 @@
       return '#f5f7fa';
     }
 
-    function draw(ctxArg, width, height) {
-      bounds = { width, height };
+    function draw(ctxArg,width,height){width=Number.isFinite(width)?width:bounds.width;height=Number.isFinite(height)?height:bounds.height;if(!width||!height)return;bounds={width:width,height:height};
       const ctx = ctxArg || canvas.getContext('2d');
       ctx.clearRect(0, 0, width, height);
 
@@ -559,7 +557,7 @@
         },
         plugins: {
           legend: { display: false },
-          tooltip: { callbacks: { afterLabel: context => ['1.0.0: initial release', '1.1.0: H1–H6 hardening', '1.2.0: reconciliation updates', '1.2.1: sidecar guards'][context.dataIndex] } }
+          tooltip: { callbacks: { afterLabel: context => ['1.0.0: initial release', '1.1.0: H1-H6 hardening', '1.2.0: reconciliation updates', '1.2.1: sidecar guards'][context.dataIndex] } }
         }
       }
     });

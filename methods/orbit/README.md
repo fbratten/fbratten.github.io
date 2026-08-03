@@ -1,6 +1,6 @@
-# ORBIT scientific profile
+# ORBIT method profile
 
-Public-safe, interactive profile for **ORBIT — Orientation-Based Recursive Index Tree**.
+Public-safe, interactive profile for **ORBIT - Orientation-Based Recursive Index Tree**.
 
 ## Route
 
@@ -28,7 +28,7 @@ Experimental or informational:
 
 - self-orientation package
 - adoption profiles
-- expanded C6–C21 conformance corpus
+- expanded C6-C21 conformance corpus
 - conformance-report envelope
 - repository-integrity automation
 - orbit-library package implementation
@@ -58,7 +58,7 @@ Deferred:
 - Manual conformance is accepted and must not be described as automated validation.
 - The declarative schema is an accepted reference contract, not an executable schema runner.
 - The repository-integrity workflow is not ORBIT conformance validation.
-- The extended C6–C21 corpus is experimental reference evidence.
+- The extended C6-C21 corpus is experimental reference evidence.
 - `orbit-library` validates its own package consistency, not ORBIT Core conformance.
 - Test and validation counts are source-reported and were not rerun while publishing this page.
 - Evidence coding is not measured outcome efficacy.

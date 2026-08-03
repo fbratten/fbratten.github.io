@@ -1,0 +1,63 @@
+name: Pages interaction checks
+
+on:
+  pull_request:
+    paths:
+      - "index.html"
+      - "README.md"
+      - "methods/**"
+      - "tests/**"
+      - ".github/workflows/pages-browser-check.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run static copy and Canvas regression lint
+        run: python tests/site_copy_and_canvas_lint.py
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install Playwright
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+
+      - name: Start local Pages server
+        shell: bash
+        run: |
+          python -m http.server 4173 --bind 127.0.0.1 > /tmp/pages-server.log 2>&1 &
+          echo $! > /tmp/pages-server.pid
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat /tmp/pages-server.log
+          exit 1
+
+      - name: Exercise method Canvas interactions
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node tests/method_interactions.mjs
+
+      - name: Show server log on failure
+        if: failure()
+        run: cat /tmp/pages-server.log || true

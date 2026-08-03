@@ -1,6 +1,6 @@
-# DIALECTIC scientific profile
+# DIALECTIC method profile
 
-Public-safe, interactive scientific profile for the implemented SPINE Heuristic–Hermeneutic Loop.
+Public-safe, interactive method profile for the implemented SPINE Heuristic-Hermeneutic Loop.
 
 ## Route
 
@@ -48,7 +48,7 @@ Not established:
 7. Native Canvas 2D repository lineage.
 8. Chart.js historical source-reported receipt graph with explicit scope warning.
 9. Chart.js current implementation-surface counts.
-10. Evidence table, receipt cards, scientific hypothesis and non-claims.
+10. Evidence table, receipt cards, evidence-based hypothesis and non-claims.
 
 ## Evidence boundaries
 

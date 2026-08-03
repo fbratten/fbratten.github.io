@@ -1,4 +1,4 @@
-# 5PP scientific profile
+# 5PP method profile
 
 Public-safe, interactive profile for the Five-Point Protocol and its deterministic `5pp-gate` implementation.
 

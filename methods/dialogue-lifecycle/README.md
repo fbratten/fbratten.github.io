@@ -1,4 +1,4 @@
-# Dialogue lifecycle scientific profile
+# Dialogue lifecycle method profile
 
 Public-safe, interactive profile for:
 

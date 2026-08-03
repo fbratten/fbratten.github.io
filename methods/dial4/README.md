@@ -1,6 +1,6 @@
-# DIAL-4 scientific profile
+# DIAL-4 method profile
 
-Public-safe, interactive scientific profile for DIAL-4 and its operational projections.
+Public-safe, interactive method profile for DIAL-4 and its operational projections.
 
 ## Route
 
