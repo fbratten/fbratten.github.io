@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A source-pinned, interactive scientific profile of the Five-Point Protocol and its mechanical 5pp-gate implementation.">
+  <title>5PP | Methods, Protocols & Prompt Systems</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script src="./profile.js" defer></script>
+  <script src="./canvas-stability.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="../">Methods, Protocols & Prompt Systems</a>
+      <nav aria-label="Primary">
+        <a href="../../">Portfolio</a>
+        <a href="https://github.com/fbratten/5pp-gate">Source</a>
+        <a href="https://adaptivearts.ai/blog/from-giant-meta-prompt-to-5pp/">Origin article</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell">
+      <div class="eyebrow-row">
+        <span class="eyebrow">Scientific profile 01</span>
+        <span class="status-chip">Source-pinned</span>
+        <span class="status-chip">Interactive canvas</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1>5PP</h1>
+          <p class="subtitle">The Five-Point Protocol for bounded, reviewable AI-assisted work</p>
+          <p class="lede">
+            5PP separates clarification, scope, planning, execution and verification so that work does not silently move from an unclear request into irreversible action. This page distinguishes the method from <code>5pp-gate</code>, the later deterministic compliance checker that validates recorded protocol traces.
+          </p>
+          <div class="hero-actions">
+            <button class="primary-button" data-scroll-target="mechanism">Explore the mechanism</button>
+            <button class="secondary-button" data-scroll-target="evidence">Inspect the evidence</button>
+          </div>
+        </div>
+        <aside class="source-card" aria-label="Source pins">
+          <h2>Source pins</h2>
+          <dl>
+            <div><dt>Mechanical implementation</dt><dd><code>5pp-gate</code></dd></div>
+            <div><dt>Commit</dt><dd><code>e351dae2f39c…</code></dd></div>
+            <div><dt>Version</dt><dd>1.2.1</dd></div>
+            <div><dt>Source-reported tests</dt><dd>139</dd></div>
+            <div><dt>Public origin account</dt><dd>26 Feb 2026</dd></div>
+            <div><dt>Profile verified</dt><dd>3 Aug 2026</dd></div>
+          </dl>
+          <p class="small-note">The test count is taken from the pinned changelog. Tests were not rerun while publishing this page.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-shell compact-section" aria-labelledby="classification-title">
+      <div class="section-heading">
+        <span class="section-number">01</span>
+        <div>
+          <h2 id="classification-title">Artefact classification</h2>
+          <p>Method, record contract and enforcement tool are related, but not identical.</p>
+        </div>
+      </div>
+      <div class="classification-grid">
+        <article class="classification-card">
+          <span class="label">Protocol</span>
+          <h3>5PP</h3>
+          <p>A five-phase discipline for deciding what must be understood, bounded, planned, executed and verified.</p>
+        </article>
+        <article class="classification-card">
+          <span class="label">Record</span>
+          <h3>5PP artefact</h3>
+          <p>A Markdown work record containing phase evidence, an approval checkpoint, self-audit material and one declared verdict.</p>
+        </article>
+        <article class="classification-card">
+          <span class="label">Implementation</span>
+          <h3>5pp-gate</h3>
+          <p>A stdlib-only Python linter that performs deterministic structural, ordering, enumeration and count checks. It uses no LLM and no network.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="mechanism" class="section-shell" aria-labelledby="mechanism-title">
+      <div class="section-heading">
+        <span class="section-number">02</span>
+        <div>
+          <h2 id="mechanism-title">Interactive protocol mechanism</h2>
+          <p>Drag the phase nodes, select a profile and click any phase to inspect its role, evidence and common failure modes.</p>
+        </div>
+      </div>
+
+      <div class="control-bar" role="group" aria-label="5PP profile">
+        <span class="control-label">Profile</span>
+        <button class="profile-button active" data-profile="standard">Standard</button>
+        <button class="profile-button" data-profile="constraint">Constraint-hardened</button>
+        <button class="profile-button" data-profile="silent">Silent</button>
+        <button class="ghost-button" id="resetPhaseLayout">Reset layout</button>
+      </div>
+
+      <div class="visual-grid wide-left">
+        <div class="canvas-panel">
+          <canvas id="phaseCanvas" aria-label="Interactive 5PP phase mechanism"></canvas>
+          <div class="canvas-legend" aria-hidden="true">
+            <span><i class="required-dot"></i>Required heading</span>
+            <span><i class="enhanced-dot"></i>Enhanced requirement</span>
+            <span><i class="internal-dot"></i>Internal or not heading-required</span>
+          </div>
+        </div>
+        <aside class="detail-panel" id="phaseDetail" aria-live="polite">
+          <span class="label">Selected phase</span>
+          <h3>Clarification</h3>
+          <p class="detail-summary"></p>
+          <h4>Expected evidence</h4>
+          <ul class="detail-evidence"></ul>
+          <h4>Typical failure</h4>
+          <p class="detail-failure"></p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="sandbox-title">
+      <div class="section-heading">
+        <span class="section-number">03</span>
+        <div>
+          <h2 id="sandbox-title">Synthetic compliance sandbox</h2>
+          <p>Explore a bounded model of the gate rules. This browser simulation is educational and is not the Python gate.</p>
+        </div>
+      </div>
+
+      <div class="sandbox-grid">
+        <form class="sandbox-controls" id="sandboxForm">
+          <label>Profile
+            <select id="sandboxProfile">
+              <option value="standard">standard</option>
+              <option value="constraint">constraint-hardened</option>
+              <option value="silent">silent</option>
+            </select>
+          </label>
+          <fieldset>
+            <legend>Recorded evidence</legend>
+            <label><input type="checkbox" name="clarification" checked> Clarification heading and content</label>
+            <label><input type="checkbox" name="scope" checked> Scope heading and fields</label>
+            <label><input type="checkbox" name="plan" checked> Enumerated plan</label>
+            <label><input type="checkbox" name="execution" checked> Execution evidence after plan</label>
+            <label><input type="checkbox" name="verification" checked> Verification heading and content</label>
+            <label><input type="checkbox" name="approval" checked> Approval checkpoint before execution</label>
+            <label><input type="checkbox" name="audit" checked> Complete self-audit enumeration</label>
+            <label><input type="checkbox" name="singleVerdict" checked> Exactly one declared verdict</label>
+            <label><input type="checkbox" name="measurable"> Measurable constraints</label>
+            <label><input type="checkbox" name="skeleton"> Output skeleton before execution</label>
+            <label><input type="checkbox" name="silentAuthorized"> Silent profile authorization</label>
+          </fieldset>
+          <label>Declared verdict
+            <select id="sandboxVerdict">
+              <option>Advance</option>
+              <option>Narrow</option>
+              <option>Revise</option>
+              <option>Park</option>
+              <option>Reject</option>
+            </select>
+          </label>
+          <button type="submit" class="primary-button">Evaluate synthetic record</button>
+        </form>
+
+        <div class="sandbox-result" id="sandboxResult" aria-live="polite">
+          <div class="result-badge pending">Not evaluated</div>
+          <h3>Gate result</h3>
+          <p>Change the evidence controls and run the synthetic evaluation.</p>
+          <ul></ul>
+          <div class="receipt-box">
+            <span>Computed status</span>
+            <code id="receiptStatus">pending</code>
+            <span>Declared verdict</span>
+            <code id="receiptVerdict">Advance</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="lineage-title">
+      <div class="section-heading">
+        <span class="section-number">04</span>
+        <div>
+          <h2 id="lineage-title">Lineage and project coupling</h2>
+          <p>A representative, source-grounded network. Drag nodes, filter layers and inspect relationships. It is intentionally not a complete estate graph.</p>
+        </div>
+      </div>
+
+      <div class="control-bar" role="group" aria-label="Lineage graph filter">
+        <span class="control-label">Show</span>
+        <button class="graph-filter active" data-filter="all">All</button>
+        <button class="graph-filter" data-filter="origin">Origin</button>
+        <button class="graph-filter" data-filter="mechanization">Mechanization</button>
+        <button class="graph-filter" data-filter="adoption">Representative adoption</button>
+        <button class="ghost-button" id="resetLineageLayout">Reset layout</button>
+      </div>
+
+      <div class="visual-grid wide-left">
+        <div class="canvas-panel tall">
+          <canvas id="lineageCanvas" aria-label="Interactive 5PP lineage and project coupling graph"></canvas>
+        </div>
+        <aside class="detail-panel" id="lineageDetail" aria-live="polite">
+          <span class="label">Graph node</span>
+          <h3>5PP protocol</h3>
+          <p class="detail-summary">The central method connecting its public origin account, mechanical gate and representative project adoption.</p>
+          <dl class="node-metadata"></dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="evidence" class="section-shell" aria-labelledby="evidence-title">
+      <div class="section-heading">
+        <span class="section-number">05</span>
+        <div>
+          <h2 id="evidence-title">Evidence and verification</h2>
+          <p>Two canvas-based graphs separate measured repository receipts from analyst-coded evidence coverage.</p>
+        </div>
+      </div>
+
+      <div class="chart-grid">
+        <article class="chart-card">
+          <div class="chart-heading">
+            <div>
+              <span class="label">Measured repository receipt</span>
+              <h3>Test-suite growth by release</h3>
+            </div>
+            <button class="ghost-button" id="exportTestsChart">Export PNG</button>
+          </div>
+          <div class="chart-wrap"><canvas id="testsChart" aria-label="5pp-gate test count by release"></canvas></div>
+          <p class="small-note">Counts are taken from the pinned changelog: 107, 131, 135 and 139. They are source-reported and were not rerun for this publication.</p>
+        </article>
+
+        <article class="chart-card">
+          <div class="chart-heading">
+            <div>
+              <span class="label">Registry coding, not efficacy</span>
+              <h3>Current evidence surface</h3>
+            </div>
+            <button class="ghost-button" id="exportEvidenceChart">Export PNG</button>
+          </div>
+          <div class="chart-wrap"><canvas id="evidenceChart" aria-label="Evidence coverage profile for the 5PP family"></canvas></div>
+          <p class="small-note">A zero under external validation means no independent effect study was identified in the inspected source set. It does not prove that no such study can exist.</p>
+        </article>
+      </div>
+
+      <div class="receipt-grid">
+        <article><span class="metric">5</span><h3>Protocol phases</h3><p>Clarification through Verification.</p></article>
+        <article><span class="metric">3</span><h3>Gate profiles</h3><p>Standard, constraint-hardened and silent.</p></article>
+        <article><span class="metric">5</span><h3>Declared verdicts</h3><p>Advance, Narrow, Revise, Park and Reject.</p></article>
+        <article><span class="metric">34</span><h3>Pre-release findings</h3><p>Unanimously confirmed findings described as fixed before v1.0.</p></article>
+        <article><span class="metric">6</span><h3>Hardening findings</h3><p>H1–H6 described and regression-pinned in v1.1.</p></article>
+        <article><span class="metric">139</span><h3>Tests at v1.2.1</h3><p>Source-reported in the pinned changelog.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="analysis-title">
+      <div class="section-heading">
+        <span class="section-number">06</span>
+        <div>
+          <h2 id="analysis-title">Scientific interpretation</h2>
+          <p>The page separates mechanism, evidence, hypotheses and limits rather than presenting adoption as proof of efficacy.</p>
+        </div>
+      </div>
+
+      <div class="analysis-grid">
+        <article>
+          <h3>Problem definition</h3>
+          <p>AI-assisted work can cross from ambiguous intent into action without a stable scope, observable plan or explicit verification gate. 5PP creates named transition points where drift can be noticed before or after execution.</p>
+        </article>
+        <article>
+          <h3>Mechanism hypothesis</h3>
+          <p>Making phase boundaries and evidence explicit should increase inspectability and make some classes of omission or ordering error easier to detect. This is a design hypothesis, not a measured universal effect.</p>
+        </article>
+        <article>
+          <h3>Operationalization</h3>
+          <p><code>5pp-gate</code> converts part of the protocol into deterministic checks over Markdown records. It can validate presence, ordering, enumerations, counts and configured markers. It cannot determine whether the underlying reasoning is true.</p>
+        </article>
+        <article>
+          <h3>Falsification routes</h3>
+          <p>Useful evaluation would compare matched tasks with and without the protocol, measure correction cost, missed constraints, false confidence, operator workload and completion quality, and publish negative as well as positive outcomes.</p>
+        </article>
+      </div>
+
+      <div class="limits-panel">
+        <h3>Explicit non-claims</h3>
+        <ul>
+          <li>Five visible headings do not prove correct reasoning or successful execution.</li>
+          <li>The gate is not a theorem prover, safety certification or substitute for domain review.</li>
+          <li>A declared verdict is metadata from the record author. It is not the gate's computed result.</li>
+          <li>A passing record can still contain false facts, weak assumptions or inadequate evidence.</li>
+          <li>The public origin article is a first-person account, not an independent historical study.</li>
+          <li>The page does not expose private chain-of-thought. A Reasoning Plan means an inspectable workflow plan.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section-shell" aria-labelledby="connections-title">
+      <div class="section-heading">
+        <span class="section-number">07</span>
+        <div>
+          <h2 id="connections-title">Representative project connections</h2>
+          <p>Examples of where the method or its records appear. The list is intentionally incomplete.</p>
+        </div>
+      </div>
+      <div class="connections-grid">
+        <a href="https://github.com/fbratten/aics"><strong>AICS</strong><span>Uses 5PP Variation A to harden instruction contracts and audit bounded changesets.</span></a>
+        <a href="https://fbratten.github.io/spine-showcase/recruiter-proof/"><strong>SPINE</strong><span>Uses the protocol in project lanes, planning discipline and evidence-oriented execution.</span></a>
+        <a href="https://github.com/fbratten/changeplane"><strong>ChangePlane</strong><span>Stores phase steps as first-class protocol records and binds them into a tamper-evident trace.</span></a>
+        <a href="https://github.com/fbratten/control-center-ops"><strong>control-center-ops</strong><span>Uses the method in project-change governance, runbooks and operational handovers.</span></a>
+        <a href="https://fbratten.github.io/From-Blueprint-to-Application/demos/five-point-protocol/"><strong>Historical public demo</strong><span>An earlier explanatory surface. This scientific profile supersedes it for evidence framing.</span></a>
+        <a href="https://github.com/fbratten/5pp-gate"><strong>5pp-gate</strong><span>The current deterministic enforcement surface and canonical source for mechanical claims on this page.</span></a>
+      </div>
+    </section>
+
+    <section class="section-shell sources-section" aria-labelledby="sources-title">
+      <div class="section-heading">
+        <span class="section-number">08</span>
+        <div>
+          <h2 id="sources-title">Sources and reproducibility notes</h2>
+          <p>Claims are bounded to the inspected sources and pins below.</p>
+        </div>
+      </div>
+      <div class="source-list">
+        <div><span>Canonical mechanical source</span><code>fbratten/5pp-gate @ e351dae2f39ca67af556037be99c9996140df2c5</code></div>
+        <div><span>Repository documentation</span><code>README.md, CHANGELOG.md, src/fivepp_gate/checks.py</code></div>
+        <div><span>Public origin account</span><code>adaptivearts.ai/blog/from-giant-meta-prompt-to-5pp/</code></div>
+        <div><span>Interactive graph precedent</span><code>agentspool-showcase/demos/capabilities-radar @ Chart.js 4.4.7</code></div>
+        <div><span>Publication surface</span><code>fbratten.github.io/methods/5pp/</code></div>
+      </div>
+      <p class="small-note">This page is a public-safe explanatory artefact. It performs no repository writes, LLM calls, networked evaluation, local file access or real gate execution.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div>
+      <strong>Methods, Protocols & Prompt Systems</strong>
+      <span>Interactive, source-pinned proof of method.</span>
+    </div>
+    <a href="../">Back to the methods index</a>
+  </footer>
+</body>
+</html>

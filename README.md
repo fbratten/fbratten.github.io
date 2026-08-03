@@ -7,6 +7,7 @@ Personal landing page for Fredrik Brattén.
 ## Tech Stack
 
 - Pure HTML + [Tailwind CSS](https://tailwindcss.com/) (CDN)
+- [Chart.js](https://www.chartjs.org/) and native Canvas 2D for selected interactive evidence profiles
 - [Shields.io](https://shields.io/) badges
 - [readme-typing-svg](https://github.com/DenverCoder1/readme-typing-svg) animation
 - Hosted on GitHub Pages
@@ -18,9 +19,11 @@ Personal landing page for Fredrik Brattén.
 - Responsive mobile layout
 - Links to project showcases and demos
 - Public-safe recruiter proof packages for selected private-source projects
+- Interactive, source-pinned scientific profiles for methods, protocols and prompt systems
 
 ## Projects Showcased
 
+- [Methods, Protocols & Prompt Systems](https://fbratten.github.io/methods/) - Interactive, source-pinned scientific profiles beginning with 5PP
 - [Broker Lane Sandbox evidence card](https://fbratten.github.io/broker-lane-sandbox/) - Source-first orientation for a public default-deny execution boundary with explicit security non-claims
 - [Worktrace provenance proof](https://fbratten.github.io/worktrace/) - Synthetic local-first evidence ledger demonstrating temporal honesty, privacy receipts and derived reports
 - [Vertex visual systems proof](https://fbratten.github.io/vertex/) - Synthetic Three.js scene demonstrating the canonical node, edge, event, provenance, focus and replay model
