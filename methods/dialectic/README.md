@@ -6,19 +6,30 @@ Public-safe, interactive scientific profile for the implemented SPINE Heuristicâ
 
 `https://fbratten.github.io/methods/dialectic/`
 
-## Canonical source pin
+## Source topology and pins
 
-- repository: `fbratten/spine`
-- commit: `8fa62c1ebfc0c7b65680ef2d89b9953a519e4138`
+### Implemented DIALECTIC lineage
+
+- working/R&D source repository: `fbratten/spine`
+- source pin: `8fa62c1ebfc0c7b65680ef2d89b9953a519e4138`
 - core implementation: `spine/patterns/hermeneutic_loop.py`
 - supporting grammar: `spine/grammar/ebnf_rv.py`
 - working memory: `spine/memory/scratchpad.py`
 - dedicated tests: `scripts/tests/test_hermeneutic.py`
 - historical Phase 5 tests: `scripts/tests/test_phase5.py`
 
+### New SPINE target
+
+- intended clean canonical core repository: `fbratten/spine-core`
+- inspected pin: `cac0cfb60657022b0ba4c48c6c4ebdd54ed0504e`
+- status at the pin: controlled extraction/bootstrap target
+- DIALECTIC was not found migrated into `spine-core` at the inspected pin
+
+The profile therefore attributes the implemented loop to its actual source in `fbratten/spine`, while showing `spine-core` as the intended clean successor rather than pretending that the migration is already complete.
+
 ## Status boundary
 
-Implemented:
+Implemented in the inspected `fbratten/spine` source:
 
 - instrumented and callable loop entry points
 - encounter and separate synthesis calls
@@ -28,18 +39,15 @@ Implemented:
 - token and duration accounting
 - EBNF-RV parsing and formatting
 - dedicated mocked behavioral tests
+- ten intended temporal markers, including `TIMELESS`
 
 Not established:
 
-- a current whole-tree green verification receipt at the pin
+- DIALECTIC migration into `spine-core` at the inspected pin
 - a production caller in the inspected tree
 - calibrated epistemic convergence
 - automatic model switching
 - external academic or user-study validation
-
-## Current verification drift
-
-The current grammar contains ten `TemporalMarker` values because `TIMELESS` was added after the Phase 5 implementation. Both `scripts/tests/test_phase5.py` and `scripts/tests/test_grammar.py` still contain assertions expecting nine markers. The public profile preserves that discrepancy and does not describe the current pin as fully green.
 
 ## Visual inventory
 
@@ -49,7 +57,7 @@ The current grammar contains ten `TemporalMarker` values because `TIMELESS` was 
 4. Browser-local bounded convergence lab.
 5. Browser-local RigVedan knowledge-unit builder.
 6. Native Canvas 2D implementation and separation map.
-7. Native Canvas 2D repository lineage.
+7. Native Canvas 2D repository lineage including the `spine-core` extraction target.
 8. Chart.js historical source-reported receipt graph with explicit scope warning.
 9. Chart.js current implementation-surface counts.
 10. Evidence table, receipt cards, scientific hypothesis and non-claims.
@@ -64,6 +72,7 @@ The current grammar contains ten `TemporalMarker` values because `TIMELESS` was 
 - Historical test counts use different scopes and were not rerun for publication.
 - No clear production caller was identified in the pinned repository search.
 - RigVedan annotations classify knowledge state but do not establish truth.
+- The source implementation and the clean `spine-core` target are separate repository states and must not be collapsed.
 
 ## Public safety
 
