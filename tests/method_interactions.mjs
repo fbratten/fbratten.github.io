@@ -4,22 +4,22 @@ import { createHash } from 'node:crypto';
 const baseUrl = process.env.BASE_URL || 'http://127.0.0.1:4173';
 
 const cases = [
-  { path: '/methods/5pp/', canvas: '#phaseCanvas', detail: '#phaseDetail h3' },
-  { path: '/methods/dialogue-lifecycle/', canvas: '#stateCanvas', detail: '#stateDetail h3' },
-  { path: '/methods/orbit/', canvas: '#nodeCanvas', detail: '#nodeDetail h3' },
-  { path: '/methods/aics/', canvas: '#atomCanvas', detail: '#atomDetail h3' },
-  { path: '/methods/dialectic/', canvas: '#loopCanvas', detail: '#loopDetail h3' },
-  { path: '/methods/rigvedan/', canvas: '#anatomyCanvas', detail: '#anatomyDetail h3' },
-  { path: '/methods/hermeneutic-didactic/', canvas: '#spineCanvas', detail: '#spineDetail h3' },
-  { path: '/methods/dial4/', canvas: '#modeCanvas', detail: '#modeDetail h3' },
-  { path: '/methods/dial4plus/', canvas: '#axisCanvas', detail: '#axisDetail h3' },
-  { path: '/methods/dial4p-possibility/', canvas: '#stackCanvas', detail: '#stackDetail h3' },
+  { path: '/methods/5pp/', canvas: '#phaseCanvas', detail: '#phaseDetail h3', points: [[0.33, 0.50], [0.50, 0.50], [0.84, 0.50]] },
+  { path: '/methods/dialogue-lifecycle/', canvas: '#stateCanvas', detail: '#stateDetail h3', points: [[0.22, 0.50], [0.40, 0.50], [0.78, 0.50]] },
+  { path: '/methods/orbit/', canvas: '#nodeCanvas', detail: '#nodeDetail h3', points: [[0.50, 0.14], [0.82, 0.14], [0.18, 0.37]] },
+  { path: '/methods/aics/', canvas: '#atomCanvas', detail: '#atomDetail h3', points: [[0.28, 0.22], [0.72, 0.22], [0.28, 0.72]] },
+  { path: '/methods/dialectic/', canvas: '#loopCanvas', detail: '#loopDetail h3', points: [[0.28, 0.22], [0.50, 0.50], [0.74, 0.50]] },
+  { path: '/methods/rigvedan/', canvas: '#anatomyCanvas', detail: '#anatomyDetail h3', points: [[0.28, 0.22], [0.72, 0.22], [0.28, 0.72]] },
+  { path: '/methods/hermeneutic-didactic/', canvas: '#spineCanvas', detail: '#spineDetail h3', points: [[0.12, 0.50], [0.54, 0.18], [0.84, 0.52]] },
+  { path: '/methods/dial4/', canvas: '#modeCanvas', detail: '#modeDetail h3', points: [[0.20, 0.22], [0.50, 0.22], [0.80, 0.50]] },
+  { path: '/methods/dial4plus/', canvas: '#axisCanvas', detail: '#axisDetail h3', points: [[0.22, 0.24], [0.50, 0.20], [0.78, 0.24]] },
+  { path: '/methods/dial4p-possibility/', canvas: '#stackCanvas', detail: '#stackDetail h3', points: [[0.30, 0.20], [0.55, 0.20], [0.78, 0.50]] },
 ];
 
-const scanPoints = [];
+const fallbackPoints = [];
 for (const y of [0.12, 0.22, 0.35, 0.5, 0.65, 0.78, 0.88]) {
   for (const x of [0.08, 0.16, 0.26, 0.38, 0.5, 0.62, 0.74, 0.84, 0.92]) {
-    scanPoints.push([x, y]);
+    fallbackPoints.push([x, y]);
   }
 }
 
@@ -44,9 +44,10 @@ async function exercise(page, spec) {
   const detail = page.locator(spec.detail);
   await canvas.waitFor({ state: 'visible' });
   await detail.waitFor({ state: 'visible' });
-  await page.waitForTimeout(250);
+  await canvas.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(300);
 
-  const box = await canvas.boundingBox();
+  let box = await canvas.boundingBox();
   if (!box || box.width < 200 || box.height < 200) {
     throw new Error(`${spec.path}: invalid Canvas box ${JSON.stringify(box)}`);
   }
@@ -62,26 +63,41 @@ async function exercise(page, spec) {
   }
 
   const initialDetail = (await detail.textContent())?.trim() || '';
-  let selectedPoint = null;
+  let selectedFraction = null;
   let selectedDetail = initialDetail;
 
-  for (const [fx, fy] of scanPoints) {
-    const x = box.x + box.width * fx;
-    const y = box.y + box.height * fy;
-    await page.mouse.click(x, y);
-    await page.waitForTimeout(35);
+  const candidates = [...(spec.points || []), ...fallbackPoints];
+  const seen = new Set();
+  for (const [fx, fy] of candidates) {
+    const key = `${fx}:${fy}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    await canvas.click({
+      position: { x: Math.max(1, box.width * fx), y: Math.max(1, box.height * fy) },
+      force: true,
+    });
+    await page.waitForTimeout(45);
     const current = (await detail.textContent())?.trim() || '';
     if (current && current !== initialDetail) {
-      selectedPoint = { x, y };
+      selectedFraction = { fx, fy };
       selectedDetail = current;
       break;
     }
   }
 
-  if (!selectedPoint) {
+  if (!selectedFraction) {
     throw new Error(`${spec.path}: no Canvas node changed the detail panel from ${JSON.stringify(initialDetail)}`);
   }
 
+  await canvas.scrollIntoViewIfNeeded();
+  box = await canvas.boundingBox();
+  if (!box) throw new Error(`${spec.path}: Canvas lost its bounding box before drag`);
+
+  const selectedPoint = {
+    x: box.x + box.width * selectedFraction.fx,
+    y: box.y + box.height * selectedFraction.fy,
+  };
   const beforeDrag = await canvas.screenshot();
   const targetX = Math.min(box.x + box.width - 30, selectedPoint.x + Math.max(50, box.width * 0.08));
   const targetY = Math.min(box.y + box.height - 30, selectedPoint.y + Math.max(35, box.height * 0.06));
@@ -90,7 +106,7 @@ async function exercise(page, spec) {
   await page.mouse.down();
   await page.mouse.move(targetX, targetY, { steps: 8 });
   await page.mouse.up();
-  await page.waitForTimeout(150);
+  await page.waitForTimeout(180);
 
   const afterDrag = await canvas.screenshot();
   if (digest(beforeDrag) === digest(afterDrag)) {
