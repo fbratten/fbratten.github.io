@@ -1,0 +1,4 @@
+(() => {
+  'use strict';
+  const boot=()=>{const D=window.DialecticProfile;D.setupScroll();D.initGraph({canvasId:'loopCanvas',detailId:'loopDetail',resetId:'resetLoopLayout',nodes:D.loopNodes,edges:D.loopEdges,filterSelector:'[data-loop-layer]',defaultSelected:'subject'});D.initGraph({canvasId:'horizonCanvas',detailId:'horizonDetail',resetId:'resetHorizonLayout',nodes:D.horizonNodes,edges:D.horizonEdges,defaultSelected:'previous'});D.initGraph({canvasId:'implCanvas',detailId:'implDetail',resetId:'resetImplLayout',nodes:D.implNodes,edges:D.implEdges,filterSelector:'[data-impl-layer]',defaultSelected:'loop'});D.initGraph({canvasId:'lineageCanvas',detailId:'lineageDetail',resetId:'resetLineageLayout',nodes:D.lineageNodes,edges:D.lineageEdges,defaultSelected:'phase5'});D.initScratchLab();D.initConvergenceLab();D.initRigLab();D.initCharts();};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
