@@ -1,0 +1,36 @@
+name: Apply temporary site repair
+
+on:
+  push:
+    branches:
+      - cc/repair-method-interactions-homepage
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    if: ${{ !contains(github.event.head_commit.message, '[site-repair-generated]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repair branch
+        uses: actions/checkout@v4
+        with:
+          ref: cc/repair-method-interactions-homepage
+          fetch-depth: 0
+
+      - name: Apply deterministic repairs
+        run: python scripts/apply_site_repair.py
+
+      - name: Commit generated changes
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No generated changes were required."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add README.md methods
+          git commit -m "[site-repair-generated] Repair legacy Canvas redraws and normalize method copy"
+          git push origin HEAD:cc/repair-method-interactions-homepage
