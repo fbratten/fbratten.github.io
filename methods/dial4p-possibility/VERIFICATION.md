@@ -5,10 +5,10 @@
 - Current `fbratten.github.io/main` publication base locked at `a06ccfa71dbd64909661b69cf58fd7b85c69deaf`.
 - Current `control-center-ops/main` source pin locked at `7485ee6ade639c3928f043c268995269e75aca54`.
 - Public first-party article source pinned to `fbratten/obs-vault-articles @ 7cfd5e2fcbdf7916b3d87151c13cf20a5c381b1c`.
-- Official Diátaxis source inspected at `https://diataxis.fr/`.
+- Official Diátaxis source identified at `https://diataxis.fr/`.
 - DIAL-4P Possibility and ChangePlane Projection/Productization naming lines kept separate.
 
-## Source boundaries that must remain visible
+## Source boundaries preserved
 
 - The full master prompt has nine named status labels.
 - The public article uses a six-status subset.
@@ -17,23 +17,24 @@
 - The prompt mandates memory, tools and validation, but inspected sources do not provide a separate deterministic enforcement runtime for DIAL-4P Possibility.
 - Browser laboratories are synthetic and cannot establish claim truth or protocol compliance.
 
-## Checks to complete before merge
+## Static publication review completed
 
-- Fetch every branch artifact back from GitHub after creation.
-- Review HTML structure and script-loading order.
-- Reconcile every fixed JavaScript-referenced element ID against `index.html`.
-- Review JavaScript wrappers, initialization paths and browser-only state.
-- Confirm no Mermaid dependency or Mermaid diagram.
-- Confirm no private chat URL, local filesystem path, credential, tenant identifier or private record payload is published.
-- Confirm DIAL-4P Possibility never becomes an alias for Projection/Productization.
-- Confirm `Not Yet Evidenced`, `Blocked by Current Tooling`, `Impossible Under Current Constraints` and `Out of Scope` remain distinct.
-- Confirm status classification does not claim feasibility or truth.
-- Confirm the ten-section and nine-section source forms are both represented without invented reconciliation.
-- Compare the final branch against `main` for unintended file removal.
+- Every branch artifact was fetched back from GitHub after creation.
+- HTML structure and script-loading order were reviewed.
+- Every fixed JavaScript-referenced element ID was reconciled against `index.html`.
+- JavaScript wrappers, initialization paths, graph data, browser-local state and DOM-safe inspector rendering were reviewed.
+- Shared responsive style classes were reconciled for the profile's layer and comparison cards.
+- No Mermaid dependency or Mermaid diagram is present.
+- No private chat URL, local filesystem path, credential, tenant identifier or private record payload is published.
+- DIAL-4P Possibility never becomes an alias for Projection/Productization.
+- `Not Yet Evidenced`, `Blocked by Current Tooling`, `Impossible Under Current Constraints` and `Out of Scope` remain distinct.
+- Status classification explicitly does not claim feasibility or truth.
+- The ten-section and nine-section source forms are both represented without invented reconciliation.
+- Final branch comparison showed only new profile files and a bounded methods-index update; no file removal.
 
-## Verification not claimed unless independently completed
+## Verification not claimed
 
-- automated `node --check`;
+- automated `node --check` because the available execution environment could not resolve GitHub raw-file DNS;
 - source test-suite execution;
 - deterministic 5PP or DIAL-4P conformance;
 - live HTTP acceptance;
