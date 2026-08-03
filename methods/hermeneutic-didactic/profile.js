@@ -1,0 +1,4 @@
+(() => {
+  'use strict';
+  const boot=()=>{const H=window.HermDidProfile;H.setupScroll();H.initGraph({canvasId:'spineCanvas',detailId:'spineDetail',resetId:'resetSpineLayout',nodes:H.spineNodes,edges:H.spineEdges,defaultSelected:'encounter'});H.initGraph({canvasId:'changeplaneCanvas',detailId:'changeplaneDetail',resetId:'resetChangePlaneLayout',nodes:H.changeNodes,edges:H.changeEdges,defaultSelected:'run'});H.initGraph({canvasId:'comparisonCanvas',detailId:'comparisonDetail',resetId:'resetComparisonLayout',nodes:H.compareNodes,edges:H.compareEdges,filterSelector:'[data-comparison-filter]',defaultSelected:'spine'});H.initGraph({canvasId:'provenanceCanvas',detailId:'provenanceDetail',resetId:'resetProvenanceLayout',nodes:H.provenanceNodes,edges:H.provenanceEdges,defaultSelected:'loop'});H.initConvergence();H.initDidactic();H.initCharts();};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',boot);else boot();
+})();
