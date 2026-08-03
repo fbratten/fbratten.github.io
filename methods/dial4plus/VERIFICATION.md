@@ -1,20 +1,23 @@
 # DIAL-4+ publication verification
 
-Checks required before merge:
+Verification completed before pull-request creation:
 
-- HTML parses successfully.
-- Every JavaScript module passes `node --check` with Node 22 when local retrieval is available.
-- Every fixed JavaScript-referenced element ID exists in `index.html`.
-- No Mermaid dependency or Mermaid diagram is present.
-- Conceptual DIAL-4+ axes and ChangePlane record fields remain separate.
-- Confidence, evidence quality and scope are not collapsed into one score.
-- The confidence-range boundary is represented exactly as source supports: CLI documentation says `0..1`; dataclass and schema do not enforce minimum or maximum at the pinned source.
-- Browser laboratories use synthetic state and perform no source execution, claim insertion, seal operation or repository mutation.
+- all branch files were fetched back from GitHub after creation;
+- HTML source and script-loading order were reviewed;
+- JavaScript modules were source-reviewed for balanced wrappers, declared initialization functions and bounded browser-only state;
+- every fixed JavaScript-referenced element ID was reconciled against `index.html`;
+- no Mermaid dependency or Mermaid diagram is present;
+- no disallowed repository reference is present;
+- conceptual DIAL-4+ axes and ChangePlane record fields remain separate;
+- confidence, evidence quality and scope are not collapsed into one score;
+- the confidence-range boundary is represented exactly as source supports: CLI documentation says `0..1`; the pinned dataclass and schema do not enforce minimum or maximum;
+- browser laboratories use synthetic state and perform no source execution, claim insertion, seal operation or repository mutation.
 
-Verification boundary:
+Verification not claimed:
 
-- source tests are not rerun for publication;
-- live HTTP acceptance remains separate;
-- real-browser interaction acceptance remains separate;
+- automated `node --check` was not completed in this publication environment;
+- source tests were not rerun for publication;
+- live HTTP acceptance remains pending;
+- real-browser interaction acceptance remains pending;
 - source-reported MVP-4 receipts use mixed protocol scope;
 - no calibration, annotation-reliability or outcome-efficacy study is asserted.
