@@ -2,6 +2,10 @@
   'use strict';
   const boot = () => {
     const P = window.Dial4PPossibility;
+    document.querySelectorAll('.axis-grid').forEach(el => el.classList.add('layer-grid'));
+    document.querySelectorAll('.axis-card').forEach(el => el.classList.add('layer-card'));
+    document.querySelectorAll('.classification-grid').forEach(el => el.classList.add('contract-grid'));
+    document.querySelectorAll('.classification-card').forEach(el => el.classList.add('contract-card'));
     P.setupScroll();
     P.initGraph({canvasId:'stackCanvas',detailId:'stackDetail',resetId:'resetStackLayout',nodes:P.stackNodes,edges:P.stackEdges,filterSelector:'[data-stack-filter]',defaultSelected:'state'});
     P.initGraph({canvasId:'statusCanvas',detailId:'statusDetail',resetId:'resetStatusLayout',nodes:P.statusNodes,edges:P.statusEdges,filterSelector:'[data-status-filter]',defaultSelected:'could'});
