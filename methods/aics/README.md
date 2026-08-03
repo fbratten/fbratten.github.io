@@ -1,4 +1,4 @@
-# AICS scientific profile
+# AICS method profile
 
 Public-safe interactive profile for AICS 0.2.0.
 

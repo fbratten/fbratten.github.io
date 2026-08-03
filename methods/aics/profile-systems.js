@@ -3,7 +3,7 @@
   const A = window.AICSProfile = window.AICSProfile || {};
   A.conformanceNodes=[
     {id:'core',label:'core',group:'contract',x:.18,y:.50,r:52,summary:'Schema and semantic integrity, unique IDs, references, coherent phase gates, verification coverage and truthful profile claim.',meta:[['Executable?','Not implied'],['Dependency','Base for all other profiles']]},
-    {id:'conversation',label:'conversation',group:'projection',x:.46,y:.17,r:49,summary:'Adds source-conversation traceability, visible dialogue phase, visible 5PP and lossless snapshot when rendered.',meta:[['Depends on','core'],['Focus','human–AI conversation continuity']]},
+    {id:'conversation',label:'conversation',group:'projection',x:.46,y:.17,r:49,summary:'Adds source-conversation traceability, visible dialogue phase, visible 5PP and lossless snapshot when rendered.',meta:[['Depends on','core'],['Focus','human-AI conversation continuity']]},
     {id:'repository',label:'repository',group:'projection',x:.47,y:.50,r:49,summary:'Adds canonical durable system, creator and last modifier provenance.',meta:[['Depends on','core'],['Non-claim','No write authorization']]},
     {id:'execution',label:'execution',group:'control',x:.46,y:.82,r:49,summary:'Adds status, accepted instruction, exact-version authorization, locked hard requirements and reciprocal verification coverage.',meta:[['Depends on','core'],['Closure','stricter audit when closed']]},
     {id:'full',label:'full',group:'evidence',x:.81,y:.50,r:59,summary:'All dependency profiles plus deterministic lossless conversation round-trip.',meta:[['Dependencies','core + conversation + repository + execution'],['Round trip','round_trip_verified=true']]}

@@ -1,4 +1,4 @@
-# DIAL-4P Possibility — scientific profile 10
+# DIAL-4P Possibility - method profile 10
 
 Status: source-pinned public profile.
 

@@ -30,7 +30,7 @@
   D.horizonEdges=[['initial','horizon','context'],['scratch','horizon','prior notes'],['previous','horizon','prior view'],['questions','horizon','unresolved'],['findings','horizon','typed findings'],['horizon','new','prompt'],['new','append','record'],['new','previous','next pass','rgba(178,147,255,.55)',true],['append','scratch','future re-entry','rgba(156,176,189,.34)',true]];
 
   D.implNodes=[
-    {id:'loop',label:'SPINE\nDIALECTIC loop',group:'contract',x:.50,y:.47,r:60,summary:'The implemented heuristic–hermeneutic loop in SPINE.',meta:[['Primary module','spine/patterns/hermeneutic_loop.py'],['Status','implemented']]},
+    {id:'loop',label:'SPINE\nDIALECTIC loop',group:'contract',x:.50,y:.47,r:60,summary:'The implemented heuristic-hermeneutic loop in SPINE.',meta:[['Primary module','spine/patterns/hermeneutic_loop.py'],['Status','implemented']]},
     {id:'client',label:'Instrumented\nLLM client',group:'control',x:.20,y:.18,r:48,summary:'The full entry point invokes an instrumented client and preserves ToolEnvelope-based receipts.',meta:[['Entry point','hermeneutic_loop()'],['Evidence','token + duration records']]},
     {id:'simple',label:'Callable\nwrapper',group:'control',x:.20,y:.72,r:46,summary:'A simplified entry point accepts a callable and supports testing or bounded standalone use.',meta:[['Entry point','hermeneutic_loop_simple()'],['Instrumentation','reduced']]},
     {id:'scratchpad',label:'Scratchpad',group:'projection',x:.50,y:.14,r:46,summary:'Task-local file-backed working memory used for prior-note retrieval and per-pass append.',meta:[['Module','spine/memory/scratchpad.py'],['Role','working memory']]},
@@ -43,7 +43,7 @@
 
   D.lineageNodes=[
     {id:'design',label:'D9 + D10\ndesign',group:'projection',x:.12,y:.42,r:48,summary:'The DIALECTIC loop and EBNF-RV grammar were planned together as SPINE Phase 5.',meta:[['Artefact','design/backlog'],['Status','historical provenance']]},
-    {id:'phase5',label:'Phase 5\n2 Mar 2026',group:'contract',x:.34,y:.42,r:54,summary:'Initial implementation of the EBNF-RV grammar and the heuristic–hermeneutic loop.',meta:[['Commit','26f13c191769…'],['Receipt','43 new tests; 85 total reported']]},
+    {id:'phase5',label:'Phase 5\n2 Mar 2026',group:'contract',x:.34,y:.42,r:54,summary:'Initial implementation of the EBNF-RV grammar and the heuristic-hermeneutic loop.',meta:[['Commit','26f13c191769…'],['Receipt','43 new tests; 85 total reported']]},
     {id:'timeless',label:'TIMELESS\n22 Mar 2026',group:'atom',x:.56,y:.20,r:48,summary:'The intended temporal vocabulary was extended with TIMELESS for axiomatic or non-decaying knowledge.',meta:[['Commit','8fb9a55fea67…'],['Temporal markers','10']]},
     {id:'dedicated',label:'Dedicated\ntest surface',group:'evidence',x:.58,y:.68,r:48,summary:'A dedicated modern test module covers full and simple loop paths, parsing and bounded stopping.',meta:[['Module','scripts/tests/test_hermeneutic.py'],['Execution here','not rerun']]},
     {id:'docs',label:'Generated\npattern API',group:'projection',x:.78,y:.26,r:46,summary:'The generated patterns reference identifies the hermeneutic loop as the DIALECTIC framework implementation.',meta:[['Module','spine/patterns/README.md'],['Status','source documentation']]},

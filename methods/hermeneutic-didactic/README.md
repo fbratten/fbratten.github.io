@@ -1,8 +1,8 @@
-# Hermeneutic-didactic scientific profile
+# Hermeneutic-didactic method profile
 
 Public-safe, interactive comparative profile for two related but distinct implementations:
 
-1. SPINE DIALECTIC heuristic–hermeneutic loop.
+1. SPINE DIALECTIC heuristic-hermeneutic loop.
 2. ChangePlane Hermeneutic Looped Didactic protocol.
 
 ## Route
