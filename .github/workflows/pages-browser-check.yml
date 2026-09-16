@@ -6,6 +6,7 @@ on:
       - "index.html"
       - "README.md"
       - "methods/**"
+      - "blueprint-ai-studio/**"
       - "tests/**"
       - ".github/workflows/pages-browser-check.yml"
   push:
@@ -62,6 +63,11 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node tests/method_interactions.mjs
 
+      - name: Exercise Blueprint authority reader labs locally
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node tests/blueprint_authority_labs.mjs
+
       - name: Wait for the merged GitHub Pages build
         if: github.event_name == 'push'
         shell: bash
@@ -87,6 +93,12 @@ jobs:
           BASE_URL: https://fbratten.github.io
         run: node tests/method_interactions.mjs
 
+      - name: Exercise live Blueprint authority reader labs
+        if: github.event_name == 'push'
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/blueprint_authority_labs.mjs
+
       - name: Show local server log on failure
         if: failure()
         run: cat /tmp/pages-server.log || true
@@ -101,7 +113,7 @@ jobs:
         run: |
           if [[ "$JOB_STATUS" == "success" ]]; then
             state="success"
-            description="Live root and all 10 method interactions passed"
+            description="Live root, methods and Blueprint reader labs passed"
           else
             state="failure"
             description="Live GitHub Pages acceptance failed"
