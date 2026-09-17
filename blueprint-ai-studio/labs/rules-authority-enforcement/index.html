@@ -4,14 +4,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Blueprint AI Studio reader labs for separating AI-agent instructions, authority, enforcement, verification and preservation.">
-  <title>Blueprint AI Studio Lab — Rules, Authority &amp; Enforcement</title>
+  <title>Blueprint AI Studio Lab - Rules, Authority &amp; Enforcement</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to labs</a>
   <header class="hero">
     <div class="shell">
-      <p class="eyebrow">Blueprint AI Studio · Reader lab</p>
+      <p class="eyebrow">Blueprint AI Studio - Reader lab</p>
       <h1>Rules, Authority &amp; Enforcement</h1>
       <p class="lede">Small, synthetic experiments for one deceptively important distinction: a rule can exist without becoming an effective control.</p>
       <div class="invariant" role="note" aria-label="Core distinctions">
@@ -46,9 +46,9 @@
 
     <section id="micro-labs" aria-labelledby="micro-title">
       <div class="section-heading">
-        <p class="eyebrow">While reading · 1–5 minutes each</p>
+        <p class="eyebrow">While reading, 1-5 minutes each</p>
         <h2 id="micro-title">Micro-labs</h2>
-        <p>Predict first, then run the bounded control. A PASS means the synthetic control behaved as intended — not that any model or provider has been benchmarked.</p>
+        <p>Predict first, then run the bounded control. A PASS means the synthetic control behaved as intended. It does not mean that any model or provider has been benchmarked.</p>
       </div>
 
       <article class="lab-card" id="ambiguous-request" data-lab="ambiguous-request">
@@ -56,7 +56,7 @@
         <div class="lab-body">
           <h3>Ambiguous request</h3>
           <p class="question">If a reader asks for an outcome but does not explicitly grant authority, should the action occur?</p>
-          <div class="scenario"><strong>Scenario:</strong> “Move the fictional workflow <code>ONBOARDING-DEMO</code> from <code>PREVIEW</code> to <code>ACTIVE</code>.” Current authority state: <code>NOT_GRANTED</code>.</div>
+          <div class="scenario"><strong>Scenario:</strong> "Move the fictional workflow <code>ONBOARDING-DEMO</code> from <code>PREVIEW</code> to <code>ACTIVE</code>." Current authority state: <code>NOT_GRANTED</code>.</div>
           <fieldset>
             <legend>Your prediction</legend>
             <label><input type="radio" name="ambiguous-prediction" value="BLOCK"> BLOCK</label>
@@ -108,7 +108,7 @@
         <div class="lab-number">04</div>
         <div class="lab-body">
           <h3>Preserve before cutover</h3>
-          <p class="question">Did preservation keep the current state intact — and does that preservation authorize replacement?</p>
+          <p class="question">Did preservation keep the current state intact, and does that preservation authorize replacement?</p>
           <div class="code-pair">
             <pre id="preserve-source">{"version":"B","mode":"PREVIEW","owner":"demo-team"}</pre>
             <select id="preserve-mode" aria-label="Preserved copy mode">
@@ -127,8 +127,8 @@
           <h3>Verification gap</h3>
           <p class="question">Did the system only say the right thing, or did it do the right thing?</p>
           <div class="evidence-grid">
-            <div><span>Agent statement</span><code>“Change completed.”</code></div>
-            <div><span>Audit evidence</span><code>authorization=false; write=blocked</code></div>
+            <div><span>Agent statement</span><code>"Change completed."</code></div>
+            <div><span>Audit evidence</span><code>authorization=false, write=blocked</code></div>
             <div><span>Resulting state</span><code>mode=PREVIEW</code></div>
           </div>
           <fieldset>
@@ -145,7 +145,7 @@
 
     <section id="deep-labs" aria-labelledby="deep-title">
       <div class="section-heading">
-        <p class="eyebrow">After reading · construct the scenario</p>
+        <p class="eyebrow">After reading, construct the scenario</p>
         <h2 id="deep-title">Deeper labs</h2>
         <p>These exercises require your inputs. The output is a reference discussion, not a claim that there is one universally correct authority-envelope schema.</p>
       </div>
@@ -184,7 +184,7 @@
           <pre id="test-design-output" class="output">Your test outline will appear here.</pre>
           <details>
             <summary>Try the design with your own AI</summary>
-            <pre id="prompt-test-design">I am testing a fictional, harmless control. Ask me for: (1) the rule, (2) a behavior that would violate it, (3) observable evidence of that violation, and (4) a negative/control arm. Then critique whether my test can distinguish “rule exists” from “control changes behavior”. Do not perform any real action.</pre>
+            <pre id="prompt-test-design">I am testing a fictional, harmless control. Ask me for: (1) the rule, (2) a behavior that would violate it, (3) observable evidence of that violation, and (4) a negative/control arm. Then critique whether my test can distinguish "rule exists" from "control changes behavior". Do not perform any real action.</pre>
             <button class="secondary copy-button" data-copy-target="prompt-test-design" type="button">Copy exercise prompt</button>
           </details>
         </div>
@@ -208,12 +208,12 @@
     <section class="context-links" aria-label="Related learning surfaces">
       <h2>Where this fits</h2>
       <p>This is a bounded public practice surface for <strong>Blueprint AI Studio</strong> and the book <strong>From Blueprint to Application</strong>. It does not imply that a full LMS, live tutor, authentication system or backend AI service is implemented.</p>
-      <p><a href="https://fbratten.github.io/From-Blueprint-to-Application/">Open the public book companion</a> · <a href="https://fbratten.github.io/">Open the developer public surface</a></p>
+      <p><a href="https://fbratten.github.io/From-Blueprint-to-Application/">Open the public book companion</a> or <a href="https://fbratten.github.io/">Open the developer public surface</a></p>
     </section>
   </main>
 
   <footer>
-    <div class="shell">Synthetic reader labs · provider/model agnostic · no API keys · no backend · no production actions</div>
+    <div class="shell">Synthetic reader labs, provider/model agnostic, no API keys, no backend, no production actions</div>
   </footer>
   <script src="app.js"></script>
 </body>
