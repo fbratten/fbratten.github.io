@@ -35,7 +35,7 @@
     const pass = prediction === expected;
     setResult(
       'result-ambiguous',
-      `${pass ? 'PASS' : 'FAIL'} — expected ${expected}. A desired outcome is a request, not execution authority.`,
+      `${pass ? 'PASS' : 'FAIL'}. Expected ${expected}. A desired outcome is a request, not execution authority.`,
       pass ? 'pass' : 'fail'
     );
     record('ambiguous-request', { prediction, expected, control_property: 'missing authority fails closed', status: pass ? 'PASS' : 'FAIL' });
@@ -51,7 +51,7 @@
     const pass = prediction === expected;
     setResult(
       'result-approval',
-      `${pass ? 'PASS' : 'FAIL'} — expected ${expected}. Entitlement to authorize does not itself authorize this exact action.`,
+      `${pass ? 'PASS' : 'FAIL'}. Expected ${expected}. Entitlement to authorize does not itself authorize this exact action.`,
       pass ? 'pass' : 'fail'
     );
     record('authorized-person', { prediction, expected, entitlement: true, current_authorization: false, status: pass ? 'PASS' : 'FAIL' });
@@ -68,7 +68,7 @@
       'result-baseline',
       authority
         ? 'Both arms execute because explicit authority is present. Remove authority to expose the negative-control difference.'
-        : 'PASS — the uncontrolled arm executes while the authority-gated arm blocks. The baseline demonstrates that the control changed behavior.',
+        : 'PASS. The uncontrolled arm executes while the authority-gated arm blocks. The baseline demonstrates that the control changed behavior.',
       authority ? 'info' : 'pass'
     );
     record('no-control-baseline', { authority_present: authority, without_control: noControl, with_control: withControl, behavior_differs: changedBehavior, status: authority ? 'INFORMATIVE' : 'PASS' });
@@ -82,8 +82,8 @@
     setResult(
       'result-preserve',
       equivalent
-        ? 'PASS — preserved content is byte/content equivalent in this synthetic comparison. Replacement is still NOT authorized by preservation alone.'
-        : 'FAIL — the “preserved” copy changed content by adding an annotation. Preservation integrity failed; replacement authority remains a separate question.',
+        ? 'PASS. Preserved content is byte/content equivalent in this synthetic comparison. Replacement is still NOT authorized by preservation alone.'
+        : 'FAIL. The "preserved" copy changed content by adding an annotation. Preservation integrity failed. Replacement authority remains a separate question.',
       equivalent ? 'pass' : 'fail'
     );
     record('preserve-before-cutover', { preservation_mode: mode, equivalent, replacement_authorized: false, status: equivalent ? 'PASS' : 'FAIL' });
@@ -99,11 +99,11 @@
     setResult(
       'result-verification',
       pass
-        ? 'PASS — audit evidence and resulting state show that the write was blocked and PREVIEW remained true. The agent statement is contradicted.'
-        : 'FAIL — a self-report does not override stronger audit/state evidence. The verified outcome is that no authorized state change occurred.',
+        ? 'PASS. Audit evidence and resulting state show that the write was blocked and PREVIEW remained true. The agent statement is contradicted.'
+        : 'FAIL. A self-report does not override stronger audit/state evidence. The verified outcome is that no authorized state change occurred.',
       pass ? 'pass' : 'fail'
     );
-    record('verification-gap', { selected_evidence: choice, verified_state: 'PREVIEW', audit: 'authorization=false; write=blocked', agent_claim: 'Change completed', status: pass ? 'PASS' : 'FAIL' });
+    record('verification-gap', { selected_evidence: choice, verified_state: 'PREVIEW', audit: 'authorization=false, write=blocked', agent_claim: 'Change completed', status: pass ? 'PASS' : 'FAIL' });
   });
 
   $('run-intent')?.addEventListener('click', () => {
@@ -139,7 +139,7 @@
       'result-intent',
       decision === 'ALLOW'
         ? 'Reference result: ALLOW in this bounded teaching model because explicit authority and scope are both present. Real systems may require additional constraints.'
-        : `Reference result: BLOCK — ${blockers.join('; ')}.`,
+        : `Reference result: BLOCK. ${blockers.join(', ')}.`,
       decision === 'ALLOW' ? 'pass' : 'info'
     );
     record('separate-intent-authority', { ...model, reader_supplied: true, status: decision });
@@ -157,7 +157,7 @@
     if (!controlArm) missing.push('negative/control arm');
 
     if (missing.length) {
-      setResult('result-test-design', `Incomplete test design — add: ${missing.join(', ')}.`, 'fail');
+      setResult('result-test-design', `Incomplete test design. Add ${missing.join(', ')}.`, 'fail');
       $('test-design-output').textContent = 'A control test needs all four fields before the comparison is meaningful.';
       return;
     }
@@ -167,11 +167,11 @@
       violation_behavior: violation,
       evidence_to_observe: evidence,
       negative_or_control_arm: controlArm,
-      falsification_question: `Would “${violation}” still occur when the control is present, and would “${evidence}” reveal it?`,
-      interpretation_note: 'A useful result compares behavior with and without the control; the existence of prose alone is not the tested property.',
+      falsification_question: `Would "${violation}" still occur when the control is present, and would "${evidence}" reveal it?`,
+      interpretation_note: 'A useful result compares behavior with and without the control. The existence of prose alone is not the tested property.',
     };
     $('test-design-output').textContent = JSON.stringify(outline, null, 2);
-    setResult('result-test-design', 'PASS — the design names a violation, observable evidence and a comparison arm. You now have a falsifiable control test outline.', 'pass');
+    setResult('result-test-design', 'PASS. The design names a violation, observable evidence and a comparison arm. You now have a falsifiable control test outline.', 'pass');
     record('design-a-test-that-would-fail', { ...outline, reader_supplied: true, status: 'PASS' });
   });
 
@@ -185,7 +185,7 @@
         button.textContent = 'Copied';
         setTimeout(() => { button.textContent = original; }, 1200);
       } catch {
-        button.textContent = 'Copy unavailable — select text manually';
+        button.textContent = 'Copy unavailable. Select text manually';
       }
     });
   });
@@ -194,12 +194,12 @@
     const payload = {
       ...session,
       exported_at: new Date().toISOString(),
-      privacy: 'browser-local; no upload performed by this lab',
+      privacy: 'browser-local, no upload performed by this lab',
     };
     if (format === 'json') return JSON.stringify(payload, null, 2);
 
     const lines = [
-      '# Blueprint AI Studio — Rules, Authority & Enforcement lab notes',
+      '# Blueprint AI Studio - Rules, Authority & Enforcement lab notes',
       '',
       `Exported: ${payload.exported_at}`,
       '',
