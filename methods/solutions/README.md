@@ -11,3 +11,9 @@ The ten patterns carry curated problem, lifecycle and scale tags. Filters inters
 Query parameters preserve selections for sharing. Stable pattern anchors override filters so a linked pattern remains visible. No tracking, external requests or persisted visitor data are introduced.
 
 Run `python tests/site_copy_and_canvas_lint.py` and, with a local server on port 4173 and Playwright installed, `node tests/solution_explorer.mjs`. The interaction test covers combined filters, empty/reset states, URL restoration, keyboard details, all capability routes, narrow layouts and no-JavaScript fallback.
+
+## Visual atlas
+
+The visual layer adds problem shortcuts and a native HTML capability matrix derived from the linked stacks. Filter changes synchronize matrix rows and cards. Column headings link to profiles; row headings link to patterns. Dots mean membership, not importance or maturity. Keep matrix cells aligned with the card links when editing a combination; the browser test checks this relationship.
+
+All assets are repository-local HTML, CSS and JavaScript. There is no backend, package build, external font or visualization runtime. The matrix works without scripting, uses table headers for assistive technology, and scrolls within a keyboard-focusable region on narrow screens. Motion is limited to optional hover transitions and respects reduced-motion settings. CI captures desktop and mobile screenshots as a short-lived review artifact.

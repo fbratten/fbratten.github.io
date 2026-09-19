@@ -13,6 +13,12 @@
     }
     count.textContent = `${visible} of ${cards.length} patterns match. Filters combine across all three dimensions.`;
     empty.hidden = visible !== 0;
+    document.querySelectorAll('[data-pattern]').forEach(row => {
+      row.hidden = document.getElementById(row.dataset.pattern).hidden;
+    });
+    document.querySelectorAll('[data-problem-preset]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.problemPreset === fields[0].value));
+    });
     if (writeUrl) {
       const url = new URL(location.href);
       fields.forEach(field => field.value ? url.searchParams.set(field.id, field.value) : url.searchParams.delete(field.id));
@@ -41,6 +47,13 @@
   });
   window.addEventListener('popstate', restore);
   window.addEventListener('hashchange', restore);
+  document.querySelectorAll('[data-problem-preset]').forEach(button => {
+    button.addEventListener('click', () => {
+      fields[0].value = fields[0].value === button.dataset.problemPreset ? '' : button.dataset.problemPreset;
+      apply(true);
+    });
+  });
   restore();
   form.hidden = false;
+  document.querySelector('.problem-shortcuts').hidden = false;
 })();

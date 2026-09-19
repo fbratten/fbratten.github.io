@@ -66,7 +66,15 @@ jobs:
       - name: Exercise solution explorer locally
         env:
           BASE_URL: http://127.0.0.1:4173
+          SCREENSHOT_DIR: /tmp/solution-explorer-visuals
         run: node tests/solution_explorer.mjs
+
+      - name: Save solution atlas visual checks
+        uses: actions/upload-artifact@v4
+        with:
+          name: solution-atlas-visuals
+          path: /tmp/solution-explorer-visuals/
+          retention-days: 7
 
       - name: Exercise Blueprint authority reader labs locally
         env:
