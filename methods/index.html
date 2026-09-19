@@ -17,24 +17,27 @@
     .eyebrow { color:var(--accent); text-transform:uppercase; letter-spacing:.14em; font-size:.75rem; font-weight:800; }
     h1 { font-size:clamp(3rem,8vw,6.5rem); letter-spacing:-.06em; line-height:.95; margin:.8rem 0 1.4rem; }
     .hero p,.section-head p { color:var(--muted); font-size:1.08rem; }
-    .section-head { padding:2rem 0 1rem; max-width:58rem; }
+    .section-head { padding:2rem 0 1rem; max-width:62rem; }
     .section-head h2 { font-size:2rem; margin:.25rem 0; }
     .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; padding-bottom:3rem; }
     .value-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1rem; margin:0 0 2rem; }
-    .card,.value-card { border:1px solid rgba(156,176,189,.18); border-radius:1rem; background:linear-gradient(150deg,rgba(20,38,54,.94),rgba(12,23,34,.95)); padding:1.5rem; }
+    .axis-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:0 0 2rem; }
+    .problem-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:0 0 2.5rem; }
+    .card,.value-card,.axis-card,.problem-card { border:1px solid rgba(156,176,189,.18); border-radius:1rem; background:linear-gradient(150deg,rgba(20,38,54,.94),rgba(12,23,34,.95)); padding:1.5rem; }
     .card { min-height:15rem; transition:transform .15s,border-color .15s; }
     a.card:hover { transform:translateY(-3px); border-color:rgba(83,211,167,.55); }
     .card h3 { margin:.7rem 0; font-size:1.8rem; }
-    .value-card h3 { margin:.45rem 0 .7rem; font-size:1.15rem; }
-    .card p,.value-card p { color:var(--muted); }
+    .value-card h3,.axis-card h3,.problem-card h3 { margin:.45rem 0 .7rem; font-size:1.15rem; }
+    .card p,.value-card p,.axis-card p,.problem-card p { color:var(--muted); }
     .kind { display:inline-flex; border:1px solid var(--line); border-radius:999px; padding:.3rem .6rem; color:var(--accent); text-transform:uppercase; letter-spacing:.1em; font-size:.68rem; font-weight:800; }
+    .combination { color:var(--accent)!important; font-size:.88rem; font-weight:700; }
     .note { border-left:3px solid var(--accent); padding:.9rem 1.1rem; background:rgba(16,31,44,.65); color:var(--muted); margin:0 0 2rem; }
     .cta { border:1px solid rgba(83,211,167,.28); border-radius:1rem; background:rgba(83,211,167,.06); padding:1.2rem 1.4rem; margin:1rem 0 4rem; color:var(--muted); }
     .cta a { color:var(--accent); font-weight:700; }
     footer { border-top:1px solid rgba(156,176,189,.18); padding:2rem 0 4rem; color:var(--muted); }
-    @media(max-width:900px){ .value-grid{grid-template-columns:1fr 1fr;} }
-    @media(max-width:800px){ .grid{grid-template-columns:1fr 1fr;} }
-    @media(max-width:560px){ .grid,.value-grid{grid-template-columns:1fr;} header{flex-direction:column;} }
+    @media(max-width:900px){ .value-grid,.problem-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:800px){ .grid,.axis-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:560px){ .grid,.value-grid,.axis-grid,.problem-grid{grid-template-columns:1fr;} header{flex-direction:column;} }
   </style>
 </head>
 <body>
@@ -54,7 +57,26 @@
       <article class="value-card"><span class="kind">Decision quality</span><h3>Keep uncertainty visible</h3><p>Separate claim modes, preserve alternative interpretations and independent baselines, and resist premature intent or solution collapse.</p></article>
     </section>
 
-    <div class="note">The catalog is organized by function rather than development stage. Some deeper authorities are private; the pages expose the public-safe data needed to understand and evaluate each capability without turning the catalog into a roadmap.</div>
+    <section class="section-head"><span class="eyebrow">Problem-space map</span><h2>Different problem shapes call for different capability combinations</h2><p>The same methods can be combined differently depending on the problem, where it appears in the work lifecycle and the scale of the system. The inventory therefore doubles as a problem-solving map rather than only a list of named methods.</p></section>
+    <section class="axis-grid" aria-label="Problem-space dimensions">
+      <article class="axis-card"><span class="kind">X - problem shape</span><h3>What is going wrong?</h3><p>Ambiguity, weak evidence, context loss, semantic conflict, uncontrolled execution, duplicated capability or poor discoverability.</p></article>
+      <article class="axis-card"><span class="kind">Y - lifecycle position</span><h3>Where does it happen?</h3><p>Observation, exploration, orientation, clarification, decision, execution, verification, learning or re-entry.</p></article>
+      <article class="axis-card"><span class="kind">Z - operating scale</span><h3>How large is the system?</h3><p>A claim or conversation, a task or workflow, a project or repository, multi-agent work, or an ecosystem/portfolio surface.</p></article>
+    </section>
+
+    <section class="problem-grid" aria-label="Problem classes and capability combinations">
+      <article class="problem-card"><span class="kind">Problem framing</span><h3>The apparent task is not yet the real problem</h3><p>Preserve discourse, tensions and alternatives before forcing a single intent, requirement or solution.</p><p class="combination">PISD + DIALECTIC + IPB + DIAL-4P</p></article>
+      <article class="problem-card"><span class="kind">Context fragmentation</span><h3>The system cannot tell what it is reasoning about</h3><p>Reconcile identity, representation, relationships, provenance and source authority across distributed context.</p><p class="combination">ORBIT + SORR + CARD & POINTER + SRCB</p></article>
+      <article class="problem-card"><span class="kind">Evidence quality</span><h3>Claims look stronger than the evidence warrants</h3><p>Separate reasoning modes, grade claim strength and preserve independent evidence before definitions harden.</p><p class="combination">DIAL-4 + DIAL-4+ + IPB + SORR</p></article>
+      <article class="problem-card"><span class="kind">Agent execution</span><h3>AI output is being confused with authorized action</h3><p>Stage work, preserve human and system gates, define instruction contracts and keep execution distinct from verified outcome.</p><p class="combination">Dialogue Lifecycle + 5PP + AICS + GDSA</p></article>
+      <article class="problem-card"><span class="kind">Capability duplication</span><h3>A new build is proposed before existing capability is understood</h3><p>Discover what already exists, resolve representations and select the smallest sufficient intervention.</p><p class="combination">Capability-Gap + CSR + SORR + CARD & POINTER</p></article>
+      <article class="problem-card"><span class="kind">Discoverability</span><h3>Useful capability exists but stays operationally invisible</h3><p>Move durable knowledge or capability through discovery, routing and relevance without confusing visibility with authorization.</p><p class="combination">GDSA + ORBIT + CARD & POINTER + SRCB</p></article>
+      <article class="problem-card"><span class="kind">Research synthesis</span><h3>Many sources must become one bounded, defensible understanding</h3><p>Acquire subject context, resolve conflicts, iterate interpretations and keep claim support visible.</p><p class="combination">SRCB + SORR + DIALECTIC + DIAL-4 + IPB</p></article>
+      <article class="problem-card"><span class="kind">Portfolio sprawl</span><h3>Projects, repositories and representations stop being navigable</h3><p>Separate identities, orient across surfaces, find reusable capability and reconcile what exists where.</p><p class="combination">ORBIT + SORR + Capability-Gap + CSR + GDSA</p></article>
+      <article class="problem-card"><span class="kind">Decision under uncertainty</span><h3>Several plausible interpretations or paths remain open</h3><p>Preserve possibilities, distinguish types of reasoning and make uncertainty part of the decision surface instead of hiding it.</p><p class="combination">DIAL-4P + DIAL-4 + DIAL-4+ + DIALECTIC + IPB</p></article>
+    </section>
+
+    <div class="note">The catalog is organized by function rather than development stage. Problem classes above are solution patterns: they show how capabilities compose without implying that every problem always requires the full combination.</div>
 
     <section id="control-execution" class="section-head"><span class="eyebrow">Control and execution</span><h2>How work is bounded, staged and governed</h2><p>Systems that control execution phases, dialogue transitions and instruction contracts.</p></section>
     <section class="grid" aria-label="Control and execution profiles">
