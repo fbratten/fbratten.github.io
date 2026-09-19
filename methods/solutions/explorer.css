@@ -53,3 +53,7 @@ td.included { color:var(--accent); background:#12352f; font-size:1rem; }
 @media(prefers-reduced-motion:no-preference) { .problem-shortcuts button,.chips a { transition:background .15s,border-color .15s; } }
 @media(max-width:760px) { .problem-shortcuts { grid-template-columns:repeat(2,minmax(0,1fr)); } .solution-grid { grid-template-columns:1fr; } }
 @media(max-width:420px) { header,main,footer { width:calc(100% - 2rem); } .hero h1 { font-size:2.8rem; } .solution { padding:1.15rem; } .problem-shortcuts { grid-template-columns:1fr; } .atlas-stats { gap:.8rem; } .atlas-stats span { font-size:.8rem; } }
+/* Contain the table's intrinsic width inside its scroll region. */
+.matrix-panel { min-width:0; max-width:100%; }
+.matrix-scroll { width:100%; min-width:0; max-width:100%; contain:inline-size; }
+.matrix-scroll td { position:relative; }

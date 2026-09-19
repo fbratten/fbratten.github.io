@@ -64,8 +64,12 @@ try {
   await mkdir(shots, { recursive: true });
   for (const width of [375, 1280]) {
     await page.setViewportSize({ width, height: 900 });
-    assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `matrix overflow at ${width}`);
     await page.screenshot({ path: `${shots}/atlas-${width}.png`, fullPage: true });
+    const overflow = await page.evaluate(() => ({
+      fits: document.documentElement.scrollWidth <= innerWidth,
+      elements: [...document.querySelectorAll('body *')].filter(el => !el.closest('.matrix-scroll') && el.getBoundingClientRect().right > innerWidth).map(el => el.tagName + '.' + el.className)
+    }));
+    assert.equal(overflow.fits, true, `matrix overflow at ${width}: ${overflow.elements.join(', ')}`);
   }
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.locator('.matrix-scroll').focus();

@@ -70,6 +70,7 @@ jobs:
         run: node tests/solution_explorer.mjs
 
       - name: Save solution atlas visual checks
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: solution-atlas-visuals
