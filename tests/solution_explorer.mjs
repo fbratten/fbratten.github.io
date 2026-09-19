@@ -64,6 +64,7 @@ try {
   await mkdir(shots, { recursive: true });
   for (const width of [375, 1280]) {
     await page.setViewportSize({ width, height: 900 });
+    await page.evaluate(() => { window.scrollTo(0, 0); document.querySelector('.matrix-scroll').scrollTo(0, 0); });
     await page.screenshot({ path: `${shots}/atlas-${width}.png`, fullPage: true });
     const overflow = await page.evaluate(() => ({
       fits: document.documentElement.scrollWidth <= innerWidth,
