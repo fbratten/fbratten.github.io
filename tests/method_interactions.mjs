@@ -144,8 +144,8 @@ try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 960 } });
   try {
     await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
-    await page.getByText('Recruiter proof packages', { exact: true }).first().waitFor();
-    await page.getByText('Methods, protocols and prompt systems', { exact: true }).first().waitFor();
+    await page.getByText('Source-pinned proof packages', { exact: true }).first().waitFor();
+    await page.getByText('Capability inventory', { exact: true }).first().waitFor();
     const body = await page.textContent('body');
     if (body?.includes('Prompt Engineering Aficionado')) {
       throw new Error('Homepage still contains obsolete Prompt Engineering Aficionado copy');
