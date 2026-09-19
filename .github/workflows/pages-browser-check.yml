@@ -63,6 +63,11 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node tests/method_interactions.mjs
 
+      - name: Exercise solution explorer locally
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node tests/solution_explorer.mjs
+
       - name: Exercise Blueprint authority reader labs locally
         env:
           BASE_URL: http://127.0.0.1:4173
