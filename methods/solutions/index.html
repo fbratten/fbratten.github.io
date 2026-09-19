@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Solution-space map showing how reusable AI, reasoning, context, governance and capability-discovery methods can be composed around different problem shapes, lifecycle positions and operating scales.">
+  <title>Solution Space - Capability Compositions</title>
+  <link rel="stylesheet" href="../profile-lite.css">
+  <style>
+    main { width:min(1120px,calc(100% - 2rem)); }
+    .hero { max-width:62rem; }
+    .section-head { padding:2rem 0 1rem; max-width:62rem; }
+    .section-head h2 { margin:.25rem 0; font-size:2rem; }
+    .section-head p { color:var(--muted); font-size:1.05rem; }
+    .role-grid,.solution-grid,.scale-grid { display:grid; gap:1rem; }
+    .role-grid { grid-template-columns:repeat(5,1fr); padding:1rem 0 2rem; }
+    .solution-grid { grid-template-columns:repeat(2,1fr); padding:1rem 0 2.5rem; }
+    .scale-grid { grid-template-columns:repeat(4,1fr); padding:1rem 0 2.5rem; }
+    .role,.solution,.scale,.boundary-note,.rule-box { border:1px solid rgba(156,176,189,.18); border-radius:1rem; background:linear-gradient(150deg,rgba(20,38,54,.94),rgba(12,23,34,.95)); padding:1.35rem; }
+    .solution { min-height:22rem; }
+    .role h3,.solution h3,.scale h3 { margin:.45rem 0 .7rem; }
+    .role p,.solution p,.scale p,.rule-box li,.boundary-note { color:var(--muted); }
+    .kind { display:inline-flex; border:1px solid var(--line); border-radius:999px; padding:.3rem .6rem; color:var(--accent); text-transform:uppercase; letter-spacing:.1em; font-size:.68rem; font-weight:800; }
+    .chips { display:flex; flex-wrap:wrap; gap:.45rem; margin-top:.9rem; }
+    .chips a,.chip { display:inline-flex; border:1px solid rgba(83,211,167,.28); border-radius:999px; padding:.28rem .55rem; color:var(--accent); font-size:.78rem; font-weight:700; text-decoration:none; }
+    .stack { color:var(--accent)!important; font-weight:750; }
+    .meta { display:grid; grid-template-columns:1fr 1fr; gap:.7rem; margin-top:1rem; }
+    .meta div { border-top:1px solid rgba(156,176,189,.16); padding-top:.65rem; }
+    .meta strong { display:block; color:var(--text); font-size:.78rem; text-transform:uppercase; letter-spacing:.08em; }
+    .flow { border-left:3px solid var(--accent); border-radius:.45rem; background:rgba(0,0,0,.18); padding:1rem 1.2rem; margin:1rem 0 2rem; color:#dceaf1; font-family:ui-monospace,SFMono-Regular,Consolas,monospace; }
+    .boundary-note { margin:1rem 0 2.5rem; }
+    .rule-box { margin:1rem 0 3rem; }
+    .rule-box ol { margin-bottom:0; }
+    .next { border:1px solid rgba(83,211,167,.28); border-radius:1rem; background:rgba(83,211,167,.06); padding:1.2rem 1.4rem; margin:1rem 0 4rem; color:var(--muted); }
+    .next a { font-weight:700; }
+    @media(max-width:980px){ .role-grid{grid-template-columns:repeat(3,1fr);} .scale-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:760px){ .solution-grid,.role-grid{grid-template-columns:1fr 1fr;} }
+    @media(max-width:560px){ .solution-grid,.role-grid,.scale-grid,.meta{grid-template-columns:1fr;} }
+  </style>
+</head>
+<body>
+  <header>
+    <strong>Solution-space map</strong>
+    <nav><a href="../">Capability inventory</a><a href="../../">Portfolio</a></nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="eyebrow">Problem -> capability composition -> solution pattern</span>
+      <h1>Build the stack around the problem</h1>
+      <p class="lead">A capability is a reusable building block. A solution pattern is a bounded composition selected from the current catalog according to problem shape, lifecycle position and operating scale. The goal is not to force every method into every task, but to make the smallest useful stack visible and inspectable.</p>
+    </section>
+
+    <div class="boundary-note"><strong class="boundary">Boundary:</strong> this is a design and orientation map. It does not claim that a pattern is deployed in a particular product, installed in a runtime, authorized for an action class or proven by a public showcase. Those claims require separate evidence.</div>
+
+    <section class="section-head">
+      <span class="eyebrow">Composition grammar</span>
+      <h2>Five roles for assembling a solution</h2>
+      <p>The current catalog can be read as a set of complementary roles. A real problem may use one role, several roles or a cross-cutting subset. The sequence below is a composition aid, not a mandatory pipeline.</p>
+    </section>
+
+    <div class="flow">FRAME -> ORIENT -> REASON -> GOVERN -> DISCOVER / ACTIVATE -> VERIFY / RE-ENTER</div>
+
+    <section class="role-grid" aria-label="Capability assembly roles">
+      <article class="role"><span class="kind">Frame</span><h3>Preserve the problem before narrowing it</h3><p>Keep ambiguity, independent baselines and plausible possibilities available long enough to avoid premature collapse.</p><div class="chips"><a href="../pisd/">PISD</a><a href="../ipb/">IPB</a><a href="../dial4p-possibility/">DIAL-4P</a></div></article>
+      <article class="role"><span class="kind">Orient</span><h3>Know what the subject is</h3><p>Acquire bounded context, resolve identity and relationships, and keep representation separate from source authority.</p><div class="chips"><a href="../srcb/">SRCB</a><a href="../orbit/">ORBIT</a><a href="../sorr/">SORR</a><a href="../card-pointer/">CARD &amp; POINTER</a></div></article>
+      <article class="role"><span class="kind">Reason</span><h3>Work claims and interpretations explicitly</h3><p>Separate reasoning modes, grade claim strength, iterate interpretations and preserve typed semantic structure.</p><div class="chips"><a href="../dialectic/">DIALECTIC</a><a href="../dial4/">DIAL-4</a><a href="../dial4plus/">DIAL-4+</a><a href="../hermeneutic-didactic/">Hermeneutic-didactic</a><a href="../rigvedan/">RigVedan</a></div></article>
+      <article class="role"><span class="kind">Govern</span><h3>Bound decisions and execution</h3><p>Separate lifecycle gates, execution discipline and instruction contracts so model output does not silently become completed action.</p><div class="chips"><a href="../dialogue-lifecycle/">Dialogue lifecycle</a><a href="../5pp/">5PP</a><a href="../aics/">AICS</a></div></article>
+      <article class="role"><span class="kind">Discover / activate</span><h3>Reuse capability before creating more</h3><p>Find existing realization surfaces, reconcile what exists where, and separate discoverability from bounded activation.</p><div class="chips"><a href="../capability-gap/">Capability-Gap</a><a href="../csr/">CSR</a><a href="../gdsa/">GDSA</a></div></article>
+    </section>
+
+    <section class="section-head">
+      <span class="eyebrow">Solution patterns</span>
+      <h2>Reusable compositions for recurring classes of work</h2>
+      <p>These patterns are intentionally broader than individual methods. They show how the same capability can contribute to different outcomes depending on context. The listed stacks are typical starting points, not fixed recipes.</p>
+    </section>
+
+    <section class="solution-grid" aria-label="Solution patterns">
+      <article class="solution"><span class="kind">Governed AI delivery</span><h3>AI-assisted workflow governance</h3><p><strong class="boundary">Problem:</strong> model output, human decision and executable action are being treated as one undifferentiated step.</p><p><strong class="boundary">Outcome:</strong> an explicit path from clarification through decision, bounded execution and property-specific verification.</p><p class="stack">Dialogue lifecycle + 5PP + AICS + DIAL-4+</p><div class="meta"><div><strong>Lifecycle</strong>Clarify -> Decide -> Execute -> Verify</div><div><strong>Scale</strong>Task, workflow, multi-agent work</div></div></article>
+
+      <article class="solution"><span class="kind">Context integrity</span><h3>Semantic and context reconciliation</h3><p><strong class="boundary">Problem:</strong> relevant context is distributed across documents, repositories, histories or representations and the system cannot reliably tell what is the same subject.</p><p><strong class="boundary">Outcome:</strong> bounded context with explicit identity, relationships, provenance, authority and next routes.</p><p class="stack">SRCB + SORR + ORBIT + CARD &amp; POINTER</p><div class="meta"><div><strong>Lifecycle</strong>Explore -> Orient -> Clarify -> Re-enter</div><div><strong>Scale</strong>Conversation through ecosystem</div></div></article>
+
+      <article class="solution"><span class="kind">Evidence synthesis</span><h3>Evidence-backed research synthesis</h3><p><strong class="boundary">Problem:</strong> many sources or interpretations must be reconciled without letting the emerging explanation silently strengthen weak claims.</p><p><strong class="boundary">Outcome:</strong> a bounded understanding that keeps source support, independent baselines, competing interpretations and claim strength visible.</p><p class="stack">SRCB + IPB + SORR + DIALECTIC + DIAL-4 + DIAL-4+</p><div class="meta"><div><strong>Lifecycle</strong>Observe -> Explore -> Clarify -> Verify</div><div><strong>Scale</strong>Claim, research task, project</div></div></article>
+
+      <article class="solution"><span class="kind">Decision support</span><h3>Ambiguity-to-decision support</h3><p><strong class="boundary">Problem:</strong> a rich request or problem space contains several plausible intents, interpretations or paths and an early answer would erase useful structure.</p><p><strong class="boundary">Outcome:</strong> preserve the semantic field first, compare alternatives explicitly, then narrow only when the decision surface is strong enough.</p><p class="stack">PISD + DIAL-4P + DIALECTIC + DIAL-4 + DIAL-4+ + IPB</p><div class="meta"><div><strong>Lifecycle</strong>Explore -> Clarify -> Decide</div><div><strong>Scale</strong>Conversation, task, strategy problem</div></div></article>
+
+      <article class="solution"><span class="kind">Reuse before create</span><h3>Capability discovery and reuse</h3><p><strong class="boundary">Problem:</strong> a new tool, workflow or method is being proposed before the existing capability estate has been understood.</p><p><strong class="boundary">Outcome:</strong> identify existing realizations, reconcile overlaps and select the smallest sufficient intervention before adding another surface.</p><p class="stack">Capability-Gap + CSR + SORR + CARD &amp; POINTER + GDSA</p><div class="meta"><div><strong>Lifecycle</strong>Explore -> Orient -> Clarify -> Decide</div><div><strong>Scale</strong>Project, repository, ecosystem</div></div></article>
+
+      <article class="solution"><span class="kind">Portfolio orientation</span><h3>Multi-surface portfolio orientation</h3><p><strong class="boundary">Problem:</strong> projects, repositories, copies, public projections and capability representations have become hard to navigate without false identity collapse.</p><p><strong class="boundary">Outcome:</strong> a typed map of what exists, how surfaces relate, where authority lives and which capability is actually discoverable.</p><p class="stack">ORBIT + SORR + CARD &amp; POINTER + CSR + GDSA + Capability-Gap</p><div class="meta"><div><strong>Lifecycle</strong>Orient -> Clarify -> Re-enter</div><div><strong>Scale</strong>Repository estate, portfolio, ecosystem</div></div></article>
+
+      <article class="solution"><span class="kind">Knowledge architecture</span><h3>Compact knowledge representation and transfer</h3><p><strong class="boundary">Problem:</strong> useful meaning must survive compression, routing and re-entry without turning labels or summaries into source truth.</p><p><strong class="boundary">Outcome:</strong> compact typed knowledge units, bounded orientation and explicit routes back to deeper evidence and authority.</p><p class="stack">RigVedan + CARD &amp; POINTER + ORBIT + SRCB + Hermeneutic-didactic</p><div class="meta"><div><strong>Lifecycle</strong>Orient -> Interpret -> Project -> Re-enter</div><div><strong>Scale</strong>Knowledge unit, project, agent context</div></div></article>
+
+      <article class="solution"><span class="kind">Interpretation boundary</span><h3>Explainable knowledge transfer</h3><p><strong class="boundary">Problem:</strong> understanding, explanation, semantic classification and durable admission risk being collapsed into one representation.</p><p><strong class="boundary">Outcome:</strong> preserve the difference between iterative interpretation, didactic projection, semantic classification and claim support.</p><p class="stack">Hermeneutic-didactic + DIALECTIC + RigVedan + CARD &amp; POINTER + DIAL-4+</p><div class="meta"><div><strong>Lifecycle</strong>Interpret -> Project -> Verify</div><div><strong>Scale</strong>Claim, lesson, knowledge surface</div></div></article>
+
+      <article class="solution"><span class="kind">Bounded activation</span><h3>Governed capability activation</h3><p><strong class="boundary">Problem:</strong> a useful capability exists, but discovery, relevance, authorization and actual use are being treated as the same state.</p><p><strong class="boundary">Outcome:</strong> move from durable existence to bounded activation while preserving instruction, decision and verification gates.</p><p class="stack">GDSA + CSR + CARD &amp; POINTER + AICS + Dialogue lifecycle + 5PP</p><div class="meta"><div><strong>Lifecycle</strong>Discover -> Surface -> Decide -> Execute -> Verify</div><div><strong>Scale</strong>Agent, runtime, workflow, ecosystem</div></div></article>
+
+      <article class="solution"><span class="kind">Comparative evaluation</span><h3>Method and reasoning evaluation</h3><p><strong class="boundary">Problem:</strong> a new method may appear effective because every attempt has already been shaped by the method being evaluated.</p><p><strong class="boundary">Outcome:</strong> preserve independent first-pass evidence, compare guided and unguided reasoning, and make differences in claim quality and interpretation inspectable.</p><p class="stack">IPB + DIALECTIC + DIAL-4 + DIAL-4+ + SORR</p><div class="meta"><div><strong>Lifecycle</strong>Observe -> Compare -> Clarify -> Verify</div><div><strong>Scale</strong>Reasoning run, experiment, method design</div></div></article>
+    </section>
+
+    <section class="section-head">
+      <span class="eyebrow">Scale shifts</span>
+      <h2>The same problem changes when the operating scale changes</h2>
+      <p>Scale does not automatically require more methods. It changes which responsibilities become load-bearing. These examples show how a stack can expand only when the problem demands it.</p>
+    </section>
+
+    <section class="scale-grid" aria-label="Scale-sensitive stack examples">
+      <article class="scale"><span class="kind">Claim / conversation</span><h3>Preserve meaning before commitment</h3><p>PISD, DIAL-4P and DIAL-4 may be enough when the central risk is premature narrowing inside one discussion.</p></article>
+      <article class="scale"><span class="kind">Task / workflow</span><h3>Add execution boundaries</h3><p>Dialogue lifecycle, 5PP and AICS enter when decisions become instructions, actions and verifiable outcomes.</p></article>
+      <article class="scale"><span class="kind">Project / repository</span><h3>Add identity and source routing</h3><p>ORBIT, SORR, SRCB and CARD &amp; POINTER become important when state and authority are distributed across surfaces.</p></article>
+      <article class="scale"><span class="kind">Ecosystem / portfolio</span><h3>Add discovery and reuse</h3><p>Capability-Gap, CSR and GDSA enter when the question is no longer only what a system knows, but what capability already exists and can be surfaced responsibly.</p></article>
+    </section>
+
+    <section class="section-head">
+      <span class="eyebrow">Selection discipline</span>
+      <h2>Choose the smallest sufficient stack</h2>
+      <p>The map is useful only if it prevents unnecessary ceremony as well as unnecessary reinvention.</p>
+    </section>
+
+    <div class="rule-box">
+      <ol>
+        <li>Start from the observed problem, not from a preferred method name.</li>
+        <li>Add orientation capabilities when identity, provenance, scope or authority is uncertain.</li>
+        <li>Add independent-baseline or claim-grading capabilities when the evaluation itself can be biased.</li>
+        <li>Add execution-control capabilities only when decisions can become actions or authoritative artifacts.</li>
+        <li>Add capability-discovery and activation capabilities when the problem concerns reuse, visibility or bounded invocation.</li>
+        <li>Verify the property that matters. Command success, documentation presence and public visibility are not substitutes for the claimed outcome.</li>
+      </ol>
+    </div>
+
+    <div class="next">This layer intentionally stops before product and deployment claims. Continue to the <a href="../">capability inventory</a> for individual profiles, or to the <a href="../../#proof-packages">proof packages</a> for separately verified implementation evidence. A later deployment inventory can connect these solution patterns to explicit products and services without guessing.</div>
+  </main>
+
+  <footer>Public-safe solution orientation. Capability relevance does not imply runtime availability, authorization, deployment or implementation authority.</footer>
+</body>
+</html>

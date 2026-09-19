@@ -95,8 +95,49 @@ def check_homepage() -> list[str]:
     return failures
 
 
+def check_solution_space() -> list[str]:
+    path = METHODS / "solutions" / "index.html"
+    failures: list[str] = []
+    if not path.exists():
+        return ["methods/solutions/index.html: missing solution-space map"]
+
+    text = path.read_text(encoding="utf-8")
+    required = [
+        "Solution-space map",
+        "Five roles for assembling a solution",
+        "Reusable compositions for recurring classes of work",
+        "Choose the smallest sufficient stack",
+        "../5pp/",
+        "../dialogue-lifecycle/",
+        "../aics/",
+        "../dialectic/",
+        "../rigvedan/",
+        "../hermeneutic-didactic/",
+        "../dial4/",
+        "../dial4plus/",
+        "../dial4p-possibility/",
+        "../pisd/",
+        "../ipb/",
+        "../orbit/",
+        "../sorr/",
+        "../card-pointer/",
+        "../srcb/",
+        "../capability-gap/",
+        "../csr/",
+        "../gdsa/",
+    ]
+    for value in required:
+        if value not in text:
+            failures.append(f"methods/solutions/index.html: missing required solution content {value!r}")
+
+    catalog = (METHODS / "index.html").read_text(encoding="utf-8")
+    if "./solutions/" not in catalog:
+        failures.append("methods/index.html: solution-space map is not linked from capability inventory")
+    return failures
+
+
 def main() -> None:
-    failures = check_copy() + check_legacy_canvas_guards() + check_homepage()
+    failures = check_copy() + check_legacy_canvas_guards() + check_homepage() + check_solution_space()
     if failures:
         print("Site regression lint failed:")
         for failure in failures:
