@@ -77,8 +77,8 @@ def check_homepage() -> list[str]:
     text = (ROOT / "index.html").read_text(encoding="utf-8")
     failures: list[str] = []
     required = [
-        "Recruiter proof packages",
-        "Methods, protocols and prompt systems",
+        "Source-pinned proof packages",
+        "Capability inventory",
         "./methods/",
         "./intelligence-engine-showcase/",
         "./mads/",
