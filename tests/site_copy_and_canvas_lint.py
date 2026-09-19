@@ -79,7 +79,10 @@ def check_homepage() -> list[str]:
     required = [
         "Source-pinned proof packages",
         "Capability inventory",
+        "Solution-space map",
         "./methods/",
+        "./methods/solutions/",
+        "Public URL: /methods/solutions/",
         "./intelligence-engine-showcase/",
         "./mads/",
         "./adaptivearts-ai/",
