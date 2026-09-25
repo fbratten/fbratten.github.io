@@ -22,6 +22,39 @@ public summary != implementation authority
 
 Only material already admitted as public belongs in this repository.
 
+## Public repository boundary
+
+This repository is public. A branch or pull request in this repository is therefore already on the public side of the disclosure boundary, even before merge or GitHub Pages deployment.
+
+Keep publication candidates in a private control/evidence plane until the candidate has passed the applicable privacy, claim and freshness checks and has been explicitly admitted for public disclosure.
+
+```text
+PRIVATE EVIDENCE / CONTROL PLANE
+        ↓
+PUBLIC_CANDIDATE
+        ↓
+privacy + claim + freshness gate
+        ↓
+PUBLIC ADMISSION DECISION
+        ↓
+public branch / pull request in fbratten.github.io
+        ↓
+merge
+        ↓
+GitHub Pages
+```
+
+Preserve:
+
+```text
+public_candidate != safe to place in a public repository
+public branch / pull request = public disclosure surface
+merge != first disclosure
+merge != proof of deployment
+```
+
+Do not use a public branch or pull request as the review location for material that is still private or only a `PUBLIC_CANDIDATE`.
+
 ## Current first slice
 
 - `index.html` renders the public log.
