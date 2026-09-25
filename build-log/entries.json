@@ -1,5 +1,27 @@
 [
   {
+    "date": "2026-09-25",
+    "state": "SHIPPED",
+    "title": "Governed public proof-of-work Build Log",
+    "summary": "Launched a public proof-of-work Build Log, added local and live rendering checks, surfaced it from the portfolio home, and made the public-repository disclosure boundary explicit so unadmitted publication candidates stay on the private side of the workflow.",
+    "why_it_matters": "It creates a practical way to turn verified work into external evidence without turning private planning, session telemetry or raw activity into a public feed.",
+    "evidence": [
+      {
+        "label": "Live Build Log",
+        "url": "https://fbratten.github.io/build-log/"
+      },
+      {
+        "label": "Initial Build Log merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/4ce980824e30eb42290061b8ac3e40deda5744ed"
+      },
+      {
+        "label": "Disclosure-boundary and discovery merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/6a1169e9ab6dfc15bb8ae13a6bb51884c7bf83a5"
+      }
+    ],
+    "tags": ["proof of work", "GitHub Pages", "publication governance", "verification"]
+  },
+  {
     "date": "2026-09-19",
     "state": "SHIPPED",
     "title": "Interactive solution-space atlas",
@@ -18,6 +40,24 @@
     "tags": ["capability architecture", "GitHub Pages", "interaction design"]
   },
   {
+    "date": "2026-09-19",
+    "state": "SHIPPED",
+    "title": "Capability inventory and problem-space map",
+    "summary": "Reconciled the public methods catalogue into a broader capability inventory, added public-safe capability profiles and introduced a problem-first map connecting reusable capabilities to concrete problem classes.",
+    "why_it_matters": "It makes a growing capability estate understandable from the problem being solved rather than requiring visitors to already know internal method or project names.",
+    "evidence": [
+      {
+        "label": "Public methods and capability surface",
+        "url": "https://fbratten.github.io/methods/"
+      },
+      {
+        "label": "Capability inventory and problem-space merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/4c3343836d1ceabec8ae807e6f52b4f98c4cacd4"
+      }
+    ],
+    "tags": ["capability inventory", "problem mapping", "orientation", "GitHub Pages"]
+  },
+  {
     "date": "2026-09-17",
     "state": "PUBLISHED",
     "title": "When a Rule Is Not a Control",
@@ -30,5 +70,85 @@
       }
     ],
     "tags": ["AI agents", "governance", "verification", "behavioural testing"]
+  },
+  {
+    "date": "2026-09-16",
+    "state": "SHIPPED",
+    "title": "Rules, Authority & Enforcement reader labs",
+    "summary": "Shipped interactive synthetic reader labs for exploring the difference between an instruction, actual authority, enforcement, verification and preservation in agentic systems, with dedicated browser interaction checks.",
+    "why_it_matters": "The labs make an abstract governance distinction testable and teachable: a documented rule, permission boundary and effective control are separate engineering properties.",
+    "evidence": [
+      {
+        "label": "Live reader lab",
+        "url": "https://fbratten.github.io/blueprint-ai-studio/labs/rules-authority-enforcement/"
+      },
+      {
+        "label": "Reader-lab merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/5f476e30e3e6c82fc3d347b7c008c40f22092829"
+      }
+    ],
+    "tags": ["AI agents", "authority", "enforcement", "interactive learning"]
+  },
+  {
+    "date": "2026-08-03",
+    "state": "VERIFIED",
+    "title": "Public portfolio landing with live Pages acceptance",
+    "summary": "Unified the GitHub Pages root into a public portfolio landing, repaired interaction failures across the earlier method profiles, added browser regression coverage, and extended acceptance checks to the externally deployed Pages site with a durable status receipt.",
+    "why_it_matters": "It separates repository success from user-visible success: the portfolio is not treated as delivered merely because files merged, but is checked through the interface visitors actually use.",
+    "evidence": [
+      {
+        "label": "Live portfolio",
+        "url": "https://fbratten.github.io/"
+      },
+      {
+        "label": "Portfolio and interaction repair merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/54c0f69efb874de52ce05e6012cfcf8e5e72fb2e"
+      },
+      {
+        "label": "Durable live Pages acceptance merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/b2912a92d4b985d7505eacde0c6d9bd7f3f3ec48"
+      }
+    ],
+    "tags": ["portfolio", "GitHub Pages", "browser testing", "deployment verification"]
+  },
+  {
+    "date": "2026-08-03",
+    "state": "SHIPPED",
+    "title": "Ten interactive method and protocol profiles",
+    "summary": "Completed a public series of ten interactive, source-pinned profiles covering 5PP, Dialogue Lifecycle, ORBIT, AICS, DIALECTIC, RigVedan, Hermeneutic-Didactic, DIAL-4, DIAL-4+ and DIAL-4P Possibility, with explicit evidence boundaries and synthetic laboratories.",
+    "why_it_matters": "It turns method documentation into inspectable proof surfaces that show mechanisms, provenance, boundaries and experiments instead of asking readers to trust prose alone.",
+    "evidence": [
+      {
+        "label": "Methods, protocols and prompt systems",
+        "url": "https://fbratten.github.io/methods/"
+      },
+      {
+        "label": "First full profile PR",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/7"
+      },
+      {
+        "label": "Tenth profile merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/1490b09f3a60ac87537c0352ad2d902d2de6e488"
+      }
+    ],
+    "tags": ["methods", "protocols", "interactive evidence", "provenance"]
+  },
+  {
+    "date": "2026-08-02",
+    "state": "SHIPPED",
+    "title": "Broker Lane Sandbox source-first evidence card",
+    "summary": "Published a source-first evidence card for Broker Lane Sandbox that orients visitors around a public default-deny execution boundary while keeping security claims and source authority explicitly bounded.",
+    "why_it_matters": "It demonstrates how a safety-oriented capability can be explained and evidenced publicly without exposing private implementation state or turning orientation material into stronger security claims than the sources support.",
+    "evidence": [
+      {
+        "label": "Live Broker Lane Sandbox evidence card",
+        "url": "https://fbratten.github.io/broker-lane-sandbox/"
+      },
+      {
+        "label": "Evidence-card merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/316dbbd65d6301dd99b668f637b04f93182186aa"
+      }
+    ],
+    "tags": ["agent safety", "execution boundary", "evidence", "public proof"]
   }
 ]
