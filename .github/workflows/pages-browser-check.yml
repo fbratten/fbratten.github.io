@@ -7,6 +7,7 @@ on:
       - "README.md"
       - "methods/**"
       - "blueprint-ai-studio/**"
+      - "build-log/**"
       - "tests/**"
       - ".github/workflows/pages-browser-check.yml"
   push:
@@ -33,6 +34,9 @@ jobs:
 
       - name: Run static copy and Canvas regression lint
         run: python tests/site_copy_and_canvas_lint.py
+
+      - name: Validate public Build Log contract
+        run: python tests/build_log_contract.py
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
