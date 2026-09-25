@@ -9,6 +9,7 @@ ROOT = Path(__file__).resolve().parents[1]
 BUILD_LOG = ROOT / "build-log"
 MANIFEST = BUILD_LOG / "entries.json"
 PAGE = BUILD_LOG / "index.html"
+README = BUILD_LOG / "README.md"
 
 ALLOWED_STATES = {"SHIPPED", "PUBLISHED", "VERIFIED"}
 REQUIRED_TEXT_FIELDS = {"date", "state", "title", "summary", "why_it_matters"}
@@ -90,9 +91,23 @@ def check_page_boundary() -> None:
         fail("build-log/index.html: manifest content must not be rendered with innerHTML")
 
 
+def check_public_repo_boundary() -> None:
+    text = README.read_text(encoding="utf-8")
+    required = [
+        "## Public repository boundary",
+        "public_candidate != safe to place in a public repository",
+        "public branch / pull request = public disclosure surface",
+        "Do not use a public branch or pull request as the review location",
+    ]
+    for value in required:
+        if value not in text:
+            fail(f"build-log/README.md: missing public-repository boundary token {value!r}")
+
+
 def main() -> None:
     check_manifest()
     check_page_boundary()
+    check_public_repo_boundary()
     print("Build Log contract passed.")
 
 
