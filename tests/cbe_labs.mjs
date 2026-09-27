@@ -17,6 +17,9 @@ try {
   assert.ok((await page.goto(base + '/methods/cbe/')).ok());
   for (const [candidate, verdict, evidence] of [
     ['format', 'KEEP', 'format detection'],
+    ['duplicate', 'KEEP', 'Ingestion-level duplicate detection'],
+    ['safety', 'KEEP', 'Safety-gate coordination'],
+    ['malware', 'DELEGATE', 'Malware Scanner owns the malware detection algorithm'],
     ['embedding', 'DELEGATE', 'Semantic Indexer'],
     ['retention', 'SPLIT', 'DELEGATE determining policy'],
     ['assistant', 'REJECT', 'does not close'],
@@ -30,6 +33,15 @@ try {
     assert.ok((await content('#classification-result')).toLowerCase().includes(evidence.toLowerCase()));
     assert.match(await content('#classification-result'), /No implementation action is authorized/);
   }
+  // The source's whole-analysis outcomes must remain distinct from candidate decisions.
+  const cbeFinals = ['EXPANSION_VALID', 'EXPANSION_VALID_WITH_HANDOFFS', 'EXPANSION_REQUIRES_SPLIT', 'BOUNDARY_UNRESOLVED', 'TARGET_IDENTITY_DRIFT', 'INSUFFICIENT_INFORMATION'];
+  assert.deepEqual((await page.locator('#final-verdicts dt').allTextContents()).sort(), cbeFinals.sort());
+  assert.match(await content('#final-verdicts'), /FAIL on V1.*V5.*V10/s);
+  assert.match(await content('#final-verdicts'), /BOUNDARY_UNRESOLVED corresponds to.*BLOCKED_BY_BOUNDARY_DECISION/s);
+  const baseAx = await accessibility.send('Accessibility.getFullAXTree');
+  assert.deepEqual(baseAx.nodes.filter(node => node.role?.value === 'term').map(node => node.name?.value).sort(), cbeFinals.sort());
+  for (const phrase of [/ingestion-level duplicate detection/i, /coordinate the safety gate/i, /Malware Scanner handoff/]) assert.match(await content('#example'), phrase);
+  assert.match(await content('#example'), /Only clear.*flagged or unavailable holds/s);
   await page.selectOption('#candidate', 'retention');
   await page.check('input[name="verdict"][value="KEEP"]');
   await page.getByRole('button', { name: 'Check classification' }).click();
@@ -70,8 +82,18 @@ try {
         assert.match(await content('#iteration-explanation'), /I1 replays the CBE snapshot/);
         assert.match(await content('#iteration-frontier'), /ambiguous matches/);
         assert.match(await content('#iteration-frontier'), /conflicting returns/);
-        assert.match(await content('#iteration-explanation'), /extraction and record normalization were reviewed/i);
+        assert.match(await content('#iteration-explanation'), /input acceptance, extraction and record normalization were reviewed/i);
         assert.match(await content('#iteration-explanation'), /Downstream submission.*locally exhausted/);
+        assert.match(await content('#iteration-explanation'), /KEEP format detection, parser selection, ingestion-level duplicate detection and safety-gate coordination/);
+        assert.match(await content('#iteration-explanation'), /DELEGATE the malware detection algorithm to the Malware Scanner/);
+        assert.match(await content('#iteration-explanation'), /Duplicate handling.*new\/duplicate.*clear, flagged and unavailable/s);
+        assert.match(await content('#iteration-handoffs'), /Malware Scanner.*clear, flagged or unavailable.*holds submission unless clear.*owns the detection algorithm/s);
+      }
+      if (scenario === 'drift') {
+        for (const area of ['Input acceptance', 'Extraction', 'Record normalization', 'Downstream submission']) {
+          assert.ok((await content('#iteration-frontier')).includes(area), 'Unprocessed original area disappeared: ' + area);
+        }
+        assert.doesNotMatch(await content('#iteration-explanation'), /remaining gaps are named in the frontier/);
       }
       if (await status() === 'VERIFY_CONVERGENCE') {
         assert.match(await content('#iteration-audit'), /empty frontier alone does not establish/);
@@ -119,6 +141,8 @@ try {
     }
     if (scenario === 'handoffs') {
       assert.match(await content('#iteration-handoffs'), /Semantic Indexer/);
+      assert.match(await content('#iteration-handoffs'), /Malware Scanner/);
+      assert.match(await content('#iteration-ledger'), /ingestion-level duplicate detection and safety-gate coordination/);
       assert.match(await content('#iteration-audit'), /C1.*C2.*C3.*C4.*C5.*C6.*C7/);
     }
     await page.click('#reset-iterations');
@@ -186,6 +210,11 @@ try {
   for (const slug of ['cbe', 'cbe-ix']) {
     await fallback.goto(base + '/methods/' + slug + '/');
     assert.ok(await fallback.locator('#example').isVisible());
+    if (slug === 'cbe') {
+      assert.ok(await fallback.locator('#final-verdicts').isVisible());
+      assert.equal(await fallback.locator('#final-verdicts dt').count(), 6);
+      assert.match(await fallback.locator('#example').innerText(), /duplicate detection/);
+    }
     assert.ok(await fallback.locator('noscript').isVisible());
     assert.equal(await fallback.locator('.lab-grid').isVisible(), false, 'Disabled interactions must not appear usable');
   }

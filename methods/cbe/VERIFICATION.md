@@ -76,3 +76,31 @@ The six subsequent findings are addressed:
 Local verification passed: copy/Canvas lint, revised CBE suite (including Chromium accessibility names), solution explorer, mobile overflow and word integrity, keyboard/reset and no-JavaScript paths. The updated residual trace was visually inspected on mobile. Check the PR's current head for final remote CI results.
 
 Separately from repository changes, the two Cicerone documents supplied in this conversation were patched from their attached v1.0 baselines to v1.0.1. They now distinguish CBE/CBE-IX cards, exact prompt filenames and selection cues. Unrelated routes and dated inventory evidence were preserved. These document updates do not install files into a different project's Sources; that project still needs both original prompts and its appropriate updated source map. The website repository continues to contain derived profiles, not the raw source prompts.
+
+## Source-completeness review of `00f3010`
+
+Claude's three follow-up findings were checked against the original source bytes. Both SHA-256 values match the source snapshots in the profile READMEs. GitHub's API also ties successful [run 36350303353](https://github.com/fbratten/fbratten.github.io/actions/runs/36350303353) directly to `00f3010f5bb1958c79a995dd6917113f8fd4a124`; that association no longer depends on the number of workflow runs.
+
+| Finding | Correction and evidence |
+|---|---|
+| CBE Example 2 omitted ingestion responsibilities while IX claimed C2 | Both worked examples and labs now include ingestion-level duplicate detection (KEEP), safety-gate coordination (KEEP) and the malware detection algorithm (DELEGATE). The Malware Scanner handoff states trigger, supplied document/correlation identifier, peer ownership, expected return and the target's behavior after return. I1 accounts for these responsibilities before I2 and the bounded C1-C7 closure. |
+| Missing final CBE verdicts | All six names from output contract L are displayed separately from the four candidate classifications, including exact accessible names. The profile states the V1/V5/V10 failure rule and qualifies the relationship between BOUNDARY_UNRESOLVED and the IX boundary blocker. The single-candidate lab does not claim to certify a whole-analysis verdict. |
+| Drift trace reused successful-path accounting | The alternative drift trace retains all four original responsibility areas as unprocessed alongside the preview/annotation question. It no longer claims that unspecified remaining gaps are represented by Preview validation alone. Its existing I2 review baseline and reopening instructions are preserved. |
+
+The added document-identifier comparison, provided ingestion record set, new/duplicate submission rule and clear/flagged/unavailable scanner returns are explicitly declared teaching assumptions. Under this fixture a new identifier may proceed to the safety gate, a duplicate is held without rewriting the prior record, and the safety gate releases submission only for clear. These assumptions make the narrated closure inspectable; they are not prescribed source implementation details or proof of real safety. Malware detection remains owned by the peer.
+
+Verification for this correction:
+
+- Static copy/Canvas lint passed.
+- The revised CBE browser suite passed using Playwright 1.55.0 and Chromium, matching the CI dependency pin. It checks all three added candidate cases, the six final names in the accessibility tree, scanner handoffs and duplicate/safety accounting in I1 and the final ledger, and retained original areas in every drift step.
+- Existing checks in that suite also passed for the eight IX terminal scenarios, resets, keyboard interaction, mobile overflow and identifier integrity, all 18 existing composition links, three gate presets, internal routes and no-JavaScript reading.
+- Desktop and mobile screenshots were inspected, including the new final-verdict section. The static worked example and all six verdicts remain available without JavaScript.
+- All 18 pre-existing method profile files are byte-identical to the reviewed `00f3010` head. No existing solution matrix, evaluator, workflow or Blueprint implementation is changed by this correction.
+- Eight explicit paths form this correction: the two profiles, their two lab scripts, their two README files, this receipt and the CBE test suite. No raw source prompt is added.
+- The standalone `5pp-gate` was not run. Prior successful CI belongs to its recorded head; the corrected head must have its own CI result before using CI as evidence for this revision.
+
+### Consuming-project source maps
+
+The consuming adapter's source register and Cicerone documents are separate from this website PR. Register the supplied `09-Capability-Boundary-Expander-AI-Execution-Prompt.md` as the base CBE source where that is the incoming filename, after verifying its bytes against the base source hash. A numeric upload prefix is a locator alias, not a different method. CBE routes to the base prompt; CBE-IX routes to the iterative-exhaustion prompt.
+
+Compare the actual target document before applying any earlier Cicerone patch. The article context inspected in this pass contains a general map labeled v1.0 and a distinct LinkedIn-focused map labeled v1.1. Neither proves the version of a separate project's map. A v1.0-to-v1.0.1 patch must not replace a v1.1 document wholesale. Preserve its unrelated routes and reconcile the two CBE entries against its current contents. No consuming-project attachment or adapter register was overwritten in this correction.

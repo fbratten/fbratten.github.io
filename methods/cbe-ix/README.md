@@ -25,10 +25,11 @@ The exact author-provided source was available to the implementing reviewer and 
 | Aggregate identity check after every material delta | Step 13 - Identity drift test |
 | Eight exact stopping names and peer-takeover risk | Terminal states |
 | Preserve ledger for new evidence | Stop / re-entry conditions |
+| Complete ingestion responsibility baseline | Base CBE prompt, Example 2; see the [CBE source snapshot](../cbe/README.md) |
 
 ## Teaching additions
 
-The ingestion example is adapted from CBE Example 2. The reader-assistant rejection, unknown regional-access ownership, explicit missing/conflicting/unrecognized-classification handling, ambiguous parser matching, accumulated reader-platform drift and all narrated iteration traces are curated synthetic examples. They are not historical deployment evidence. The narrow format-detector fixture is a separately declared target. I1 explicitly replays the base CBE snapshot; I2 closes new gaps about ambiguous parser matches and conflicting classification returns.
+The ingestion example is adapted from CBE Example 2. The reader-assistant rejection, unknown regional-access ownership, explicit missing/conflicting/unrecognized-classification handling, ambiguous parser matching, accumulated reader-platform drift and all narrated iteration traces are curated synthetic examples. They are not historical deployment evidence. The narrow format-detector fixture is a separately declared target. I1 explicitly replays the base CBE snapshot, including duplicate detection and safety-gate coordination with a delegated Malware Scanner. The identifier comparison, provided ingestion record set, new/duplicate submission rule and clear/flagged/unavailable scanner contract are finite teaching assumptions that make the narrated I1 closure inspectable. The scanner owns detection; ingestion preserves its answer and holds submission unless clear. I2 closes new gaps about ambiguous parser matches and conflicting classification returns. The alternative drift case retains its unprocessed initial responsibility areas rather than claiming the successful trace's closure.
 
 The CBE lab compares a reader prediction with a curated answer. The CBE-IX lab walks fixed traces; it is not a semantic convergence engine. Different terminal cases are alternatives, not a fixed precedence algorithm. No API, model, peer operation or repository write is performed. No visitor input is uploaded or persisted.
 
