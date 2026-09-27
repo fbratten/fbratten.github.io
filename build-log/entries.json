@@ -150,5 +150,112 @@
       }
     ],
     "tags": ["agent safety", "execution boundary", "evidence", "public proof"]
+  },
+  {
+    "date": "2026-07-31",
+    "state": "SHIPPED",
+    "title": "AICS 0.2: executable instruction contracts and round-trip checks",
+    "summary": "Implemented the experimental AICS 0.2 reference tools around one versioned semantic contract, with five conformance profiles, deterministic conversation projections, round-trip drift checks and bounded changeset operations.",
+    "why_it_matters": "It makes requirements, decisions, evidence and verification separately inspectable across conversation and repository views, while keeping conformance distinct from permission to execute.",
+    "evidence": [
+      {
+        "label": "Public source-pinned AICS profile",
+        "url": "https://fbratten.github.io/methods/aics/"
+      }
+    ],
+    "tags": [
+      "instruction contracts",
+      "semantic integrity",
+      "reference tooling",
+      "experimental"
+    ]
+  },
+  {
+    "date": "2026-07-28",
+    "state": "VERIFIED",
+    "title": "ORBIT Core v0.1 accepted with manual conformance",
+    "summary": "Accepted ORBIT Core v0.1 after an evidence-backed manual conformance review, establishing typed orientation nodes, separate graph relationships, provenance and authority boundaries, and consumer projections constrained by token budgets. Acceptance applies to the specification; official runtime tooling remained deferred.",
+    "why_it_matters": "It gives humans and agents a bounded route from orientation to the responsible source, with explicit safeguards against treating a derived summary as source authority.",
+    "evidence": [
+      {
+        "label": "Public ORBIT acceptance and evidence profile",
+        "url": "https://fbratten.github.io/methods/orbit/"
+      }
+    ],
+    "tags": [
+      "knowledge orientation",
+      "provenance",
+      "specification",
+      "manual conformance"
+    ]
+  },
+  {
+    "date": "2026-07-23",
+    "state": "SHIPPED",
+    "title": "Broker Lane Sandbox: local inference with bounded streaming",
+    "summary": "Added opt-in local model inference and a JSONL streaming transport that reuse the execution policy gates, verify model artifacts and enforce bounded output and time budgets. Producer-side flushing makes events arrive during generation rather than only at process exit.",
+    "why_it_matters": "It provides a structured integration boundary for local model generation and incremental results, with inspectable failure states and explicit resource controls; it does not claim container or multi-tenant isolation.",
+    "evidence": [
+      {
+        "label": "Local inference implementation",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/commit/366766d49e77ed4e745fb18b7a33520dbd33ab93"
+      },
+      {
+        "label": "Streaming implementation",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/commit/ed2f9bec6f18ca5c2a66fa782d0fbc0aea3fdce1"
+      },
+      {
+        "label": "Producer-side streaming liveness fix",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/commit/7b9142779698dffe7d40bf2bdc38e2013f50515a"
+      }
+    ],
+    "tags": [
+      "local inference",
+      "JSONL streaming",
+      "execution policy",
+      "resource controls"
+    ]
+  },
+  {
+    "date": "2026-07-13",
+    "state": "SHIPPED",
+    "title": "5PP-gate: deterministic protocol-record checks through v1.2.1",
+    "summary": "Implemented and hardened a deterministic, standard-library Python checker for recorded Five-Point Protocol work, progressing from the initial gate to v1.2.1. It checks record structure, phase ordering and declared evidence across three profiles without LLM or network calls.",
+    "why_it_matters": "It makes missing or inconsistent protocol evidence mechanically visible while keeping a structurally valid record separate from proof that the underlying reasoning is true.",
+    "evidence": [
+      {
+        "label": "Public source-pinned 5PP-gate profile and release lineage",
+        "url": "https://fbratten.github.io/methods/5pp/"
+      }
+    ],
+    "tags": [
+      "5PP",
+      "deterministic validation",
+      "protocol records",
+      "verification"
+    ]
+  },
+  {
+    "date": "2026-07-08",
+    "state": "SHIPPED",
+    "title": "Broker Lane Sandbox: execution-contract hardening",
+    "summary": "Hardened the existing execution and broker integration contracts with strict resource-limit validation, an optional per-file write cap, rejection of empty environment passthrough prefixes and structured handling of malformed requests and non-UTF-8 output. Added regression and installed-package coverage.",
+    "why_it_matters": "It closes concrete ways that a configured boundary could silently weaken or fail with an unstructured error, making the actual controls and their limitations easier to inspect.",
+    "evidence": [
+      {
+        "label": "Resource-limit contract hardening",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/pull/5"
+      },
+      {
+        "label": "Execution-contract hardening merge",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/commit/cf51fb473bb89781faa7b010034de3182f31eed6"
+      }
+    ],
+    "tags": [
+      "execution boundary",
+      "resource limits",
+      "environment controls",
+      "regression coverage"
+    ]
   }
 ]
