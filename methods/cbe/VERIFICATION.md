@@ -24,11 +24,13 @@ Base: `cc0bf3589f2c55e623d29786efe97d4d22a45bde`.
 
 - Static site copy/Canvas lint: pass.
 - Build Log contract and rendering: pass.
-- CBE browser suite: pass for classification, split ownership, unknown-owner hold, eight IX terminal traces, reset, keyboard, all existing-profile links, three existing-lab presets, mobile layouts and no-JavaScript fallback.
+- CBE browser suite: pass for classification, split ownership, unknown-owner hold, eight IX terminal traces, reset, keyboard, all existing-profile links, three existing-lab presets, mobile layouts (including all terminal ledgers) and no-JavaScript fallback.
 - Solution explorer: pass for 20 profile routes, 11 patterns, catalog coverage, matrix membership, filters, keyboard and no-JavaScript fallback.
 - Blueprint labs: pass, including both new exercises, exported evidence and reset.
 - Desktop and mobile CBE screenshots inspected.
-- Existing Canvas browser suite: local run reached the 5PP page and stopped on `net::ERR_EMPTY_RESPONSE` loading an external resource. The original suite is retained unchanged and also runs in PR CI.
+- Existing Canvas browser suite: local run reached the 5PP page and stopped on `net::ERR_EMPTY_RESPONSE` loading an external resource. The unchanged suite passed in GitHub CI.
+- First remote CI run: all required checks passed at `683121d28dd804af72e79bcfed02326aef57a1b0`, [run 36346828302](https://github.com/fbratten/fbratten.github.io/actions/runs/36346828302).
+- Follow-up: mobile inspection of a long terminal-state ledger exposed horizontal overflow. Scoped word wrapping was added and every terminal trace now has a mobile overflow assertion. The updated CBE suite passed locally; the final PR head carries its own CI result.
 
 The browser exercises use Playwright 1.55.0, matching the existing CI pin. The CBE labs use curated synthetic cases, not an LLM, a general semantic classifier or a convergence proof. A passing teaching exercise does not establish implementation authority or real-world efficacy.
 

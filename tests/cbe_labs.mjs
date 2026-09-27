@@ -59,6 +59,10 @@ try {
       }
     }
     assert.equal(await content('#iteration-status'), terminal);
+    await page.setViewportSize({ width: 375, height: 900 });
+    assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), scenario + ': terminal ledger overflows on mobile');
+    if (scenario === 'residual') await page.locator('#lab').screenshot({ path: shots + '/ix-residual-mobile.png' });
+    await page.setViewportSize({ width: 1280, height: 900 });
     if (scenario === 'limit') {
       assert.match(await content('#iteration-frontier'), /Parser selection/);
       assert.match(await content('#iteration-audit'), /C1 is false/);
