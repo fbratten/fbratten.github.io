@@ -42,6 +42,9 @@ try {
   await page.selectOption('#scale', 'project');
   assert.equal(await visible.count(), 1);
   assert.equal(await page.locator('#bounded-capability-design').isVisible(), true);
+  await page.selectOption('#stage', 'execute');
+  assert.equal(await visible.count(), 1, 'Bounded design includes executing the authorized analysis');
+  assert.equal(await page.locator('#bounded-capability-design').isVisible(), true);
   await page.getByRole('button', { name: 'Clear filters' }).click();
   for (const width of [375, 1280]) {
     await page.setViewportSize({ width, height: 900 });

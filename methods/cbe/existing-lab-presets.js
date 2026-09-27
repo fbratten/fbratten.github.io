@@ -14,9 +14,9 @@
           document.getElementById('sandboxProfile').value = 'constraint';
           document.getElementById('sandboxVerdict').value = blocked ? 'Park' : 'Advance';
           set('measurable', true); set('skeleton', true);
-          set('verification', !blocked); set('audit', !blocked);
+          set('verification', true); set('audit', true);
           context = blocked
-            ? 'CBE-IX example: the regional-access owner is unresolved. The candidate ledger exists, but the verification record and audit are incomplete. Declaring Park does not make this record pass.'
+            ? 'CBE-IX example: the regional-access owner is unresolved. The completed analysis, verification and audit record the boundary blocker and the Park verdict. The record passes this completeness check; Park holds the dependent work. A passed record does not authorize implementation or resolve ownership.'
             : 'CBE example: analysis-only scope is accepted, the invariant and peer exclusions are locked, and classification, handoff and audit records are present. Advance applies to the analysis record, not implementation.';
         } else if (host === 'dialogue-lifecycle') {
           document.getElementById('fromState').value = blocked ? 'CLARIFY' : 'EXECUTE';

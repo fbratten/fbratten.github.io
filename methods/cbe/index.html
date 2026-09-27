@@ -30,7 +30,7 @@
       <ol><li>Lock the target's responsibility and normalize what it already owns.</li><li>Find internal gaps; derive candidate extensions from those gaps.</li><li>Check target relevance and substantive overlap with peers.</li><li>Classify, split mixed responsibilities and record handoffs.</li><li>Audit completeness, preserved responsibilities, uncertainty and target identity.</li></ol>
       <div class="table-scroll" tabindex="0" role="region" aria-label="Four candidate verdicts"><table><caption>Four verdicts, four different consequences</caption><thead><tr><th scope="col">Verdict</th><th scope="col">Use when</th><th scope="col">Design result</th></tr></thead><tbody>
         <tr><th scope="row">KEEP</th><td>The responsibility is needed and belongs to the target.</td><td>Add it to the target's design.</td></tr>
-        <tr><th scope="row">SPLIT</th><td>The candidate mixes independently meaningful responsibilities.</td><td>Classify the resulting parts separately.</td></tr>
+        <tr><th scope="row">SPLIT</th><td>The candidate mixes target-owned work with portions that belong elsewhere or are unnecessary.</td><td>Separate meaningful parts and classify each: KEEP the target portion, DELEGATE peer-owned work or REJECT unnecessary scope.</td></tr>
         <tr><th scope="row">DELEGATE</th><td>The target needs the result, but a peer owns the operation.</td><td>Define a handoff and expected return.</td></tr>
         <tr><th scope="row">REJECT</th><td>The candidate does not close an internal gap or changes target identity.</td><td>Record the reason for excluding it.</td></tr>
       </tbody></table></div>
@@ -51,6 +51,7 @@
         <article class="panel"><h2>Retained boundary</h2><p><strong>Owns:</strong> attaching the supplied retention classification to a normalized record.</p><p><strong>Does not own:</strong> defining retention policy or deciding how long records must be retained.</p><p><strong>Input:</strong> normalized record plus a classification returned by the policy service.</p><p><strong>Output:</strong> enriched record, or an explicit unresolved classification.</p></article>
         <article class="panel"><h2>Handoff contract</h2><p><strong>Trigger:</strong> a record needs retention classification.</p><p><strong>Destination:</strong> Retention Policy Service.</p><p><strong>Target supplies:</strong> the agreed record metadata.</p><p><strong>Destination owns:</strong> the policy decision.</p><p><strong>Expected return:</strong> classification or unresolved result. The pipeline attaches the return or preserves the unresolved state.</p></article>
       </div>
+      <p>This bounded example also retains parser selection alongside format detection. It is the I1 snapshot replayed in CBE-IX. The next pass examines previously unspecified ambiguous parser matches and conflicting classification returns; it does not rediscover parser selection or the unresolved-classification state.</p>
       <p>The candidate verdict changes the design representation. It does not edit the pipeline, call the peer or authorize deployment.</p>
     </section>
 

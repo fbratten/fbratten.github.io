@@ -9,6 +9,7 @@ const errors = [];
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 page.on('pageerror', error => errors.push(error.message));
 const content = selector => page.locator(selector).innerText();
+const status = () => page.locator('#iteration-status').textContent();
 
 try {
   await mkdir(shots, { recursive: true });
@@ -48,19 +49,40 @@ try {
   };
   for (const [scenario, terminal] of Object.entries(terminals)) {
     await page.selectOption('#iteration-case', scenario);
-    assert.equal(await content('#iteration-status'), 'READY');
+    assert.equal(await status(), 'READY');
     assert.equal(await page.locator('#iteration-ledger li').count(), 1, 'Case changes must clear prior trace');
+    assert.match(await page.locator('#iteration-label').textContent(), /^Trace entry 1 of \d+ \(initial state\)$/);
+    assert.doesNotMatch(await content('#iteration-unresolved'), /policy exception|regional access|Blocking review/, 'Case changes must clear previous residuals');
     let steps = 0;
     while (await page.locator('#next-iteration').isEnabled()) {
       assert.ok(++steps <= 6, 'Trace failed to terminate');
       await page.click('#next-iteration');
-      if (await content('#iteration-status') === 'VERIFY_CONVERGENCE') {
+      assert.equal(await page.locator('#iteration-ledger li').count(), steps + 1);
+      assert.ok((await page.locator('#iteration-label').textContent()).startsWith('Trace entry ' + (steps + 1) + ' of '));
+      assert.doesNotMatch(await content('#iteration-frontier'), /ownership decision|Re-evaluate|Establish target|policy exception/, 'Unowned decisions and missing evidence must not enter the target frontier');
+      if (scenario === 'residual') {
+        assert.match(await content('#iteration-unresolved'), /policy exception/, 'Residual must be recorded from discovery in I1 onward');
+        assert.match(await page.locator('#iteration-ledger li').nth(1).innerText(), /Residual: evidence/, 'The discovery entry must retain its uncertainty');
+      }
+      if (scenario === 'handoffs' && steps === 1) {
+        assert.match(await content('#iteration-explanation'), /I1 replays the CBE snapshot/);
+        assert.match(await content('#iteration-frontier'), /ambiguous matches/);
+        assert.match(await content('#iteration-frontier'), /conflicting returns/);
+      }
+      if (await status() === 'VERIFY_CONVERGENCE') {
         assert.match(await content('#iteration-audit'), /empty frontier alone does not establish/);
+        assert.match(await content('#iteration-explanation'), /multiple parser matches/);
+        assert.match(await content('#iteration-explanation'), /conflicting classification returns/);
       }
     }
-    assert.equal(await content('#iteration-status'), terminal);
+    assert.equal(await status(), terminal);
+    assert.equal(await page.locator('#iteration-label').textContent(), 'Trace entry ' + (steps + 1) + ' of ' + (steps + 1));
     await page.setViewportSize({ width: 375, height: 900 });
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), scenario + ': terminal ledger overflows on mobile');
+    assert.ok(await page.locator('.status-part').evaluateAll(parts => parts.every(part => {
+      const range = document.createRange(); range.selectNodeContents(part);
+      return range.getClientRects().length === 1;
+    })), scenario + ': a terminal identifier word broke across lines');
     if (scenario === 'residual') await page.locator('#lab').screenshot({ path: shots + '/ix-residual-mobile.png' });
     await page.setViewportSize({ width: 1280, height: 900 });
     if (scenario === 'limit') {
@@ -68,18 +90,34 @@ try {
       assert.match(await content('#iteration-audit'), /C1 is false/);
     }
     if (scenario === 'cycle') assert.match(await content('#iteration-audit'), /C7 fails/);
-    if (scenario === 'drift') assert.match(await content('#iteration-audit'), /C6 fails/);
+    if (scenario === 'drift') {
+      assert.match(await content('#iteration-audit'), /C6 fails/);
+      assert.match(await content('#iteration-ledger'), /KEEP a preview/);
+      assert.match(await content('#iteration-ledger'), /KEEP correction annotations/);
+      assert.match(await content('#iteration-explanation'), /provisionally KEEP ongoing reader notifications/);
+      assert.match(await content('#iteration-unresolved'), /Blocking review/);
+      assert.match(await content('#iteration-handoffs'), /Retention Policy Service.*Semantic Indexer/s);
+    }
+    if (scenario === 'boundary') {
+      assert.match(await content('#iteration-unresolved'), /regional access/);
+      assert.match(await content('#iteration-unresolved'), /takeover/);
+      assert.match(await content('#iteration-audit'), /external architectural authority/);
+    }
+    if (scenario === 'insufficient') {
+      assert.match(await content('#iteration-frontier'), /No unprocessed target item/);
+      assert.match(await content('#iteration-unresolved'), /Missing input/);
+    }
     if (scenario === 'handoffs') {
       assert.match(await content('#iteration-handoffs'), /Semantic Indexer/);
       assert.match(await content('#iteration-audit'), /C1.*C2.*C3.*C4.*C5.*C6.*C7/);
     }
     await page.click('#reset-iterations');
-    assert.equal(await content('#iteration-status'), 'READY');
+    assert.equal(await status(), 'READY');
     assert.equal(await page.locator('#iteration-ledger li').count(), 1);
   }
   await page.locator('#next-iteration').focus();
   await page.keyboard.press('Enter');
-  assert.equal(await content('#iteration-status'), 'CONTINUE');
+  assert.equal(await status(), 'CONTINUE');
 
   // Every original profile receives a composition exercise, not a changed method definition.
   const profiles = ['5pp','dialogue-lifecycle','aics','orbit','dialectic','rigvedan','hermeneutic-didactic','dial4','dial4plus','dial4p-possibility','capability-gap','csr','sorr','card-pointer','gdsa','srcb','pisd','ipb'];
@@ -91,7 +129,7 @@ try {
     assert.ok(html.includes('../cbe/#lab') && html.includes('../cbe-ix/#lab'), slug + ': missing lab route');
   }
   for (const [slug, result, pass, blocked] of [
-    ['5pp', '#receiptStatus', 'passed', 'failed'],
+    ['5pp', '#receiptStatus', 'passed', 'passed'],
     ['dialogue-lifecycle', '#transitionStatus', 'allowed', 'blocked'],
     ['aics', '#gateStatus', 'authorized', 'blocked'],
   ]) {
@@ -101,6 +139,19 @@ try {
     await page.locator('[data-cbe-preset="blocked"]').click();
     assert.equal(await content(result), blocked, slug + ': boundary blocker');
     assert.match(await content('.cbe-preset-context'), /CBE-IX/);
+    if (slug === '5pp') {
+      assert.equal(await content('#receiptVerdict'), 'Park');
+      assert.equal(await page.locator('[name="verification"]').isChecked(), true);
+      assert.equal(await page.locator('[name="audit"]').isChecked(), true);
+      assert.match(await content('.cbe-preset-context'), /Park holds the dependent work/);
+      // A complete Park record passes; an incomplete record still fails independently of Park.
+      await page.uncheck('[name="verification"]');
+      await page.getByRole('button', { name: 'Evaluate synthetic record' }).click();
+      assert.equal(await content(result), 'failed');
+      assert.equal(await content('#receiptVerdict'), 'Park');
+      await page.locator('[data-cbe-preset="blocked"]').click();
+      assert.equal(await content(result), 'passed');
+    }
   }
 
   for (const slug of ['cbe', 'cbe-ix']) {
