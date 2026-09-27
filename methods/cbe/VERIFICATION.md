@@ -58,3 +58,21 @@ The review findings were checked against both original author-provided prompts o
 Revision checks: static lint and Build Log contract passed; CBE, solution explorer, Blueprint and Build Log browser suites passed locally. The CBE suite now checks Park versus completeness, per-step residual accounting, separate frontier/decisions, the revised drift and follow-up gaps, entry counts, and unbroken identifier words on mobile. Mobile and desktop screenshots were inspected. Preservation comparison again passed for all 18 original method profiles and all ten original matrix rows. The existing Canvas suite still encounters a local external-resource `ERR_EMPTY_RESPONSE`; use the PR's revision-head CI result for that suite. The standalone `5pp-gate` was not run; browser fixtures are not an authoritative protocol-gate result.
 
 Project-source catalog maintenance is separate from this website branch: the supplied Cicerone row conflates CBE and CBE-IX and points to the iterative prompt. Its corrected mapping should use two rows: **CBE - Capability Boundary Expander** to `Capability-Boundary-Expander-AI-Execution-Prompt.md`, and **CBE-IX - Capability Boundary Expander - Iterative Exhaustion** to `Capability-Boundary-Expander-Iterative-Exhaustion-AI-Execution-Prompt.md`. The project document and the original prompts are not mutated or republished by this PR.
+
+
+## Follow-up review of `8d13168`
+
+Direct GitHub verification confirmed that [CI run 36348573498](https://github.com/fbratten/fbratten.github.io/actions/runs/36348573498) passed for the exact reviewed head `8d13168fbc8f0edfe5bebd28a5260c1c7c678785`.
+
+The six subsequent findings are addressed:
+
+1. Status words use inline `<wbr>` breaks. Chromium still inserts spaces in names derived from these breaks, so the status heading and every terminal-reference term carry exact `aria-label` values. The browser test reads Chromium's actual accessibility tree for all eight terminal cases, checks exact names and confirms words remain intact on mobile. This is accessibility-tree verification, not a claim of manual testing with every screen reader.
+2. The drift review names I2 as the latest snapshot that passed C6 and uses it as a review starting point while reopening the I1/I2 acceptance decisions and the I3 proposal.
+3. Residual uncertainty concerns the target's handoff return contract: whether a returned exception classification requires dedicated preservation in the normalized record. The synthetic fallback preserves unrecognized values unchanged with unresolved interpretation; exact return coverage needs external evidence. This replaces the earlier example about a policy service's internal exception evidence.
+4. The general identity-drift definition covers one material change as well as accumulated accepted changes.
+5. The discovery/design/activation group's heading and introductory description cover all three activities.
+6. I1 accounts for the initial extraction and normalization areas, carries their remaining gaps into the named frontier and records downstream submission as locally exhausted against supplied handoffs. The drift trace also accounts for the original areas and closes preview validation before moving to correction annotations.
+
+Local verification passed: copy/Canvas lint, revised CBE suite (including Chromium accessibility names), solution explorer, mobile overflow and word integrity, keyboard/reset and no-JavaScript paths. The updated residual trace was visually inspected on mobile. Check the PR's current head for final remote CI results.
+
+Separately from repository changes, the two Cicerone documents supplied in this conversation were patched from their attached v1.0 baselines to v1.0.1. They now distinguish CBE/CBE-IX cards, exact prompt filenames and selection cues. Unrelated routes and dated inventory evidence were preserved. These document updates do not install files into a different project's Sources; that project still needs both original prompts and its appropriate updated source map. The website repository continues to contain derived profiles, not the raw source prompts.

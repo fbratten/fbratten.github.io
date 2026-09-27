@@ -10,6 +10,7 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
 page.on('pageerror', error => errors.push(error.message));
 const content = selector => page.locator(selector).innerText();
 const status = () => page.locator('#iteration-status').textContent();
+const accessibility = await page.context().newCDPSession(page);
 
 try {
   await mkdir(shots, { recursive: true });
@@ -52,7 +53,7 @@ try {
     assert.equal(await status(), 'READY');
     assert.equal(await page.locator('#iteration-ledger li').count(), 1, 'Case changes must clear prior trace');
     assert.match(await page.locator('#iteration-label').textContent(), /^Trace entry 1 of \d+ \(initial state\)$/);
-    assert.doesNotMatch(await content('#iteration-unresolved'), /policy exception|regional access|Blocking review/, 'Case changes must clear previous residuals');
+    assert.doesNotMatch(await content('#iteration-unresolved'), /handoff contract|regional access|Blocking review/, 'Case changes must clear previous residuals');
     let steps = 0;
     while (await page.locator('#next-iteration').isEnabled()) {
       assert.ok(++steps <= 6, 'Trace failed to terminate');
@@ -61,13 +62,16 @@ try {
       assert.ok((await page.locator('#iteration-label').textContent()).startsWith('Trace entry ' + (steps + 1) + ' of '));
       assert.doesNotMatch(await content('#iteration-frontier'), /ownership decision|Re-evaluate|Establish target|policy exception/, 'Unowned decisions and missing evidence must not enter the target frontier');
       if (scenario === 'residual') {
-        assert.match(await content('#iteration-unresolved'), /policy exception/, 'Residual must be recorded from discovery in I1 onward');
-        assert.match(await page.locator('#iteration-ledger li').nth(1).innerText(), /Residual: evidence/, 'The discovery entry must retain its uncertainty');
+        assert.match(await content('#iteration-unresolved'), /handoff contract/, 'Residual must be recorded from discovery in I1 onward');
+        assert.match(await content('#iteration-unresolved'), /normalized record/, 'Uncertainty must affect the target return contract');
+        assert.match(await page.locator('#iteration-ledger li').nth(1).innerText(), /Residual: the handoff contract/, 'The discovery entry must retain its uncertainty');
       }
       if (scenario === 'handoffs' && steps === 1) {
         assert.match(await content('#iteration-explanation'), /I1 replays the CBE snapshot/);
         assert.match(await content('#iteration-frontier'), /ambiguous matches/);
         assert.match(await content('#iteration-frontier'), /conflicting returns/);
+        assert.match(await content('#iteration-explanation'), /extraction and record normalization were reviewed/i);
+        assert.match(await content('#iteration-explanation'), /Downstream submission.*locally exhausted/);
       }
       if (await status() === 'VERIFY_CONVERGENCE') {
         assert.match(await content('#iteration-audit'), /empty frontier alone does not establish/);
@@ -79,10 +83,14 @@ try {
     assert.equal(await page.locator('#iteration-label').textContent(), 'Trace entry ' + (steps + 1) + ' of ' + (steps + 1));
     await page.setViewportSize({ width: 375, height: 900 });
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), scenario + ': terminal ledger overflows on mobile');
-    assert.ok(await page.locator('.status-part').evaluateAll(parts => parts.every(part => {
-      const range = document.createRange(); range.selectNodeContents(part);
+    assert.ok(await page.locator('.status-name').evaluateAll(labels => labels.length > 0 && labels.every(label => [...label.childNodes].filter(node => node.nodeType === Node.TEXT_NODE).every(node => {
+      const range = document.createRange(); range.selectNodeContents(node);
       return range.getClientRects().length === 1;
-    })), scenario + ': a terminal identifier word broke across lines');
+    }))), scenario + ': a terminal identifier word broke across lines');
+    // Inspect Chromium's actual accessibility tree; matching DOM text alone misses inserted spaces.
+    const ax = await accessibility.send('Accessibility.getFullAXTree');
+    assert.ok(ax.nodes.some(node => node.role?.value === 'heading' && node.name?.value === terminal), scenario + ': status heading accessible name changed');
+    assert.deepEqual(ax.nodes.filter(node => node.role?.value === 'term').map(node => node.name?.value).sort(), Object.values(terminals).sort(), 'Every terminal reference must expose its exact accessible name');
     if (scenario === 'residual') await page.locator('#lab').screenshot({ path: shots + '/ix-residual-mobile.png' });
     await page.setViewportSize({ width: 1280, height: 900 });
     if (scenario === 'limit') {
@@ -96,6 +104,8 @@ try {
       assert.match(await content('#iteration-ledger'), /KEEP correction annotations/);
       assert.match(await content('#iteration-explanation'), /provisionally KEEP ongoing reader notifications/);
       assert.match(await content('#iteration-unresolved'), /Blocking review/);
+      assert.match(await content('#iteration-unresolved'), /I2 snapshot, the last design to pass C6/);
+      assert.match(await content('#iteration-unresolved'), /reopening the I1 and I2 acceptance decisions/);
       assert.match(await content('#iteration-handoffs'), /Retention Policy Service.*Semantic Indexer/s);
     }
     if (scenario === 'boundary') {

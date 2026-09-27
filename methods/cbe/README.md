@@ -27,7 +27,7 @@ The five numbered steps on the page summarize source steps 1-2, 3-4, 5-6, 7-9 an
 
 ## Teaching additions
 
-The ingestion example is adapted from CBE Example 2. The reader-assistant rejection, unknown regional-access ownership, explicit missing/conflicting-classification handling, ambiguous parser matching, accumulated reader-platform drift and all narrated iteration traces are curated synthetic examples. They are not historical deployment evidence. The narrow format-detector fixture is a separately declared target. I1 explicitly replays the base CBE snapshot; I2 closes new gaps about ambiguous parser matches and conflicting classification returns.
+The ingestion example is adapted from CBE Example 2. The reader-assistant rejection, unknown regional-access ownership, explicit missing/conflicting/unrecognized-classification handling, ambiguous parser matching, accumulated reader-platform drift and all narrated iteration traces are curated synthetic examples. They are not historical deployment evidence. The narrow format-detector fixture is a separately declared target. I1 explicitly replays the base CBE snapshot; I2 closes new gaps about ambiguous parser matches and conflicting classification returns.
 
 The CBE lab compares a reader prediction with a curated answer. The CBE-IX lab walks fixed traces; it is not a semantic convergence engine. Different terminal cases are alternatives, not a fixed precedence algorithm. No API, model, peer operation or repository write is performed. No visitor input is uploaded or persisted.
 
