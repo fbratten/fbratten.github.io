@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Capability inventory and public-safe profiles of methods, protocols, frameworks and prompt systems across the fbratten technical ecosystem.">
-  <title>Methods, Protocols & Prompt Systems</title>
+  <title>Methods | Fredrik Bratten</title>
   <style>
     :root { color-scheme: dark; --bg:#071018; --panel:#101f2c; --line:#284052; --text:#eaf2f7; --muted:#9cb0bd; --accent:#53d3a7; }
     * { box-sizing:border-box; }
@@ -38,18 +38,30 @@
     @media(max-width:900px){ .value-grid,.problem-grid{grid-template-columns:1fr 1fr;} }
     @media(max-width:800px){ .grid,.axis-grid{grid-template-columns:1fr 1fr;} }
     @media(max-width:560px){ .grid,.value-grid,.axis-grid,.problem-grid{grid-template-columns:1fr;} header{flex-direction:column;} }
-  </style>
+  .method-overview { margin:0 0 2rem; } .method-overview > summary { cursor:pointer; padding:1rem; border:1px solid #38594e; border-radius:.5rem; color:#b0eccd; } .hero { padding-top:3rem; }
+</style>
+<!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
 </head>
 <body>
-  <header><strong>Methods, Protocols & Prompt Systems</strong><a href="../">Portfolio</a></header>
-  <main>
-    <section class="hero">
-      <span class="eyebrow">Capability inventory + public proof surface</span>
-      <h1>The systems behind the systems</h1>
-      <p>This catalog maps reusable capabilities developed around applied AI, automation, agent systems, context engineering, reasoning and governed execution. The profiles make the underlying methods inspectable: what problem each one addresses, how it works, where it composes with other systems and which boundaries it preserves.</p>
-    </section>
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<nav class="fb-links" id="fb-primary" aria-label="Site navigation"><a href="/projects/">Projects</a><a href="/methods/" aria-current="page">Methods</a><a href="/labs/">Labs</a><a href="/articles/">Articles</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a></nav></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Methods</span></li></ol></nav>
+<!-- /FB:NAV -->
 
-    <section class="section-head"><span class="eyebrow">What this capability estate enables</span><h2>From methods to practical system capability</h2><p>The value is not in isolated terminology. These systems combine into repeatable ways of designing, evaluating and operating AI-assisted work where context, uncertainty, authority and execution need to remain understandable.</p></section>
+  <main id="main">
+    <section class="hero">
+      <span class="eyebrow">20 methods / Practical ways to work</span>
+      <h1>Find a method for the work ahead.</h1>
+      <p>Start with the problem you want to solve, browse the methods by purpose or learn through a hands-on lab. Each profile explains how the method works and where its boundaries are.</p>
+    </section>
+<div class="fb-method-start" aria-label="Choose a methods route"><a href="./solutions/"><strong>Find by problem</strong><span>Explore 11 patterns for choosing a suitable combination.</span></a><a href="#control-execution"><strong>Browse 20 methods</strong><span>Grouped by the work they help you do.</span></a><a href="/labs/"><strong>Try a lab</strong><span>Make a method concrete with an interactive example.</span></a></div>
+
+<details class="method-overview"><summary>How the methods fit together: problems, roles and combinations</summary>    <section class="section-head"><span class="eyebrow">What this capability estate enables</span><h2>From methods to practical system capability</h2><p>The value is not in isolated terminology. These systems combine into repeatable ways of designing, evaluating and operating AI-assisted work where context, uncertainty, authority and execution need to remain understandable.</p></section>
     <section class="value-grid" aria-label="Capability value map">
       <article class="value-card"><span class="kind">Reliable delivery</span><h3>Bound AI-assisted work</h3><p>Stage work explicitly, preserve decision gates, constrain risky actions and verify outcomes instead of treating model output as completed execution.</p></article>
       <article class="value-card"><span class="kind">Context integrity</span><h3>Know what the system is reasoning about</h3><p>Resolve identity, provenance, relationships and source authority across distributed repositories, documents, memory and runtime evidence.</p></article>
@@ -80,6 +92,7 @@
     <div class="note">The catalog is organized by function rather than development stage. Problem classes above are solution patterns: they show how capabilities compose without implying that every problem always requires the full combination.</div>
     <div class="cta">The problem-space map is the entry layer. Continue to the <a href="./solutions/">solution-space map</a> to see how the current capabilities assemble into reusable solution patterns across lifecycle position and operating scale.</div>
 
+</details>
     <section id="control-execution" class="section-head"><span class="eyebrow">Control and execution</span><h2>How work is bounded, staged and governed</h2><p>Systems that control execution phases, dialogue transitions and instruction contracts.</p></section>
     <section class="grid" aria-label="Control and execution profiles">
       <a class="card" href="./5pp/"><span class="kind">Work protocol</span><h3>5PP</h3><p>Five-phase work protocol with deterministic gates, compliance evidence and bounded execution discipline.</p></a>

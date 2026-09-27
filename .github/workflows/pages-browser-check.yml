@@ -5,6 +5,14 @@ on:
     paths:
       - "index.html"
       - "README.md"
+      - "assets/**"
+      - "scripts/**"
+      - "articles/**"
+      - "projects/**"
+      - "labs/**"
+      - "all-pages/**"
+      - "404.html"
+      - "sitemap.xml"
       - "methods/**"
       - "blueprint-ai-studio/**"
       - "build-log/**"
@@ -38,6 +46,9 @@ jobs:
       - name: Validate public Build Log contract
         run: python tests/build_log_contract.py
 
+      - name: Validate navigation, article directory and progress feed
+        run: python tests/navigation_contract.py
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -61,6 +72,36 @@ jobs:
           done
           cat /tmp/pages-server.log
           exit 1
+
+      - name: Exercise navigation, mobile routes and article filters
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          NAV_SCREENSHOT_DIR: /tmp/navigation-visuals
+        run: node tests/navigation_page.mjs
+
+      - name: Save navigation visual checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-navigation-visuals
+          path: /tmp/navigation-visuals/
+          retention-days: 14
+
+      - name: Package static review preview
+        if: github.event_name == 'pull_request'
+        run: |
+          git archive --format=zip HEAD -o /tmp/portfolio-navigation-preview.zip
+          python scripts/build_preview.py /tmp/portfolio-navigation-preview.html
+
+      - name: Save static review preview
+        if: github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: portfolio-navigation-preview
+          path: |
+            /tmp/portfolio-navigation-preview.zip
+            /tmp/portfolio-navigation-preview.html
+          retention-days: 14
 
       - name: Exercise Build Log locally
         env:
@@ -109,7 +150,7 @@ jobs:
         if: github.event_name == 'push'
         shell: bash
         run: |
-          expected='Building AI systems that can be inspected, governed and used in practice'
+          expected='aria-label="Site navigation"'
           for attempt in {1..60}; do
             page="$(curl --fail --silent --show-error --location \
               -H 'Cache-Control: no-cache' \
@@ -123,6 +164,12 @@ jobs:
           done
           echo "The expected root-page content did not become visible within 10 minutes."
           exit 1
+
+      - name: Exercise live navigation and article directory
+        if: github.event_name == 'push'
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/navigation_page.mjs
 
       - name: Exercise live Build Log
         if: github.event_name == 'push'

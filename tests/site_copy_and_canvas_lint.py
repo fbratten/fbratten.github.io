@@ -77,18 +77,12 @@ def check_homepage() -> list[str]:
     text = (ROOT / "index.html").read_text(encoding="utf-8")
     failures: list[str] = []
     required = [
-        "Source-pinned proof packages",
-        "Capability inventory",
-        "Solution-space map",
-        "Build log",
-        "./methods/",
-        "./methods/solutions/",
-        "./build-log/",
-        "Public URL: /methods/solutions/",
-        "./intelligence-engine-showcase/",
-        "./mads/",
-        "./adaptivearts-ai/",
-        "./gate-monitor/",
+        "Explore the work", "Find a method", "Try a lab", "Build log",
+        "All articles", "Follow the project", "From Blueprint to Application",
+        'href="/methods/"', 'href="/projects/"', 'href="/labs/"',
+        'href="/articles/"', 'href="/blueprint-ai-studio/"', 'href="/build-log/"',
+        'href="/intelligence-engine-showcase/"', 'href="/mads/"',
+        'href="/adaptivearts-ai/"', 'href="/gate-monitor/"',
     ]
     for value in required:
         if value not in text:

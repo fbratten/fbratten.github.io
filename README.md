@@ -39,3 +39,20 @@ Personal landing page for Fredrik Brattén.
 ---
 
 *Part of the [Adaptivearts.ai™](https://adaptivearts.ai) initiative*
+
+
+## Portfolio navigation
+
+- [Projects](https://fbratten.github.io/projects/)
+- [Methods](https://fbratten.github.io/methods/)
+- [Labs](https://fbratten.github.io/labs/)
+- [Articles with original hero images](https://fbratten.github.io/articles/)
+- [Blueprint AI Studio: book, LMS and progress](https://fbratten.github.io/blueprint-ai-studio/)
+- [From Blueprint to Application on Adaptivearts.ai](https://adaptivearts.ai/book/)
+- [All pages](https://fbratten.github.io/all-pages/)
+
+Shared navigation and breadcrumbs are rendered into the HTML, so they work without
+JavaScript. After changing `articles/entries.json`, `blueprint-ai-studio/progress.json`
+or adding a page, run `python scripts/build_navigation.py`. Use `--check` in CI.
+See [navigation review](docs/navigation-review.md) for scope, evidence and the
+public progress update procedure.

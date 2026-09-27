@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Blueprint AI Studio - Project progress</title>
+    <link>https://fbratten.github.io/blueprint-ai-studio/</link>
+    <description>Dated public progress for Blueprint AI Studio, its LMS and From Blueprint to Application.</description>
+    <language>en</language>
+    <item>
+      <title>The book, reader labs and the next chapter</title>
+      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-public-baseline</link>
+      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-public-baseline</guid>
+      <description>The book overview is available on Adaptivearts.ai, and the public reader lab includes CBE and CBE-IX exercises. The blueprintaistudio.app domain currently shows a coming-soon page. Studio and LMS development are the next part of the project; there is no public LMS launch to announce yet.</description>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Capability boundaries become hands-on exercises</title>
+      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-boundary-labs</link>
+      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-boundary-labs</guid>
+      <description>CBE and CBE-IX profiles, worked examples and interactive labs are published. The Blueprint reader lab connects the two methods to the difference between a rule, authority and effective enforcement.</description>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

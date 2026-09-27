@@ -53,15 +53,26 @@
     @media(max-width:760px){ .filter-grid{grid-template-columns:1fr;} }
   </style>
   <link rel="stylesheet" href="explorer.css">
+<!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
 </head>
 <body>
-  <header>
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<nav class="fb-links" id="fb-primary" aria-label="Site navigation"><a href="/projects/">Projects</a><a href="/methods/" aria-current="true">Methods</a><a href="/labs/">Labs</a><a href="/articles/">Articles</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a></nav></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/methods/">Methods</a></li><li><span aria-current="page">Solution-space map</span></li></ol></nav>
+<!-- /FB:NAV -->
+
+  <div class="fb-local-context ">
     <strong>Solution-space map</strong>
-    <nav><a href="../">Capability inventory</a><a href="../../">Portfolio</a></nav>
-  </header>
+    <nav></nav>
+  </div>
 
   <a class="skip-link" href="#explorer-heading">Skip to solution explorer</a>
-  <main>
+  <main id="main">
     <section class="hero">
       <div class="atlas-index" aria-hidden="true">CAPABILITY ATLAS / 01</div>
       <span class="eyebrow">Problem -> capability composition -> solution pattern</span>
