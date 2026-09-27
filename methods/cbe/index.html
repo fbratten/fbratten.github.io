@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Capability Boundary Expander: close internal responsibility gaps while preserving capability identity, peer boundaries and explicit handoffs.">
+  <title>CBE - Capability Boundary Expander</title>
+  <link rel="stylesheet" href="../profile-lite.css">
+  <link rel="stylesheet" href="./family.css">
+  <script src="./lab.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header><strong>CBE / Capability design</strong><nav aria-label="Primary"><a href="../">Methods</a><a href="../cbe-ix/">CBE-IX</a><a href="../../">Portfolio</a></nav></header>
+  <main id="main">
+    <section class="hero">
+      <span class="eyebrow">Capability Boundary Expander</span>
+      <h1>Complete the responsibility.<br>Preserve the boundary.</h1>
+      <p class="lead">CBE asks what an already defined capability still needs to perform its own responsibility. It separates legitimate internal expansion from work owned by neighboring capabilities, then makes the boundary and handoffs explicit.</p>
+      <nav class="section-nav" aria-label="On this page"><a href="#mechanism">How it works</a><a href="#example">Worked example</a><a href="#lab">Classification lab</a><a href="#final-verdicts">Analysis verdicts</a><a href="#composition">Use with other methods</a></nav>
+    </section>
+
+    <section class="chapter" id="mechanism" aria-labelledby="mechanism-title">
+      <span class="eyebrow">One bounded analysis</span><h2 id="mechanism-title">Expand from a demonstrated gap</h2>
+      <p>A useful nearby feature is not automatically part of the target's responsibility. Every candidate must trace to an internal gap and survive relevance, ownership and identity checks.</p>
+      <div class="grid">
+        <article class="panel"><h2>Start with</h2><ul><li>A named target and its purpose.</li><li>Current responsibilities and a locked responsibility invariant.</li><li>Known peers, constraints and supporting evidence.</li></ul><p>Unknown ownership stays unresolved until evidence or an architectural decision can settle it.</p></article>
+        <article class="panel"><h2>Return</h2><ul><li>Internal gaps and classified candidates.</li><li>Retained responsibilities and their boundaries.</li><li>Explicit handoff contracts and rejected scope.</li><li>Residual uncertainty and verification findings.</li></ul></article>
+      </div>
+      <ol><li>Lock the target's responsibility and normalize what it already owns.</li><li>Find internal gaps; derive candidate extensions from those gaps.</li><li>Check target relevance and substantive overlap with peers.</li><li>Classify, split mixed responsibilities and record handoffs.</li><li>Audit completeness, preserved responsibilities, uncertainty and target identity.</li></ol>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Four candidate verdicts"><table><caption>Four verdicts, four different consequences</caption><thead><tr><th scope="col">Verdict</th><th scope="col">Use when</th><th scope="col">Design result</th></tr></thead><tbody>
+        <tr><th scope="row">KEEP</th><td>The responsibility is needed and belongs to the target.</td><td>Add it to the target's design.</td></tr>
+        <tr><th scope="row">SPLIT</th><td>The candidate mixes target-owned work with portions that belong elsewhere or are unnecessary.</td><td>Separate meaningful parts and classify each: KEEP the target portion, DELEGATE peer-owned work or REJECT unnecessary scope.</td></tr>
+        <tr><th scope="row">DELEGATE</th><td>The target needs the result, but a peer owns the operation.</td><td>Define a handoff and expected return.</td></tr>
+        <tr><th scope="row">REJECT</th><td>The candidate does not close an internal gap or changes target identity.</td><td>Record the reason for excluding it.</td></tr>
+      </tbody></table></div>
+      <p class="small">UNRESOLVED records insufficient evidence or an ownership question. It is not a fifth acceptance verdict. Using a peer's output does not mean owning that peer's operation.</p>
+    </section>
+
+    <section class="chapter" id="example" aria-labelledby="example-title">
+      <span class="eyebrow">Shared example with CBE-IX</span><h2 id="example-title">A document ingestion pipeline</h2>
+      <p><strong>Responsibility invariant:</strong> accept documents and produce normalized ingestible records. Preserve the existing steps: accept, extract, normalize and submit downstream. The Semantic Indexer owns embeddings; the Retention Policy Service owns retention decisions; the Malware Scanner owns malicious-content detection.</p>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="Document ingestion candidates"><table><caption>Candidate decisions under these declared boundaries</caption><thead><tr><th scope="col">Gap / candidate</th><th scope="col">Decision</th><th scope="col">Reason or handoff</th></tr></thead><tbody>
+        <tr><td>Accepted formats are not distinguished: detect document format.</td><td><span class="tag">KEEP</span></td><td>Format detection supports the pipeline's own extraction step.</td></tr>
+        <tr><td>An accepted format needs an extraction handler: select its parser.</td><td><span class="tag">KEEP</span></td><td>Use the supplied format-to-parser mapping; the pipeline owns handler selection.</td></tr>
+        <tr><td>Repeated submissions are not distinguished: perform ingestion-level duplicate detection.</td><td><span class="tag">KEEP</span></td><td>Compare the supplied document identifier with the provided ingestion record set. Record new or duplicate and apply the supplied submission rule.</td></tr>
+        <tr><td>Submission needs a scanner outcome: coordinate the safety gate.</td><td><span class="tag">KEEP</span></td><td>Request a scan, preserve the returned outcome and hold downstream submission unless the supplied gate condition is met.</td></tr>
+        <tr><td>Determine whether document content is malicious: implement the malware detection algorithm.</td><td><span class="tag">DELEGATE</span></td><td>The Malware Scanner owns malicious-content detection. Coordinating the handoff does not transfer its algorithm to ingestion.</td></tr>
+        <tr><td>Downstream search needs vectors: generate embeddings.</td><td><span class="tag">DELEGATE</span></td><td>Send normalized content to the Semantic Indexer; consume its return.</td></tr>
+        <tr><td>Records need retention metadata: determine policy and attach classification.</td><td><span class="tag">SPLIT</span></td><td>DELEGATE policy decisions; KEEP attaching the returned classification.</td></tr>
+        <tr><td>Add a conversational assistant for readers.</td><td><span class="tag">REJECT</span></td><td>No demonstrated gap in ingestion requires a reader assistant.</td></tr>
+        <tr><td>Add regional access decisions; ownership is not supplied.</td><td><span class="tag">UNRESOLVED</span></td><td>Clarify the responsibility boundary before assigning a verdict.</td></tr>
+      </tbody></table></div>
+      <div class="grid">
+        <article class="panel"><h2>Retained boundary</h2><p><strong>Owns:</strong> attaching the supplied retention classification to a normalized record.</p><p><strong>Does not own:</strong> defining retention policy or deciding how long records must be retained.</p><p><strong>Input:</strong> normalized record plus a classification returned by the policy service.</p><p><strong>Output:</strong> enriched record, or an explicit unresolved classification.</p></article>
+        <article class="panel"><h2>Handoff contract</h2><p><strong>Trigger:</strong> a record needs retention classification.</p><p><strong>Destination:</strong> Retention Policy Service.</p><p><strong>Target supplies:</strong> the agreed record metadata.</p><p><strong>Destination owns:</strong> the policy decision.</p><p><strong>Expected return:</strong> classification or unresolved result. The pipeline attaches the return or preserves the unresolved state.</p></article>
+      </div>
+      <div class="grid">
+        <article class="panel"><h2>Malware Scanner handoff</h2><p><strong>Trigger:</strong> an accepted document needs a safety result before downstream submission.</p><p><strong>Destination:</strong> Malware Scanner.</p><p><strong>Target supplies:</strong> the document and its correlation identifier.</p><p><strong>Destination owns:</strong> the malware detection algorithm.</p><p><strong>Expected return in this fixture:</strong> clear, flagged or unavailable, tied to that identifier.</p><p><strong>Target behavior after return:</strong> preserve the result. Only clear permits the safety gate to release submission; flagged or unavailable holds it. A clear result is the scanner's answer, not proof of universal safety.</p></article>
+        <article class="panel"><h2>Bounded evidence for the walkthrough</h2><p>The fixture supplies document identifiers and an ingestion record set. Its submission rule allows a new identifier to proceed to the safety gate; a duplicate is recorded and held without rewriting the prior record. Ingestion owns comparing these inputs and recording the outcome; it does not invent a retention decision.</p><p>The safety gate owns requesting and consuming a scanner result. It does not inspect content to decide whether it is malicious. Duplicate outcomes and the three supplied scanner returns are reviewed in I1; their handling is locally exhausted in this finite fixture.</p><p>The identifier comparison, supplied duplicate rule and clear/flagged/unavailable return contract are teaching assumptions added to the source's responsibility example. They are not claimed as prescribed implementation details.</p></article>
+      </div>
+      <p>This bounded example also retains parser selection alongside format detection. It is the I1 snapshot replayed in CBE-IX. The next pass examines previously unspecified ambiguous parser matches and conflicting classification returns; it does not rediscover parser selection or the unresolved-classification state.</p>
+      <p>The candidate verdict changes the design representation. It does not edit the pipeline, call the peer or authorize deployment.</p>
+    </section>
+
+    <section class="chapter" id="final-verdicts" aria-labelledby="verdicts-title"><h2 id="verdicts-title">Six verdicts for the whole CBE analysis</h2><p>KEEP, SPLIT, DELEGATE and REJECT classify individual candidates. The source's output contract, section L, requires one final verdict for the complete analysis, alongside its verification audit and residual uncertainty.</p><dl class="terminal-list">
+      <div><dt class="status-name" aria-label="EXPANSION_VALID">EXPANSION_<wbr>VALID</dt><dd>The bounded expansion is valid under the recorded audit and evidence.</dd></div>
+      <div><dt class="status-name" aria-label="EXPANSION_VALID_WITH_HANDOFFS">EXPANSION_<wbr>VALID_<wbr>WITH_<wbr>HANDOFFS</dt><dd>The valid result retains explicit handoffs to other owners.</dd></div>
+      <div><dt class="status-name" aria-label="EXPANSION_REQUIRES_SPLIT">EXPANSION_<wbr>REQUIRES_<wbr>SPLIT</dt><dd>The proposed responsibility grouping requires explicit separation.</dd></div>
+      <div><dt class="status-name" aria-label="BOUNDARY_UNRESOLVED">BOUNDARY_<wbr>UNRESOLVED</dt><dd>A responsibility boundary remains unresolved.</dd></div>
+      <div><dt class="status-name" aria-label="TARGET_IDENTITY_DRIFT">TARGET_<wbr>IDENTITY_<wbr>DRIFT</dt><dd>The expanded design no longer preserves the target identity.</dd></div>
+      <div><dt class="status-name" aria-label="INSUFFICIENT_INFORMATION">INSUFFICIENT_<wbr>INFORMATION</dt><dd>The available target or responsibility evidence is insufficient.</dd></div>
+    </dl><p>The source requires the V1-V14 audit. A FAIL on V1 (responsibility invariant), V5 (KEEP owning a peer responsibility) or V10 (target identity) makes the expansion unacceptable as-is.</p><p>When unresolved ownership prevents further iteration without peer takeover, CBE's BOUNDARY_UNRESOLVED corresponds to <a href="../cbe-ix/#terminal-states">CBE-IX's BLOCKED_BY_BOUNDARY_DECISION</a>. An unresolved candidate alone does not automatically establish that iterative blocker.</p><p>The classification lab below assesses one candidate at a time. It does not calculate or certify a final CBE verdict for an entire analysis.</p></section>
+
+    <section class="chapter" id="lab" aria-labelledby="lab-title">
+      <span class="eyebrow">Synthetic practice</span><h2 id="lab-title">Classify without absorbing a peer</h2>
+      <p>Choose a candidate from the ingestion example, make a prediction and inspect the curated explanation. This exercise uses declared boundaries; it does not infer ownership from arbitrary text.</p>
+      <noscript><p>The candidate table above contains every case and explanation. Interactive controls become available when JavaScript is enabled.</p></noscript>
+      <div class="lab-grid" id="classification-lab" hidden>
+        <form class="lab-controls" id="candidate-form">
+          <label for="candidate">Candidate</label><select id="candidate"><option value="format">Detect document format</option><option value="duplicate">Detect an ingestion-level duplicate</option><option value="safety">Coordinate the safety gate</option><option value="malware">Implement malware detection</option><option value="embedding">Generate embeddings</option><option value="retention">Determine and attach retention policy</option><option value="assistant">Add a reader assistant</option><option value="unknown">Decide regional access (owner unknown)</option></select>
+          <fieldset><legend>Your prediction</legend><label><input type="radio" name="verdict" value="KEEP" required> KEEP</label><label><input type="radio" name="verdict" value="SPLIT"> SPLIT</label><label><input type="radio" name="verdict" value="DELEGATE"> DELEGATE</label><label><input type="radio" name="verdict" value="REJECT"> REJECT</label><label><input type="radio" name="verdict" value="UNRESOLVED"> Hold: ownership unresolved</label></fieldset>
+          <div class="actions"><button class="primary" type="submit">Check classification</button><button type="reset">Reset</button></div>
+        </form>
+        <div class="lab-output" id="classification-result" aria-live="polite"><span class="eyebrow">Reference decision</span><h3>Choose a candidate</h3><p>The target and peer responsibilities stay fixed throughout this exercise.</p></div>
+      </div>
+      <p><a href="../cbe-ix/#lab">Continue with the same target in the CBE-IX iteration lab</a>.</p>
+    </section>
+
+    <section class="chapter" id="composition" aria-labelledby="composition-title">
+      <h2 id="composition-title">Where CBE fits</h2>
+      <div class="grid">
+        <article class="panel"><h2>Discover before expanding</h2><p><a href="../capability-gap/">Capability-Gap</a> and <a href="../csr/">CSR</a> establish what exists and where a need is already covered. CBE then examines the selected target's internal completeness. <a href="../sorr/">SORR</a> can resolve ambiguous identities and responsibility claims.</p></article>
+        <article class="panel"><h2>Control the analysis</h2><p><a href="../dialogue-lifecycle/">Dialogue Lifecycle</a> controls transitions. <a href="../5pp/">5PP Variation A</a> structures the scoped work and audit. <a href="../aics/">AICS</a> can represent the resulting requirements and decisions. Analysis authorization and implementation authorization remain separate.</p></article>
+        <article class="panel"><h2>When to use CBE-IX</h2><p>Use <a href="../cbe-ix/">CBE-IX</a> when an accepted extension may expose further legitimate internal gaps. It adds an iteration ledger, a frontier of unprocessed work and explicit convergence checks.</p></article>
+        <article class="panel"><h2>Inspect a composed solution</h2><p>See <a href="../solutions/#bounded-capability-design">bounded capability design</a> in the solution atlas. Practice the authority distinction in the <a href="../../blueprint-ai-studio/labs/rules-authority-enforcement/#capability-boundaries">Blueprint reader labs</a>.</p></article>
+      </div>
+    </section>
+    <section class="chapter" id="sources"><h2>Source basis and limits</h2><p>Derived from the author-provided <em>Capability Boundary Expander - AI Execution Prompt</em>, updated 24 August 2026. The ingestion example adapts its Example 2; the reader-assistant and unknown-owner cases are additional teaching examples.</p><p><a href="./README.md">Source mapping and reproducibility notes</a> identify the exact supplied source snapshot. The profile explains a design method; the lab demonstrates curated cases and does not establish general semantic correctness, runtime availability or measured effectiveness.</p></section>
+  </main>
+  <footer>CBE: design-time completeness within a preserved responsibility boundary. <a href="../cbe-ix/">Explore the iterative variant</a>.</footer>
+</body>
+</html>

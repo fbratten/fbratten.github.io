@@ -1,0 +1,9 @@
+.cbe-composition { width: min(1120px, calc(100% - 2rem)); margin: 2rem auto 3rem; padding: 1.4rem; border: 1px solid #284052; border-radius: 1rem; background: #101f2c; color: #eaf2f7; }
+.cbe-composition p { color: #9cb0bd; line-height: 1.65; }
+.cbe-composition a { color: #53d3a7; text-decoration: underline; text-underline-offset: .2em; }
+.cbe-kicker { color: #53d3a7; text-transform: uppercase; letter-spacing: .1em; font-size: .75rem; font-weight: 750; }
+.cbe-presets { margin-bottom: 1.1rem; padding: .8rem; border: 1px solid #284052; border-radius: .6rem; }
+.cbe-presets[hidden] { display: none !important; }
+.cbe-presets button { display: inline-block; max-width: 100%; margin: .25rem .25rem .25rem 0; padding: .55rem .7rem; border: 1px solid #53d3a7; border-radius: .45rem; font: inherit; color: #eaf2f7; background: #101f2c; cursor: pointer; }
+.cbe-presets .cbe-preset-context { color: #9cb0bd; font-size: .9rem; line-height: 1.6; }
+.cbe-composition a:focus-visible, .cbe-presets button:focus-visible { outline: 3px solid #53d3a7; outline-offset: 3px; }

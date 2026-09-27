@@ -24,6 +24,7 @@
       <nav class="jump-nav" aria-label="Lab sections">
         <a href="#micro-labs">5 micro-labs</a>
         <a href="#deep-labs">2 deeper labs</a>
+        <a href="#capability-boundaries">CBE / CBE-IX extensions</a>
         <a href="#export">Export notes</a>
       </nav>
     </div>
@@ -189,6 +190,12 @@
           </details>
         </div>
       </article>
+    </section>
+
+    <section id="capability-boundaries" aria-labelledby="capability-title">
+      <div class="section-heading"><p class="eyebrow">Additional capability design exercises</p><h2 id="capability-title">A design verdict and an action warrant are different records</h2><p>These two synthetic cases extend the existing authority and verification exercises. The target is the fictional ingestion pipeline used in the <a href="../../../methods/cbe/#example">CBE example</a>.</p></div>
+      <article class="lab-card" id="cbe-keep-authority" data-lab="cbe-keep-authority"><div class="lab-number">CBE</div><div class="lab-body"><h3>KEEP does not authorize implementation</h3><div class="scenario"><strong>Scenario:</strong> CBE classifies format detection as KEEP. The operator authorized design analysis only. A proposed next action would modify the fictional pipeline schema.</div><fieldset><legend>Should the schema modification run?</legend><label><input type="radio" name="cbe-authority-prediction" value="BLOCK"> BLOCK</label><label><input type="radio" name="cbe-authority-prediction" value="ALLOW"> ALLOW</label></fieldset><button id="run-cbe-authority" type="button">Check authority boundary</button><div id="result-cbe-authority" class="result" aria-live="polite">Predict the action outcome from the granted scope.</div><p><a href="../../../methods/cbe/#lab">Practice KEEP, SPLIT, DELEGATE and REJECT</a>.</p></div></article>
+      <article class="lab-card" id="cbe-ix-limit" data-lab="cbe-ix-limit"><div class="lab-number">CBE-IX</div><div class="lab-body"><h3>Stopping is not the same as exhaustion</h3><div class="scenario"><strong>Scenario:</strong> the execution budget ends after a CBE-IX pass. Parser selection and handling unresolved classifications remain in the frontier. No further convergence audit ran.</div><label for="cbe-ix-prediction">Which terminal record fits?</label><select id="cbe-ix-prediction"><option value="">Choose a record</option><option value="EXHAUSTED_VALID">EXHAUSTED_VALID</option><option value="EXHAUSTED_WITH_HANDOFFS">EXHAUSTED_WITH_HANDOFFS</option><option value="EXTERNAL_ITERATION_LIMIT_REACHED">EXTERNAL_ITERATION_LIMIT_REACHED</option></select><button id="run-cbe-ix-limit" type="button">Check stopping evidence</button><div id="result-cbe-ix-limit" class="result" aria-live="polite">Use the frontier and audit evidence to distinguish the outcomes.</div><p><a href="../../../methods/cbe-ix/#lab">Inspect all eight terminal cases</a>.</p></div></article>
     </section>
 
     <section id="export" class="export-panel" aria-labelledby="export-title">

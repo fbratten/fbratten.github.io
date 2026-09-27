@@ -78,6 +78,20 @@ jobs:
           SCREENSHOT_DIR: /tmp/solution-explorer-visuals
         run: node tests/solution_explorer.mjs
 
+      - name: Exercise CBE profiles and existing lab examples locally
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          CBE_SCREENSHOT_DIR: /tmp/cbe-visuals
+        run: node tests/cbe_labs.mjs
+
+      - name: Save CBE visual checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cbe-profile-visuals
+          path: /tmp/cbe-visuals/
+          retention-days: 7
+
       - name: Save solution atlas visual checks
         if: always()
         uses: actions/upload-artifact@v4
@@ -127,6 +141,12 @@ jobs:
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/blueprint_authority_labs.mjs
+
+      - name: Exercise live CBE profiles and lab examples
+        if: github.event_name == 'push'
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/cbe_labs.mjs
 
       - name: Show local server log on failure
         if: failure()

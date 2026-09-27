@@ -175,6 +175,23 @@
     record('design-a-test-that-would-fail', { ...outline, reader_supplied: true, status: 'PASS' });
   });
 
+  $('run-cbe-authority')?.addEventListener('click', () => {
+    const prediction = selected('cbe-authority-prediction');
+    if (!prediction) { setResult('result-cbe-authority', 'Choose ALLOW or BLOCK before checking the granted scope.'); return; }
+    const pass = prediction === 'BLOCK';
+    setResult('result-cbe-authority', (pass ? 'PASS. ' : 'FAIL. ') + 'BLOCK: KEEP adds a responsibility to the design. The granted analysis scope does not authorize a schema modification.', pass ? 'pass' : 'fail');
+    record('cbe-keep-authority', { prediction, expected: 'BLOCK', design_verdict: 'KEEP', granted_scope: 'analysis-only', implementation_authorized: false, status: pass ? 'PASS' : 'FAIL' });
+  });
+
+  $('run-cbe-ix-limit')?.addEventListener('click', () => {
+    const prediction = $('cbe-ix-prediction').value;
+    if (!prediction) { setResult('result-cbe-ix-limit', 'Choose a terminal record before checking the evidence.'); return; }
+    const expected = 'EXTERNAL_ITERATION_LIMIT_REACHED';
+    const pass = prediction === expected;
+    setResult('result-cbe-ix-limit', (pass ? 'PASS. ' : 'FAIL. ') + expected + ': target-owned frontier items remain and convergence was not verified. Preserve the ledger for re-entry; do not claim exhaustion.', pass ? 'pass' : 'fail');
+    record('cbe-ix-limit', { prediction, expected, frontier: ['Parser selection', 'Handling an unresolved classification'], convergence_verified: false, implementation_authorized: false, status: pass ? 'PASS' : 'FAIL' });
+  });
+
   document.querySelectorAll('.copy-button').forEach((button) => {
     button.addEventListener('click', async () => {
       const target = $(button.dataset.copyTarget);
@@ -249,6 +266,8 @@
     setResult('result-verification', 'Verification should test the property that was supposed to become true.', 'info');
     setResult('result-intent', 'ALLOW requires explicit authority plus a bounded scope in this teaching model.', 'info');
     setResult('result-test-design', 'A useful test names a violation, observable evidence and a comparison arm.', 'info');
+    setResult('result-cbe-authority', 'Predict the action outcome from the granted scope.', 'info');
+    setResult('result-cbe-ix-limit', 'Use the frontier and audit evidence to distinguish the outcomes.', 'info');
     setResult('export-status', 'Reset complete. No session results are retained by this page.', 'info');
   });
 })();
