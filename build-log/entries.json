@@ -1,5 +1,49 @@
 [
   {
+    "date": "2026-09-28",
+    "state": "PUBLISHED",
+    "title": "CBE and CBE-IX: boundary design profiles and interactive labs",
+    "summary": "Published separate CBE and CBE-IX method profiles with interactive teaching labs, added composition examples to all 18 existing profiles, and extended the 5PP, Dialogue Lifecycle, AICS and Blueprint labs. The solution atlas now links the methods through a bounded capability-design pattern; browser checks passed against the deployed site.",
+    "why_it_matters": "Makes capability ownership, delegation and stopping decisions inspectable through worked examples, while distinguishing a completed design analysis from permission to implement it.",
+    "evidence": [
+      {
+        "label": "CBE profile and lab",
+        "url": "https://fbratten.github.io/methods/cbe/"
+      },
+      {
+        "label": "CBE-IX profile and lab",
+        "url": "https://fbratten.github.io/methods/cbe-ix/"
+      },
+      {
+        "label": "Bounded capability-design pattern",
+        "url": "https://fbratten.github.io/methods/solutions/#bounded-capability-design"
+      },
+      {
+        "label": "Blueprint capability-boundary labs",
+        "url": "https://fbratten.github.io/blueprint-ai-studio/labs/rules-authority-enforcement/#capability-boundaries"
+      },
+      {
+        "label": "Reviewed changes — PR #30",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/30"
+      },
+      {
+        "label": "Published merge commit",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/577f39528a33987eeec3d99bea4b08ee78a6ebc6"
+      },
+      {
+        "label": "Passing checks, including live labs",
+        "url": "https://github.com/fbratten/fbratten.github.io/actions/runs/36354122845"
+      }
+    ],
+    "tags": [
+      "capability design",
+      "CBE",
+      "CBE-IX",
+      "interactive learning",
+      "verification"
+    ]
+  },
+  {
     "date": "2026-09-25",
     "state": "SHIPPED",
     "title": "Governed public proof-of-work Build Log",
