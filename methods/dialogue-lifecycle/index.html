@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="./profile.js" defer></script>
   <script src="./canvas-stability.js" defer></script>
-</head>
+<link rel="stylesheet" href="../cbe/examples.css"></head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
@@ -133,7 +133,7 @@
         </div>
       </div>
       <div class="sandbox-grid">
-        <form class="sandbox-controls" id="transitionForm">
+        <form class="sandbox-controls" id="transitionForm"><div class="cbe-presets" data-cbe-host="dialogue-lifecycle" hidden><p><strong>Additional CBE family examples</strong></p><button type="button" data-cbe-preset="analysis">Load CBE analysis example</button><button type="button" data-cbe-preset="blocked">Load CBE-IX boundary blocker</button><p class="cbe-preset-context" aria-live="polite">Load an example, then inspect or change the existing controls.</p></div>
           <div class="select-grid">
             <label>From state
               <select id="fromState"></select>
@@ -330,11 +330,13 @@
       </div>
       <p class="small-note">This page performs no AICS validation, repository writes, LLM calls, private-memory access or external state transition. All interactive examples remain in browser memory.</p>
     </section>
-  </main>
+
+<section class="cbe-composition" id="cbe-example" aria-labelledby="cbe-example-title"><span class="cbe-kicker">Composition exercise</span><h2 id="cbe-example-title">Apply this method to CBE and CBE-IX</h2><p>Keep the analysis scope explicit as the ingestion example moves through EXPLORE and CLARIFY. DECIDE classifies candidates; EXECUTE changes the design representation. VERIFY tests the boundary and, for CBE-IX, convergence. A terminal analysis result does not authorize downstream implementation. An unresolved material ownership decision prevents the dependent design from advancing.</p><p><a href="../cbe/#lab">Classify an ingestion candidate</a> / <a href="../cbe-ix/#lab">Inspect its iterative expansion</a> / <a href="../solutions/#bounded-capability-design">Explore the composed solution</a></p></section>
+</main>
 
   <footer class="site-footer">
     <div><strong>Methods, Protocols & Prompt Systems</strong><span>Interactive, source-pinned proof of method.</span></div>
     <a href="../">Back to the methods index</a>
   </footer>
-</body>
+<script src="../cbe/existing-lab-presets.js"></script></body>
 </html>

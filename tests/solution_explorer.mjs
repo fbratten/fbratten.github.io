@@ -10,7 +10,7 @@ try {
   page.on('pageerror', error => errors.push(error.message));
   await page.goto(`${base}/methods/solutions/`);
   const visible = page.locator('.solution:visible');
-  assert.equal(await visible.count(), 10);
+  assert.equal(await visible.count(), 11);
   await page.selectOption('#problem', 'context');
   assert.equal(await visible.count(), 3);
   await page.selectOption('#stage', 'reenter');
@@ -23,7 +23,7 @@ try {
   assert.equal(await visible.count(), 0);
   assert.equal(await page.locator('#no-results').isVisible(), true);
   await page.getByRole('button', { name: 'Clear filters' }).click();
-  assert.equal(await visible.count(), 10);
+  assert.equal(await visible.count(), 11);
   assert.equal(new URL(page.url()).search, '');
   await page.goto(`${base}/methods/solutions/?problem=invalid&scale=portfolio#workflow-governance`);
   assert.equal(await page.locator('#workflow-governance').isVisible(), true);
@@ -31,8 +31,18 @@ try {
   await page.keyboard.press('Enter');
   assert.equal(await page.locator('#workflow-governance details').getAttribute('open'), '');
   const routes = await page.locator('.solution .chips a').evaluateAll(links => [...new Set(links.map(a => a.href))]);
-  assert.equal(routes.length, 18);
+  assert.equal(routes.length, 20);
   for (const url of routes) assert.equal((await page.request.get(url)).ok(), true, url);
+  const inventory = await page.request.get(base + '/methods/');
+  const declaredRoutes = [...(await inventory.text()).matchAll(/class="card" href="\.\/([^/]+)\/"/g)].map(match => match[1]).sort();
+  assert.deepEqual(routes.map(url => new URL(url).pathname.split('/').filter(Boolean).pop()).sort(), declaredRoutes, 'Every catalog profile must have a solution route');
+  assert.equal(await page.locator('#capability-matrix thead a').count(), 20);
+  await page.selectOption('#problem', 'reuse');
+  await page.selectOption('#stage', 'verify');
+  await page.selectOption('#scale', 'project');
+  assert.equal(await visible.count(), 1);
+  assert.equal(await page.locator('#bounded-capability-design').isVisible(), true);
+  await page.getByRole('button', { name: 'Clear filters' }).click();
   for (const width of [375, 1280]) {
     await page.setViewportSize({ width, height: 900 });
     assert.equal(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), true, `overflow at ${width}`);
@@ -53,13 +63,13 @@ try {
     });
   }), true);
   await page.locator('#capability-matrix tbody tr:visible th a').first().click();
-  assert.equal(await visible.count(), 10);
+  assert.equal(await visible.count(), 11);
   await page.getByRole('button', { name: 'Clear filters' }).click();
   await page.locator('[data-problem-preset="execution"]').focus();
   await page.keyboard.press('Enter');
   assert.equal(await visible.count(), 2);
   await page.keyboard.press('Enter');
-  assert.equal(await visible.count(), 10);
+  assert.equal(await visible.count(), 11);
   const shots = process.env.SCREENSHOT_DIR || '/tmp/solution-explorer-visuals';
   await mkdir(shots, { recursive: true });
   for (const width of [375, 1280]) {
@@ -78,14 +88,14 @@ try {
   const noJs = await browser.newContext({ javaScriptEnabled: false });
   const fallback = await noJs.newPage();
   await fallback.goto(`${base}/methods/solutions/`);
-  assert.equal(await fallback.locator('.solution:visible').count(), 10);
+  assert.equal(await fallback.locator('.solution:visible').count(), 11);
   assert.equal(await fallback.locator('#solution-filters').isVisible(), false);
   assert.equal(await fallback.locator('.problem-shortcuts').isVisible(), false);
   await fallback.locator('#capability-matrix summary').click();
-  assert.equal(await fallback.locator('#capability-matrix tbody tr:visible').count(), 10);
+  assert.equal(await fallback.locator('#capability-matrix tbody tr:visible').count(), 11);
   await noJs.close();
   assert.deepEqual(errors, []);
-  console.log('Solution explorer passed: combined filters, URL restore, empty/reset states, keyboard details, 18 routes, mobile layout and no-JS fallback.');
+  console.log('Solution explorer passed: combined filters, URL restore, empty/reset states, keyboard details, 20 routes, mobile layout and no-JS fallback.');
 } finally {
   await browser.close();
 }

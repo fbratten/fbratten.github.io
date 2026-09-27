@@ -9,7 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
   <script src="./profile.js" defer></script>
   <script src="./canvas-stability.js" defer></script>
-</head>
+<link rel="stylesheet" href="../cbe/examples.css"></head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
 
@@ -133,7 +133,7 @@
       </div>
 
       <div class="sandbox-grid">
-        <form class="sandbox-controls" id="sandboxForm">
+        <form class="sandbox-controls" id="sandboxForm"><div class="cbe-presets" data-cbe-host="5pp" hidden><p><strong>Additional CBE family examples</strong></p><button type="button" data-cbe-preset="analysis">Load CBE analysis example</button><button type="button" data-cbe-preset="blocked">Load CBE-IX boundary blocker</button><p class="cbe-preset-context" aria-live="polite">Load an example, then inspect or change the existing controls.</p></div>
           <label>Profile
             <select id="sandboxProfile">
               <option value="standard">standard</option>
@@ -334,7 +334,9 @@
       </div>
       <p class="small-note">This page is a public-safe explanatory artefact. It performs no repository writes, LLM calls, networked evaluation, local file access or real gate execution.</p>
     </section>
-  </main>
+
+<section class="cbe-composition" id="cbe-example" aria-labelledby="cbe-example-title"><span class="cbe-kicker">Composition exercise</span><h2 id="cbe-example-title">Apply this method to CBE and CBE-IX</h2><p>Use Variation A to scope an analysis of the ingestion pipeline: clarify its invariant, lock peer exclusions, outline candidate classification, produce boundary and handoff records, then audit them. A CBE-IX ledger adds evidence for each pass. A syntactically complete 5PP record still cannot prove that a responsibility verdict is correct.</p><p><a href="../cbe/#lab">Classify an ingestion candidate</a> / <a href="../cbe-ix/#lab">Inspect its iterative expansion</a> / <a href="../solutions/#bounded-capability-design">Explore the composed solution</a></p></section>
+</main>
 
   <footer class="site-footer">
     <div>
@@ -343,5 +345,5 @@
     </div>
     <a href="../">Back to the methods index</a>
   </footer>
-</body>
+<script src="../cbe/existing-lab-presets.js"></script></body>
 </html>

@@ -74,6 +74,30 @@ try {
   expect((await text('#result-test-design')).startsWith('PASS'), 'Failing-test design did not PASS with complete inputs')
 
   // Mobile layout sanity: no horizontal document overflow.
+  // Additional CBE examples distinguish responsibility, authority and exhaustion.
+  await page.check('input[name="cbe-authority-prediction"][value="ALLOW"]')
+  await page.click('#run-cbe-authority')
+  expect((await text('#result-cbe-authority')).startsWith('FAIL'), 'CBE KEEP incorrectly authorized implementation')
+  await page.check('input[name="cbe-authority-prediction"][value="BLOCK"]')
+  await page.click('#run-cbe-authority')
+  expect((await text('#result-cbe-authority')).startsWith('PASS'), 'CBE analysis boundary failed')
+  await page.selectOption('#cbe-ix-prediction', 'EXHAUSTED_VALID')
+  await page.click('#run-cbe-ix-limit')
+  expect((await text('#result-cbe-ix-limit')).startsWith('FAIL'), 'Resource limit was treated as semantic exhaustion')
+  await page.selectOption('#cbe-ix-prediction', 'EXTERNAL_ITERATION_LIMIT_REACHED')
+  await page.click('#run-cbe-ix-limit')
+  expect((await text('#result-cbe-ix-limit')).startsWith('PASS'), 'CBE-IX external limit not preserved')
+  const downloadPromise = page.waitForEvent('download')
+  await page.click('#export-json')
+  const download = await downloadPromise
+  const stream = await download.createReadStream()
+  let exported = ''
+  for await (const chunk of stream) exported += chunk.toString()
+  const receipt = JSON.parse(exported)
+  expect(receipt.results['cbe-keep-authority'].implementation_authorized === false, 'Export lost the CBE authority boundary')
+  expect(receipt.results['cbe-ix-limit'].convergence_verified === false, 'Export misrepresented IX convergence')
+
+  // Mobile layout sanity: no horizontal document overflow.
   await page.setViewportSize({ width: 390, height: 844 })
   const noHorizontalOverflow = await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth + 1)
   expect(noHorizontalOverflow, 'Mobile viewport has horizontal document overflow')
@@ -85,6 +109,9 @@ try {
   expect((await text('#result-ambiguous')).startsWith('PASS'), 'Keyboard activation failed')
 
   expect(errors.length === 0, `Browser errors detected:\n${errors.join('\n')}`)
+  await page.click('#reset-all')
+  expect((await text('#result-cbe-authority')).startsWith('Predict'), 'Reset retained the CBE result')
+  expect((await text('#result-cbe-ix-limit')).startsWith('Use the frontier'), 'Reset retained the IX result')
   console.log(`PASS Blueprint authority labs: ${url}`)
 } finally {
   await browser.close()

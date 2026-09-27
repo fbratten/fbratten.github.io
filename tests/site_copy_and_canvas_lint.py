@@ -130,6 +130,9 @@ def check_solution_space() -> list[str]:
         "../capability-gap/",
         "../csr/",
         "../gdsa/",
+        "../cbe/",
+        "../cbe-ix/",
+        'id="bounded-capability-design"',
     ]
     for value in required:
         if value not in text:
@@ -138,6 +141,11 @@ def check_solution_space() -> list[str]:
     catalog = (METHODS / "index.html").read_text(encoding="utf-8")
     if "./solutions/" not in catalog:
         failures.append("methods/index.html: solution-space map is not linked from capability inventory")
+    for slug in ["cbe", "cbe-ix"]:
+        if f'./{slug}/' not in catalog:
+            failures.append(f"methods/index.html: missing {slug} profile route")
+        if not (METHODS / slug / "index.html").exists():
+            failures.append(f"methods/{slug}/index.html: missing profile")
     return failures
 
 
