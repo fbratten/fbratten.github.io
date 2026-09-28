@@ -15,9 +15,9 @@ try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
   await page.goto(base + '/');
   await page.getByRole('navigation', { name: 'Site navigation', exact: true }).waitFor();
-  assert.equal(await page.locator('.fb-links a').count(), 5);
+  assert.equal(await page.locator('.fb-links a').count(), 6);
   assert.equal(await page.locator('[data-article]').count(), 3);
-  await page.getByRole('link', { name: 'All articles' }).click();
+  await page.getByRole('link', { name: 'All 46 articles' }).click();
   assert.match(page.url(), /\/articles\/$/);
   const total = await page.locator('[data-article]').count();
   assert.ok(total >= 46);
@@ -37,8 +37,14 @@ try {
   await page.getByLabel('Category', { exact: true }).selectOption('');
   assert.equal(await page.locator('[data-article]:visible').count(), total);
 
-  for (const route of ['/', '/methods/', '/articles/', '/blueprint-ai-studio/']) {
+  for (const route of ['/', '/projects/', '/methods/', '/articles/', '/blueprint-ai-studio/', '/all-pages/']) {
     await page.goto(base + route);
+    if (shots && route === '/') {
+      await page.locator('img').evaluateAll(images => Promise.all(images.map(image => {
+        image.loading = 'eager'; return image.decode().catch(() => {});
+      })));
+      await page.screenshot({ path: `${shots}/home-full.png`, fullPage: true });
+    }
     if (shots) await settleVisibleImages(page);
     if (shots) await page.screenshot({ path: `${shots}/${route === '/' ? 'home' : route.split('/')[1]}-desktop.png`, fullPage: false });
   }
@@ -46,13 +52,16 @@ try {
   await page.setViewportSize({ width: 390, height: 844 });
   for (const route of ['/', '/methods/', '/methods/cbe/', '/methods/cbe-ix/', '/articles/', '/projects/', '/labs/', '/blueprint-ai-studio/', '/blueprint-ai-studio/labs/rules-authority-enforcement/', '/404.html']) {
     await page.goto(base + route);
-    const button = page.getByRole('button', { name: 'Menu', exact: true });
+    const button = page.locator('.fb-menu-button');
     await button.waitFor();
     assert.equal(await button.getAttribute('aria-expanded'), 'false');
     await button.focus();
     await page.keyboard.press('Enter');
     assert.equal(await button.getAttribute('aria-expanded'), 'true');
+    assert.equal(await button.textContent(), 'Close');
+    assert.ok(await page.locator('.fb-mobile-project').getByRole('link').isVisible());
     assert.ok(await page.getByRole('navigation', { name: 'Site navigation', exact: true }).isVisible());
+    if (shots && route === '/') await page.screenshot({ path: `${shots}/menu-mobile.png` });
     await page.keyboard.press('Escape');
     assert.equal(await button.getAttribute('aria-expanded'), 'false');
     assert.equal(await page.evaluate(() => document.activeElement.textContent), 'Menu');
@@ -64,9 +73,12 @@ try {
     }
   }
 
+  await page.goto(base + '/methods/');
+  assert.equal(await page.locator('#labs .fb-route').count(), 6);
+  assert.equal(await page.locator('a.card[href="./cbe/"] h3').innerText(), 'Responsibility boundary design');
   await page.goto(base + '/blueprint-ai-studio/');
-  assert.ok(await page.getByRole('heading', { name: 'Follow the progress.', exact: true }).isVisible());
-  assert.equal(await page.locator('.fb-progress-entry').count(), 2);
+  assert.ok(await page.getByRole('heading', { name: 'Progress', exact: true }).isVisible());
+  assert.equal(await page.locator('.fb-progress-entry').count(), 3);
   assert.match(await page.locator('main').innerText(), /coming-soon page/);
   const feed = await page.request.get(base + '/blueprint-ai-studio/feed.xml');
   assert.equal(feed.status(), 200);
@@ -78,7 +90,7 @@ try {
   assert.ok(await fallback.getByRole('navigation', { name: 'Site navigation', exact: true }).isVisible());
   assert.equal(await fallback.locator('[data-article]:visible').count(), total);
   assert.equal(await fallback.locator('.fb-filters').isVisible(), false);
-  await fallback.getByRole('navigation', { name: 'Site navigation', exact: true }).getByRole('link', { name: 'Methods', exact: true }).click();
+  await fallback.getByRole('navigation', { name: 'Site navigation', exact: true }).getByRole('link', { name: 'Methods & Labs', exact: true }).click();
   assert.equal(await fallback.locator('a.card').count(), 20);
   await fallback.getByText('How the methods fit together:', { exact: false }).click();
   assert.ok(await fallback.getByRole('heading', { name: 'From methods to practical system capability' }).isVisible());

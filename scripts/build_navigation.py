@@ -15,11 +15,10 @@ from datetime import datetime, timezone
 
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://fbratten.github.io"
-NAV = [("Projects", "/projects/"), ("Methods", "/methods/"),
-       ("Labs", "/labs/"), ("Articles", "/articles/"),
-       ("Blueprint AI Studio", "/blueprint-ai-studio/")]
-LABELS = {"/": "Home", "/projects/": "Projects", "/methods/": "Methods",
-          "/labs/": "Labs", "/articles/": "Articles", "/build-log/": "Build log",
+NAV = [("Home", "/"), ("Projects", "/projects/"), ("Methods & Labs", "/methods/"),
+       ("Writing", "/articles/"), ("Build log", "/build-log/"), ("About", "/#about")]
+LABELS = {"/": "Home", "/projects/": "Projects", "/methods/": "Methods & Labs",
+          "/labs/": "Labs", "/articles/": "Writing", "/build-log/": "Build log",
           "/blueprint-ai-studio/": "Blueprint AI Studio", "/all-pages/": "All pages",
           "/methods/solutions/": "Solution-space map",
           "/blueprint-ai-studio/labs/rules-authority-enforcement/": "Rules, authority & enforcement",
@@ -50,9 +49,9 @@ def path_url(path):
 
 
 def section_for(url):
-    if url.startswith("/methods/"): return "/methods/"
-    if url.startswith("/blueprint-ai-studio/labs/"): return "/labs/"
-    if url in ("/mads/", "/adaptivearts-ai/", "/gate-monitor/", "/vertex/", "/worktrace/", "/broker-lane-sandbox/"):
+    if url.startswith("/methods/") or url == "/labs/": return "/methods/"
+    if url.startswith("/blueprint-ai-studio/labs/"): return "/methods/"
+    if url in ("/blueprint-ai-studio/", "/mads/", "/adaptivearts-ai/", "/gate-monitor/", "/vertex/", "/worktrace/", "/broker-lane-sandbox/"):
         return "/projects/"
     return url
 
@@ -61,21 +60,27 @@ def navigation(url):
     links = []
     for label, href in NAV:
         current = ' aria-current="page"' if url == href else (' aria-current="true"' if section_for(url) == href else '')
-        links.append(f'<a href="{href}"{current}>{label}</a>')
+        links.append(f'<a href="{href}"{current}>{escape(label)}</a>')
     return '''<a class="fb-skip" href="#main">Skip to content</a>
 <div class="fb-header" role="banner"><div class="fb-header-inner">
 <a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
 <button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
-<nav class="fb-links" id="fb-primary" aria-label="Site navigation">''' + "".join(links) + "</nav></div></div>"
+<div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation">''' + "".join(links) + '''</nav>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai <span aria-hidden="true">&#8599;</span></a>
+<div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a></nav>
+</div></div></div>'''
 
 
 def breadcrumbs(url):
     if url == "/": return ""
     parts = [("Home", "/")]
     if url.startswith("/blueprint-ai-studio/labs/"):
-        parts += [("Blueprint AI Studio", "/blueprint-ai-studio/"), ("Labs", "/labs/")]
+        parts += [("Methods & Labs", "/methods/"), ("Labs", "/labs/")]
     elif url.startswith("/methods/") and url != "/methods/":
-        parts.append(("Methods", "/methods/"))
+        parts.append(("Methods & Labs", "/methods/"))
+    elif url == "/labs/":
+        parts.append(("Methods & Labs", "/methods/"))
     elif section_for(url) == "/projects/" and url != "/projects/":
         parts.append(("Projects", "/projects/"))
     items = "".join(f'<li><a href="{href}">{escape(label)}</a></li>' for label, href in parts)
@@ -93,6 +98,46 @@ def article_card(a):
 def progress_entry(p):
     links = "".join(f'<li><a href="{escape(s["url"], quote=True)}">{escape(s["label"])}</a></li>' for s in p["sources"])
     return f'''<article class="fb-progress-entry" id="{escape(p['id'])}"><div><time datetime="{p['date']}">{p['date']}</time><p><span class="fb-status">{escape(p['kind'])}</span></p></div><div><h3>{escape(p['title'])}</h3><p>{escape(p['summary'])}</p><ul aria-label="Evidence">{links}</ul></div></article>'''
+
+
+def resolve_progress(selection=None, public_log=None):
+    """Project journal entries can only project admitted public Build Log records."""
+    if selection is None: selection = json.loads((ROOT / "blueprint-ai-studio/progress.json").read_text())
+    if public_log is None: public_log = json.loads((ROOT / "build-log/entries.json").read_text())
+    entries = []
+    for reference in selection["entries"]:
+        matches = [row for row in public_log if row["date"] == reference["date"]
+                   and row["title"] == reference["build_log_title"]]
+        if len(matches) != 1 or matches[0]["state"] not in ("SHIPPED", "PUBLISHED", "VERIFIED"):
+            raise ValueError(f"Progress requires one admitted Build Log record: {reference['id']}")
+        source = matches[0]
+        entries.append({"id": reference["id"], "date": source["date"],
+                        "kind": source["state"].capitalize(), "title": source["title"],
+                        "summary": source["summary"], "sources": source["evidence"]})
+    return entries
+
+
+def directory_html():
+    groups = [
+        ("Start", [("/", "Home"), ("/projects/", "Projects"), ("/methods/", "Methods & Labs"),
+                   ("/labs/", "Lab directory"), ("/articles/", "Writing"), ("/build-log/", "Build log")]),
+        ("Flagships", [("/intelligence-engine-showcase/", "Intelligence Engine"),
+                       ("/mads/", "MADS"), ("/adaptivearts-ai/", "Adaptivearts.ai evidence"), ("/gate-monitor/", "Gate Monitor")]),
+        ("Blueprint AI Studio", [("/blueprint-ai-studio/", "Book, LMS and progress"),
+                                  ("/blueprint-ai-studio/labs/rules-authority-enforcement/", "Rules, Authority & Enforcement reader labs")]),
+        ("Supporting proofs", [("/vertex/", "Vertex"), ("/worktrace/", "Worktrace"),
+                              ("/broker-lane-sandbox/", "Broker Lane Sandbox"),
+                              ("/spine-showcase/recruiter-proof/", "SPINE evidence"),
+                              ("/Adaptive-MCP-Orchestrator-Blueprint-Showcase/recruiter-proof/", "Orchestrator evidence")]),
+        ("Methods: control and reasoning", [(f"/methods/{s}/", METHOD_NAMES[s]) for s in
+            ("5pp", "dialogue-lifecycle", "aics", "dialectic", "rigvedan", "hermeneutic-didactic", "dial4", "dial4plus", "dial4p-possibility", "pisd", "ipb")]),
+        ("Methods: orientation and capability", [(f"/methods/{s}/", METHOD_NAMES[s]) for s in
+            ("orbit", "sorr", "card-pointer", "srcb", "capability-gap", "csr", "cbe", "cbe-ix", "gdsa")]),
+        ("Maps and earlier work", [("/methods/solutions/", "Solution-space map"), ("/projects/#archive", "Earlier showcases and experiments")]),
+        ("Elsewhere", [("https://adaptivearts.ai/", "Adaptivearts.ai"), ("https://adaptivearts.ai/book/", "From Blueprint to Application"),
+                       ("https://blueprintaistudio.app/", "blueprintaistudio.app"), ("https://github.com/fbratten", "GitHub")])]
+    return "\n".join('<section><h2>' + escape(name) + '</h2>' + ''.join(
+        f'<a href="{href}">{escape(label)}</a>' for href, label in links) + '</section>' for name, links in groups)
 
 
 def rss(entries):
@@ -116,14 +161,24 @@ def rss(entries):
 
 def render():
     articles = json.loads((ROOT / "articles/entries.json").read_text())["articles"]
-    entries = json.loads((ROOT / "blueprint-ai-studio/progress.json").read_text())["entries"]
+    entries = resolve_progress()
     pages = sorted(ROOT.glob("**/index.html")) + [ROOT / "404.html"]
     pages = [p for p in pages if "node_modules" not in p.parts and ".git" not in p.parts]
     output = {}
-    footer = '''<footer class="fb-footer"><div><strong>Fredrik Bratten</strong><p>Applied AI, automation and reliable systems.</p></div><nav aria-label="Footer"><a href="/build-log/">Build log</a><a href="/all-pages/">All pages</a><a href="https://adaptivearts.ai/">Adaptivearts.ai</a><a href="https://github.com/fbratten">GitHub</a></nav></footer>'''
+    footer = '''<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a></nav>
+<nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
+<nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>'''
     for path in pages:
         url = path_url(path)
         text = path.read_text()
+        # Keep local footer notes, with one shared site footer landmark.
+        if '<!-- FB:FOOTER -->' not in text:
+            text = re.sub(r'<footer\b([^>]*)>([\s\S]*?)</footer>',
+                          lambda m: '<div class="fb-context-footer">' + m[2] + '</div>', text)
+            text = text.replace('</body>', '<!-- FB:FOOTER --><!-- /FB:FOOTER -->\n</body>')
+        # A page's existing hero header is an introduction, not a second site banner.
+        text = re.sub(r'<header\b(?![^>]*\brole=)([^>]*)>', r'<header role="region" aria-label="Page introduction"\1>', text)
         # Explicit labels make new pages a deliberate navigation decision.
         if url not in LABELS: raise ValueError(f"Missing page label: {url}")
         if "<!-- FB:HEAD -->" not in text:
@@ -140,8 +195,12 @@ def render():
         text = replace_block(text, "ARTICLES", "\n".join(article_card(a) for a in articles))
         text = replace_block(text, "CATEGORIES", "\n".join(f'<option value="{escape(c, quote=True)}">{escape(c)}</option>' for c in sorted({a["category"] for a in articles})))
         text = replace_block(text, "PROGRESS", "\n".join(progress_entry(p) for p in entries))
-        directory = "\n".join(f'<a href="{href}">{escape(label)}</a>' for href, label in sorted(LABELS.items(), key=lambda x: x[1]) if href != "/404.html")
-        text = replace_block(text, "DIRECTORY", directory)
+        published = next(p for p in entries if p["kind"] == "Published")
+        teaser = f'<div><time datetime="{published["date"]}">{published["date"]}</time><span>{escape(published["title"])}</span></div><div><span>Available now</span><span>Rules, Authority &amp; Enforcement reader labs</span></div><div><span>Coming soon</span><span>Blueprint AI Studio and its learning platform</span></div>'
+        text = replace_block(text, "BLUEPRINT-TEASER", teaser)
+        latest = json.loads((ROOT / "build-log/entries.json").read_text())[0]
+        text = replace_block(text, "BUILD-LATEST", f'<span>Latest verified update, <time datetime="{latest["date"]}">{latest["date"]}</time>: {escape(latest["title"])}.</span>')
+        text = replace_block(text, "DIRECTORY", directory_html())
         output[path] = text
     output[ROOT / "blueprint-ai-studio/feed.xml"] = rss(entries)
     sitemap = ET.Element("urlset", xmlns="http://www.sitemaps.org/schemas/sitemap/0.9")

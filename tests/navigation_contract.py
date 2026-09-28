@@ -64,17 +64,37 @@ assert (ROOT / 'articles/index.html').read_text().count('data-article ') == len(
 profiles = re.findall(r'class="card" href="\./([^/]+)/"', (ROOT / 'methods/index.html').read_text())
 assert len(profiles) == 20 and len(set(profiles)) == 20
 assert '18 published capabilities' not in (ROOT / 'index.html').read_text()
+import importlib.util
+spec = importlib.util.spec_from_file_location('navigation', ROOT / 'scripts/build_navigation.py')
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
 progress = json.loads((ROOT / 'blueprint-ai-studio/progress.json').read_text())
+resolved = module.resolve_progress()
+public_log = json.loads((ROOT / 'build-log/entries.json').read_text())
 ids = set()
-for p in progress['entries']:
+for p in resolved:
     assert p['id'] not in ids and p['sources']
-    assert p['kind'] in ('Status check', 'Published', 'Preview', 'Planned')
+    source = next(row for row in public_log if row['date'] == p['date'] and row['title'] == p['title'])
+    assert p['summary'] == source['summary'] and p['sources'] == source['evidence']
+    assert p['kind'] in ('Published', 'Shipped', 'Verified')
     assert p['date'] <= progress['verified_at']
     ids.add(p['id'])
+# A new project milestone cannot appear without an admitted Build Log record.
+for records in ([], [dict(public_log[0], state='PLANNED')]):
+    try:
+        module.resolve_progress({'entries': [progress['entries'][0]]}, records)
+    except ValueError:
+        pass
+    else:
+        raise AssertionError('Unadmitted progress was accepted')
 feed = ET.parse(ROOT / 'blueprint-ai-studio/feed.xml')
 assert len(feed.findall('./channel/item')) == len(ids)
-for path in [ROOT / 'index.html', ROOT / 'blueprint-ai-studio/index.html']:
+for path in [ROOT / 'index.html', ROOT / 'projects/index.html', ROOT / 'README.md', ROOT / 'blueprint-ai-studio/index.html', ROOT / 'blueprint-ai-studio/labs/rules-authority-enforcement/index.html']:
     assert 'https://adaptivearts.ai/book/' in path.read_text()
     assert 'subscribepage.io' not in path.read_text()
+    assert '/From-Blueprint-to-Application/' not in path.read_text()
+assert 'Historical public demo' in (ROOT / 'methods/5pp/index.html').read_text()
+assert 'Five-phase work protocol</h3>' in (ROOT / 'methods/index.html').read_text()
+assert 'Responsibility boundary design</h3>' in (ROOT / 'methods/index.html').read_text()
 if errors: raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(pages)} pages, {len(seen)} article cards, 20 methods, {len(ids)} progress entries; routes and anchors resolve.')

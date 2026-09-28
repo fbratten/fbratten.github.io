@@ -1,21 +1,26 @@
 # Portfolio navigation draft
 
 Prepared for review before merge or publication. Baseline: main at `b005601`.
+The reference-sketch refinement builds on PR #32 at `c7dc494`, using an isolated
+worktree. A fresh fetch found only that one unmerged site branch and PR.
 All 32 remote branches were inspected at the start; none contained an unmerged
 change relative to that main. No open PR competed with this work.
 
 ## Visitor routes
 
-- Home leads with projects, methods and practical labs.
+- Home leads with three visitor questions, four flagship cards, a Now building
+  panel for Blueprint and the book, writing, a Build Log update and About.
 - Projects keeps the four current flagships, supporting evidence and the earlier
   archive. Existing project URLs remain available.
-- Methods starts with problem finding, browsing and practice. The longer overview
+- Methods & Labs combines problem finding, 20 plain-language labels with their
+  published names, and six lab entry points. The longer overview
   is a native disclosure; all 20 profiles and their labs remain available.
 - Articles lists 46 public articles with original hero images, dates, excerpts
   and direct Adaptivearts.ai destinations. Text and category filtering are
   optional enhancements; the full directory works without JavaScript.
 - Blueprint AI Studio connects the book, published reader labs, planned studio
-  and LMS, and an evidence-linked project journal with an RSS feed.
+  and LMS, and an evidence-linked project journal with an RSS feed, derived from three
+  admitted Build Log entries (16, 17 and 28 September).
 - Shared static navigation, breadcrumbs, an all-pages directory, sitemap and
   404 page provide routes back. Other showcase repositories keep their own theme.
 
@@ -32,8 +37,24 @@ Checked 2026-09-28 (Europe/Stockholm):
 - PR #30 and the published reader lab: evidence for the CBE/CBE-IX lab milestone.
 
 No private source code, manuscript content or internal development receipts are
-copied into the public journal. No invented completion percentages or daily
-milestones. The initial status entry is labelled separately from shipped work.
+copied into the public journal. Current availability appears in the status cards;
+only admitted public Build Log records can become journal or RSS milestones.
+
+## Reference sketch and content decisions
+
+The supplied `Portfolio navigation sketch.html` is a design reference with ten
+views. The implementation follows its navigation, visitor questions, colored
+project cards, Now building/book composition, mobile menu and grouped footer.
+It uses the actual article images and book cover instead of placeholders.
+
+- The reference's "Five-point work protocol" is rendered as "Five-phase work
+  protocol", consistent with the current 5PP method source.
+- Chapter/template/demo counts and a preorder or signup call-to-action are not
+  newly asserted by this refinement. The maintained book destination remains
+  Adaptivearts.ai/book; platform status remains Coming soon.
+- Build Log is an internal route, so it is not marked as an external site.
+- Fixed-width artboard sizes and bundled design-tool runtime are not copied into
+  the production pages. Layout and the menu adapt to the available width.
 
 ## Maintain the journal
 
@@ -41,24 +62,28 @@ Daily monitoring produces a private status report and, when there is a material
 change, a proposed public update. It does not write to this repository or publish.
 After reviewing an update:
 
-1. Add a stable ID, date, status kind, concise outcome and public evidence links to
-   `blueprint-ai-studio/progress.json`. Update `verified_at` only after a new check.
-2. Keep old entries intact. Label corrections and distinguish Published, Preview,
-   Planned and Status check. An unchanged day needs no new milestone.
-3. Run `python scripts/build_navigation.py` to refresh HTML and RSS.
-4. Run the contract and browser checks, review the resulting diff and use a PR.
+1. Verify and admit the milestone to the public Build Log using its existing
+   publication contract.
+2. Add its exact date and title, plus a stable RSS ID, to
+   `blueprint-ai-studio/progress.json`. This file selects entries; it does not
+   duplicate summaries, evidence or status. The renderer refuses missing,
+   ambiguous or unadmitted entries.
+3. Run `python scripts/build_navigation.py` to refresh HTML and RSS, then review
+   the diff and run the contract/browser checks before a PR.
 
-Article updates use `articles/entries.json` and the same renderer. Preserve the
-original headline, hero image, date and destination. The generator also owns the
-navigation and breadcrumb blocks on each page. Add page labels there when adding
-a new local page.
+An unchanged day needs no new milestone. Article updates use
+`articles/entries.json` and the same renderer. Preserve the original headline,
+hero image, date and destination. The renderer also owns navigation, breadcrumbs
+and the shared footer on every page. Add page labels there for new local pages.
 
 ## Separate book-link change
 
 The obsolete `subscribepage.io/from-blueprint-to-application` destination is owned
 by the separate `From-Blueprint-to-Application` repository. A separate draft
 retires those links and the stale discount CTA in favor of Adaptivearts.ai's book
-overview. No older Cicerone files are involved. Adaptivearts.ai itself is not
+overview. The portfolio archive, README and reader-lab book entry points now point to
+Adaptivearts.ai/book rather than the old showcase. The 5PP Historical public
+demo link remains intact. No older Cicerone files are involved. Adaptivearts.ai itself is not
 modified by either draft; it may retain its own upstream signup link.
 
 ## Review and verification
@@ -89,5 +114,14 @@ pass. The local browser could not directly reach the Chart.js CDN; its exact
 public bytes were cached for the Canvas run. CI uses the normal CDN. All 47
 article/book images were fetched and decoded successfully. Nineteen method main
 bodies match the baseline; ORBIT has only the two unavailable-card changes noted
-above. No lab script or Build Log entry changed. The executable 5pp-gate was not
+above. Shared footer context is preserved and the Blueprint lab changes only its
+book destination and the common page frame. No lab script or Build Log entry changed. The executable 5pp-gate was not
 run; these are site and browser verification results, not a gate certificate.
+
+
+Reference refinement verification: all 20 method profile main bodies match PR
+#32 at c7dc494; lab scripts and Build Log source entries remain unchanged. Static
+checks, all existing browser suites and the refined navigation pass locally.
+The progress contract also checks rejection of missing or unadmitted Build Log
+entries. Desktop, mobile, open-menu and full-home visual checks were inspected.
+The portable preview preserves the current page when following an in-page link.

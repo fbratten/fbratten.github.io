@@ -77,9 +77,9 @@ def check_homepage() -> list[str]:
     text = (ROOT / "index.html").read_text(encoding="utf-8")
     failures: list[str] = []
     required = [
-        "Explore the work", "Find a method", "Try a lab", "Build log",
-        "All articles", "Follow the project", "From Blueprint to Application",
-        'href="/methods/"', 'href="/projects/"', 'href="/labs/"',
+        "Explore selected work", "Find a method", "Try the labs", "Build log",
+        "All 46 articles", "Follow the progress", "From Blueprint to Application",
+        'href="/methods/"', 'href="/projects/"', 'href="/methods/#labs"',
         'href="/articles/"', 'href="/blueprint-ai-studio/"', 'href="/build-log/"',
         'href="/intelligence-engine-showcase/"', 'href="/mads/"',
         'href="/adaptivearts-ai/"', 'href="/gate-monitor/"',

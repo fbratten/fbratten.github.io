@@ -6,18 +6,25 @@
     <description>Dated public progress for Blueprint AI Studio, its LMS and From Blueprint to Application.</description>
     <language>en</language>
     <item>
-      <title>The book, reader labs and the next chapter</title>
-      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-public-baseline</link>
-      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-public-baseline</guid>
-      <description>The book overview is available on Adaptivearts.ai, and the public reader lab includes CBE and CBE-IX exercises. The blueprintaistudio.app domain currently shows a coming-soon page. Studio and LMS development are the next part of the project; there is no public LMS launch to announce yet.</description>
+      <title>CBE and CBE-IX: boundary design profiles and interactive labs</title>
+      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-boundary-labs</link>
+      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-boundary-labs</guid>
+      <description>Published separate CBE and CBE-IX method profiles with interactive teaching labs, added composition examples to all 18 existing profiles, and extended the 5PP, Dialogue Lifecycle, AICS and Blueprint labs. The solution atlas now links the methods through a bounded capability-design pattern; browser checks passed against the deployed site.</description>
       <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
     </item>
     <item>
-      <title>Capability boundaries become hands-on exercises</title>
-      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-boundary-labs</link>
-      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-boundary-labs</guid>
-      <description>CBE and CBE-IX profiles, worked examples and interactive labs are published. The Blueprint reader lab connects the two methods to the difference between a rule, authority and effective enforcement.</description>
-      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+      <title>When a Rule Is Not a Control</title>
+      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-17-rule-control</link>
+      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-17-rule-control</guid>
+      <description>Published a technical guide on separating instruction, authority, enforcement, verification and preservation when AI agents can change real state, including bounded behavioural evidence from the implementation case.</description>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Rules, Authority &amp; Enforcement reader labs</title>
+      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-16-reader-labs</link>
+      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-16-reader-labs</guid>
+      <description>Shipped interactive synthetic reader labs for exploring the difference between an instruction, actual authority, enforcement, verification and preservation in agentic systems, with dedicated browser interaction checks.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
     </item>
   </channel>
 </rss>

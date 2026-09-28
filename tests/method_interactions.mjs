@@ -144,7 +144,7 @@ try {
   const page = await browser.newPage({ viewport: { width: 1280, height: 960 } });
   try {
     await page.goto(`${baseUrl}/`, { waitUntil: 'networkidle' });
-    await page.getByText('Explore the work', { exact: true }).first().waitFor();
+    await page.getByText('Explore selected work', { exact: true }).first().waitFor();
     await page.getByText('Find a method', { exact: true }).first().waitFor();
     const body = await page.textContent('body');
     if (body?.includes('Prompt Engineering Aficionado')) {

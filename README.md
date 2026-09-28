@@ -33,7 +33,7 @@ Personal landing page for Fredrik Brattén.
 - [8me](https://fbratten.github.io/8me-showcase/) - Autonomous loop toolkit
 - [SPINE](https://fbratten.github.io/spine-showcase/) - Context engineering backbone
 - [Intelligence Engine](https://fbratten.github.io/intelligence-engine-showcase/) - Schema-driven knowledge graphs and hybrid retrieval
-- [From Blueprint to Application](https://fbratten.github.io/From-Blueprint-to-Application/) - Enterprise Prompt Engineering book
+- [From Blueprint to Application](https://adaptivearts.ai/book/) - Enterprise Prompt Engineering book
 - And more...
 
 ---

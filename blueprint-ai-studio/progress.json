@@ -1,44 +1,22 @@
 {
   "project": "Blueprint AI Studio",
   "verified_at": "2026-09-28",
+  "source": "../build-log/entries.json",
   "entries": [
-    {
-      "id": "2026-09-28-public-baseline",
-      "date": "2026-09-28",
-      "kind": "Status check",
-      "title": "The book, reader labs and the next chapter",
-      "summary": "The book overview is available on Adaptivearts.ai, and the public reader lab includes CBE and CBE-IX exercises. The blueprintaistudio.app domain currently shows a coming-soon page. Studio and LMS development are the next part of the project; there is no public LMS launch to announce yet.",
-      "sources": [
-        {
-          "label": "Book overview",
-          "url": "https://adaptivearts.ai/book/"
-        },
-        {
-          "label": "Try the reader lab",
-          "url": "https://fbratten.github.io/blueprint-ai-studio/labs/rules-authority-enforcement/"
-        },
-        {
-          "label": "Studio domain",
-          "url": "https://blueprintaistudio.app/"
-        }
-      ]
-    },
     {
       "id": "2026-09-28-boundary-labs",
       "date": "2026-09-28",
-      "kind": "Published",
-      "title": "Capability boundaries become hands-on exercises",
-      "summary": "CBE and CBE-IX profiles, worked examples and interactive labs are published. The Blueprint reader lab connects the two methods to the difference between a rule, authority and effective enforcement.",
-      "sources": [
-        {
-          "label": "Published change (PR #30)",
-          "url": "https://github.com/fbratten/fbratten.github.io/pull/30"
-        },
-        {
-          "label": "Portfolio build log",
-          "url": "https://fbratten.github.io/build-log/"
-        }
-      ]
+      "build_log_title": "CBE and CBE-IX: boundary design profiles and interactive labs"
+    },
+    {
+      "id": "2026-09-17-rule-control",
+      "date": "2026-09-17",
+      "build_log_title": "When a Rule Is Not a Control"
+    },
+    {
+      "id": "2026-09-16-reader-labs",
+      "date": "2026-09-16",
+      "build_log_title": "Rules, Authority & Enforcement reader labs"
     }
   ]
 }

@@ -41,18 +41,26 @@ body { margin:0; background:#09131c; color:#eaf2f7; font:13px/1.5 system-ui,sans
 const pages = PAYLOAD;
 const frame = document.querySelector('iframe');
 let anchor = '';
+let currentRoute = null;
 function render() {
   let requested;
   try { requested = decodeURIComponent(location.hash.slice(1)) || '/'; } catch { requested = '/'; }
   const split = requested.indexOf('#');
   const route = split < 0 ? requested : requested.slice(0, split);
   anchor = split < 0 ? '' : requested.slice(split + 1);
+  if (route === currentRoute) {
+    frame.contentWindow.postMessage({previewAnchor:anchor || 'main'}, '*');
+    return;
+  }
+  currentRoute = route;
   frame.srcdoc = pages[route] || pages['/404.html'];
 }
 frame.addEventListener('load', () => { if (anchor) frame.contentWindow.postMessage({previewAnchor:anchor}, '*'); });
 window.addEventListener('message', event => {
   if (event.source !== frame.contentWindow || typeof event.data.previewRoute !== 'string') return;
-  location.hash = encodeURIComponent(event.data.previewRoute);
+  const next = '#' + encodeURIComponent(event.data.previewRoute);
+  if (location.hash === next) render();
+  else location.hash = next;
 });
 window.addEventListener('hashchange', render);
 render();
