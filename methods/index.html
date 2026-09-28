@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Capability inventory and public-safe profiles of methods, protocols, frameworks and prompt systems across the fbratten technical ecosystem.">
-  <title>Methods, Protocols & Prompt Systems</title>
+  <title>Methods &amp; Labs | Fredrik Bratten</title>
   <style>
     :root { color-scheme: dark; --bg:#071018; --panel:#101f2c; --line:#284052; --text:#eaf2f7; --muted:#9cb0bd; --accent:#53d3a7; }
     * { box-sizing:border-box; }
@@ -38,18 +38,74 @@
     @media(max-width:900px){ .value-grid,.problem-grid{grid-template-columns:1fr 1fr;} }
     @media(max-width:800px){ .grid,.axis-grid{grid-template-columns:1fr 1fr;} }
     @media(max-width:560px){ .grid,.value-grid,.axis-grid,.problem-grid{grid-template-columns:1fr;} header{flex-direction:column;} }
-  </style>
+  .method-overview { margin:0 0 2rem; } .method-overview > summary { cursor:pointer; padding:1rem; border:1px solid #38594e; border-radius:.5rem; color:#b0eccd; } .hero { padding-top:3rem; }
+</style>
+<!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
 </head>
-<body>
-  <header><strong>Methods, Protocols & Prompt Systems</strong><a href="../">Portfolio</a></header>
-  <main>
+<body class="fb-methods">
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation"><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/" aria-current="page">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/build-log/">Build log</a><a href="/#about">About</a></nav>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
+<div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a></nav>
+</div></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><span aria-current="page">Methods &amp; Labs</span></li></ol></nav>
+<!-- /FB:NAV -->
+
+  <main id="main">
     <section class="hero">
-      <span class="eyebrow">Capability inventory + public proof surface</span>
-      <h1>The systems behind the systems</h1>
-      <p>This catalog maps reusable capabilities developed around applied AI, automation, agent systems, context engineering, reasoning and governed execution. The profiles make the underlying methods inspectable: what problem each one addresses, how it works, where it composes with other systems and which boundaries it preserves.</p>
+      <span class="eyebrow">20 methods / Practical ways to work</span>
+      <h1>Methods &amp; Labs</h1>
+      <p>20 published methods for bounded, reviewable AI work. Start from your problem, browse them by name or try one in a lab.</p>
+    </section>
+<nav class="fb-section-tabs" aria-label="Methods and labs"><a href="#find-by-problem">Find by problem</a><a href="#all-methods">Browse all 20 methods</a><a href="#labs">Try the labs</a><a href="./solutions/">Solution-space map</a></nav>
+<section class="fb-method-problems" id="find-by-problem"><div class="section-head"><span class="eyebrow">Find by problem</span><h2>What is getting in your way?</h2></div><div class="fb-grid fb-grid-two"><a class="fb-route fb-tone-teal" href="#control-execution"><span class="fb-route-number">Control and execution</span><h3>AI work drifts, skips steps or acts before it should.</h3><p>Bound work, decisions, instructions and risky actions.</p><span class="fb-card-cta">See 3 methods &#8594;</span></a><a class="fb-route fb-tone-violet" href="#reasoning-interpretation"><span class="fb-route-number">Reasoning and interpretation</span><h3>Claims, uncertainty or competing options are hard to judge.</h3><p>Work with evidence, alternatives and independent baselines.</p><span class="fb-card-cta">See 8 methods &#8594;</span></a><a class="fb-route fb-tone-blue" href="#orientation-context"><span class="fb-route-number">Orientation and context</span><h3>People or agents lose track of what things are and what to trust.</h3><p>Resolve identity, provenance, relationships and relevant context.</p><span class="fb-card-cta">See 4 methods &#8594;</span></a><a class="fb-route fb-tone-amber" href="#capability-discovery"><span class="fb-route-number">Discovery and design</span><h3>We keep rebuilding what exists, or nobody owns the gap.</h3><p>Find, reconcile and complete bounded capabilities before building more.</p><span class="fb-card-cta">See 5 methods &#8594;</span></a></div></section>
+<section class="section-head" id="all-methods"><span class="eyebrow">Browse</span><h2>All 20 methods</h2><p>Plain names first, published method names underneath.</p></section>
+
+
+    <section id="control-execution" class="section-head"><span class="eyebrow">Control and execution</span><h2>How work is bounded, staged and governed</h2><p>Systems that control execution phases, dialogue transitions and instruction contracts.</p></section>
+    <section class="grid" aria-label="Control and execution profiles">
+      <a class="card" href="./5pp/"><span class="kind">Work protocol</span><h3>5 Point Protocol</h3><span class="fb-method-code">5PP</span><p>5 Point Protocol with deterministic gates, compliance evidence and bounded execution discipline.</p></a>
+      <a class="card" href="./dialogue-lifecycle/"><span class="kind">Lifecycle</span><h3>Conversation phases</h3><span class="fb-method-code">Dialogue lifecycle</span><p>EXPLORE, CLARIFY, DECIDE, EXECUTE, VERIFY and CLOSE as a separate when-control system.</p></a>
+      <a class="card" href="./aics/"><span class="kind">Instruction contracts</span><h3>Instruction contracts</h3><span class="fb-method-code">AICS</span><p>Versioned instruction-contract specification with semantic atoms, execution gates, projections and conformance mechanisms.</p></a>
     </section>
 
-    <section class="section-head"><span class="eyebrow">What this capability estate enables</span><h2>From methods to practical system capability</h2><p>The value is not in isolated terminology. These systems combine into repeatable ways of designing, evaluating and operating AI-assisted work where context, uncertainty, authority and execution need to remain understandable.</p></section>
+    <section id="reasoning-interpretation" class="section-head"><span class="eyebrow">Reasoning and interpretation</span><h2>How claims, discourse and alternatives are worked</h2><p>Methods and representations for interpretation, inference, claim-strength control, possibility preservation and independent comparison.</p></section>
+    <section class="grid" aria-label="Reasoning and interpretation profiles">
+      <a class="card" href="./dialectic/"><span class="kind">Reasoning loop</span><h3>Iterative reasoning loop</h3><span class="fb-method-code">DIALECTIC</span><p>Iterative heuristic-hermeneutic reasoning with bounded convergence and persistent knowledge units.</p></a>
+      <a class="card" href="./rigvedan/"><span class="kind">Semantic grammar</span><h3>Semantic grammar</h3><span class="fb-method-code">RigVedan</span><p>EBNF-RV grammar, temporal markers, semantic axes and typed knowledge units.</p></a>
+      <a class="card" href="./hermeneutic-didactic/"><span class="kind">Interpretation method</span><h3>Interpretation and teaching runs</h3><span class="fb-method-code">Hermeneutic-didactic</span><p>Comparative profile of iterative interpretation and deterministic run pedagogy.</p></a>
+      <a class="card" href="./dial4/"><span class="kind">Claim reasoning</span><h3>Claim modes</h3><span class="fb-method-code">DIAL-4</span><p>Deduction, Inference, Abatement and Legitimation as separate claim modes.</p></a>
+      <a class="card" href="./dial4plus/"><span class="kind">Claim grading</span><h3>Claim-strength grading</h3><span class="fb-method-code">DIAL-4+</span><p>Claim-strength grading across confidence, evidence quality and scope.</p></a>
+      <a class="card" href="./dial4p-possibility/"><span class="kind">Possibility preservation</span><h3>Keeping options open</h3><span class="fb-method-code">DIAL-4P Possibility</span><p>Possibility preservation and implementation governance without collapsing options too early.</p></a>
+      <a class="card" href="./pisd/"><span class="kind">Discourse decomposition</span><h3>Discourse before intent</h3><span class="fb-method-code">PISD</span><p>Pre-Intent Semantic Decomposition preserves discourse structure before reliable intent or task commitment exists.</p></a>
+      <a class="card" href="./ipb/"><span class="kind">Independent baseline</span><h3>Independent first-pass baseline</h3><span class="fb-method-code">IPB</span><p>Independent Predefinition Baseline preserves first-pass evidence before a developing definition can shape the comparison.</p></a>
+    </section>
+
+    <section id="orientation-context" class="section-head"><span class="eyebrow">Orientation, semantics and context</span><h2>How subjects are identified, related and made understandable</h2><p>Systems for provenance-aware orientation, semantic resolution, bounded representation, routing and context acquisition.</p></section>
+    <section class="grid" aria-label="Orientation semantics and context profiles">
+      <a class="card" href="./orbit/"><span class="kind">Orientation framework</span><h3>Orientation framework</h3><span class="fb-method-code">ORBIT</span><p>Typed provenance-aware orientation nodes, routing planes, source-truth barriers and consumer projections.</p></a>
+      <a class="card" href="./sorr/"><span class="kind">Semantic resolution</span><h3>Semantic resolution</h3><span class="fb-method-code">SORR</span><p>Semantic resolution for identity, representation, relationships, evidence, scope, time and authority while preserving uncertainty.</p></a>
+      <a class="card" href="./card-pointer/"><span class="kind">Orientation and routing</span><h3>Orientation cards and typed links</h3><span class="fb-method-code">CARD & POINTER</span><p>Bounded semantic orientation plus typed reference and relationship routing with claim-scoped authority.</p></a>
+      <a class="card" href="./srcb/"><span class="kind">Context method</span><h3>Context bootstrap</h3><span class="fb-method-code">SRCB</span><p>Subject Reconnaissance and Context Bootstrap builds bounded, source-aware context from distributed evidence.</p></a>
+    </section>
+
+    <section id="capability-discovery" class="section-head"><span class="eyebrow">Capability discovery, design and activation</span><h2>How capability is found, reconciled, developed and used</h2><p>Methods for avoiding false novelty, reconciling distributed capability representations, closing internal responsibility gaps and moving durable subjects into bounded use.</p></section>
+    <section class="grid" aria-label="Capability discovery design and activation profiles">
+      <a class="card" href="./capability-gap/"><span class="kind">Discovery gate</span><h3>Reuse before building</h3><span class="fb-method-code">Capability-Gap Reconnaissance</span><p>Reuse-before-create discovery across distributed capability surfaces before new work is justified.</p></a>
+      <a class="card" href="./csr/"><span class="kind">Capability reconciliation</span><h3>Capability reconciliation</h3><span class="fb-method-code">CSR</span><p>Capability Surface Reconciliation maps realization states, representation relationships, coverage and the smallest sufficient intervention.</p></a>
+      <a class="card" href="./cbe/"><span class="kind">Capability design</span><h3>Responsibility boundary design</h3><span class="fb-method-code">CBE</span><p>Capability Boundary Expander closes internal responsibility gaps with KEEP, SPLIT, DELEGATE and REJECT while preserving peer boundaries.</p></a>
+      <a class="card" href="./cbe-ix/"><span class="kind">Iterative capability design</span><h3>Iterative boundary design</h3><span class="fb-method-code">CBE-IX</span><p>Iterative Exhaustion follows a bounded expansion frontier to a semantic fixed point or an explicit stopping condition.</p></a>
+      <a class="card" href="./gdsa/"><span class="kind">Discoverability and activation</span><h3>Discoverability and activation</h3><span class="fb-method-code">GDSA</span><p>Governed Discoverability, Surfacing and Activation separates durable existence, relevance, authorization, use and verification.</p></a>
+    </section>
+
+    <div class="cta">For a deeper view of how these capabilities translate into working software and operational evidence, continue to the <a href="../#proof-packages">proof packages</a>, the <a href="https://github.com/fbratten">source repositories</a> or <a href="https://adaptivearts.ai/">Adaptivearts.ai</a>.</div>
+  <section class="fb-method-labs" id="labs"><div class="section-head"><span class="eyebrow">Practice</span><h2>Six labs to start with</h2><p>Interactive experiments using synthetic data. No account needed.</p></div><div class="fb-grid"><a class="fb-route" href="/blueprint-ai-studio/labs/rules-authority-enforcement/"><span class="fb-route-number">Blueprint reader lab</span><h3>Rules, authority &amp; enforcement</h3><p>See why a written rule is not always an effective control. Includes CBE and CBE-IX exercises.</p><span class="fb-arrow" aria-hidden="true">&#8599;</span></a><a class="fb-route" href="/methods/cbe/#lab"><span class="fb-route-number">CBE / Classification</span><h3>Complete a capability boundary</h3><p>Classify responsibilities, keep legitimate work and define handoffs to neighboring services.</p><span class="fb-arrow" aria-hidden="true">&#8599;</span></a><a class="fb-route" href="/methods/cbe-ix/#lab"><span class="fb-route-number">CBE-IX / Iteration</span><h3>Know why iteration stopped</h3><p>Follow an evolving design through gaps, handoffs, blocked decisions and identity drift.</p><span class="fb-arrow" aria-hidden="true">&#8599;</span></a><a class="fb-route" href="/methods/5pp/"><span class="fb-route-number">5PP / Work protocol</span><h3>Check a complete work record</h3><p>Try 5 Point Protocol and distinguish a complete record from permission to proceed.</p><span class="fb-arrow" aria-hidden="true">&#8599;</span></a><a class="fb-route" href="/methods/dialogue-lifecycle/"><span class="fb-route-number">Dialogue Lifecycle</span><h3>Navigate a dialogue</h3><p>Explore when to clarify, decide, execute and verify during AI-assisted work.</p><span class="fb-arrow" aria-hidden="true">&#8599;</span></a><a class="fb-route" href="/methods/solutions/"><span class="fb-route-number">Solution-space map</span><h3>Assemble a method stack</h3><p>Explore 11 recurring patterns and find a suitable combination of methods.</p><span class="fb-arrow" aria-hidden="true">&#8599;</span></a></div></section><details class="method-overview"><summary>How the methods fit together: problems, roles and combinations</summary>    <section class="section-head"><span class="eyebrow">What this capability estate enables</span><h2>From methods to practical system capability</h2><p>The value is not in isolated terminology. These systems combine into repeatable ways of designing, evaluating and operating AI-assisted work where context, uncertainty, authority and execution need to remain understandable.</p></section>
     <section class="value-grid" aria-label="Capability value map">
       <article class="value-card"><span class="kind">Reliable delivery</span><h3>Bound AI-assisted work</h3><p>Stage work explicitly, preserve decision gates, constrain risky actions and verify outcomes instead of treating model output as completed execution.</p></article>
       <article class="value-card"><span class="kind">Context integrity</span><h3>Know what the system is reasoning about</h3><p>Resolve identity, provenance, relationships and source authority across distributed repositories, documents, memory and runtime evidence.</p></article>
@@ -80,44 +136,13 @@
     <div class="note">The catalog is organized by function rather than development stage. Problem classes above are solution patterns: they show how capabilities compose without implying that every problem always requires the full combination.</div>
     <div class="cta">The problem-space map is the entry layer. Continue to the <a href="./solutions/">solution-space map</a> to see how the current capabilities assemble into reusable solution patterns across lifecycle position and operating scale.</div>
 
-    <section id="control-execution" class="section-head"><span class="eyebrow">Control and execution</span><h2>How work is bounded, staged and governed</h2><p>Systems that control execution phases, dialogue transitions and instruction contracts.</p></section>
-    <section class="grid" aria-label="Control and execution profiles">
-      <a class="card" href="./5pp/"><span class="kind">Work protocol</span><h3>5PP</h3><p>Five-phase work protocol with deterministic gates, compliance evidence and bounded execution discipline.</p></a>
-      <a class="card" href="./dialogue-lifecycle/"><span class="kind">Lifecycle</span><h3>Dialogue lifecycle</h3><p>EXPLORE, CLARIFY, DECIDE, EXECUTE, VERIFY and CLOSE as a separate when-control system.</p></a>
-      <a class="card" href="./aics/"><span class="kind">Instruction contracts</span><h3>AICS</h3><p>Versioned instruction-contract specification with semantic atoms, execution gates, projections and conformance mechanisms.</p></a>
-    </section>
-
-    <section id="reasoning-interpretation" class="section-head"><span class="eyebrow">Reasoning and interpretation</span><h2>How claims, discourse and alternatives are worked</h2><p>Methods and representations for interpretation, inference, claim-strength control, possibility preservation and independent comparison.</p></section>
-    <section class="grid" aria-label="Reasoning and interpretation profiles">
-      <a class="card" href="./dialectic/"><span class="kind">Reasoning loop</span><h3>DIALECTIC</h3><p>Iterative heuristic-hermeneutic reasoning with bounded convergence and persistent knowledge units.</p></a>
-      <a class="card" href="./rigvedan/"><span class="kind">Semantic grammar</span><h3>RigVedan</h3><p>EBNF-RV grammar, temporal markers, semantic axes and typed knowledge units.</p></a>
-      <a class="card" href="./hermeneutic-didactic/"><span class="kind">Interpretation method</span><h3>Hermeneutic-didactic</h3><p>Comparative profile of iterative interpretation and deterministic run pedagogy.</p></a>
-      <a class="card" href="./dial4/"><span class="kind">Claim reasoning</span><h3>DIAL-4</h3><p>Deduction, Inference, Abatement and Legitimation as separate claim modes.</p></a>
-      <a class="card" href="./dial4plus/"><span class="kind">Claim grading</span><h3>DIAL-4+</h3><p>Claim-strength grading across confidence, evidence quality and scope.</p></a>
-      <a class="card" href="./dial4p-possibility/"><span class="kind">Possibility preservation</span><h3>DIAL-4P Possibility</h3><p>Possibility preservation and implementation governance without collapsing options too early.</p></a>
-      <a class="card" href="./pisd/"><span class="kind">Discourse decomposition</span><h3>PISD</h3><p>Pre-Intent Semantic Decomposition preserves discourse structure before reliable intent or task commitment exists.</p></a>
-      <a class="card" href="./ipb/"><span class="kind">Independent baseline</span><h3>IPB</h3><p>Independent Predefinition Baseline preserves first-pass evidence before a developing definition can shape the comparison.</p></a>
-    </section>
-
-    <section id="orientation-context" class="section-head"><span class="eyebrow">Orientation, semantics and context</span><h2>How subjects are identified, related and made understandable</h2><p>Systems for provenance-aware orientation, semantic resolution, bounded representation, routing and context acquisition.</p></section>
-    <section class="grid" aria-label="Orientation semantics and context profiles">
-      <a class="card" href="./orbit/"><span class="kind">Orientation framework</span><h3>ORBIT</h3><p>Typed provenance-aware orientation nodes, routing planes, source-truth barriers and consumer projections.</p></a>
-      <a class="card" href="./sorr/"><span class="kind">Semantic resolution</span><h3>SORR</h3><p>Semantic resolution for identity, representation, relationships, evidence, scope, time and authority while preserving uncertainty.</p></a>
-      <a class="card" href="./card-pointer/"><span class="kind">Orientation and routing</span><h3>CARD & POINTER</h3><p>Bounded semantic orientation plus typed reference and relationship routing with claim-scoped authority.</p></a>
-      <a class="card" href="./srcb/"><span class="kind">Context method</span><h3>SRCB</h3><p>Subject Reconnaissance and Context Bootstrap builds bounded, source-aware context from distributed evidence.</p></a>
-    </section>
-
-    <section id="capability-discovery" class="section-head"><span class="eyebrow">Capability discovery, design and activation</span><h2>How capability is found, reconciled, developed and used</h2><p>Methods for avoiding false novelty, reconciling distributed capability representations, closing internal responsibility gaps and moving durable subjects into bounded use.</p></section>
-    <section class="grid" aria-label="Capability discovery design and activation profiles">
-      <a class="card" href="./capability-gap/"><span class="kind">Discovery gate</span><h3>Capability-Gap Reconnaissance</h3><p>Reuse-before-create discovery across distributed capability surfaces before new work is justified.</p></a>
-      <a class="card" href="./csr/"><span class="kind">Capability reconciliation</span><h3>CSR</h3><p>Capability Surface Reconciliation maps realization states, representation relationships, coverage and the smallest sufficient intervention.</p></a>
-      <a class="card" href="./cbe/"><span class="kind">Capability design</span><h3>CBE</h3><p>Capability Boundary Expander closes internal responsibility gaps with KEEP, SPLIT, DELEGATE and REJECT while preserving peer boundaries.</p></a>
-      <a class="card" href="./cbe-ix/"><span class="kind">Iterative capability design</span><h3>CBE-IX</h3><p>Iterative Exhaustion follows a bounded expansion frontier to a semantic fixed point or an explicit stopping condition.</p></a>
-      <a class="card" href="./gdsa/"><span class="kind">Discoverability and activation</span><h3>GDSA</h3><p>Governed Discoverability, Surfacing and Activation separates durable existence, relevance, authorization, use and verification.</p></a>
-    </section>
-
-    <div class="cta">For a deeper view of how these capabilities translate into working software and operational evidence, continue to the <a href="../#proof-packages">proof packages</a>, the <a href="https://github.com/fbratten">source repositories</a> or <a href="https://adaptivearts.ai/">Adaptivearts.ai</a>.</div>
-  </main>
-  <footer>Public-safe presentation layer. Deeper source authority remains with the owning repositories, records and contracts.</footer>
+</details></main>
+  <div class="fb-context-footer">Public-safe presentation layer. Deeper source authority remains with the owning repositories, records and contracts.</div>
+<!-- FB:FOOTER -->
+<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a></nav>
+<nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
+<nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>
+<!-- /FB:FOOTER -->
 </body>
 </html>

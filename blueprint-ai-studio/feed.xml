@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Blueprint AI Studio - Project progress</title>
+    <link>https://fbratten.github.io/blueprint-ai-studio/</link>
+    <description>Dated public progress for Blueprint AI Studio, its LMS and From Blueprint to Application.</description>
+    <language>en</language>
+    <item>
+      <title>CBE and CBE-IX added to the reader labs</title>
+      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-boundary-labs</link>
+      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-28-boundary-labs</guid>
+      <description>The Rules, Authority &amp; Enforcement reader labs now include CBE and CBE-IX boundary-design exercises. Two new method profiles bring the site to 20 methods, with composition examples added to the 18 earlier profiles.</description>
+      <pubDate>Mon, 28 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>When a Rule Is Not a Control</title>
+      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-17-rule-control</link>
+      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-17-rule-control</guid>
+      <description>Published a technical guide on separating instruction, authority, enforcement, verification and preservation when AI agents can change real state, including bounded behavioural evidence from the implementation case.</description>
+      <pubDate>Thu, 17 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+    <item>
+      <title>Rules, Authority &amp; Enforcement reader labs</title>
+      <link>https://fbratten.github.io/blueprint-ai-studio/#2026-09-16-reader-labs</link>
+      <guid isPermaLink="true">https://fbratten.github.io/blueprint-ai-studio/#2026-09-16-reader-labs</guid>
+      <description>Shipped interactive synthetic reader labs for exploring the difference between an instruction, actual authority, enforcement, verification and preservation in agentic systems, with dedicated browser interaction checks.</description>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+    </item>
+  </channel>
+</rss>

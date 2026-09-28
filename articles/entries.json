@@ -1,0 +1,420 @@
+{
+  "source": "https://adaptivearts.ai/blog/",
+  "verified_at": "2026-09-28",
+  "articles": [
+    {
+      "title": "When a Rule Is Not a Control",
+      "date": "2026-09-17",
+      "category": "Technical Guide",
+      "summary": "A rule can be present, understood and structurally valid while the boundary it describes still isn't reliably enforced. A practical look at instruction, authority, enforcement, verification and preservation for AI agents, with hands-on reader labs.",
+      "url": "https://adaptivearts.ai/blog/when-a-rule-is-not-a-control",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1789690265678-hero-when-a-rule-is-not-a-control.png",
+      "image_alt": "The same woman appears five times in one warm office scene, each performing a different part of a control system: pinning up a printed notice, presenting an access keycard at a reader, holding open a glass door, reviewing a printed checklist, and closing a storage box."
+    },
+    {
+      "title": "When Names Stop Meaning the Same Thing",
+      "date": "2026-08-26",
+      "category": "Technical Guide",
+      "summary": "AI systems often encounter names, paths, repositories and pages that appear to refer to the same thing. This article shows how to separate observed surfaces from candidate subjects, evaluate identity from evidence and preserve unresolved cases instead of turning labels into identity verdicts.",
+      "url": "https://adaptivearts.ai/blog/when-names-stop-meaning-the-same-thing",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1789019804713-when-names-stop-meaning-the-same-thing-39214.png",
+      "image_alt": "Cover image: when-names-stop-meaning-the-same-thing-39214"
+    },
+    {
+      "title": "Are Companies Really Ready for AI? The Real Problem Is Not the Technology",
+      "date": "2026-07-22",
+      "category": "Essay",
+      "summary": "AI readiness is not a technology problem. The greatest advantage goes to organisations that can describe, observe, govern, automate and verify how they work.",
+      "url": "https://adaptivearts.ai/blog/are-companies-really-ready-for-ai",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/are-companies-really-ready-for-ai/01-hero.jpg",
+      "image_alt": "Professionals in an operations room in front of a wall display where a noisy tangle of lines resolves into a clear ordered system."
+    },
+    {
+      "title": "When the System Works Because the Agent Does",
+      "date": "2026-07-14",
+      "category": "Essay",
+      "summary": "A project can be operationally complete while its safety depends on an agent remembering to check. What compensation reviews reveal about control maturity.",
+      "url": "https://adaptivearts.ai/blog/when-the-system-works-because-the-agent-does",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1784038348138-01-hero.png",
+      "image_alt": "A calm engineering scene in which a large stable structure is quietly supported at one hidden point by a small human-scale brace."
+    },
+    {
+      "title": "Throwback Thursday: Remember When We Separated Judgement from Control?",
+      "date": "2026-07-12",
+      "category": "Essay",
+      "summary": "Generative AI added probabilistic judgement to systems built on explicit state and control. That is a gift, not a flaw, as long as judgement does not quietly become control. A return to four fundamentals of AI system design.",
+      "url": "https://adaptivearts.ai/blog/throwback-thursday-remember-when-we-separated-judgement-from-control",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1784027556333-01-hero.png",
+      "image_alt": "Illustration of a system in which a small judgement module proposes actions with dashed arrows while interlocking machinery blocks own state, transitions, limits and verification"
+    },
+    {
+      "title": "Preserve First, Verify the Verifier, Reconcile Later",
+      "date": "2026-07-10",
+      "category": "Case Study",
+      "summary": "An operational case study - landing AI-written commits next to irreplaceable untracked files, catching a verification harness that silently discarded its own findings, and the reusable pattern that came out of it.",
+      "url": "https://adaptivearts.ai/blog/preserve-first-verify-the-verifier",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1783649381000-hero-preserve-first-preserve-first.png",
+      "image_alt": "Preserve First, Verify the Verifier, Reconcile Later"
+    },
+    {
+      "title": "Stop Feeding Agents the Whole Manual",
+      "date": "2026-07-07",
+      "category": "Technical Guide",
+      "summary": "Route first, read small, escalate only on conflict - a practical pattern for keeping AI agents productive across long projects, with a measured case study.",
+      "url": "https://adaptivearts.ai/blog/stop-feeding-agents-the-whole-manual",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1783471909211-stop-feeding-agents-the-whole-manual-hero-stop-feeding-agents3.jpg",
+      "image_alt": "hero-stop-feeding-agents"
+    },
+    {
+      "title": "How 80 Saved Workflows Became an Inventory Engine",
+      "date": "2026-07-06",
+      "category": "Case Study",
+      "summary": "An audit of an AI agent's toolbox found its largest capability family was never hand-authored: 80 saved multi-agent workflows accumulated from past sessions.",
+      "url": "https://adaptivearts.ai/blog/how-80-saved-workflows-became-an-inventory-engine",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1783297547473-article-hero-inventory-engine2.jpg",
+      "image_alt": "Stylized illustration of a vast library of glowing workflow scripts feeding into a single audit engine, with a human hand resting on a physical gate lever in the foreground"
+    },
+    {
+      "title": "The Inference Economy: Tabular AI, Convergent Systems, and the Future of Work",
+      "date": "2026-05-05",
+      "category": "Essay",
+      "summary": "How AI is moving from content generation toward operational inference over structured data, with tabular foundation models, convergent technology, and governance redesign reshaping how organizations actually work.",
+      "url": "https://adaptivearts.ai/blog/the-inference-economy",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1778005291000-cover-the-inference-economy.png",
+      "image_alt": "Cover image for: The Inference Economy: Tabular AI, Convergent Systems, and the Future of Work"
+    },
+    {
+      "title": "From Reasoning Mode to Possibility State",
+      "date": "2026-04-20",
+      "category": "Technical Guide",
+      "summary": "How DIAL-4 separates reasoning claims by type, DIAL-4+ adds strength gradation, and DIAL-4P composes them into a possibility-preserving knowledge framework",
+      "url": "https://adaptivearts.ai/blog/from-reasoning-mode-to-possibility-state",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776691776922-cover-from-reasoning-mode-to-possibility-state.png",
+      "image_alt": "Cover image for: From Reasoning Mode to Possibility State"
+    },
+    {
+      "title": "DIALECTIC as Control",
+      "date": "2026-04-17",
+      "category": "Technical Guide",
+      "summary": "When contradiction becomes a resource and opposing branches refine each other instead of collapsing into one",
+      "url": "https://adaptivearts.ai/blog/dialectic-as-control",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776390588984-cover-dialectic-as-control.png",
+      "image_alt": "Cover image: cover-dialectic-as-control"
+    },
+    {
+      "title": "Run Context and Identity",
+      "date": "2026-04-09",
+      "category": "Technical Guide",
+      "summary": "What 'it' is when a system builds and executes its own pipeline - and what happens when it branches",
+      "url": "https://adaptivearts.ai/blog/run-context-and-identity",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776390448004-cover-run-context-and-identity.png",
+      "image_alt": "Cover image for: Run Context and Identity"
+    },
+    {
+      "title": "Building No-Code Personal AI Agent Ecosystems for Professional Automation",
+      "date": "2026-04-05",
+      "category": "Research Note",
+      "summary": "Reclaim your capacity for high-value innovation by building a no-code AI agent ecosystem. This guide shows you how to automate repetitive tasks using specialized, professional-grade agents.",
+      "url": "https://adaptivearts.ai/blog/building-no-code-personal-ai-agent-ecosystems-for-professional-automation",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1775396691889-cover-building-no-code-personal-ai-agent-ecosystems-for-professional-automation.png",
+      "image_alt": "Cover image for: Building No-Code Personal AI Agent Ecosystems for Professional Automation"
+    },
+    {
+      "title": "Essential Prompt Modifiers for Optimizing Generative AI Performance",
+      "date": "2026-04-05",
+      "category": "Research Note",
+      "summary": "Master the art of prompting with essential modifiers. Learn how simple anchor words transform robotic outputs into professional, structured, and actionable AI insights.",
+      "url": "https://adaptivearts.ai/blog/essential-prompt-modifiers-for-optimizing-generative-ai-performance",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1775373229975-cover-essential-prompt-modifiers-for-optimizing-generative-ai-performance.png",
+      "image_alt": "Cover image for: Essential Prompt Modifiers for Optimizing Generative AI Performance"
+    },
+    {
+      "title": "Agentic Systems Need Less Process and Better Outcomes",
+      "date": "2026-04-04",
+      "category": "Essay",
+      "summary": "Building effective AI agents is not about writing longer instructions. It is about specifying clearer outcomes, defining stronger guardrails, presenting better tool surfaces, and measuring results with rigorous evaluation.",
+      "url": "https://adaptivearts.ai/blog/agentic-systems-less-process-better-outcomes",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1775268790562-cover-agentic-systems-less-process-better-outcomes.png",
+      "image_alt": "Cover image for: Agentic Systems Need Less Process and Better Outcomes"
+    },
+    {
+      "title": "The Cognitive Compiler",
+      "date": "2026-04-04",
+      "category": "Technical Guide",
+      "summary": "When 5PP stops selecting tools and starts compiling execution pipelines from a skill registry",
+      "url": "https://adaptivearts.ai/blog/the-cognitive-compiler",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776390284426-cover-the-cognitive-compiler.png",
+      "image_alt": "Cover image for: The Cognitive Compiler"
+    },
+    {
+      "title": "The Per-Line Audit: A 15-Minute Exercise for Any AI System",
+      "date": "2026-04-03",
+      "category": "Essay",
+      "summary": "A fast, practical exercise for identifying which instructions in your AI system prompt are earning their place and which are costing you clarity, tokens, and results.",
+      "url": "https://adaptivearts.ai/blog/the-per-line-audit",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1775175255372-cover-the-per-line-audit.png",
+      "image_alt": "Cover image for: The Per-Line Audit: A 15-Minute Exercise for Any AI System"
+    },
+    {
+      "title": "The Subtraction Discipline: Designing AI Systems by Removing What You Don't Need",
+      "date": "2026-04-03",
+      "category": "Essay",
+      "summary": "AI systems accumulate complexity over time. The Subtraction Discipline is a framework for identifying what to remove, what to keep, and what to replace - covering prompt scaffolding, retrieval architecture, guardrails, evaluation, and the evolving role of human judgment.",
+      "url": "https://adaptivearts.ai/blog/the-subtraction-discipline",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1775178519031-the-subtraction-discipline-cover-the-subtraction-discipline.jpg",
+      "image_alt": "cover-the-subtraction-discipline"
+    },
+    {
+      "title": "Toward Production-Grade Reasoning",
+      "date": "2026-03-29",
+      "category": "Technical Guide",
+      "summary": "The seven dimensions that separate a working prototype from a system you can depend on",
+      "url": "https://adaptivearts.ai/blog/toward-production-grade-reasoning",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776390138457-cover-toward-production-grade-reasoning.png",
+      "image_alt": "Cover image for: Toward Production-Grade Reasoning"
+    },
+    {
+      "title": "Stability Under Volatility",
+      "date": "2026-03-24",
+      "category": "Technical Guide",
+      "summary": "How a recursive reasoning system remains coherent when data, tools, models, and environments are unstable",
+      "url": "https://adaptivearts.ai/blog/stability-under-volatility",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776389979547-cover-stability-under-volatility.png",
+      "image_alt": "Cover image for: Stability Under Volatility"
+    },
+    {
+      "title": "The Recursive Engine",
+      "date": "2026-03-19",
+      "category": "Technical Guide",
+      "summary": "How the protocol becomes self-scaling through layered abstraction and selective promotion",
+      "url": "https://adaptivearts.ai/blog/the-recursive-engine",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776389796006-cover-the-recursive-engine.png",
+      "image_alt": "Cover image for: The Recursive Engine"
+    },
+    {
+      "title": "How to Build an AI Prompt Library for Organizational Productivity",
+      "date": "2026-03-15",
+      "category": "Research Note",
+      "summary": "Maximize organizational efficiency by centralizing AI expertise. Learn how a shared prompt library ensures consistency and scales high-quality results across your team.",
+      "url": "https://adaptivearts.ai/blog/how-to-build-an-ai-prompt-library-for-organizational-productivity",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1773605629724-cover-how-to-build-an-ai-prompt-library-for-organizational-productivity.png",
+      "image_alt": "Cover image for: How to Build an AI Prompt Library for Organizational Productivity"
+    },
+    {
+      "title": "From Protocol to Runtime",
+      "date": "2026-03-15",
+      "category": "Technical Guide",
+      "summary": "When the five steps stop being instructions and start being system primitives",
+      "url": "https://adaptivearts.ai/blog/from-protocol-to-runtime",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776389661297-cover-from-protocol-to-runtime.png",
+      "image_alt": "Cover image for: From Protocol to Runtime"
+    },
+    {
+      "title": "Microsoft Copilot Agents: Building, Licensing, and Security Best Practices",
+      "date": "2026-03-14",
+      "category": "Essay",
+      "summary": "Unlock the power of Microsoft Copilot agents. This guide details building, licensing, and security best practices to scale enterprise AI while maintaining robust data governance.",
+      "url": "https://adaptivearts.ai/blog/microsoft-copilot-agents-building-licensing-and-security-best-practices",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1773505546001-cover-microsoft-copilot-agents-building-licensing-and-security-best-practices.png",
+      "image_alt": "Cover image for: Microsoft Copilot Agents: Building, Licensing, and Security Best Practices"
+    },
+    {
+      "title": "Beyond Content: Research Loops, Autoresearch, and Embodied Agents",
+      "date": "2026-03-10",
+      "category": "Technical Guide",
+      "summary": "The same alignment machinery can steer research systems, creative pipelines, and physical environments",
+      "url": "https://adaptivearts.ai/blog/beyond-content-research-loops-autoresearch-embodied-agents",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776389509222-cover-beyond-content-research-loops-autoresearch-embodied-agents.png",
+      "image_alt": "Cover image for: Beyond Content: Research Loops, Autoresearch, and Embodied Agents"
+    },
+    {
+      "title": "SPINE as the Structural Layer",
+      "date": "2026-03-09",
+      "category": "Technical Guide",
+      "summary": "Where 5PP lives inside SPINE - and how structured reasoning becomes durable",
+      "url": "https://adaptivearts.ai/blog/spine-as-structural-layer",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776389301422-cover-spine-as-structural-layer.png",
+      "image_alt": "Cover image for: SPINE as the Structural Layer"
+    },
+    {
+      "title": "From Workflow to Agents",
+      "date": "2026-03-07",
+      "category": "Technical Guide",
+      "summary": "Turning stable processes into delegatable agent roles with scoped access and clear contracts",
+      "url": "https://adaptivearts.ai/blog/from-workflow-to-agents",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776389076375-cover-from-workflow-to-agents.png",
+      "image_alt": "Cover image for: From Workflow to Agents"
+    },
+    {
+      "title": "The Hidden Security Risks in Multi-Agent AI Systems",
+      "date": "2026-03-06",
+      "category": "AI Technology",
+      "summary": "As organizations deploy teams of specialized AI agents, they inherit behavioral security risks that traditional tools cannot detect. Here is a practical guide to auditing and hardening multi-agent systems.",
+      "url": "https://adaptivearts.ai/blog/hidden-security-risks-multi-agent-ai",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1773437139985-cover-hidden-security-risks-multi-agent-ai.png",
+      "image_alt": "Cover image for: The Hidden Security Risks in Multi-Agent AI Systems"
+    },
+    {
+      "title": "Building While Publishing: Turning Work Into Assets",
+      "date": "2026-03-03",
+      "category": "Technical Guide",
+      "summary": "Every project should emit reusable materials as a side effect of being built",
+      "url": "https://adaptivearts.ai/blog/building-while-publishing-assets",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776388850998-cover-building-while-publishing-assets.png",
+      "image_alt": "Cover image for: Building While Publishing: Turning Work Into Assets"
+    },
+    {
+      "title": "The First Proof: Using 5PP to Align a Newsletter",
+      "date": "2026-02-28",
+      "category": "Technical Guide",
+      "summary": "How the first Adaptivearts.ai newsletter became a test case for structured AI alignment",
+      "url": "https://adaptivearts.ai/blog/first-proof-5pp-newsletter",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776388514578-cover-first-proof-5pp-newsletter.png",
+      "image_alt": "Cover image for: The First Proof: Using 5PP to Align a Newsletter"
+    },
+    {
+      "title": "From Giant Meta-Prompt to 5PP",
+      "date": "2026-02-26",
+      "category": "Technical Guide",
+      "summary": "Why the original prompt was too large to stay isolated, and how it became a portable protocol",
+      "url": "https://adaptivearts.ai/blog/from-giant-meta-prompt-to-5pp",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1776384445291-from-giant-meta-prompt-to-5pp-hero-part1_4.jpg",
+      "image_alt": "Cover image: from-giant-meta-prompt-to-5pp-hero-part1_4"
+    },
+    {
+      "title": "Five Surprising Principles for Architecting Production AI Agents",
+      "date": "2026-02-05",
+      "category": "Essay",
+      "summary": "Traditional software engineering rules often fail when building AI agents. Discover five counter-intuitive rules for architecting robust, isolated, and truly autonomous agent systems.",
+      "url": "https://adaptivearts.ai/blog/five-surprising-principles-for-architecting-production-ai-agents",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1775177797230-cover-five-surprising-principles-for-architecting-production-ai-agents.png",
+      "image_alt": "Cover image for: Five Surprising Principles for Architecting Production AI Agents"
+    },
+    {
+      "title": "Building MCP Servers: From Custom Glue to Universal Protocol",
+      "date": "2026-01-28",
+      "category": "Essay",
+      "summary": "AI tool integration was a messy tangle of custom schemas and glue code. Discover how the Model Context Protocol (MCP) revolutionizes this, offering a universal \"plug\" architecture for effortless, portable AI tool deployment.",
+      "url": "https://adaptivearts.ai/blog/building-mcp-servers-from-custom-glue-to-universal-protocol",
+      "image": "https://rqparchqgvrfvbumvccl.supabase.co/storage/v1/object/public/article-images/1773352039579-cover-building-mcp-servers-from-custom-glue-to-universal-protocol.png",
+      "image_alt": "Cover image for: Building MCP Servers: From Custom Glue to Universal Protocol"
+    },
+    {
+      "title": "Creative Engines: Architecting AI Systems That Generate Excellence, Not Slop",
+      "date": "2025-10-19",
+      "category": "AI Technology",
+      "summary": "The internet is drowning in AI-generated slop. This article introduces Creative Engines -autonomous AI architectures designed to generate high-quality, diverse, contextually-appropriate content through multi-agent voting, pattern learning, and sophisticated quality controls.",
+      "url": "https://adaptivearts.ai/blog/creative-engines-architecting-ai-systems-that-generate-excellence-not-slop",
+      "image": "https://adaptivearts.ai/images/creative-engine.jpg",
+      "image_alt": "Conceptual diagram of experimental Creative Engine architecture"
+    },
+    {
+      "title": "From Assistants to Agents: The Evolution of Autonomous AI Systems",
+      "date": "2025-10-15",
+      "category": "AI Technology",
+      "summary": "Exploring the transformation from reactive AI assistants to proactive autonomous agents that can plan, execute, and learn independently.",
+      "url": "https://adaptivearts.ai/blog/from-assistants-to-agents-the-evolution-of-autonomous-ai-systems",
+      "image": "https://adaptivearts.ai/images/ai-agents.jpg",
+      "image_alt": "Visualization of autonomous AI agents working together"
+    },
+    {
+      "title": "Understanding Model Context Protocol: The Future of AI System Integration",
+      "date": "2025-06-20",
+      "category": "AI Technology",
+      "summary": "Deep dive into the Model Context Protocol (MCP) - a revolutionary approach to building extensible, interoperable AI systems that can evolve and scale.",
+      "url": "https://adaptivearts.ai/blog/understanding-model-context-protocol-the-future-of-ai-system-integration",
+      "image": "https://adaptivearts.ai/images/mcp-architecture.jpg",
+      "image_alt": "Technical diagram of MCP architecture"
+    },
+    {
+      "title": "Security-First AI: Building Trust in Intelligent Systems",
+      "date": "2025-03-05",
+      "category": "Industry Trends",
+      "summary": "Examining critical security considerations and ethical frameworks for deploying AI systems responsibly in research and real-world applications.",
+      "url": "https://adaptivearts.ai/blog/security-first-ai-building-trust-in-intelligent-systems",
+      "image": "https://adaptivearts.ai/images/ai-security.jpg",
+      "image_alt": "Shield protecting AI neural network"
+    },
+    {
+      "title": "The Enterprise AI Ecosystem: Building Comprehensive Intelligence Networks",
+      "date": "2025-01-10",
+      "category": "Business Strategy",
+      "summary": "Exploring how organizations can build integrated AI ecosystems that transform every aspect of operations through intelligent automation and human-AI collaboration.",
+      "url": "https://adaptivearts.ai/blog/the-enterprise-ai-ecosystem-building-comprehensive-intelligence-networks",
+      "image": "https://adaptivearts.ai/images/ai-ecosystem.jpg",
+      "image_alt": "Network visualization of an AI ecosystem"
+    },
+    {
+      "title": "The Dawn of Prompt Engineering: Architecting Human-AI Collaboration",
+      "date": "2024-11-15",
+      "category": "AI Technology",
+      "summary": "Exploring the emerging field of prompt engineering as a fundamental discipline shaping the future of human-machine collaboration in research and innovation.",
+      "url": "https://adaptivearts.ai/blog/the-dawn-of-prompt-engineering-architecting-human-ai-collaboration",
+      "image": "https://adaptivearts.ai/images/prompt-engineering-dawn.jpg",
+      "image_alt": "Abstract visualization of human-AI collaboration"
+    },
+    {
+      "title": "Progress in AI Models: From Generating Text to Creating Music",
+      "date": "2024-08-05",
+      "category": "AI Technology",
+      "summary": "Exploring the evolution of generative AI from text to music generation, including architectural advances and multimodal training approaches",
+      "url": "https://adaptivearts.ai/blog/progress-in-ai-models-from-generating-text-to-creating-music",
+      "image": "https://adaptivearts.ai/images/blog1.jpg",
+      "image_alt": "AI Model Evolution"
+    },
+    {
+      "title": "Progress in AI Models: From Generating Text to Creating Videos",
+      "date": "2024-06-25",
+      "category": "AI Technology",
+      "summary": "Exploring the evolution of generative AI from text to video generation, including architectural advances and multimodal training approaches",
+      "url": "https://adaptivearts.ai/blog/progress-in-ai-models-from-generating-text-to-creating-videos",
+      "image": "https://adaptivearts.ai/images/blog7.jpg",
+      "image_alt": "AI Model Evolution"
+    },
+    {
+      "title": "The importance of building your personalized tech stack with Don Allen Stevenson III - Make A Seat",
+      "date": "2024-05-20",
+      "category": "Case Studies",
+      "summary": "Discover insights from Don Allen Stevenson III's new book 'Make A Seat' on leveraging technology, finding opportunities, and building resilience in the digital age.",
+      "url": "https://adaptivearts.ai/blog/the-importance-of-building-your-personalized-tech-stack-with-don-allen-stevenson",
+      "image": "https://adaptivearts.ai/images/blog5.jpg",
+      "image_alt": "Make A Seat Book Cover"
+    },
+    {
+      "title": "Extending AI into Academia and Science",
+      "date": "2024-04-15",
+      "category": "AI Technology",
+      "summary": "The Toothache Framework: A Generative AI Approach to Bioarchaeology",
+      "url": "https://adaptivearts.ai/blog/extending-ai-into-academia-and-science",
+      "image": "https://adaptivearts.ai/images/blog6.jpg",
+      "image_alt": "AI in Academia"
+    },
+    {
+      "title": "The Future of AI in Business: Hyper-Personalization",
+      "date": "2024-03-08",
+      "category": "Business Strategy",
+      "summary": "Explore how AI-driven hyper-personalization is transforming business operations and customer experiences across industries.",
+      "url": "https://adaptivearts.ai/blog/the-future-of-ai-in-business-hyper-personalization",
+      "image": "https://adaptivearts.ai/images/blog3.jpg",
+      "image_alt": "AI-powered business transformation"
+    },
+    {
+      "title": "Best Practices for High-Quality AI Results",
+      "date": "2024-02-02",
+      "category": "Business Strategy",
+      "summary": "Essential tips and strategies for generating high-quality content using AI tools and technologies.",
+      "url": "https://adaptivearts.ai/blog/best-practices-for-high-quality-ai-results",
+      "image": "https://adaptivearts.ai/images/blog2.jpg",
+      "image_alt": "AI Best Practices"
+    },
+    {
+      "title": "AI Content Creation Tips",
+      "date": "2024-01-05",
+      "category": "Content Creation",
+      "summary": "Best practices for generating high-quality content with AI",
+      "url": "https://adaptivearts.ai/blog/ai-content-creation-tips",
+      "image": "https://adaptivearts.ai/images/blog4.jpg",
+      "image_alt": "AI Content Creation"
+    }
+  ]
+}
