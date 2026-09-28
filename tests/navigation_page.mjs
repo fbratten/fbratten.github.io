@@ -29,10 +29,16 @@ try {
   assert.equal(await page.locator('[data-article]:visible').count(), 0);
   assert.ok(await page.locator('.fb-no-results').isVisible());
   await search.fill('');
-  await page.getByLabel('Category', { exact: true }).selectOption({ index: 1 });
-  const category = await page.getByLabel('Category', { exact: true }).inputValue();
-  for (const card of await page.locator('[data-article]:visible').all()) {
-    assert.equal(await card.getAttribute('data-category'), category);
+  const groups = { 'Essays': 10, 'Technical guides': 17, 'Case studies': 2,
+    'Research notes': 3, 'AI technology': 1, 'Earlier posts': 13 };
+  assert.equal(await page.getByLabel('Category', { exact: true }).locator('option').count(), 7);
+  for (const [category, expected] of Object.entries(groups)) {
+    await page.getByLabel('Category', { exact: true }).selectOption(category);
+    assert.equal(await page.locator('[data-article]:visible').count(), expected);
+    for (const card of await page.locator('[data-article]:visible').all()) {
+      assert.equal(await card.getAttribute('data-category'), category);
+      if (category === 'Earlier posts') assert.match(await card.locator('time').getAttribute('datetime'), /^202[45]-/);
+    }
   }
   await page.getByLabel('Category', { exact: true }).selectOption('');
   assert.equal(await page.locator('[data-article]:visible').count(), total);
@@ -54,6 +60,8 @@ try {
     await page.goto(base + route);
     const button = page.locator('.fb-menu-button');
     await button.waitFor();
+    const bounds = await button.boundingBox();
+    assert.ok(bounds.width >= 44 && bounds.height >= 44, `Small menu target: ${route}`);
     assert.equal(await button.getAttribute('aria-expanded'), 'false');
     await button.focus();
     await page.keyboard.press('Enter');

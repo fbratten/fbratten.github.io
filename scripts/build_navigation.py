@@ -66,7 +66,7 @@ def navigation(url):
 <a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
 <button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
 <div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation">''' + "".join(links) + '''</nav>
-<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai <span aria-hidden="true">&#8599;</span></a>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
 <div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
 <nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a></nav>
 </div></div></div>'''
@@ -87,9 +87,24 @@ def breadcrumbs(url):
     return f'<nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol>{items}<li><span aria-current="page">{escape(LABELS[url])}</span></li></ol></nav>'
 
 
+ARTICLE_GROUPS = {
+    "Essay": "Essays", "Technical Guide": "Technical guides",
+    "Case Study": "Case studies", "Case Studies": "Case studies",
+    "Research Note": "Research notes", "AI Technology": "AI technology",
+}
+ARTICLE_GROUP_ORDER = ["Essays", "Technical guides", "Case studies", "Research notes",
+                       "AI technology", "Earlier posts"]
+
+
+def article_group(a):
+    # Keep the source metadata intact; group only the directory's browsing view.
+    if a["date"] < "2026-01-01": return "Earlier posts"
+    return ARTICLE_GROUPS[a["category"]]
+
+
 def article_card(a):
     e = lambda key: escape(a[key], quote=True)
-    return f'''<article class="fb-article" data-article data-category="{e('category')}"><a href="{e('url')}">
+    return f'''<article class="fb-article" data-article data-category="{escape(article_group(a))}"><a href="{e('url')}">
 <img src="{e('image')}" alt="{e('image_alt')}" width="1200" height="675" loading="lazy" decoding="async">
 <div class="fb-article-copy"><div class="fb-article-meta"><span>{e('category')}</span><time datetime="{e('date')}">{e('date')}</time></div>
 <h3>{e('title')}</h3><p>{e('summary')}</p><span class="fb-article-destination">Read on Adaptivearts.ai &#8599;</span></div></a></article>'''
@@ -112,8 +127,10 @@ def resolve_progress(selection=None, public_log=None):
             raise ValueError(f"Progress requires one admitted Build Log record: {reference['id']}")
         source = matches[0]
         entries.append({"id": reference["id"], "date": source["date"],
-                        "kind": source["state"].capitalize(), "title": source["title"],
-                        "summary": source["summary"], "sources": source["evidence"]})
+                        "kind": source["state"].capitalize(), "source_title": source["title"],
+                        "title": reference.get("display_title", source["title"]),
+                        "summary": reference.get("display_summary", source["summary"]),
+                        "sources": source["evidence"]})
     return entries
 
 
@@ -172,6 +189,8 @@ def render():
     for path in pages:
         url = path_url(path)
         text = path.read_text()
+        # Old context bars may have no destinations after shared navigation moved in.
+        text = re.sub(r'<nav\b[^>]*>\s*</nav>', '', text)
         # Keep local footer notes, with one shared site footer landmark.
         if '<!-- FB:FOOTER -->' not in text:
             text = re.sub(r'<footer\b([^>]*)>([\s\S]*?)</footer>',
@@ -193,7 +212,10 @@ def render():
         text = replace_block(text, "FOOTER", footer)
         text = replace_block(text, "LATEST", "\n".join(article_card(a) for a in articles[:3]))
         text = replace_block(text, "ARTICLES", "\n".join(article_card(a) for a in articles))
-        text = replace_block(text, "CATEGORIES", "\n".join(f'<option value="{escape(c, quote=True)}">{escape(c)}</option>' for c in sorted({a["category"] for a in articles})))
+        counts = {group: sum(article_group(a) == group for a in articles) for group in ARTICLE_GROUP_ORDER}
+        text = replace_block(text, "CATEGORIES", "\n".join(
+            f'<option value="{escape(group, quote=True)}">{escape(group)} ({count})</option>'
+            for group, count in counts.items() if count))
         text = replace_block(text, "PROGRESS", "\n".join(progress_entry(p) for p in entries))
         published = next(p for p in entries if p["kind"] == "Published")
         teaser = f'<div><time datetime="{published["date"]}">{published["date"]}</time><span>{escape(published["title"])}</span></div><div><span>Available now</span><span>Rules, Authority &amp; Enforcement reader labs</span></div><div><span>Coming soon</span><span>Blueprint AI Studio and its learning platform</span></div>'

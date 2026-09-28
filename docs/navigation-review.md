@@ -16,7 +16,8 @@ change relative to that main. No open PR competed with this work.
   published names, and six lab entry points. The longer overview
   is a native disclosure; all 20 profiles and their labs remain available.
 - Articles lists 46 public articles with original hero images, dates, excerpts
-  and direct Adaptivearts.ai destinations. Text and category filtering are
+  and direct Adaptivearts.ai destinations. Six browsing groups combine equivalent category labels and collect the 2024–2025
+  articles under Earlier posts, without changing source metadata. Text and group filtering are
   optional enhancements; the full directory works without JavaScript.
 - Blueprint AI Studio connects the book, published reader labs, planned studio
   and LMS, and an evidence-linked project journal with an RSS feed, derived from three
@@ -47,11 +48,12 @@ views. The implementation follows its navigation, visitor questions, colored
 project cards, Now building/book composition, mobile menu and grouped footer.
 It uses the actual article images and book cover instead of placeholders.
 
-- The reference's "Five-point work protocol" is rendered as "Five-phase work
-  protocol", consistent with the current 5PP method source.
-- Chapter/template/demo counts and a preorder or signup call-to-action are not
-  newly asserted by this refinement. The maintained book destination remains
-  Adaptivearts.ai/book; platform status remains Coming soon.
+- The name is **5 Point Protocol (5PP)**, as specified by Fredrik. The earlier
+  draft's "Five-phase work protocol" label was incorrect and is removed.
+- The book has one section and one main-content destination on the Blueprint
+  page: Adaptivearts.ai/book. There is no "Get notified" book call-to-action.
+  The studio has an explicit Explore Blueprint AI Studio link; its status remains
+  Coming soon. The shared footer retains its standard book link.
 - Build Log is an internal route, so it is not marked as an external site.
 - Fixed-width artboard sizes and bundled design-tool runtime are not copied into
   the production pages. Layout and the menu adapt to the available width.
@@ -65,9 +67,11 @@ After reviewing an update:
 1. Verify and admit the milestone to the public Build Log using its existing
    publication contract.
 2. Add its exact date and title, plus a stable RSS ID, to
-   `blueprint-ai-studio/progress.json`. This file selects entries; it does not
-   duplicate summaries, evidence or status. The renderer refuses missing,
-   ambiguous or unadmitted entries.
+   `blueprint-ai-studio/progress.json`. This file selects entries and can include a reviewed
+   `display_title` and `display_summary` to explain their relevance to Blueprint.
+   These must remain within the selected record's admitted claims. Date, status
+   and evidence always come from the Build Log; the renderer still refuses
+   missing, ambiguous or unadmitted entries, even when a display summary exists.
 3. Run `python scripts/build_navigation.py` to refresh HTML and RSS, then review
    the diff and run the contract/browser checks before a PR.
 
@@ -76,15 +80,18 @@ An unchanged day needs no new milestone. Article updates use
 hero image, date and destination. The renderer also owns navigation, breadcrumbs
 and the shared footer on every page. Add page labels there for new local pages.
 
-## Separate book-link change
+## Book-link scope correction
 
-The obsolete `subscribepage.io/from-blueprint-to-application` destination is owned
-by the separate `From-Blueprint-to-Application` repository. A separate draft
-retires those links and the stale discount CTA in favor of Adaptivearts.ai's book
-overview. The portfolio archive, README and reader-lab book entry points now point to
-Adaptivearts.ai/book rather than the old showcase. The 5PP Historical public
-demo link remains intact. No older Cicerone files are involved. Adaptivearts.ai itself is not
-modified by either draft; it may retain its own upstream signup link.
+The portfolio archive, README and reader-lab book entry points now point to
+Adaptivearts.ai/book rather than the old `/From-Blueprint-to-Application/`
+showcase. The 5PP Historical public demo link remains intact.
+
+The earlier claim that `subscribepage.io/from-blueprint-to-application` was
+obsolete was unsupported: Adaptivearts.ai/book still links to it as Pre-order
+book. That claim and the navigation test forbidding the domain are withdrawn.
+The separate book-repository PR #1 remains an unconfirmed Draft proposal, not
+an approved part of this portfolio revision. Its link removals have not been
+merged. Adaptivearts.ai itself is unchanged. No Cicerone files are involved.
 
 ## Review and verification
 
@@ -125,3 +132,36 @@ checks, all existing browser suites and the refined navigation pass locally.
 The progress contract also checks rejection of missing or unadmitted Build Log
 entries. Desktop, mobile, open-menu and full-home visual checks were inspected.
 The portable preview preserves the current page when following an in-page link.
+
+## Review corrections after fdbfdb4
+
+- Adaptivearts.ai is the exact brand spelling. The shared header and README use
+  ® following the owner's confirmation of Swedish PRV registration.
+
+- 5 Point Protocol naming is consistent in the directory, lab routes, profile
+  and Dialogue Lifecycle cross-link. The five-point mechanism and lab scripts
+  are unchanged.
+- The Blueprint page has one book section with the cover and one main-content
+  book link, before progress. No book notification or signup CTA is added.
+- The 28 September milestone leads with the published reader-lab additions. It
+  distinguishes two new profiles (20 total) from the 18 earlier profiles; its
+  date, state and evidence still resolve from the admitted Build Log record.
+  The reviewed title appears in HTML, the homepage teaser and RSS; HTML and
+  RSS also use the reviewed summary.
+- The article filter has six groups covering all 46 articles, including the
+  2026 AI Technology article and all 13 earlier posts. Source metadata is intact.
+- The menu button is at least 44 by 44 CSS pixels. Nine empty local navigation
+  landmarks are removed while the local context labels remain.
+
+Claude also reported pre-existing mobile overflow on worktrace, mads, vertex,
+adaptivearts-ai, dial4, dial4p-possibility, gate-monitor and broker-lane-sandbox.
+Those page-body layouts are a separate follow-up; this revision does not claim
+that all legacy pages are free of horizontal scrolling.
+
+Revision verification: static lint, navigation and Build Log contracts, all six
+browser suites, every article filter group, minimum menu target size and the
+portable preview pass locally. The consolidated book section was inspected on
+desktop and mobile with the original cover. Eighteen method main bodies and all
+six proof main bodies match fdbfdb4; the other two method bodies contain only
+the requested 5PP naming corrections. Article metadata, Build Log records and
+lab scripts are unchanged. 5pp-gate was not run.

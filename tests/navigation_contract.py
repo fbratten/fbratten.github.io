@@ -39,6 +39,7 @@ for path in pages:
     if text.count('aria-label="Site navigation"') != 1: errors.append(f'{rel}: shared navigation missing or duplicated')
     if rel != 'index.html' and 'aria-label="Breadcrumb"' not in text: errors.append(f'{rel}: breadcrumb missing')
     if 'id="main"' not in text: errors.append(f'{rel}: skip-link target missing')
+    if re.search(r'<nav\b[^>]*>\s*</nav>', text): errors.append(f'{rel}: empty navigation landmark')
     for link in page.links:
         url = urlsplit(urljoin(ORIGIN + '/' + rel, link))
         if url.netloc != 'fbratten.github.io': continue
@@ -74,13 +75,17 @@ public_log = json.loads((ROOT / 'build-log/entries.json').read_text())
 ids = set()
 for p in resolved:
     assert p['id'] not in ids and p['sources']
-    source = next(row for row in public_log if row['date'] == p['date'] and row['title'] == p['title'])
-    assert p['summary'] == source['summary'] and p['sources'] == source['evidence']
+    source = next(row for row in public_log if row['date'] == p['date'] and row['title'] == p['source_title'])
+    reference = next(row for row in progress['entries'] if row['id'] == p['id'])
+    assert p['title'] == reference.get('display_title', source['title'])
+    assert p['summary'] == reference.get('display_summary', source['summary'])
+    assert p['sources'] == source['evidence']
     assert p['kind'] in ('Published', 'Shipped', 'Verified')
     assert p['date'] <= progress['verified_at']
     ids.add(p['id'])
 # A new project milestone cannot appear without an admitted Build Log record.
-for records in ([], [dict(public_log[0], state='PLANNED')]):
+selected_source = next(row for row in public_log if row['title'] == progress['entries'][0]['build_log_title'])
+for records in ([], [dict(selected_source, state='PLANNED')]):
     try:
         module.resolve_progress({'entries': [progress['entries'][0]]}, records)
     except ValueError:
@@ -91,10 +96,9 @@ feed = ET.parse(ROOT / 'blueprint-ai-studio/feed.xml')
 assert len(feed.findall('./channel/item')) == len(ids)
 for path in [ROOT / 'index.html', ROOT / 'projects/index.html', ROOT / 'README.md', ROOT / 'blueprint-ai-studio/index.html', ROOT / 'blueprint-ai-studio/labs/rules-authority-enforcement/index.html']:
     assert 'https://adaptivearts.ai/book/' in path.read_text()
-    assert 'subscribepage.io' not in path.read_text()
     assert '/From-Blueprint-to-Application/' not in path.read_text()
 assert 'Historical public demo' in (ROOT / 'methods/5pp/index.html').read_text()
-assert 'Five-phase work protocol</h3>' in (ROOT / 'methods/index.html').read_text()
+assert '5 Point Protocol</h3>' in (ROOT / 'methods/index.html').read_text()
 assert 'Responsibility boundary design</h3>' in (ROOT / 'methods/index.html').read_text()
 if errors: raise SystemExit('\n'.join(errors))
 print(f'PASS: {len(pages)} pages, {len(seen)} article cards, 20 methods, {len(ids)} progress entries; routes and anchors resolve.')

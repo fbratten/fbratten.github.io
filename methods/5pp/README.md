@@ -1,6 +1,6 @@
 # 5PP method profile
 
-Public-safe, interactive profile for the Five-Point Protocol and its deterministic `5pp-gate` implementation.
+Public-safe, interactive profile for the 5 Point Protocol and its deterministic `5pp-gate` implementation.
 
 ## Route
 
@@ -33,7 +33,7 @@ The mechanism and lineage visualizations use native Canvas 2D with:
 
 ## Visual inventory
 
-1. Interactive five-phase mechanism with standard, constraint-hardened and silent profile views.
+1. Interactive view of the five protocol points with standard, constraint-hardened and silent profile views.
 2. Synthetic compliance sandbox with bounded educational gate logic.
 3. Draggable lineage and representative project-coupling network.
 4. Chart.js release test-growth graph.

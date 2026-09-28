@@ -38,7 +38,7 @@ Personal landing page for Fredrik Brattén.
 
 ---
 
-*Part of the [Adaptivearts.ai™](https://adaptivearts.ai) initiative*
+*Part of the [Adaptivearts.ai®](https://adaptivearts.ai) initiative*
 
 
 ## Portfolio navigation
