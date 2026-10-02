@@ -1,5 +1,105 @@
 [
   {
+    "date": "2026-10-02",
+    "state": "VERIFIED",
+    "title": "Methods & Labs: composition over method decoration",
+    "summary": "Made the composition principle explicit on the Methods & Labs parent page: methods are interoperable problem-solving components with separate bounded responsibilities, not labels or a checklist to apply everywhere. The page now shows how ORBIT, SORR, CARD & POINTER, Dialogue Lifecycle and 5PP can form a smallest-compatible method stack when their responsibilities genuinely complement one another.",
+    "why_it_matters": "It makes the intended use of the method library visible to a new reader: choose capabilities because they do distinct work, compose only what the problem needs, and avoid framework ceremony that does not improve understanding, decisions, execution or verification.",
+    "evidence": [
+      {
+        "label": "Live Methods & Labs page",
+        "url": "https://fbratten.github.io/methods/"
+      },
+      {
+        "label": "Composition principle PR #33",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/33"
+      },
+      {
+        "label": "Library framing PR #34",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/34"
+      },
+      {
+        "label": "Published merge commit",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/50b5cacd9a5e082dc89bef84f258a3bc094cadda"
+      },
+      {
+        "label": "Passing live Pages verification",
+        "url": "https://github.com/fbratten/fbratten.github.io/actions/runs/36947113887"
+      }
+    ],
+    "tags": [
+      "methods",
+      "capability composition",
+      "governance",
+      "orientation",
+      "verification"
+    ]
+  },
+  {
+    "date": "2026-09-28",
+    "state": "VERIFIED",
+    "title": "Portfolio navigation, illustrated writing index and Blueprint progress hub",
+    "summary": "Reworked the public portfolio so visitors can move directly between Projects, Methods & Labs, Writing, the Build Log and Blueprint AI Studio. Added an illustrated article directory, clearer project routes, an All pages surface and a dedicated Blueprint AI Studio progress view while preserving existing URLs and content.",
+    "why_it_matters": "It turns a growing collection of pages into an explorable portfolio with clearer entry points for projects, methods, writing and work in progress, rather than requiring visitors to discover the site as a flat set of cards.",
+    "evidence": [
+      {
+        "label": "Live portfolio",
+        "url": "https://fbratten.github.io/"
+      },
+      {
+        "label": "Illustrated writing directory",
+        "url": "https://fbratten.github.io/articles/"
+      },
+      {
+        "label": "Blueprint AI Studio progress",
+        "url": "https://fbratten.github.io/blueprint-ai-studio/"
+      },
+      {
+        "label": "Reviewed changes - PR #32",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/32"
+      },
+      {
+        "label": "Published merge commit",
+        "url": "https://github.com/fbratten/fbratten.github.io/commit/644dc5a85937652a441f745e22b9b54b9afe1163"
+      },
+      {
+        "label": "Passing live Pages verification",
+        "url": "https://github.com/fbratten/fbratten.github.io/actions/runs/36367765336"
+      }
+    ],
+    "tags": [
+      "portfolio",
+      "navigation",
+      "writing",
+      "Blueprint AI Studio",
+      "GitHub Pages"
+    ]
+  },
+  {
+    "date": "2026-09-28",
+    "state": "PUBLISHED",
+    "title": "Farbar: bilingual public identity and website baseline",
+    "summary": "Published the Farbar identity across the Swedish and English public site baseline, with the new visual palette, shovel-and-road mark, farbar.se canonical URLs and a public contact route.",
+    "why_it_matters": "It turns the rebrand into a coherent public-facing surface in two languages rather than leaving the new identity as an internal naming decision.",
+    "evidence": [
+      {
+        "label": "Farbar - Swedish site",
+        "url": "https://farbar.se/"
+      },
+      {
+        "label": "Farbar - English site",
+        "url": "https://farbar.se/en/"
+      }
+    ],
+    "tags": [
+      "Farbar",
+      "website",
+      "rebrand",
+      "bilingual",
+      "public launch"
+    ]
+  },
+  {
     "date": "2026-09-28",
     "state": "PUBLISHED",
     "title": "CBE and CBE-IX: boundary design profiles and interactive labs",
