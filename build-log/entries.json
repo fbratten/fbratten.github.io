@@ -163,12 +163,7 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/6a1169e9ab6dfc15bb8ae13a6bb51884c7bf83a5"
       }
     ],
-    "tags": [
-      "proof of work",
-      "GitHub Pages",
-      "publication governance",
-      "verification"
-    ]
+    "tags": ["proof of work", "GitHub Pages", "publication governance", "verification"]
   },
   {
     "date": "2026-09-19",
@@ -186,11 +181,7 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/2c0822191698af8fd6f86bf9c827cc1cdbecddf7"
       }
     ],
-    "tags": [
-      "capability architecture",
-      "GitHub Pages",
-      "interaction design"
-    ]
+    "tags": ["capability architecture", "GitHub Pages", "interaction design"]
   },
   {
     "date": "2026-09-19",
@@ -208,12 +199,7 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/4c3343836d1ceabec8ae807e6f52b4f98c4cacd4"
       }
     ],
-    "tags": [
-      "capability inventory",
-      "problem mapping",
-      "orientation",
-      "GitHub Pages"
-    ]
+    "tags": ["capability inventory", "problem mapping", "orientation", "GitHub Pages"]
   },
   {
     "date": "2026-09-17",
@@ -227,12 +213,7 @@
         "url": "https://adaptivearts.ai/blog/when-a-rule-is-not-a-control/"
       }
     ],
-    "tags": [
-      "AI agents",
-      "governance",
-      "verification",
-      "behavioural testing"
-    ]
+    "tags": ["AI agents", "governance", "verification", "behavioural testing"]
   },
   {
     "date": "2026-09-16",
@@ -250,12 +231,7 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/5f476e30e3e6c82fc3d347b7c008c40f22092829"
       }
     ],
-    "tags": [
-      "AI agents",
-      "authority",
-      "enforcement",
-      "interactive learning"
-    ]
+    "tags": ["AI agents", "authority", "enforcement", "interactive learning"]
   },
   {
     "date": "2026-08-03",
@@ -277,12 +253,7 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/b2912a92d4b985d7505eacde0c6d9bd7f3f3ec48"
       }
     ],
-    "tags": [
-      "portfolio",
-      "GitHub Pages",
-      "browser testing",
-      "deployment verification"
-    ]
+    "tags": ["portfolio", "GitHub Pages", "browser testing", "deployment verification"]
   },
   {
     "date": "2026-08-03",
@@ -304,12 +275,7 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/1490b09f3a60ac87537c0352ad2d902d2de6e488"
       }
     ],
-    "tags": [
-      "methods",
-      "protocols",
-      "interactive evidence",
-      "provenance"
-    ]
+    "tags": ["methods", "protocols", "interactive evidence", "provenance"]
   },
   {
     "date": "2026-08-02",
@@ -327,12 +293,7 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/316dbbd65d6301dd99b668f637b04f93182186aa"
       }
     ],
-    "tags": [
-      "agent safety",
-      "execution boundary",
-      "evidence",
-      "public proof"
-    ]
+    "tags": ["agent safety", "execution boundary", "evidence", "public proof"]
   },
   {
     "date": "2026-07-31",
