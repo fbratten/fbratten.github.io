@@ -34,6 +34,10 @@
     .note { border-left:3px solid var(--accent); padding:.9rem 1.1rem; background:rgba(16,31,44,.65); color:var(--muted); margin:0 0 2rem; }
     .cta { border:1px solid rgba(83,211,167,.28); border-radius:1rem; background:rgba(83,211,167,.06); padding:1.2rem 1.4rem; margin:1rem 0 4rem; color:var(--muted); }
     .cta a { color:var(--accent); font-weight:700; }
+    .composition-principle { border:1px solid rgba(83,211,167,.3); border-radius:1rem; background:linear-gradient(145deg,rgba(83,211,167,.08),rgba(16,31,44,.82)); padding:1.5rem; margin:1.4rem 0 2.5rem; }
+    .composition-principle h2 { margin:.35rem 0 .65rem; font-size:clamp(1.65rem,4vw,2.35rem); }
+    .composition-principle p { color:var(--muted); max-width:72ch; margin:.55rem 0; }
+    .composition-principle strong { color:var(--text); }
     footer { border-top:1px solid rgba(156,176,189,.18); padding:2rem 0 4rem; color:var(--muted); }
     @media(max-width:900px){ .value-grid,.problem-grid{grid-template-columns:1fr 1fr;} }
     @media(max-width:800px){ .grid,.axis-grid{grid-template-columns:1fr 1fr;} }
@@ -64,6 +68,15 @@
       <p>20 published methods for bounded, reviewable AI work. Start from your problem, browse them by name or try one in a lab.</p>
     </section>
 <nav class="fb-section-tabs" aria-label="Methods and labs"><a href="#find-by-problem">Find by problem</a><a href="#all-methods">Browse all 20 methods</a><a href="#labs">Try the labs</a><a href="./solutions/">Solution-space map</a></nav>
+
+<section class="composition-principle" aria-labelledby="composition-principle-title">
+  <span class="eyebrow">How to use this library</span>
+  <h2 id="composition-principle-title">Composition, not method decoration</h2>
+  <p>These methods are not labels to place on top of ordinary work, and they are not a checklist that every task must carry. <strong>Each method earns its place by owning a bounded responsibility</strong>: orienting a knowledge space, resolving identity or relationships, separating and grading claims, discovering existing capability, controlling execution, or verifying an outcome.</p>
+  <p>When a problem crosses several of those boundaries, the useful move is to compose the <strong>smallest compatible method stack</strong> and keep the hand-offs explicit. ORBIT can orient; SORR can resolve semantic identity and relationships; CARD &amp; POINTER can represent and route; Dialogue Lifecycle can control when work advances; 5PP can discipline how bounded work is executed and audited. The value comes from those distinct responsibilities working together — not from naming more frameworks.</p>
+  <p><strong>Relevance does not require ceremony.</strong> A task may need one method, several complementary methods, or none. If adding a method does not materially improve what is understood, decided, executed or verified, it is decoration rather than composition.</p>
+</section>
+
 <section class="fb-method-problems" id="find-by-problem"><div class="section-head"><span class="eyebrow">Find by problem</span><h2>What is getting in your way?</h2></div><div class="fb-grid fb-grid-two"><a class="fb-route fb-tone-teal" href="#control-execution"><span class="fb-route-number">Control and execution</span><h3>AI work drifts, skips steps or acts before it should.</h3><p>Bound work, decisions, instructions and risky actions.</p><span class="fb-card-cta">See 3 methods &#8594;</span></a><a class="fb-route fb-tone-violet" href="#reasoning-interpretation"><span class="fb-route-number">Reasoning and interpretation</span><h3>Claims, uncertainty or competing options are hard to judge.</h3><p>Work with evidence, alternatives and independent baselines.</p><span class="fb-card-cta">See 8 methods &#8594;</span></a><a class="fb-route fb-tone-blue" href="#orientation-context"><span class="fb-route-number">Orientation and context</span><h3>People or agents lose track of what things are and what to trust.</h3><p>Resolve identity, provenance, relationships and relevant context.</p><span class="fb-card-cta">See 4 methods &#8594;</span></a><a class="fb-route fb-tone-amber" href="#capability-discovery"><span class="fb-route-number">Discovery and design</span><h3>We keep rebuilding what exists, or nobody owns the gap.</h3><p>Find, reconcile and complete bounded capabilities before building more.</p><span class="fb-card-cta">See 5 methods &#8594;</span></a></div></section>
 <section class="section-head" id="all-methods"><span class="eyebrow">Browse</span><h2>All 20 methods</h2><p>Plain names first, published method names underneath.</p></section>
 
