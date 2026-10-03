@@ -401,5 +401,82 @@
       "environment controls",
       "regression coverage"
     ]
+  },
+  {
+    "date": "2026-06-25",
+    "state": "PUBLISHED",
+    "title": "Agent-Ready GitHub: public pre-release reference",
+    "summary": "Published a small operating model for repositories where humans keep intent, judgement and merge decisions while AI agents work from scoped issues, one branch per task and explicit validation, with starter AGENTS.md and CONTRIBUTING.md templates and a first real-world case study. The repository went public after a recorded readiness gate for content safety and repository settings, and secret scanning and push protection were enabled once it was public.",
+    "why_it_matters": "It turns working rules for human and agent collaboration into a reusable starting point that makes scope, validation and decision ownership reviewable before an agent changes a repository, with its trade-offs and failure modes stated openly.",
+    "evidence": [
+      {
+        "label": "Agent-Ready GitHub repository",
+        "url": "https://github.com/fbratten/agent-ready-github"
+      },
+      {
+        "label": "Public-release readiness record",
+        "url": "https://github.com/fbratten/agent-ready-github/blob/de069cb470c1e4c145927b82a66224618a22ec6b/docs/PUBLIC_RELEASE_CHECKLIST.md"
+      }
+    ],
+    "tags": [
+      "AI agents",
+      "repository governance",
+      "human accountability",
+      "templates"
+    ]
+  },
+  {
+    "date": "2026-06-25",
+    "state": "SHIPPED",
+    "title": "Broker Lane Sandbox: JSON request seam for orchestrators",
+    "summary": "Added a broker-run command that takes one versioned JSON request with an inline policy and returns one JSON result, so a caller stays on a process boundary instead of importing sandbox code. Unknown fields fail loudly, correlation ids survive error paths, and request and result fixtures document the contract; this delivered the sandbox side of the seam, with orchestrator-side consumption left as the next slice.",
+    "why_it_matters": "It gives an orchestrator a stable contract for requesting bounded execution without sharing a process or code with the executor, keeping the trust boundary explicit while the executor can change behind it.",
+    "evidence": [
+      {
+        "label": "Broker JSON seam - PR #3",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/pull/3"
+      },
+      {
+        "label": "Seam contract at merge",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/blob/2a80000f9f6acc22f9fcdc3233ba3c85903bda4e/docs/P2_BROKER_LOOM_SEAM.md"
+      },
+      {
+        "label": "Status record after merge",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/blob/d10b623db6580a0231f267d3cc18d5e0fd0ef730/README.md"
+      }
+    ],
+    "tags": [
+      "integration contract",
+      "JSON seam",
+      "execution boundary",
+      "fail-loud errors"
+    ]
+  },
+  {
+    "date": "2026-06-21",
+    "state": "SHIPPED",
+    "title": "Broker Lane Sandbox: default-deny execution core",
+    "summary": "Built a dependency-free execution boundary that refuses everything by default, runs only allow-listed bare command names with a scrubbed environment, offline-by-default network settings, resource limits and a process-group timeout, and returns a JSON result for every outcome, including refusals. An adversarial review confirmed four defects, including an allow-list bypass, which were fixed the same day, and the work was documented with a threat model and a public-readiness audit.",
+    "why_it_matters": "It gives execution its own small, reviewable boundary in which refusals and failures are explicit results, while the threat model states plainly that it is a guardrail and bounded executor, not kernel or container isolation.",
+    "evidence": [
+      {
+        "label": "Default-deny execution core",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/commit/0ca5ff9d8917638314d6bcedddcd26cfbe25808a"
+      },
+      {
+        "label": "Adversarial-review defect fixes",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/commit/6dec721af0eaeb4be0d7ac6644e2f274a97b65e6"
+      },
+      {
+        "label": "Threat model",
+        "url": "https://github.com/fbratten/broker-lane-sandbox/blob/e2221c916721a3df6ce7d13e04caf3acbdcad06b/docs/THREAT_MODEL.md"
+      }
+    ],
+    "tags": [
+      "execution boundary",
+      "default-deny",
+      "agent safety",
+      "adversarial review"
+    ]
   }
 ]
