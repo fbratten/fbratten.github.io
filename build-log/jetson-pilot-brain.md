@@ -1,10 +1,14 @@
 # Jetson Pilot Brain - development snapshot
 
-Published: 2026-10-15. Project maturity: research / work in progress.
+Build milestone: **2026-03-09**. Public snapshot and verification: **2026-10-15**. Project maturity: research / work in progress.
 
 Jetson Pilot Brain explores a small language model as an advisory component for a UAV, with NVIDIA Jetson Orin 8GB as the intended edge-compute target. The work combines structured telemetry, scenario-based training data, parameter-efficient fine-tuning and offline evaluation.
 
 The implementation source remains private. This page is a curated development snapshot and verification receipt, not a source release or an independently reproducible model benchmark.
+
+## Historical milestone and later review
+
+Repository history records project initialization and implementation of the preparation, training and evaluation tooling on 9 March 2026. The historical implementation pin below already contains that tooling; comparison with the inspected source ref shows only a later README addition. The Build Log date refers to the March implementation milestone. The public snapshot and newly executed self-test belong to 15 October, not to March.
 
 ## What has been built and what was checked
 
@@ -26,6 +30,7 @@ The engineering value is the connection between data contracts, constrained mode
 | Field | Value |
 |---|---|
 | Private source identity | `fbratten/jetson-pilot-brain` |
+| Historical implementation pin | `49697de5e39c4f2b44c99b21b3dcbf6f654de750`, 2026-03-09 |
 | Inspected source ref | `main` at `e5f3631123f4334e1af75e5ce00e87784d1ccd30` |
 | Review date | 2026-10-15 |
 | Evaluator file identity | Git blob `05a86e6b4f1fe73a2ec7604e394005f32c059500` |
@@ -39,4 +44,4 @@ These are newly executed tooling checks, not a repetition of source-reported tes
 
 This public snapshot contains only a high-level description, source/version identifiers, a summarized check result and explicit limitations. It includes no private source code, scenario records, model weights, real telemetry, raw execution logs, local machine paths, account details or credentials. The source repository's visibility is unchanged.
 
-The Build Log entry is marked **PUBLISHED** for this development snapshot. It does not mark the aircraft system as shipped, deployed or flight-verified.
+The Build Log entry is dated **2026-03-09** and marked **SHIPPED** for the committed prototype tooling. The public snapshot and verification were added on **2026-10-15**. This does not mark the aircraft system as shipped, deployed or flight-verified.
