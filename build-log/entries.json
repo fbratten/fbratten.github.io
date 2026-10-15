@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-15",
+    "state": "PUBLISHED",
+    "title": "COR: capability reasoning and the boundary between method composition and execution",
+    "summary": "Published a public-facing explanation of Capability & Opportunity Reasoning (COR): a domain-agnostic approach to relating stated needs, evidenced capabilities and carefully labeled possibilities. BJD, BPR, ACD and OCR are proposed application profiles. Established methods such as SRCB, DIALECTIC, IPB, SORR and GDSA inform the architecture; their inclusion as method references must not be confused with completed runtime integrations.",
+    "why_it_matters": "It makes the distinction between a method-informed design, an implemented component and an operationally connected adapter explicit—so capability claims stay testable and existing methods can be composed without duplicating their authority.",
+    "evidence": [
+      {
+        "label": "Public Methods & Labs: composition principles",
+        "url": "https://fbratten.github.io/methods/"
+      },
+      {
+        "label": "SRCB method profile",
+        "url": "https://fbratten.github.io/methods/srcb/"
+      },
+      {
+        "label": "DIALECTIC method profile",
+        "url": "https://fbratten.github.io/methods/dialectic/"
+      },
+      {
+        "label": "IPB method profile",
+        "url": "https://fbratten.github.io/methods/ipb/"
+      },
+      {
+        "label": "RigVedan EBNF-RV method profile",
+        "url": "https://fbratten.github.io/methods/rigvedan/"
+      },
+      {
+        "label": "Public COR Build Log publication review (PR #37)",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/37"
+      }
+    ],
+    "tags": [
+      "COR",
+      "capability reasoning",
+      "method composition",
+      "evidence",
+      "architecture"
+    ]
+  },
+  {
     "date": "2026-10-02",
     "state": "VERIFIED",
     "title": "Methods & Labs: composition over method decoration",
