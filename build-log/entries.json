@@ -3,9 +3,13 @@
     "date": "2026-10-15",
     "state": "PUBLISHED",
     "title": "COR: capability reasoning and the boundary between method composition and execution",
-    "summary": "Published a public-facing explanation of Capability & Opportunity Reasoning (COR): a domain-agnostic approach to relating stated needs, evidenced capabilities and carefully labeled possibilities. BJD, BPR, ACD and OCR are proposed application profiles. Established methods such as SRCB, DIALECTIC, IPB, SORR and GDSA inform the architecture; their inclusion as method references must not be confused with completed runtime integrations.",
-    "why_it_matters": "It makes the distinction between a method-informed design, an implemented component and an operationally connected adapter explicit—so capability claims stay testable and existing methods can be composed without duplicating their authority.",
+    "summary": "Published a source-pinned overview of Capability & Opportunity Reasoning (COR), now with a starter assessment validator, optional RigVedan EBNF-RV reports and an offline evaluation harness. Four application profiles cover careers (BJD), business needs (BPR), agent capabilities (ACD) and organizational capability reconfiguration (OCR); BJD is the most detailed, while BPR, ACD and OCR are initial profile contracts. Existing methods inform the architecture; references to them do not establish completed runtime integrations.",
+    "why_it_matters": "It connects stated needs with evidenced capabilities and testable opportunity hypotheses, while keeping direct fit, strategic pursuit value, formal requirements and authority distinct. Possible value stays separate from verified facts, and synthetic fixture results are not treated as demonstrated model improvements.",
     "evidence": [
+      {
+        "label": "COR overview, application profiles and verification boundaries",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/cor.md"
+      },
       {
         "label": "Public Methods & Labs: composition principles",
         "url": "https://fbratten.github.io/methods/"
