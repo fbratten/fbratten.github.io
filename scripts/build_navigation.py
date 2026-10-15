@@ -221,7 +221,7 @@ def render():
         teaser = f'<div><time datetime="{published["date"]}">{published["date"]}</time><span>{escape(published["title"])}</span></div><div><span>Available now</span><span>Rules, Authority &amp; Enforcement reader labs</span></div><div><span>Coming soon</span><span>Blueprint AI Studio and its learning platform</span></div>'
         text = replace_block(text, "BLUEPRINT-TEASER", teaser)
         latest = json.loads((ROOT / "build-log/entries.json").read_text())[0]
-        text = replace_block(text, "BUILD-LATEST", f'<span>Latest verified update, <time datetime="{latest["date"]}">{latest["date"]}</time>: {escape(latest["title"])}.</span>')
+        text = replace_block(text, "BUILD-LATEST", f'<span>Latest {escape(latest["state"].lower())} update, <time datetime="{latest["date"]}">{latest["date"]}</time>: {escape(latest["title"])}.</span>')
         text = replace_block(text, "DIRECTORY", directory_html())
         output[path] = text
     output[ROOT / "blueprint-ai-studio/feed.xml"] = rss(entries)
