@@ -1,5 +1,41 @@
 [
   {
+    "date": "2026-10-15",
+    "state": "PUBLISHED",
+    "title": "COR: capability reasoning and the boundary between method composition and execution",
+    "summary": "Published a public-facing explanation of Capability & Opportunity Reasoning (COR): a domain-agnostic approach to relating stated needs, evidenced capabilities and carefully labeled possibilities. BJD, BPR, ACD and OCR are proposed application profiles. Established methods such as SRCB, DIALECTIC, IPB, SORR and GDSA inform the architecture; their inclusion as method references must not be confused with completed runtime integrations.",
+    "why_it_matters": "It makes the distinction between a method-informed design, an implemented component and an operationally connected adapter explicit—so capability claims stay testable and existing methods can be composed without duplicating their authority.",
+    "evidence": [
+      {
+        "label": "Public Methods & Labs: composition principles",
+        "url": "https://fbratten.github.io/methods/"
+      },
+      {
+        "label": "SRCB method profile",
+        "url": "https://fbratten.github.io/methods/srcb/"
+      },
+      {
+        "label": "DIALECTIC method profile",
+        "url": "https://fbratten.github.io/methods/dialectic/"
+      },
+      {
+        "label": "IPB method profile",
+        "url": "https://fbratten.github.io/methods/ipb/"
+      },
+      {
+        "label": "RigVedan EBNF-RV method profile",
+        "url": "https://fbratten.github.io/methods/rigvedan/"
+      }
+    ],
+    "tags": [
+      "COR",
+      "capability reasoning",
+      "method composition",
+      "evidence",
+      "architecture"
+    ]
+  },
+  {
     "date": "2026-10-02",
     "state": "VERIFIED",
     "title": "Methods & Labs: composition over method decoration",
@@ -163,7 +199,12 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/6a1169e9ab6dfc15bb8ae13a6bb51884c7bf83a5"
       }
     ],
-    "tags": ["proof of work", "GitHub Pages", "publication governance", "verification"]
+    "tags": [
+      "proof of work",
+      "GitHub Pages",
+      "publication governance",
+      "verification"
+    ]
   },
   {
     "date": "2026-09-19",
@@ -181,7 +222,11 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/2c0822191698af8fd6f86bf9c827cc1cdbecddf7"
       }
     ],
-    "tags": ["capability architecture", "GitHub Pages", "interaction design"]
+    "tags": [
+      "capability architecture",
+      "GitHub Pages",
+      "interaction design"
+    ]
   },
   {
     "date": "2026-09-19",
@@ -199,7 +244,12 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/4c3343836d1ceabec8ae807e6f52b4f98c4cacd4"
       }
     ],
-    "tags": ["capability inventory", "problem mapping", "orientation", "GitHub Pages"]
+    "tags": [
+      "capability inventory",
+      "problem mapping",
+      "orientation",
+      "GitHub Pages"
+    ]
   },
   {
     "date": "2026-09-17",
@@ -213,7 +263,12 @@
         "url": "https://adaptivearts.ai/blog/when-a-rule-is-not-a-control/"
       }
     ],
-    "tags": ["AI agents", "governance", "verification", "behavioural testing"]
+    "tags": [
+      "AI agents",
+      "governance",
+      "verification",
+      "behavioural testing"
+    ]
   },
   {
     "date": "2026-09-16",
@@ -231,7 +286,12 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/5f476e30e3e6c82fc3d347b7c008c40f22092829"
       }
     ],
-    "tags": ["AI agents", "authority", "enforcement", "interactive learning"]
+    "tags": [
+      "AI agents",
+      "authority",
+      "enforcement",
+      "interactive learning"
+    ]
   },
   {
     "date": "2026-08-03",
@@ -253,7 +313,12 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/b2912a92d4b985d7505eacde0c6d9bd7f3f3ec48"
       }
     ],
-    "tags": ["portfolio", "GitHub Pages", "browser testing", "deployment verification"]
+    "tags": [
+      "portfolio",
+      "GitHub Pages",
+      "browser testing",
+      "deployment verification"
+    ]
   },
   {
     "date": "2026-08-03",
@@ -275,7 +340,12 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/1490b09f3a60ac87537c0352ad2d902d2de6e488"
       }
     ],
-    "tags": ["methods", "protocols", "interactive evidence", "provenance"]
+    "tags": [
+      "methods",
+      "protocols",
+      "interactive evidence",
+      "provenance"
+    ]
   },
   {
     "date": "2026-08-02",
@@ -293,7 +363,12 @@
         "url": "https://github.com/fbratten/fbratten.github.io/commit/316dbbd65d6301dd99b668f637b04f93182186aa"
       }
     ],
-    "tags": ["agent safety", "execution boundary", "evidence", "public proof"]
+    "tags": [
+      "agent safety",
+      "execution boundary",
+      "evidence",
+      "public proof"
+    ]
   },
   {
     "date": "2026-07-31",
