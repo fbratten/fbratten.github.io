@@ -2,20 +2,6 @@
   {
     "date": "2026-10-15",
     "state": "PUBLISHED",
-    "title": "Jetson Pilot Brain: small-model training and evaluation groundwork",
-    "summary": "Published a source-pinned development snapshot of a private UAV research project targeting NVIDIA Jetson Orin: Python scenario preparation, QLoRA training code and an offline decision evaluator. The evaluator's three embedded self-test cases passed, including rejection of an intentionally incorrect safety-critical decision; model training, quantization, flight-controller integration and on-device operation remain unverified.",
-    "why_it_matters": "It connects small-model experimentation with structured telemetry, constrained edge hardware and explicit evaluation boundaries, while distinguishing implemented tooling from a validated aircraft system.",
-    "evidence": [
-      {
-        "label": "Public development snapshot and bounded verification receipt",
-        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/jetson-pilot-brain.md"
-      }
-    ],
-    "tags": ["edge AI", "small language models", "QLoRA", "Jetson", "research prototype"]
-  },
-  {
-    "date": "2026-10-15",
-    "state": "PUBLISHED",
     "title": "COR: capability reasoning and the boundary between method composition and execution",
     "summary": "Published a public-facing explanation of Capability & Opportunity Reasoning (COR): a domain-agnostic approach to relating stated needs, evidenced capabilities and carefully labeled possibilities. BJD, BPR, ACD and OCR are proposed application profiles. Established methods such as SRCB, DIALECTIC, IPB, SORR and GDSA inform the architecture; their inclusion as method references must not be confused with completed runtime integrations.",
     "why_it_matters": "It makes the distinction between a method-informed design, an implemented component and an operationally connected adapter explicit—so capability claims stay testable and existing methods can be composed without duplicating their authority.",
@@ -532,5 +518,19 @@
       "agent safety",
       "adversarial review"
     ]
+  },
+  {
+    "date": "2026-03-09",
+    "state": "SHIPPED",
+    "title": "Jetson Pilot Brain: small-model training and evaluation groundwork",
+    "summary": "Built Python scenario-preparation, QLoRA-training and offline-evaluation tooling for a private UAV research project targeting NVIDIA Jetson Orin. This March milestone covers prototype tooling; trained-model performance, quantization, flight-controller integration and on-device operation remain unverified in the later publication review.",
+    "why_it_matters": "It connects small-model experimentation with structured telemetry, constrained edge hardware and explicit evaluation boundaries, while distinguishing implemented tooling from a validated aircraft system.",
+    "evidence": [
+      {
+        "label": "Public development snapshot and bounded verification receipt",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/jetson-pilot-brain.md"
+      }
+    ],
+    "tags": ["edge AI", "small language models", "QLoRA", "Jetson", "research prototype"]
   }
 ]
