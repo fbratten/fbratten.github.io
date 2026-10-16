@@ -524,6 +524,60 @@
     ]
   },
   {
+    "date": "2026-06-17",
+    "state": "SHIPPED",
+    "title": "Intelligence Engine: project-scoped cleanup for shared semantic indexes",
+    "summary": "Corrected the shared LanceDB re-indexing path so project cleanup no longer skips table deletion when its in-memory entity list is empty. Added a regression test that reopens the shared table, removes the target project's rows and checks that another project's rows remain intact.",
+    "why_it_matters": "Reliable retrieval depends on replacing stale derived index data while preserving unrelated projects; the change makes that boundary explicit and regression-testable.",
+    "evidence": [
+      {
+        "label": "Historical implementation and verification boundaries",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/2026-may-june-milestones.md#intelligence-engine-2026-06-17"
+      },
+      {
+        "label": "Public Intelligence Engine showcase",
+        "url": "https://fbratten.github.io/intelligence-engine-showcase/"
+      }
+    ],
+    "tags": ["semantic search", "LanceDB", "index integrity", "regression testing"]
+  },
+  {
+    "date": "2026-06-06",
+    "state": "SHIPPED",
+    "title": "MADS: ChangeSet review, rollback drift checks and durable audit",
+    "summary": "Hardened MADS ChangeSet review with warnings when a proposed file creation would overwrite existing content, explicit newline-only diffs, checks that refuse a revert over later edits, and durable ChangeSet lifecycle audit events. Persistence failures are surfaced instead of being presented as successful audit writes.",
+    "why_it_matters": "Reviewable agent changes need an accurate account of their effects, protection for later human edits and a decision history that can survive a reload.",
+    "evidence": [
+      {
+        "label": "Historical implementation and verification boundaries",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/2026-may-june-milestones.md#mads-2026-06-06"
+      },
+      {
+        "label": "Public synthetic MADS demonstration",
+        "url": "https://fbratten.github.io/mads/"
+      }
+    ],
+    "tags": ["AI agents", "human review", "preservation", "audit trail"]
+  },
+  {
+    "date": "2026-05-26",
+    "state": "SHIPPED",
+    "title": "Gate Monitor: output-path confinement for MCP reports",
+    "summary": "Added configured-root containment checks to the MCP report writer, with structured rejection of directory traversal, absolute paths outside the root and symlink escapes. Added helper and tool-level regression coverage while preserving the default report path; the scope is the MCP report tool.",
+    "why_it_matters": "A client-supplied output path is a concrete write boundary: refusals should happen before the write and produce an explicit result that callers can inspect.",
+    "evidence": [
+      {
+        "label": "Historical implementation and verification boundaries",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/2026-may-june-milestones.md#gate-monitor-2026-05-26"
+      },
+      {
+        "label": "Public synthetic Gate Monitor demonstration",
+        "url": "https://fbratten.github.io/gate-monitor/"
+      }
+    ],
+    "tags": ["MCP", "write boundaries", "path validation", "regression testing"]
+  },
+  {
     "date": "2026-03-09",
     "state": "SHIPPED",
     "title": "Jetson Pilot Brain: small-model training and evaluation groundwork",
