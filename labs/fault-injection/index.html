@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Inject a known synthetic fault into a five-gate AI pipeline. Disable checks to see whether the fault is intercepted, missed or passed downstream."><title>Fault Injection &amp; Test Gates Lab | Fredrik Bratten</title>
+<!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
+<link rel="stylesheet" href="/labs/ai-testing/styles.css">
+</head><body class="fb-page">
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation"><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/" aria-current="true">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/build-log/">Build log</a><a href="/#about">About</a></nav>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
+<div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a></nav>
+</div></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/methods/">Methods &amp; Labs</a></li><li><a href="/labs/">Labs</a></li><li><span aria-current="page">Fault injection &amp; test gates</span></li></ol></nav>
+<!-- /FB:NAV -->
+<main id="main" class="lab-shell"><header role="region" aria-label="Page introduction" class="lab-intro"><span class="lab-kicker">Interactive AI testing / 02 / Follow the fault</span>
+<h1>Fault Injection & Test Gates Lab</h1><p class="lab-lede">What happens when a protective gate is absent, and what does a test receipt really establish?</p>
+<div class="lab-tagline"><strong>Browser-local learning exercise.</strong> All scenarios, costs and receipts are synthetic. No real model, API or service is being evaluated.</div>
+<nav class="lab-series" aria-label="AI testing lab series"><a href="/labs/testing-architecture/" >1. Testing architecture</a><a href="/labs/fault-injection/" aria-current="page">2. Fault injection &amp; test gates</a><a href="/labs/ai-evaluation-ci-cd/" >3. AI evaluation &amp; CI/CD</a></nav></header>
+
+<section class="lab-panel" aria-labelledby="fault-title"><h2 id="fault-title">1. Inject a synthetic fault</h2><p class="lab-muted">Choose a known failure fixture. Each scenario represents a simplified model of how a particular control would behave.</p>
+  <div class="lab-controls" role="group" aria-label="Fault scenarios" id="fault-controls"></div>
+  <div id="fault-outcome" class="lab-outcome" aria-live="polite"></div>
+  <div class="lab-row lab-spread"><div><h2>2. Toggle the five test gates</h2><p class="lab-small lab-muted">Turn off a gate to let its known fixture pass. Select a stage to view the receipt.</p></div><button type="button" class="lab-button" id="reset-gates">Reset all gates</button></div>
+  <div id="fault-flow" class="lab-flow" aria-label="Fault propagation by stage"></div>
+</section>
+<section class="lab-panel" aria-labelledby="receipt-title"><h2 id="receipt-title">3. Inspect the explanation and receipt</h2>
+  <div class="lab-inspector"><div class="lab-datum"><h3 id="fault-stage-title"></h3><p id="fault-stage-description"></p><h3 class="lab-warn">Model assumption</h3><p id="fault-assumption"></p><h3>Control's intended action</h3><p id="fault-stage-action"></p></div>
+  <div class="lab-datum"><h3>Verification receipt - synthetic</h3><pre id="fault-receipt"></pre></div></div>
+</section>
+<section class="lab-panel"><h2>4. Try a defense-in-depth experiment</h2>
+ <p>Choose <strong>Weak RAG evidence</strong>. Disable Gate 2 while keeping Gate 5 on: the unsupported claim passes retrieval but is stopped by the later grounding check in this model. Disable Gate 5 too: the model reports an unhandled risk.</p>
+ <p class="lab-note">No LLM, guardrail, RAG service, network or tool is actually executed. A real classifier might miss an injection; a simulated interception is never evidence of deployed protection. Latency and token usage are deliberately not fabricated.</p>
+</section>
+<div class="lab-footer-next"><p>Next: <a href="/labs/ai-evaluation-ci-cd/">estimate the evaluation cost of different CI/CD test policies</a>.</p></div>
+</main>
+<!-- FB:FOOTER -->
+<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a></nav>
+<nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
+<nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>
+<!-- /FB:FOOTER -->
+<script src="/labs/ai-testing/engine.js"></script><script>
+(()=>{'use strict';const {faults,steps,simulateFault}=window.AITesting;
+let current='injection',enabled=[true,true,true,true,true],selected=0;
+const controls=document.getElementById('fault-controls'),flow=document.getElementById('fault-flow'),outcome=document.getElementById('fault-outcome');
+function render(){
+ const result=simulateFault(current,enabled),fault=faults[current],stage=steps[selected],state=result.states[selected];
+ controls.innerHTML=Object.entries(faults).map(([key,f])=>'<button type="button" class="lab-button" data-fault="'+key+'" aria-pressed="'+(key===current)+'">'+f.name+'</button>').join('');
+ outcome.dataset.state=result.escaped?'breach':result.clean?'clean':'caught';
+ outcome.innerHTML='<strong>'+ (result.clean?'Normal fixture: modeled flow completes.':result.escaped?'Unintercepted fixture: failure or unauthorized behavior is possible.':'Known fixture intercepted by Gate '+(result.caughtAt+1)+'.')+'</strong><p class="lab-small">This is a deterministic demonstration, not a runtime security or accuracy measurement.</p>';
+ flow.innerHTML=steps.map((s,i)=>'<div class="lab-node" data-state="'+result.states[i].state+'" data-selected="'+(i===selected)+'"><span class="lab-number">Gate '+(i+1)+'</span><strong>'+s.name+'</strong><span class="lab-status">'+result.states[i].state.toUpperCase()+'</span><button type="button" class="lab-button" data-view="'+i+'">Inspect</button><label class="lab-toggle"><input type="checkbox" data-gate="'+i+'" '+(enabled[i]?'checked':'')+' aria-label="Enable gate '+(i+1)+'"> Gate '+(enabled[i]?'ON':'OFF')+'</label></div>').join('');
+ document.getElementById('fault-stage-title').textContent='Gate '+(selected+1)+' - '+stage.name;
+ document.getElementById('fault-stage-description').textContent=state.detail+' '+stage.check;
+ document.getElementById('fault-assumption').textContent=fault.note;
+ document.getElementById('fault-stage-action').textContent=stage.action+' (illustrative, not invoked)';
+ document.getElementById('fault-receipt').textContent=JSON.stringify({...result.receipt,inspected_gate:selected+1,inspected_state:state.state,intended_action:state.state==='caught'?stage.action:'NONE',fixture_payload:fault.payload},null,2);
+}
+controls.addEventListener('click',e=>{const b=e.target.closest('[data-fault]');if(!b)return;current=b.dataset.fault;const r=simulateFault(current,enabled);selected=r.caughtAt===null?Math.min(4,faults[current].start):r.caughtAt;render()});
+flow.addEventListener('click',e=>{const b=e.target.closest('[data-view]');if(b){selected=Number(b.dataset.view);render()}});
+flow.addEventListener('change',e=>{const cb=e.target.closest('[data-gate]');if(!cb)return;enabled[Number(cb.dataset.gate)]=cb.checked;selected=Number(cb.dataset.gate);render()});
+document.getElementById('reset-gates').addEventListener('click',()=>{enabled=[true,true,true,true,true];selected=0;render()});
+render();
+})();</script>
+</body></html>
