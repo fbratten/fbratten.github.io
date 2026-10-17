@@ -295,3 +295,7 @@
  .fb-section-tabs { gap:8px; }
  .fb-section-tabs a { padding:10px 12px; font-size:13px; }
 }
+
+/* Glossary term links (AI testing labs) */
+.glossary-link { color:inherit; text-decoration:underline dotted; text-decoration-thickness:1px; text-underline-offset:3px; text-decoration-color:rgba(94,234,212,.7); cursor:help; }
+.glossary-link:hover, .glossary-link:focus-visible { color:#5eead4; text-decoration-style:solid; }
