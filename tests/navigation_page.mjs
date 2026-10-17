@@ -81,8 +81,27 @@ try {
     }
   }
 
+  // Canonical lab discovery: Home -> complete Labs directory -> Mutation Gate.
+  await page.goto(base + '/');
+  await page.locator('a.fb-route[href="/labs/"]').click();
+  assert.match(page.url(), /\/labs\/$/);
+  assert.equal(await page.locator('main .fb-route').count(), 10);
+  assert.equal(await page.locator('main .fb-route[href="/labs/mutation-gate/"]').count(), 1);
+  await page.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
+  assert.match(page.url(), /\/labs\/mutation-gate\/$/);
+  assert.ok(await page.getByRole('heading', {name: 'Mutation Gate Lab'}).isVisible());
+  assert.ok(await page.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).isVisible());
+
+  // Methods & Labs -> all ten labs, the canonical directory and a direct Mutation Gate card.
   await page.goto(base + '/methods/');
-  assert.equal(await page.locator('#labs .fb-route').count(), 6);
+  assert.equal(await page.locator('#labs .fb-route').count(), 10);
+  assert.equal(await page.locator('#labs .fb-route[href="/labs/mutation-gate/"]').count(), 1);
+  assert.ok(await page.locator('#labs a[href="/labs/"]').count() >= 1);
+  await page.getByRole('navigation', { name: 'Methods and labs' }).getByRole('link', {name: 'Browse all labs'}).click();
+  assert.match(page.url(), /\/labs\/$/);
+  await page.getByRole('link', { name: /Mutation Gate: test your tests/ }).click();
+  assert.ok(await page.getByRole('heading', {name: 'Mutation Gate Lab'}).isVisible());
+  await page.goto(base + '/methods/');
   assert.equal(await page.locator('a.card[href="./cbe/"] h3').innerText(), 'Responsibility boundary design');
   await page.goto(base + '/blueprint-ai-studio/');
   assert.ok(await page.getByRole('heading', { name: 'Progress', exact: true }).isVisible());
@@ -100,6 +119,15 @@ try {
   assert.equal(await fallback.locator('.fb-filters').isVisible(), false);
   await fallback.getByRole('navigation', { name: 'Site navigation', exact: true }).getByRole('link', { name: 'Methods & Labs', exact: true }).click();
   assert.equal(await fallback.locator('a.card').count(), 20);
+  assert.equal(await fallback.locator('#labs .fb-route').count(), 10);
+  await fallback.locator('#labs a[href="/labs/"]').first().click();
+  assert.match(fallback.url(), /\/labs\/$/);
+  assert.equal(await fallback.locator('main .fb-route').count(), 10);
+  await fallback.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
+  assert.match(fallback.url(), /\/labs\/mutation-gate\/$/);
+  await fallback.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).click();
+  assert.match(fallback.url(), /\/labs\/$/);
+  await fallback.goto(base + '/methods/');
   await fallback.getByText('How the methods fit together:', { exact: false }).click();
   assert.ok(await fallback.getByRole('heading', { name: 'From methods to practical system capability' }).isVisible());
   await noJS.close();
