@@ -1,82 +1,75 @@
-name: One-time signed Labs breadcrumb-test correction
+name: One-time signed Labs navigation single-commit re-creation
 on:
   push:
     branches:
       - chatgpt/labs-nav-signing-bridge-20261017
 permissions:
   contents: write
-  actions: write
 concurrency:
-  group: signed-labs-nav-breadcrumb-20261017
+  group: signed-labs-nav-single-20261017
   cancel-in-progress: false
 jobs:
-  sign-breadcrumb-test-and-start-ci:
+  publish-signed-exact-tree:
     if: github.repository == 'fbratten/fbratten.github.io' && github.ref == 'refs/heads/chatgpt/labs-nav-signing-bridge-20261017'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout previous exact signed head
+      - name: Checkout exact already verified source tree
         uses: actions/checkout@v4
         with:
-          ref: 654e8eb4242e0804ea7c616282962a6838e4402a
+          ref: db485f09432665aa648d4373fbed1cb71f6a61ce
           persist-credentials: false
-      - name: Sign precise test-only fix and request full workflow check
-        shell: bash
+      - name: GitHub sign unchanged six-file source tree
         env:
           GH_TOKEN: ${{ github.token }}
+        shell: bash
         run: |
           python3 - <<'PY'
-          import os, json, base64, subprocess, urllib.request, time
+          import os,json,base64,subprocess,urllib.request,time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
-          target="chatgpt/labs-nav-unified-signed-20261017"
-          base="654e8eb4242e0804ea7c616282962a6838e4402a"
-          base_tree="9bf40c6ab904b40a399cbe6c208d777034b9d198"
-          expected_tree="1ef3cb33aed9b73a6d5e971cf7439dd406b2a815"
-          path="tests/navigation_page.mjs"
-          bridge_ref="refs/heads/chatgpt/labs-nav-signing-bridge-20261017"
-          assert os.environ["GITHUB_REPOSITORY"]==repo
-          assert os.environ["GITHUB_REF"]==bridge_ref
-          assert subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip()==base
-          assert subprocess.check_output(["git","rev-parse","HEAD^{tree}"],text=True).strip()==base_tree
-          old="getByRole('link', {name: 'Labs'})"
-          new="getByRole('link', {name: 'Labs', exact: true})"
-          text=Path(path).read_text(encoding="utf-8")
-          assert text.count(old)==2,"Unexpected code or already fixed"
-          fixed=text.replace(old,new)
+          source="db485f09432665aa648d4373fbed1cb71f6a61ce"
+          source_tree="1ef3cb33aed9b73a6d5e971cf7439dd406b2a815"
+          base="c500a6ebdafbc8c0190c47475f1556fae5440490"
+          target="chatgpt/labs-nav-single-signed-20261017"
+          bridge="refs/heads/chatgpt/labs-nav-signing-bridge-20261017"
+          paths=["index.html","labs/index.html","methods/index.html",
+                 "tests/navigation_contract.py","tests/navigation_page.mjs","tests/site_copy_and_canvas_lint.py"]
+          assert os.environ["GITHUB_REPOSITORY"]==repo and os.environ["GITHUB_REF"]==bridge
+          assert subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip()==source
+          assert subprocess.check_output(["git","rev-parse","HEAD^{tree}"],text=True).strip()==source_tree
+          assert len(set(paths))==len(paths)==6
+          additions=[{"path":p,"contents":base64.b64encode(Path(p).read_bytes()).decode("ascii")} for p in paths]
           payload={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{
-              "branch":{"repositoryNameWithOwner":repo,"branchName":target},
-              "message":{"headline":"test(nav): disambiguate Labs breadcrumb from Methods and Labs",
-                         "body":"Two exact-name selectors only. No change to production pages."},
-              "expectedHeadOid":base,
-              "fileChanges":{"additions":[{"path":path,"contents":base64.b64encode(fixed.encode()).decode("ascii")}]}
+            "branch":{"repositoryNameWithOwner":repo,"branchName":target},
+            "message":{"headline":"Unify Labs directory and Mutation Gate navigation",
+                       "body":"GitHub-signed re-creation of the exact verified and tested source tree. Preserves all previous commits and branches."},
+            "expectedHeadOid":base,
+            "fileChanges":{"additions":additions}
           }}}
           token=os.environ["GH_TOKEN"]
-          def api(url,body=None):
-              headers={"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json",
-                       "X-GitHub-Api-Version":"2022-11-28","User-Agent":"signed-navigation-ci-recheck"}
-              if body is not None:headers["Content-Type"]="application/json"
-              req=urllib.request.Request(url,data=json.dumps(body).encode() if body is not None else None,
-                                         method="POST" if body is not None else "GET",headers=headers)
-              with urllib.request.urlopen(req,timeout=70) as resp:
-                  payload=resp.read()
-                  return json.loads(payload) if payload else None
-          r=api("https://api.github.com/graphql",payload)
-          if r.get("errors") or not r.get("data",{}).get("createCommitOnBranch"):
-              raise RuntimeError("Signed follow-up refused: "+str(r.get("errors",r)))
-          sha=r["data"]["createCommitOnBranch"]["commit"]["oid"]
-          for attempt in range(8):
-              commit=api("https://api.github.com/repos/"+repo+"/commits/"+sha)
-              if commit["commit"]["verification"]["verified"]:break
-              time.sleep(2)
-          assert commit["commit"]["verification"]["verified"],"Signature not valid"
-          assert commit["commit"]["tree"]["sha"]==expected_tree,"Unexpected source-tree change"
-          assert [p["sha"] for p in commit["parents"]]==[base],"Unexpected parent or rewritten history"
-          assert len(commit["files"])==1 and commit["files"][0]["filename"]==path and commit["files"][0]["status"]=="modified","Unexpected scope"
-          print("PASS: signed 1-file test selector fix, exact head and tree, no production code changes:",sha)
-          # workflow_dispatch explicitly triggers the existing test workflow on the exact updated branch;
-          # this is an authorized test run, not a bypass of required checks or a repository settings change.
-          api("https://api.github.com/repos/"+repo+"/actions/workflows/pages-browser-check.yml/dispatches",{"ref":target})
-          print("REQUESTED: GitHub Pages interaction checks on signed head",sha)
+          def query(url,body=None):
+            headers={"Authorization":"Bearer "+token,"User-Agent":"signed-lab-navigation-single-commit",
+                     "Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"}
+            if body is not None:headers["Content-Type"]="application/json"
+            request=urllib.request.Request(url,method="POST" if body is not None else "GET",
+                   data=json.dumps(body).encode() if body is not None else None,headers=headers)
+            with urllib.request.urlopen(request,timeout=90) as resp:
+              data=resp.read()
+              return json.loads(data) if data else None
+          res=query("https://api.github.com/graphql",payload)
+          if res.get("errors") or not res.get("data",{}).get("createCommitOnBranch"):
+            raise RuntimeError("Signed commit not created: "+str(res.get("errors",res)))
+          sha=res["data"]["createCommitOnBranch"]["commit"]["oid"]
+          for t in range(8):
+            c=query("https://api.github.com/repos/"+repo+"/commits/"+sha)
+            if c.get("commit",{}).get("verification",{}).get("verified"):break
+            time.sleep(2)
+          assert c["commit"]["verification"]["verified"] is True,"Missing valid signature"
+          assert c["commit"]["tree"]["sha"]==source_tree,"Source tree mismatch"
+          assert [x["sha"] for x in c["parents"]]==[base],"Incorrect parent"
+          actual={f["filename"]:f["status"] for f in c["files"]}
+          assert set(actual)==set(paths) and all(status=="modified" for status in actual.values()),"Unexpected path or deletion"
+          print("PASS: single GitHub-signed commit with 6 exact verified files, no rewrite or deletion:",sha)
           
           PY
