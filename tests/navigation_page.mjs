@@ -90,7 +90,7 @@ try {
   await page.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(page.url(), /\/labs\/mutation-gate\/$/);
   assert.ok(await page.getByRole('heading', {name: 'Mutation Gate Lab'}).isVisible());
-  assert.ok(await page.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs'}).isVisible());
+  assert.ok(await page.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).isVisible());
 
   // Methods & Labs -> all ten labs, the canonical directory and a direct Mutation Gate card.
   await page.goto(base + '/methods/');
@@ -125,7 +125,7 @@ try {
   assert.equal(await fallback.locator('main .fb-route').count(), 10);
   await fallback.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(fallback.url(), /\/labs\/mutation-gate\/$/);
-  await fallback.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs'}).click();
+  await fallback.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).click();
   assert.match(fallback.url(), /\/labs\/$/);
   await fallback.goto(base + '/methods/');
   await fallback.getByText('How the methods fit together:', { exact: false }).click();
