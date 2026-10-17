@@ -43,6 +43,24 @@ for (const m of mutationData.cases) {
 }
 assert.throws(() => simulateMutation("unknown", "mutated"));
 
+// GitHub Actions Lab: source-pinned real steps and synthetic event eligibility.
+const ghContext = {};
+runInNewContext(readFileSync(new URL("../labs/github-actions/model.js",import.meta.url),"utf8"),ghContext);
+const gh = ghContext.GitHubActionsLab;
+assert.equal(gh.data.success.run_id,39070132534);
+assert.equal(gh.data.success.job_id,117505847884);
+assert.equal(gh.data.success.steps.length,35);
+assert.equal(gh.data.failure.steps.length,35);
+assert.equal(gh.count("success").success,32);
+assert.equal(gh.count("success").skipped,3);
+assert.equal(gh.count("failure").failure,1);
+assert.equal(gh.count("failure").skipped,10);
+assert.equal(gh.stepFor("failure",21).status,"failure");
+assert.equal(gh.predictEvent("push").find(s=>s.number===12).outcome,"would-skip");
+assert.equal(gh.predictEvent("pull_request").find(s=>s.number===12).outcome,"would-run");
+assert.equal(gh.predictEvent("workflow_dispatch").find(s=>s.number===24).outcome,"would-skip");
+assert.throws(()=>gh.predictEvent("unknown"));
+
 const root = (process.env.BASE_URL || "http://127.0.0.1:4173").replace(/\/$/, "");
 const screenshotDir = process.env.LAB_SHOT_DIR;
 if (screenshotDir) await mkdir(screenshotDir, {recursive:true});
@@ -113,13 +131,42 @@ try {
  assert.ok(await page.locator('a[href$="#term-merge"]').count() > 0);
  if (screenshotDir) await page.screenshot({path:screenshotDir+"/mutation-gate-desktop.png",fullPage:true});
 
+ await page.goto(root + "/labs/github-actions/");
+ assert.equal(await page.locator("#step-list button[data-step]").count(),35);
+ assert.equal(await page.locator("#run-id").textContent(),"39070132534");
+ assert.equal(await page.locator("#job-id").textContent(),"117505847884");
+ assert.equal(await page.locator("#count-success").textContent(),"32");
+ assert.equal(await page.locator("#count-skipped").textContent(),"3");
+ await page.locator('[data-run="failure"]').click();
+ assert.equal(await page.locator("#run-id").textContent(),"39068541958");
+ assert.equal(await page.locator("#count-failure").textContent(),"1");
+ assert.match(await page.locator("#step-explanation").textContent(),/456/);
+ await page.locator("#step-search").fill("Playwright");
+ assert.ok(await page.locator("#step-list button[data-step]").count() >= 1);
+ await page.locator("#step-search").fill("");
+ await page.locator("#trigger-select").selectOption("pull_request");
+ assert.match(await page.locator("#condition-summary").textContent(),/Hypothetical pull_request/);
+ const ghReceipt=JSON.parse(await page.locator("#trigger-receipt").textContent());
+ assert.equal(ghReceipt.real_execution,false);
+ assert.equal(ghReceipt.simulation,true);
+ assert.equal(ghReceipt.conditional_steps.find(s=>s.step==="Package static review preview").eligibility,"would-run");
+ await page.locator('input[name="q1"][value="job"]').check();
+ await page.locator('input[name="q2"][value="condition"]').check();
+ await page.locator('input[name="q3"][value="scope"]').check();
+ await page.locator("#check-quiz").click();
+ assert.match(await page.locator("#quiz-score").textContent(),/3\/3 correct/);
+ for(const name of ["workflow-run","artifact","playwright"]){
+  assert.ok(await page.locator('a[href$="#term-'+name+'"]').count()>0);
+ }
+ if(screenshotDir)await page.screenshot({path:screenshotDir+"/github-actions-desktop.png",fullPage:true});
+
  await page.setViewportSize({width:390,height:844});
- for (const path of ["/labs/testing-architecture/","/labs/fault-injection/","/labs/ai-evaluation-ci-cd/","/labs/mutation-gate/"]) {
+ for (const path of ["/labs/testing-architecture/","/labs/fault-injection/","/labs/ai-evaluation-ci-cd/","/labs/mutation-gate/","/labs/github-actions/"]) {
   await page.goto(root+path);
   const x = await page.evaluate(() => ({width:document.documentElement.scrollWidth,viewport:innerWidth}));
   assert.ok(x.width <= x.viewport+3, "Mobile overflow on "+path+": "+JSON.stringify(x));
   if (screenshotDir) await page.screenshot({path:screenshotDir+"/"+path.split("/")[2]+"-mobile.png",fullPage:true});
  }
  assert.deepEqual(errors, [], "No JavaScript errors in any lab");
- console.log("PASS: 4 labs, four domains, fault interception/fallback, CI/CD estimates, synthetic receipts and mobile layout.");
+ console.log("PASS: 5 labs, four domains, fault interception/fallback, CI/CD estimates, synthetic receipts and mobile layout.");
 } finally { await browser.close(); }

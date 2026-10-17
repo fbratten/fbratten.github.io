@@ -6,6 +6,16 @@
 const BASE='https://fbratten.github.io/From-Blueprint-to-Application/docs/resources/glossary.html#term-';
 // [anchor, pattern, case-sensitive]. Longer phrases first so they win over shorter ones.
 const TERMS=[
+ ["workflow-dispatch","workflow[_ ]dispatch"],
+ ["workflow-run","workflow[ -]runs?"],
+ ["github-pages","GitHub Pages",true],
+ ["run-trigger","run triggers?|triggers?"],
+ ["playwright","Playwright",true],
+ ["artifact","artifacts?"],
+ ["checkout","check[ -]?outs?"],
+ ["deployment","deployments?|deployed"],
+ ["yaml","YAML",true],
+ ["workflow","workflows?"],
  ["mutation-gate","mutation[ -]gates?"],
  ["mutation-testing","mutation[ -]testing|mutation[ -]tests?"],
  ["mutation","mutation(?:s|al)?|mutants?"],
