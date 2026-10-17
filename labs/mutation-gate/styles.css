@@ -1,0 +1,53 @@
+/* Mutation Gate Lab only: extends the existing AI testing design without changing shared styles. */
+.lab-shell .mutation-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:16px 0}
+.lab-shell .mutation-metric{background:#0b1825;border:1px solid #315064;border-radius:12px;padding:14px;min-width:0}
+.lab-shell .mutation-metric strong{display:block;font-size:clamp(1.35rem,3vw,1.9rem);color:#b9f4dc;font-variant-numeric:tabular-nums}
+.lab-shell .mutation-metric span{color:var(--lab-muted);font-size:.82rem}
+.lab-shell .mutation-evidence{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:18px 0}
+.lab-shell .mutation-evidence article{border:1px solid #315064;border-radius:12px;background:#0b1b2a;padding:12px;min-width:0}
+.lab-shell .mutation-evidence h3{font-size:.91rem;margin:.3rem 0 .45rem}
+.lab-shell .mutation-evidence p{font-size:.84rem;color:var(--lab-muted);margin:0}
+.lab-shell .mutation-evidence .mutation-result{display:block;color:var(--lab-green);font-size:.88rem;font-weight:700;margin-top:.6rem}
+.lab-shell .mutation-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+.lab-shell .mutation-steps>div{padding:15px;background:#0a1d2a;border:1px solid #355469;border-radius:13px}
+.lab-shell .mutation-steps strong{display:block;margin:.2rem 0 .4rem;color:#e9f6ff;font-size:.94rem}
+.lab-shell .mutation-steps p{font-size:.83rem;color:var(--lab-muted);margin:0}
+.lab-shell .mutation-step-no{display:block;color:#91c9ff;font-size:.76rem;font-weight:800;letter-spacing:.07em}
+.lab-shell .mutation-control-line{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:12px 0}
+.lab-shell .mutation-control-line label{font-weight:700}
+.lab-shell .mutation-control-line select{background:#10293d;border:1px solid #54748a;color:#fff;padding:12px 13px;border-radius:10px;min-width:0;max-width:100%;flex:1 1 260px;min-height:45px}
+.lab-shell .mutation-choices{display:flex;flex-wrap:wrap;gap:9px;margin:14px 0}
+.lab-shell .mutation-choices button{flex:1 1 170px;text-align:left}
+.lab-shell .mutation-choices button b{display:block}
+.lab-shell .mutation-choices button small{display:block;color:var(--lab-muted);font-weight:400;font-size:.76rem;margin-top:2px}
+.lab-shell .mutation-detail{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:16px 0}
+.lab-shell .mutation-detail>.lab-datum{min-width:0}
+.lab-shell .mutation-receipt{background:#071520;border:1px solid #355469;border-radius:13px;padding:15px;margin:12px 0}
+.lab-shell .mutation-receipt>div{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:8px}
+.lab-shell .mutation-verdict{display:inline-flex;border-radius:100px;border:1px solid #66869b;color:#e7f5ff;padding:4px 12px;font-weight:800;letter-spacing:.04em;font-size:.88rem}
+.lab-shell .mutation-verdict[data-state=CAUGHT],.lab-shell .mutation-verdict[data-state=PASS]{border-color:#4ab98e;color:#b9ffdd;background:#10332c}
+.lab-shell .mutation-verdict[data-state=ESCAPED]{border-color:#f4a68d;color:#ffd4c3;background:#36221c}
+.lab-shell .mutation-verdict[data-state=BROKEN]{border-color:#f2c46e;color:#ffe4a4;background:#322b1a}
+.lab-shell .mutation-glossary{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.lab-shell .mutation-glossary a{display:inline-flex;padding:7px 10px;border:1px solid #35576d;border-radius:8px;background:#0d2435;text-decoration:underline;text-underline-offset:3px;font-size:.85rem}
+.lab-shell .mutation-exercise{margin:18px 0;padding:15px;background:rgba(145,201,255,.07);border:1px solid #47647a;border-radius:13px}
+.lab-shell .mutation-exercise fieldset{border:0;margin:8px 0;padding:0}
+.lab-shell .mutation-exercise legend{font-weight:700;margin:0 0 7px}
+.lab-shell .mutation-exercise label{display:block;padding:9px 5px;cursor:pointer}
+.lab-shell .mutation-exercise input{accent-color:#5ee4af;margin-right:8px;min-width:18px;min-height:18px}
+.lab-shell .mutation-evidence-note{border-left:3px solid var(--lab-amber);padding:12px 15px;background:rgba(245,195,107,.08);color:#d8e6ee;margin:14px 0}
+.lab-shell .mutation-source-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.lab-shell .mutation-source-list a{display:block;background:#0b1c2b;border:1px solid #315064;border-radius:10px;padding:13px}
+.lab-shell .mutation-source-list a span{display:block;color:var(--lab-muted);font-size:.82rem;margin-top:3px}
+.lab-shell .mutation-note{font-size:.85rem;color:var(--lab-muted);padding:9px 0}
+.lab-shell .mutation-legend{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.lab-shell .mutation-legend span{font-size:.82rem;color:var(--lab-muted)}
+.lab-shell .mutation-status{font-size:1rem;font-weight:700;margin:8px 0}
+@media(max-width:940px){.lab-shell .mutation-evidence{grid-template-columns:repeat(3,minmax(0,1fr))}.lab-shell .mutation-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.lab-shell .mutation-steps,.lab-shell .mutation-detail,.lab-shell .mutation-source-list{grid-template-columns:1fr}.lab-shell .mutation-evidence{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-shell .mutation-control-line{align-items:stretch}.lab-shell .mutation-choices button{flex-basis:45%}}
+@media(max-width:430px){.lab-shell .mutation-evidence{grid-template-columns:1fr}.lab-shell .mutation-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-shell .mutation-choices button{flex-basis:100%}}
+@media(prefers-reduced-motion:reduce){.lab-shell .mutation-choices *{scroll-behavior:auto}}
+
+/* Long source IDs and pytest names must wrap on narrow screens instead of widening the viewport. */
+.lab-shell #scenario-id,.lab-shell #scenario-test{display:inline;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+.lab-shell .mutation-detail>.lab-datum,.lab-shell .mutation-receipt{min-width:0;overflow-wrap:anywhere}

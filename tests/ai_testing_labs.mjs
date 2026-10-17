@@ -27,6 +27,22 @@ assert.ok(estimatePolicy({...sample, earlyExit: false}).optimizedCost > tier.opt
 assert.ok(estimatePolicy({...sample, commitFraction: 1}).optimizedCost > tier.optimizedCost);
 assert.throws(() => estimatePolicy({...sample, prSample: 1.1}));
 
+// Mutation Gate Lab: verify all 13 source-pinned educational cases without executing real mutations.
+const mgContext = {};
+runInNewContext(readFileSync(new URL("../labs/mutation-gate/model.js", import.meta.url), "utf8"), mgContext);
+const {data: mutationData, simulate: simulateMutation} = mgContext.MutationGateLab;
+assert.equal(mutationData.cases.length, 13);
+assert.equal(new Set(mutationData.cases.map(m => m.id)).size, 13);
+for (const m of mutationData.cases) {
+ assert.equal(simulateMutation(m.id, "baseline").status, "PASS");
+ assert.equal(simulateMutation(m.id, "mutated").status, "CAUGHT");
+ assert.equal(simulateMutation(m.id, "blind").status, "ESCAPED");
+ assert.equal(simulateMutation(m.id, "broken").status, "BROKEN");
+ assert.equal(simulateMutation(m.id, "mutated").real_execution, false);
+ assert.equal(simulateMutation(m.id, "mutated").observed_in_reference_ci, "CAUGHT");
+}
+assert.throws(() => simulateMutation("unknown", "mutated"));
+
 const root = (process.env.BASE_URL || "http://127.0.0.1:4173").replace(/\/$/, "");
 const screenshotDir = process.env.LAB_SHOT_DIR;
 if (screenshotDir) await mkdir(screenshotDir, {recursive:true});
@@ -71,13 +87,39 @@ try {
  assert.equal(await page.locator("#policy-rows tr").count(), 3);
  if (screenshotDir) await page.screenshot({path:screenshotDir+"/ci-cd-desktop.png",fullPage:true});
 
+ await page.goto(root + "/labs/mutation-gate/");
+ assert.equal(await page.locator("#ci-jobs article").count(), 5);
+ assert.equal(await page.locator("#mutation-select option").count(), 13);
+ assert.equal(await page.locator("#mutation-verdict").textContent(), "PASS");
+ await page.locator('[data-mode="mutated"]').click();
+ assert.equal(await page.locator("#mutation-verdict").textContent(), "CAUGHT");
+ let mr = JSON.parse(await page.locator("#mutation-receipt").textContent());
+ assert.equal(mr.simulation, true);
+ assert.equal(mr.real_execution, false);
+ assert.equal(mr.reference_head, mutationData.head);
+ await page.locator('[data-mode="blind"]').click();
+ assert.equal(await page.locator("#mutation-verdict").textContent(), "ESCAPED");
+ await page.locator('[data-mode="broken"]').click();
+ assert.equal(await page.locator("#mutation-verdict").textContent(), "BROKEN");
+ await page.locator("#mutation-select").selectOption("live-bridge-group-id-value-unchecked");
+ assert.match(await page.locator("#scenario-title").textContent(), /group ID values/i);
+ await page.locator('[data-mode="mutated"]').click();
+ assert.equal(await page.locator("#mutation-verdict").textContent(), "CAUGHT");
+ await page.locator('input[name="proof-answer"][value="caught"]').check();
+ await page.locator("#check-quiz").click();
+ assert.match(await page.locator("#quiz-feedback").textContent(), /Correct/);
+ assert.ok(await page.locator('a[href$="#term-mutation-gate"]').count() > 0);
+ assert.ok(await page.locator('a[href$="#term-rollback"]').count() > 0);
+ assert.ok(await page.locator('a[href$="#term-merge"]').count() > 0);
+ if (screenshotDir) await page.screenshot({path:screenshotDir+"/mutation-gate-desktop.png",fullPage:true});
+
  await page.setViewportSize({width:390,height:844});
- for (const path of ["/labs/testing-architecture/","/labs/fault-injection/","/labs/ai-evaluation-ci-cd/"]) {
+ for (const path of ["/labs/testing-architecture/","/labs/fault-injection/","/labs/ai-evaluation-ci-cd/","/labs/mutation-gate/"]) {
   await page.goto(root+path);
   const x = await page.evaluate(() => ({width:document.documentElement.scrollWidth,viewport:innerWidth}));
   assert.ok(x.width <= x.viewport+3, "Mobile overflow on "+path+": "+JSON.stringify(x));
   if (screenshotDir) await page.screenshot({path:screenshotDir+"/"+path.split("/")[2]+"-mobile.png",fullPage:true});
  }
  assert.deepEqual(errors, [], "No JavaScript errors in any lab");
- console.log("PASS: 3 labs, four domains, fault interception/fallback, CI/CD estimates, synthetic receipts and mobile layout.");
+ console.log("PASS: 4 labs, four domains, fault interception/fallback, CI/CD estimates, synthetic receipts and mobile layout.");
 } finally { await browser.close(); }
