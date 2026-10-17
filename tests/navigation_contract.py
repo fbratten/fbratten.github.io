@@ -53,6 +53,22 @@ for path in pages:
             if unquote(url.fragment) not in Page(target.read_text()).ids:
                 errors.append(f'{rel}: missing fragment {link}')
 
+# Labs navigation is a discoverability contract, not just valid links.
+# An existing lab is effectively hidden when the public Methods page omits it.
+methods_html = (ROOT / 'methods/index.html').read_text()
+labs_html = (ROOT / 'labs/index.html').read_text()
+home_html = (ROOT / 'index.html').read_text()
+assert 'href="/labs/"' in methods_html, 'Methods & Labs needs a visible full directory route'
+assert 'href="/labs/"' in home_html, 'Home Try the labs must open the canonical directory'
+lab_routes = ['/labs/testing-architecture/', '/labs/fault-injection/',
+              '/labs/ai-evaluation-ci-cd/', '/labs/mutation-gate/']
+for route in lab_routes:
+    for label, html in [('Methods & Labs', methods_html), ('Labs', labs_html)]:
+        assert f'href="{route}"' in html, f'{label} does not expose {route}'
+assert '<section class="fb-method-labs" id="labs">' in methods_html
+assert methods_html.count('href="/labs/mutation-gate/"') == 1
+assert labs_html.count('href="/labs/mutation-gate/"') == 1
+
 articles = json.loads((ROOT / 'articles/entries.json').read_text())
 seen = set()
 for a in articles['articles']:
