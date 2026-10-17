@@ -1,77 +1,82 @@
-name: One-time signed Labs navigation test follow-up
+name: One-time signed Labs breadcrumb-test correction
 on:
   push:
     branches:
       - chatgpt/labs-nav-signing-bridge-20261017
 permissions:
   contents: write
+  actions: write
 concurrency:
-  group: signed-labs-nav-regression-20261017
+  group: signed-labs-nav-breadcrumb-20261017
   cancel-in-progress: false
 jobs:
-  sign-exact-test-fix:
+  sign-breadcrumb-test-and-start-ci:
     if: github.repository == 'fbratten/fbratten.github.io' && github.ref == 'refs/heads/chatgpt/labs-nav-signing-bridge-20261017'
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - name: Checkout signed lab navigation branch at exact head
+      - name: Checkout previous exact signed head
         uses: actions/checkout@v4
         with:
-          ref: d47c68be61213ae3c570ae92b7a1ea975f62e255
+          ref: 654e8eb4242e0804ea7c616282962a6838e4402a
           persist-credentials: false
-      - name: Sign one scoped test expectation change
+      - name: Sign precise test-only fix and request full workflow check
+        shell: bash
         env:
           GH_TOKEN: ${{ github.token }}
-        shell: bash
         run: |
           python3 - <<'PY'
-          import os,json,base64,subprocess,urllib.request,time
+          import os, json, base64, subprocess, urllib.request, time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
           target="chatgpt/labs-nav-unified-signed-20261017"
-          base="d47c68be61213ae3c570ae92b7a1ea975f62e255"
-          base_tree="e8c10da28105f6f8d28d3ea2b900a4e01fc95bda"
-          expected_tree="9bf40c6ab904b40a399cbe6c208d777034b9d198"
-          path="tests/site_copy_and_canvas_lint.py"
-          branch_ref="refs/heads/chatgpt/labs-nav-signing-bridge-20261017"
+          base="654e8eb4242e0804ea7c616282962a6838e4402a"
+          base_tree="9bf40c6ab904b40a399cbe6c208d777034b9d198"
+          expected_tree="1ef3cb33aed9b73a6d5e971cf7439dd406b2a815"
+          path="tests/navigation_page.mjs"
+          bridge_ref="refs/heads/chatgpt/labs-nav-signing-bridge-20261017"
           assert os.environ["GITHUB_REPOSITORY"]==repo
-          assert os.environ["GITHUB_REF"]==branch_ref
+          assert os.environ["GITHUB_REF"]==bridge_ref
           assert subprocess.check_output(["git","rev-parse","HEAD"],text=True).strip()==base
           assert subprocess.check_output(["git","rev-parse","HEAD^{tree}"],text=True).strip()==base_tree
-          raw=Path(path).read_text(encoding="utf-8")
-          old="'href=\"/methods/#labs\"'"
-          new="'href=\"/labs/\"'"
-          assert raw.count(old)==1, "Original requirement has drifted"
-          changed=raw.replace(old,new)
-          assert changed.count(new)>=1
+          old="getByRole('link', {name: 'Labs'})"
+          new="getByRole('link', {name: 'Labs', exact: true})"
+          text=Path(path).read_text(encoding="utf-8")
+          assert text.count(old)==2,"Unexpected code or already fixed"
+          fixed=text.replace(old,new)
           payload={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{
-            "branch":{"repositoryNameWithOwner":repo,"branchName":target},
-            "message":{"headline":"test(nav): accept canonical Labs directory from home",
-                       "body":"Fix test expectation for Home -> Labs discovery. The protected source pages remain unchanged."},
-            "expectedHeadOid":base,
-            "fileChanges":{"additions":[{"path":path,"contents":base64.b64encode(changed.encode("utf-8")).decode("ascii")}]}
+              "branch":{"repositoryNameWithOwner":repo,"branchName":target},
+              "message":{"headline":"test(nav): disambiguate Labs breadcrumb from Methods and Labs",
+                         "body":"Two exact-name selectors only. No change to production pages."},
+              "expectedHeadOid":base,
+              "fileChanges":{"additions":[{"path":path,"contents":base64.b64encode(fixed.encode()).decode("ascii")}]}
           }}}
           token=os.environ["GH_TOKEN"]
-          request=urllib.request.Request("https://api.github.com/graphql",data=json.dumps(payload).encode("utf-8"),
-            method="POST",headers={"Authorization":"Bearer "+token,"Content-Type":"application/json",
-                                   "User-Agent":"signed-navigation-followup"})
-          with urllib.request.urlopen(request,timeout=90) as resp: result=json.load(resp)
-          if result.get("errors") or not result.get("data",{}).get("createCommitOnBranch"):
-              raise RuntimeError("GitHub refused signing follow-up: "+str(result.get("errors", result)))
-          sha=result["data"]["createCommitOnBranch"]["commit"]["oid"]
-          def get(url):
-              req=urllib.request.Request(url,headers={"Authorization":"Bearer "+token,
-                  "Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28",
-                  "User-Agent":"signed-navigation-followup"})
-              with urllib.request.urlopen(req,timeout=35) as resp:return json.load(resp)
-          for iteration in range(8):
-              c=get("https://api.github.com/repos/"+repo+"/commits/"+sha)
-              if c.get("commit",{}).get("verification",{}).get("verified"):break
+          def api(url,body=None):
+              headers={"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json",
+                       "X-GitHub-Api-Version":"2022-11-28","User-Agent":"signed-navigation-ci-recheck"}
+              if body is not None:headers["Content-Type"]="application/json"
+              req=urllib.request.Request(url,data=json.dumps(body).encode() if body is not None else None,
+                                         method="POST" if body is not None else "GET",headers=headers)
+              with urllib.request.urlopen(req,timeout=70) as resp:
+                  payload=resp.read()
+                  return json.loads(payload) if payload else None
+          r=api("https://api.github.com/graphql",payload)
+          if r.get("errors") or not r.get("data",{}).get("createCommitOnBranch"):
+              raise RuntimeError("Signed follow-up refused: "+str(r.get("errors",r)))
+          sha=r["data"]["createCommitOnBranch"]["commit"]["oid"]
+          for attempt in range(8):
+              commit=api("https://api.github.com/repos/"+repo+"/commits/"+sha)
+              if commit["commit"]["verification"]["verified"]:break
               time.sleep(2)
-          assert c["commit"]["verification"]["verified"] is True, "Signature failed"
-          assert c["commit"]["tree"]["sha"]==expected_tree,"Unexpected modified content/tree"
-          assert [p["sha"] for p in c["parents"]]==[base],"Unexpected parent"
-          assert len(c["files"])==1 and c["files"][0]["filename"]==path and c["files"][0]["status"]=="modified","Unexpected changed paths"
-          print("PASS: signed regression test update, exact 1-file tree and parent verified:",sha)
+          assert commit["commit"]["verification"]["verified"],"Signature not valid"
+          assert commit["commit"]["tree"]["sha"]==expected_tree,"Unexpected source-tree change"
+          assert [p["sha"] for p in commit["parents"]]==[base],"Unexpected parent or rewritten history"
+          assert len(commit["files"])==1 and commit["files"][0]["filename"]==path and commit["files"][0]["status"]=="modified","Unexpected scope"
+          print("PASS: signed 1-file test selector fix, exact head and tree, no production code changes:",sha)
+          # workflow_dispatch explicitly triggers the existing test workflow on the exact updated branch;
+          # this is an authorized test run, not a bypass of required checks or a repository settings change.
+          api("https://api.github.com/repos/"+repo+"/actions/workflows/pages-browser-check.yml/dispatches",{"ref":target})
+          print("REQUESTED: GitHub Pages interaction checks on signed head",sha)
           
           PY
