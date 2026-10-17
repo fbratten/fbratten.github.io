@@ -79,7 +79,7 @@ def check_homepage() -> list[str]:
     required = [
         "Explore selected work", "Find a method", "Try the labs", "Build log",
         "All 46 articles", "Follow the progress", "From Blueprint to Application",
-        'href="/methods/"', 'href="/projects/"', 'href="/methods/#labs"',
+        'href="/methods/"', 'href="/projects/"', 'href="/labs/"',
         'href="/articles/"', 'href="/blueprint-ai-studio/"', 'href="/build-log/"',
         'href="/intelligence-engine-showcase/"', 'href="/mads/"',
         'href="/adaptivearts-ai/"', 'href="/gate-monitor/"',
