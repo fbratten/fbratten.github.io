@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Learn mutation testing through 13 interactive software safety scenarios and a source-pinned GitHub CI case study. Why green tests can be misleading."><title>Mutation Gate Lab | Fredrik Bratten</title>
+<!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
+<link rel="stylesheet" href="/labs/ai-testing/styles.css"><link rel="stylesheet" href="/labs/mutation-gate/styles.css">
+</head><body class="fb-page">
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation"><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/" aria-current="true">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/build-log/">Build log</a><a href="/#about">About</a></nav>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
+<div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a></nav>
+</div></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/methods/">Methods &amp; Labs</a></li><li><a href="/labs/">Labs</a></li><li><span aria-current="page">Mutation Gate</span></li></ol></nav>
+<!-- /FB:NAV -->
+<main id="main" class="lab-shell">
+<header role="region" aria-label="Page introduction" class="lab-intro">
+  <span class="lab-kicker">Interactive AI testing / 04 / Test the tests</span>
+  <h1>Mutation Gate Lab</h1>
+  <p class="lab-lede">What if your tests are green only because the code path was never exercised? Break a protection on purpose and find out whether the tests notice.</p>
+  <div class="lab-tagline"><strong>Learn software engineering by doing.</strong> The interactive experiments below are browser-local simulations. They do not run Python, mutate repositories, call GitHub, or inspect live services. Separately, the dated CI evidence refers to a real October 2026 run.</div>
+  <nav class="lab-series" aria-label="AI testing lab series">
+    <a href="/labs/testing-architecture/">1. Testing architecture</a>
+    <a href="/labs/fault-injection/">2. Fault injection &amp; test gates</a>
+    <a href="/labs/ai-evaluation-ci-cd/">3. AI evaluation &amp; CI/CD</a>
+    <a href="/labs/mutation-gate/" aria-current="page">4. Mutation Gate</a>
+  </nav>
+</header>
+
+<section class="lab-panel" aria-labelledby="start-title">
+ <h2 id="start-title">1. From a Git commit to a CI result</h2>
+ <p>A repository holds source files and their Git history. A developer works in a branch or separate worktree, saves changes in a commit and pushes that branch to GitHub. GitHub Actions reads a workflow file (<code>.github/workflows/tests.yml</code>) and starts isolated runners to execute the configured jobs. A successful push is not a merge to main, and a green pipeline is not the same as independent approval.</p>
+ <div class="mutation-steps" aria-label="Five steps in a CI lifecycle">
+  <div><span class="mutation-step-no">Step 01</span><strong>Change</strong><p>Edit and test in a separate branch and worktree.</p></div>
+  <div><span class="mutation-step-no">Step 02</span><strong>Commit + push</strong><p>Record a particular version and publish it to a review branch.</p></div>
+  <div><span class="mutation-step-no">Step 03</span><strong>CI jobs</strong><p>GitHub's runners execute tests in new, controlled environments.</p></div>
+  <div><span class="mutation-step-no">Step 04</span><strong>Review + PR</strong><p>Interpret what passed, what was skipped, and what still needs human or independent review.</p></div>
+ </div>
+ <p class="mutation-note">The full commit hash (SHA) identifies exactly which code was tested. The workflow is configured in version control; it is not an invisible or magical action by an AI model.</p>
+</section>
+
+<section class="lab-panel" aria-labelledby="evidence-title">
+ <h2 id="evidence-title">2. Real CI evidence: all five jobs green</h2>
+ <p>This is a <strong>historical, source-pinned snapshot</strong> from a software project, <code>tachylite-mcp</code>, on <time datetime="2026-10-17">17 October 2026</time>. It is not a live dashboard. The underlying source repository and run evidence were private when recorded, so some source links require access.</p>
+ <div class="mutation-metrics" aria-label="Recorded results from the October 2026 pipeline">
+  <div class="mutation-metric"><strong>5 / 5</strong><span>CI jobs succeeded</span></div>
+  <div class="mutation-metric"><strong>346</strong><span>Unique passing test outcomes across general tests and browser smoke tests</span></div>
+  <div class="mutation-metric"><strong>73 / 73</strong><span>Mutation checks CAUGHT</span></div>
+  <div class="mutation-metric"><strong>0</strong><span>ESCAPED or BROKEN mutation checks</span></div>
+ </div>
+ <div class="mutation-evidence" id="ci-jobs" aria-label="Five original CI jobs"></div>
+ <p class="mutation-note">Python 3.11 and 3.13 each reported 309 passed and 2 skipped. The 37 browser smoke tests bring the distinct passing outcomes to 346; do not add the two Python-version runs together as though they were different tests. The 73 structural anchor checks are a different control from the 73 executable mutation checks.</p>
+ <p class="mutation-evidence-note"><strong>Evidence boundary:</strong> This is evidence for checks that actually ran on that commit. It does not establish that the app has no defects. A prior independent adversarial review found 11 serious issues even when earlier automated checks were green.</p>
+</section>
+
+<section class="lab-panel" aria-labelledby="meaning-title">
+ <h2 id="meaning-title">3. Why Mutation Gate exists</h2>
+ <p>A normal assertion asks whether a feature produces the expected result. Mutation testing asks the harder question: <strong>would that assertion fail if we deliberately removed the protection that supposedly caused the result?</strong></p>
+ <p>In this project's earlier testing, a path-traversal protection was deliberately removed, yet its test stayed green because a separate file-extension check blocked the test payload first. The test was not observing the protection it claimed to verify. That is a false-green test, not evidence that the removed guard worked.</p>
+ <div class="mutation-steps" aria-label="Mutation proof steps">
+  <div><span class="mutation-step-no">Baseline</span><strong>Control present</strong><p>The named test must run and pass against the original code.</p></div>
+  <div><span class="mutation-step-no">Mutation</span><strong>Sabotage a copy</strong><p>A tiny targeted change disables one named protection in an isolated scratch copy.</p></div>
+  <div><span class="mutation-step-no">Detection</span><strong>Test goes red</strong><p>A real assertion must fail in the test body for the intended property.</p></div>
+  <div><span class="mutation-step-no">Gate</span><strong>Interpret result</strong><p>CAUGHT is good; ESCAPED is a test gap; BROKEN is inconclusive.</p></div>
+ </div>
+ <div class="lab-grid-3" aria-label="Meaning of mutation outcomes">
+  <div class="lab-datum"><h3 class="lab-good">CAUGHT</h3><p>Baseline passes; the intentionally damaged version fails its own assertion. The test can detect this specific fault.</p></div>
+  <div class="lab-datum"><h3 class="lab-danger">ESCAPED</h3><p>The damaged version stays green. The test missed the control, or another guard masked the problem.</p></div>
+  <div class="lab-datum"><h3 class="lab-warn">BROKEN</h3><p>Setup, anchoring or execution failed. It would be dishonest to count the result as a detected bug.</p></div>
+ </div>
+ <p class="mutation-note">Before any mutation is scored, the harness checks that its scratch copy is actually used, that the source anchor matches exactly once, and that the edit genuinely changed the code. A setup ERROR or skipped test cannot masquerade as a CAUGHT assertion failure.</p>
+</section>
+
+<section class="lab-panel" aria-labelledby="experiment-title">
+ <h2 id="experiment-title">4. Interactive experiment: break one of 13 protections</h2>
+ <p>These 13 scenarios map to the <strong>13 new M1 mutation checks</strong> registered for the October 2026 repair. Choose a protection, read why it matters and switch between four teaching outcomes. The example code is simplified pseudocode; no code is modified in your browser or on GitHub.</p>
+ <div class="mutation-control-line"><label for="mutation-select">Choose a mutation</label><select id="mutation-select" aria-label="Select one of 13 mutation scenarios"></select><strong id="scenario-count" aria-live="polite">1 / 13</strong></div>
+ <div class="mutation-control-line"><button id="case-prev" class="lab-button" type="button" aria-label="Previous mutation">Previous</button><button id="case-next" class="lab-button" type="button" aria-label="Next mutation">Next</button></div>
+ <h3 id="scenario-title">Opt-in is required</h3>
+ <div class="mutation-detail">
+  <div class="lab-datum"><h3 class="lab-good">What the real control is supposed to protect</h3><p id="scenario-protection"></p><h3 class="lab-danger">Deliberate sabotage</h3><p id="scenario-sabotage"></p><h3>Expected assertion</h3><p id="scenario-assertion"></p></div>
+  <div class="lab-datum"><h3>Before: representative protected logic</h3><pre id="scenario-before"></pre><h3>After: representative sabotaged logic</h3><pre id="scenario-after"></pre><p class="lab-small lab-muted">Illustrative pseudocode, not a verbatim source listing.</p></div>
+ </div>
+ <p class="lab-small lab-muted">Real registry ID: <code id="scenario-id"></code>. Named test: <code id="scenario-test"></code>. The observed historical outcome of all 13 registered mutations was CAUGHT.</p>
+ <h3>Choose what happens to the test</h3>
+ <div class="mutation-choices" role="group" aria-label="Choose baseline, mutated or hypothetical weak verification">
+  <button class="lab-button" type="button" data-mode="baseline" aria-pressed="true"><b>1. Original code</b><small>Healthy baseline</small></button>
+  <button class="lab-button" type="button" data-mode="mutated" aria-pressed="false"><b>2. Remove protection</b><small>Expected mutation proof</small></button>
+  <button class="lab-button" type="button" data-mode="blind" aria-pressed="false"><b>3. Make the test blind</b><small>What if the test misses it?</small></button>
+  <button class="lab-button" type="button" data-mode="broken" aria-pressed="false"><b>4. Break test setup</b><small>Why ERROR is not proof</small></button>
+ </div>
+ <div class="mutation-receipt" aria-live="polite"><div><span id="mutation-verdict" class="mutation-verdict" data-state="PASS">PASS</span><strong>Teaching result, not live execution</strong></div><p class="mutation-status" id="simulation-status"></p><pre id="mutation-receipt" aria-label="Machine-readable synthetic verification receipt"></pre></div>
+</section>
+
+<section class="lab-panel" aria-labelledby="findings-title">
+ <h2 id="findings-title">5. What the second review actually uncovered</h2>
+ <p>Eleven serious findings across three adversarial lenses led to the Option-A repair and the 13 new mutations above. Some findings are different descriptions of the same root cause. They are not the same thing as 11 mutation tests.</p>
+ <div class="lab-grid">
+  <div class="lab-datum"><h3>Findings 2, 5 and 7: group ID values</h3><p>The group key was validated but the internal group.id value was used in rendered handlers without equivalent validation. A new rule checks both values and their agreement.</p></div>
+  <div class="lab-datum"><h3>Finding 3: group node lists</h3><p>A collapsed group could display malformed group.nodes data as HTML. The input validator now requires a proper array of node IDs.</p></div>
+  <div class="lab-datum"><h3>Findings 4 and 8: rollback was unreachable</h3><p>Rendering happened before the try/catch. If drawing failed, the old graph was not restored. The repair moves risky rendering inside the recovery boundary.</p></div>
+  <div class="lab-datum"><h3>Finding 6: lost unsaved edits</h3><p>A pushed update closed the inspector and discarded what the user was still typing. The repair preserves the inspector when its node is unchanged.</p></div>
+  <div class="lab-datum"><h3>Finding 9: shadowed test</h3><p>A malformed ID test failed for a different reason than intended. The revised case isolates its ID-shape rule and requires a specific refusal reason.</p></div>
+  <div class="lab-datum"><h3>Finding 10: incorrect test isolation claim</h3><p>Additional file:// browser tests had the live bridge active. The harness now disconnects file-based tests and the changelog was corrected.</p></div>
+  <div class="lab-datum"><h3>Findings 1 and 11: unresolved HTML sinks</h3><p>Some node and edge text can still reach unsafe HTML insertion paths. This broader escaping sweep remains separate work, so live state mirroring is OFF by default.</p></div>
+  <div class="lab-datum"><h3>Two kinds of evidence</h3><p>Mutation Gate confirms a selected test detects selected sabotage. An independent code review searches for unknown paths, false assumptions and missing controls. Both are needed.</p></div>
+ </div>
+</section>
+
+<section class="lab-panel" aria-labelledby="quiz-title">
+ <h2 id="quiz-title">6. Quick challenge: when can you trust the result?</h2>
+ <div class="mutation-exercise"><fieldset><legend>Your test passes. You remove the guard it claims to check. What would be the strongest evidence that the test really exercises that guard?</legend>
+ <label><input type="radio" name="proof-answer" value="escaped"> The test still passes after the guard is removed.</label>
+ <label><input type="radio" name="proof-answer" value="caught"> The original test passes, then a relevant assertion fails after the guard is removed.</label>
+ <label><input type="radio" name="proof-answer" value="broken"> The test fails to start because its setup is broken.</label>
+ </fieldset><button type="button" id="check-quiz" class="lab-button">Check my reasoning</button><p id="quiz-feedback" class="lab-lesson" aria-live="polite">Choose an option and check your reasoning.</p></div>
+ <p>A non-vacuous test also proves a positive case works. For example, after rejecting malformed WebSocket messages it must still accept a valid message through the same connection. Five selected new tests were additionally shown to fail for the intended reasons against the earlier, unrepaired canvas.</p>
+</section>
+
+<section class="lab-panel" aria-labelledby="limits-title">
+ <h2 id="limits-title">7. What green CI cannot certify</h2>
+ <p>The real mutation run recorded <strong>73 CAUGHT, 0 ESCAPED, 0 BROKEN</strong>. That supports the named safety controls, not every possible input, interaction or security risk. In particular, the approximately 53 still-unsafe HTML insertion sites were not all removed by Option A, and enabling live mirroring remained a user opt-in with a warning.</p>
+ <p>The third independent security review is tracked separately. This lab freezes a dated learning example; its review status must not be mistaken for current deployment state. Passing CI, passing independent review, merging a PR and releasing a product are four different claims, each needing its own evidence.</p>
+ <div class="mutation-evidence-note"><strong>Public-source boundary:</strong> This page deliberately publishes generalized concepts and illustrative logic, not a public copy of the private application code. Detailed commit/run links below may require repository permission. The interactive simulation is reproducible here without that access.</div>
+</section>
+
+<section class="lab-panel" aria-labelledby="terms-title">
+ <h2 id="terms-title">8. Learn the vocabulary as you explore</h2>
+ <p>Software-engineering terms in the explanatory paragraphs link to the existing From Blueprint to Application glossary. The glossary includes English definitions and plain-language Swedish explanations. Select a term below to jump straight to its entry.</p>
+ <div id="term-shortcuts" class="mutation-glossary" aria-label="Direct links to glossary terms"></div>
+</section>
+
+<section class="lab-panel" aria-labelledby="source-title">
+ <h2 id="source-title">9. Sources and next steps</h2>
+ <div class="mutation-source-list">
+  <a href="https://github.com/fbratten/tachylite-mcp/actions/runs/39065366945">Source CI run - 17 October 2026<span>Five jobs on exact commit f54efbf; repository access may be required</span></a>
+  <a href="https://github.com/fbratten/github-agent-collaboration/issues/211">Third independent review<span>Review request and evidence; status can change after this lab's snapshot</span></a>
+  <a href="https://github.com/fbratten/From-Blueprint-to-Application/blob/main/docs/resources/glossary.md">Glossary source<span>Maintained in a separate public repository</span></a>
+  <a href="/labs/fault-injection/">Related lab: Fault Injection<span>Explore what happens when a different gate in a software/AI pipeline is missing</span></a>
+ </div>
+ <p class="mutation-note">Read the <a href="/labs/testing-architecture/">testing architecture lab</a> for testing layers, then the <a href="/labs/ai-evaluation-ci-cd/">AI evaluation and CI/CD lab</a> for scheduling, budget and sampling tradeoffs.</p>
+</section>
+</main>
+<!-- FB:FOOTER -->
+<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a></nav>
+<nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
+<nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>
+<!-- /FB:FOOTER -->
+<script src="/labs/mutation-gate/model.js" defer></script><script src="/labs/mutation-gate/app.js" defer></script><script src="/labs/ai-testing/glossary-links.js" defer></script>
+</body></html>
