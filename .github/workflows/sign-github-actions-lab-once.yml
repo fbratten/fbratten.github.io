@@ -1,0 +1,79 @@
+name: One-time GitHub Actions Lab 05 signed transfer
+on:
+  push:
+    branches:
+      - chatgpt/github-actions-lab-signing-bridge-20261018
+permissions:
+  contents: write
+concurrency:
+  group: github-actions-lab-signed-20261018
+  cancel-in-progress: false
+jobs:
+  sign-the-exact-staged-tree:
+    if: github.repository == 'fbratten/fbratten.github.io' && github.ref == 'refs/heads/chatgpt/github-actions-lab-signing-bridge-20261018'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout exact staged GitHub Actions Lab source
+        uses: actions/checkout@v4
+        with:
+          ref: 4ec2544e71dce094372019b3a74f7e1bcb462edb
+          persist-credentials: false
+      - name: Create GitHub-signed commit from identical content and verify
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import os, json, base64, subprocess, urllib.request, time
+          from pathlib import Path
+          repo = "fbratten/fbratten.github.io"
+          source_commit = "4ec2544e71dce094372019b3a74f7e1bcb462edb"
+          source_tree = "bb069cb51b2c6b51e6d40257384bcbbe82e48eb1"
+          base_commit = "2aec94354f9c871ba9b50ff44d85c62a93204dc0"
+          target_branch = "chatgpt/github-actions-lab-signed-20261018"
+          bridge_ref = "refs/heads/chatgpt/github-actions-lab-signing-bridge-20261018"
+          files = ["labs/github-actions/model.js","labs/github-actions/index.html","labs/github-actions/styles.css","labs/github-actions/app.js","labs/index.html","methods/index.html","labs/testing-architecture/index.html","labs/fault-injection/index.html","labs/ai-evaluation-ci-cd/index.html","labs/mutation-gate/index.html","scripts/build_navigation.py","all-pages/index.html","sitemap.xml","tests/navigation_contract.py","tests/navigation_page.mjs","tests/ai_testing_labs.mjs","labs/ai-testing/glossary-links.js"]
+          def git(*args):
+              return subprocess.check_output(["git",*args], text=True).strip()
+          assert os.environ["GITHUB_REPOSITORY"] == repo
+          assert os.environ["GITHUB_REF"] == bridge_ref
+          assert git("rev-parse","HEAD") == source_commit
+          assert git("rev-parse","HEAD^{tree}") == source_tree
+          assert len(files)==len(set(files))==17
+          additions=[{"path":p,"contents":base64.b64encode(Path(p).read_bytes()).decode("ascii")} for p in files]
+          graphql={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{
+            "branch":{"repositoryNameWithOwner":repo,"branchName":target_branch},
+            "message":{"headline":"Add GitHub Actions Lab 05 with historical CI run explorer",
+                       "body":"Exact source-pinned staged tree and 17-file scope, preserved history. Browser-only interactive cases."},
+            "expectedHeadOid":base_commit,
+            "fileChanges":{"additions":additions}
+          }}}
+          token=os.environ["GH_TOKEN"]
+          def api(url,body=None):
+              headers={"Authorization":"Bearer "+token,"Accept":"application/vnd.github+json",
+                       "X-GitHub-Api-Version":"2022-11-28","User-Agent":"github-actions-lab-signed-transfer"}
+              if body is not None:headers["Content-Type"]="application/json"
+              request=urllib.request.Request(url,method="POST" if body is not None else "GET",
+                 data=json.dumps(body).encode() if body is not None else None,headers=headers)
+              with urllib.request.urlopen(request,timeout=90) as response:
+                  data=response.read()
+                  return json.loads(data) if data else None
+          res=api("https://api.github.com/graphql",graphql)
+          if res.get("errors") or not res.get("data",{}).get("createCommitOnBranch"):
+              raise RuntimeError("GitHub signing refused: "+str(res.get("errors",res)))
+          sha=res["data"]["createCommitOnBranch"]["commit"]["oid"]
+          for retry in range(9):
+              commit=api("https://api.github.com/repos/"+repo+"/commits/"+sha)
+              if commit.get("commit",{}).get("verification",{}).get("verified"):break
+              time.sleep(2)
+          assert commit["commit"]["verification"]["verified"] is True,"GitHub did not verify the signature"
+          assert commit["commit"]["tree"]["sha"]==source_tree,"Signed tree differs from staged source"
+          assert [x["sha"] for x in commit["parents"]]==[base_commit],"Parent differs"
+          changed={x["filename"]:x["status"] for x in commit["files"]}
+          assert set(changed)==set(files) and len(changed)==17,"Changed path scope differs"
+          assert all(v in ("added","modified") for v in changed.values()),"Deletion or rename detected"
+          assert sum(v=="added" for v in changed.values())==4,"Four new files expected"
+          print("PASS: GitHub-verified signed commit, identical 17-file tree, exact base, 0 deleted files:",sha)
+          
+          PY
