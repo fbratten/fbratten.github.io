@@ -146,6 +146,20 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node tests/blueprint_authority_labs.mjs
 
+      - name: Exercise interactive AI testing labs locally
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          LAB_SHOT_DIR: /tmp/ai-testing-lab-visuals
+        run: node tests/ai_testing_labs.mjs
+
+      - name: Save AI testing lab visual checks
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ai-testing-lab-visuals
+          path: /tmp/ai-testing-lab-visuals/
+          retention-days: 14
+
       - name: Wait for the merged GitHub Pages build
         if: github.event_name == 'push'
         shell: bash
@@ -194,6 +208,12 @@ jobs:
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/cbe_labs.mjs
+
+      - name: Exercise live interactive AI testing labs
+        if: github.event_name == 'push'
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/ai_testing_labs.mjs
 
       - name: Show local server log on failure
         if: failure()

@@ -18,7 +18,10 @@ ORIGIN = "https://fbratten.github.io"
 NAV = [("Home", "/"), ("Projects", "/projects/"), ("Methods & Labs", "/methods/"),
        ("Writing", "/articles/"), ("Build log", "/build-log/"), ("About", "/#about")]
 LABELS = {"/": "Home", "/projects/": "Projects", "/methods/": "Methods & Labs",
-          "/labs/": "Labs", "/articles/": "Writing", "/build-log/": "Build log",
+          "/labs/": "Labs", "/articles/": "Writing",
+          "/labs/testing-architecture/": "Testing architecture",
+          "/labs/fault-injection/": "Fault injection & test gates",
+          "/labs/ai-evaluation-ci-cd/": "AI evaluation & CI/CD", "/build-log/": "Build log",
           "/blueprint-ai-studio/": "Blueprint AI Studio", "/all-pages/": "All pages",
           "/methods/solutions/": "Solution-space map",
           "/blueprint-ai-studio/labs/rules-authority-enforcement/": "Rules, authority & enforcement",
@@ -49,7 +52,7 @@ def path_url(path):
 
 
 def section_for(url):
-    if url.startswith("/methods/") or url == "/labs/": return "/methods/"
+    if url.startswith("/methods/") or url.startswith("/labs/"): return "/methods/"
     if url.startswith("/blueprint-ai-studio/labs/"): return "/methods/"
     if url in ("/blueprint-ai-studio/", "/mads/", "/adaptivearts-ai/", "/gate-monitor/", "/vertex/", "/worktrace/", "/broker-lane-sandbox/"):
         return "/projects/"
@@ -76,6 +79,8 @@ def breadcrumbs(url):
     if url == "/": return ""
     parts = [("Home", "/")]
     if url.startswith("/blueprint-ai-studio/labs/"):
+        parts += [("Methods & Labs", "/methods/"), ("Labs", "/labs/")]
+    elif url.startswith("/labs/") and url != "/labs/":
         parts += [("Methods & Labs", "/methods/"), ("Labs", "/labs/")]
     elif url.startswith("/methods/") and url != "/methods/":
         parts.append(("Methods & Labs", "/methods/"))
@@ -138,6 +143,9 @@ def directory_html():
     groups = [
         ("Start", [("/", "Home"), ("/projects/", "Projects"), ("/methods/", "Methods & Labs"),
                    ("/labs/", "Lab directory"), ("/articles/", "Writing"), ("/build-log/", "Build log")]),
+        ("Interactive AI testing labs", [("/labs/testing-architecture/", "Testing architecture"),
+                                         ("/labs/fault-injection/", "Fault injection & test gates"),
+                                         ("/labs/ai-evaluation-ci-cd/", "AI evaluation & CI/CD")]),
         ("Flagships", [("/intelligence-engine-showcase/", "Intelligence Engine"),
                        ("/mads/", "MADS"), ("/adaptivearts-ai/", "Adaptivearts.ai evidence"), ("/gate-monitor/", "Gate Monitor")]),
         ("Blueprint AI Studio", [("/blueprint-ai-studio/", "Book, LMS and progress"),

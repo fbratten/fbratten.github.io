@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Explore where static checks, contracts, end-to-end journeys, LLM evaluations and agent controls fit. Choose a system and examine five test layers."><title>Testing Architecture Lab | Fredrik Bratten</title>
+<!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
+<link rel="stylesheet" href="/labs/ai-testing/styles.css">
+</head><body class="fb-page">
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation"><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/" aria-current="true">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/build-log/">Build log</a><a href="/#about">About</a></nav>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
+<div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a></nav>
+</div></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/methods/">Methods &amp; Labs</a></li><li><a href="/labs/">Labs</a></li><li><span aria-current="page">Testing architecture</span></li></ol></nav>
+<!-- /FB:NAV -->
+<main id="main" class="lab-shell"><header role="region" aria-label="Page introduction" class="lab-intro"><span class="lab-kicker">Interactive AI testing / 01 / Map the checks</span>
+<h1>Testing Architecture Lab</h1><p class="lab-lede">See what each test can detect, and just as importantly, what it cannot prove.</p>
+<div class="lab-tagline"><strong>Browser-local learning exercise.</strong> All scenarios, costs and receipts are synthetic. No real model, API or service is being evaluated.</div>
+<nav class="lab-series" aria-label="AI testing lab series"><a href="/labs/testing-architecture/" aria-current="page">1. Testing architecture</a><a href="/labs/fault-injection/" >2. Fault injection &amp; test gates</a><a href="/labs/ai-evaluation-ci-cd/" >3. AI evaluation &amp; CI/CD</a></nav></header>
+
+<section class="lab-panel" aria-labelledby="systems-title">
+  <div class="lab-row lab-spread"><div><h2 id="systems-title">1. Choose your system</h2><p class="lab-muted">Different architectures require different test boundaries. The five nodes below are a teaching map, not a claim that a live stack has been tested.</p></div></div>
+  <div class="lab-controls" id="domain-controls" role="group" aria-label="Choose system domain"></div>
+  <p id="domain-summary" class="lab-note"></p>
+  <h2>2. Select a testing layer</h2><div class="lab-flow" id="architecture-flow" aria-label="Five test layers"></div>
+</section>
+<section class="lab-panel" aria-labelledby="inspector-title"><h2 id="inspector-title">3. Inspect its responsibility</h2>
+  <div id="architecture-inspector" class="lab-inspector" aria-live="polite"></div>
+  <div class="lab-note"><strong>Interpretation:</strong> tests offer evidence at a declared scope. Neither a green badge nor an assertion in a diagram is proof that a real system passed.</div>
+</section>
+<section class="lab-panel" aria-labelledby="challenge-title">
+  <h2 id="challenge-title">4. Make a test decision</h2><p id="challenge-question"></p>
+  <p class="lab-muted lab-small">Select a layer above, predict where the fault should first be found, then check your answer.</p>
+  <button type="button" class="lab-button" id="check-choice">Check my choice</button>
+  <p id="challenge-feedback" class="lab-lesson" aria-live="polite">No answer checked yet.</p>
+</section>
+<div class="lab-footer-next"><p>Next: <a href="/labs/fault-injection/">try fault injection and see the effect of disabling a test gate</a>.</p></div>
+</main>
+<!-- FB:FOOTER -->
+<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a></nav>
+<nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
+<nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>
+<!-- /FB:FOOTER -->
+<script src="/labs/ai-testing/engine.js"></script><script>
+(()=>{'use strict';
+const {domains}=window.AITesting;const controls=document.getElementById('domain-controls'),flow=document.getElementById('architecture-flow'),inspector=document.getElementById('architecture-inspector'),feedback=document.getElementById('challenge-feedback');
+let current='software',selected=0;
+function draw(){
+ const domain=domains[current],stage=domain.stages[selected];
+ controls.innerHTML=Object.entries(domains).map(([key,value])=>'<button type="button" class="lab-button" data-domain="'+key+'" aria-pressed="'+(key===current)+'">'+value.title+'</button>').join('');
+ document.getElementById('domain-summary').textContent=domain.summary;
+ flow.innerHTML=domain.stages.map((s,i)=>'<button type="button" class="lab-node" data-stage="'+i+'" data-selected="'+(i===selected)+'" aria-pressed="'+(i===selected)+'"><span class="lab-number">Layer '+(i+1)+'</span><strong>'+s.name+'</strong><span class="lab-status">Inspect &rarr;</span></button>').join('');
+ inspector.innerHTML='<div class="lab-datum"><h3>'+stage.name+'</h3><p>'+stage.method+'</p><h3 class="lab-good">What this checks</h3><p>'+stage.detect+'</p><h3 class="lab-warn">What it does not prove</h3><p>'+stage.limit+'</p></div><div class="lab-datum"><h3>Example assertion (illustrative)</h3><pre id="architecture-assertion"></pre><p class="lab-small lab-muted">The assertion is a requirement example, not an executed result.</p></div>';
+ document.getElementById('architecture-assertion').textContent=stage.assertion;
+ document.getElementById('challenge-question').textContent=domain.challenge.question;
+}
+controls.addEventListener('click',e=>{const button=e.target.closest('[data-domain]');if(!button)return;current=button.dataset.domain;selected=0;feedback.textContent='No answer checked yet.';draw()});
+flow.addEventListener('click',e=>{const button=e.target.closest('[data-stage]');if(!button)return;selected=Number(button.dataset.stage);feedback.textContent='Choice updated. Check your prediction.';draw()});
+document.getElementById('check-choice').addEventListener('click',()=>{const q=domains[current].challenge;feedback.textContent=(selected===q.answer?'Correct. ':'Not quite. The best starting layer is '+(q.answer+1)+' ('+domains[current].stages[q.answer].name+'). ')+q.why});
+draw();
+})();</script>
+</body></html>
