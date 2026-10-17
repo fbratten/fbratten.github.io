@@ -18,7 +18,7 @@
 </div></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/methods/">Methods &amp; Labs</a></li><li><a href="/labs/">Labs</a></li><li><span aria-current="page">AI evaluation &amp; CI/CD</span></li></ol></nav>
 <!-- /FB:NAV -->
 <main id="main" class="lab-shell"><header role="region" aria-label="Page introduction" class="lab-intro"><span class="lab-kicker">Interactive AI testing / 03 / Budget the evidence</span>
-<h1>AI Evaluation & CI/CD Lab</h1><p class="lab-lede">Change the workload and coverage policy, then compare estimated monthly judge calls and costs.</p>
+<h1>AI Evaluation & CI/CD Lab</h1><p class="lab-lede">Change the workload and coverage policy, then compare estimated monthly judge calls and costs in euros (EUR).</p>
 <div class="lab-tagline"><strong>Browser-local learning exercise.</strong> All scenarios, costs and receipts are synthetic. No real model, API or service is being evaluated.</div>
 <nav class="lab-series" aria-label="AI testing lab series"><a href="/labs/testing-architecture/" >1. Testing architecture</a><a href="/labs/fault-injection/" >2. Fault injection &amp; test gates</a><a href="/labs/ai-evaluation-ci-cd/" aria-current="page">3. AI evaluation &amp; CI/CD</a></nav></header>
 
@@ -34,10 +34,10 @@
  <label class="lab-field" for="rejectFraction"><span class="lab-label">Fail early, before judge (%) <output id="rejectFraction-value"></output></span><input type="range" id="rejectFraction" min="0" max="80" step="5" value="30"><span class="lab-hint">Assumed deterministic rejection rate (illustrative)</span></label>
  <label class="lab-check"><input type="checkbox" id="earlyExit" checked> Enable short-circuit (early exit)</label></div>
 </div>
-<div class="lab-note"><strong>Fixed illustrative assumptions:</strong> fast judge $0.002/case, deep judge $0.02/case, fast judge 3 seconds per case, 20 parallel slots and 4 seconds deterministic CI overhead. These are not benchmark results. Nightly testing stays full coverage in both strategies.</div>
+<div class="lab-note"><strong>Fixed illustrative assumptions:</strong> fast judge €0.002/case, deep judge €0.02/case, fast judge 3 seconds per case, 20 parallel slots and 4 seconds deterministic CI overhead. These are not benchmark results. Nightly testing stays full coverage in both strategies.</div>
 </section>
 <section class="lab-panel" aria-labelledby="results-title"><h2 id="results-title">2. Inspect the modeled outcomes</h2>
-<div class="lab-grid-3"><div class="lab-stat"><span>Tiered policy / month</span><strong id="estimated-total">$0</strong><span>Estimated judge spend</span></div><div class="lab-stat"><span>Difference vs full-judge baseline</span><strong id="estimated-savings">$0</strong><span id="estimated-saving-pct">0% reduction</span></div><div class="lab-stat"><span>Non-failing commit CI bound</span><strong id="estimated-wait">0s</strong><span>Simple batch model, not observed latency</span></div></div>
+<div class="lab-grid-3"><div class="lab-stat"><span>Tiered policy / month</span><strong id="estimated-total">€0</strong><span>Estimated judge spend</span></div><div class="lab-stat"><span>Difference vs full-judge baseline</span><strong id="estimated-savings">€0</strong><span id="estimated-saving-pct">0% reduction</span></div><div class="lab-stat"><span>Non-failing commit CI bound</span><strong id="estimated-wait">0s</strong><span>Simple batch model, not observed latency</span></div></div>
 <h3 style="margin-top:22px">Monthly costs across three pipeline phases</h3>
 <div id="cost-bars" class="lab-bars" role="img" aria-label="Comparison of estimated monthly judge cost"></div>
 <div class="lab-table-wrap" style="margin-top:18px"><table><thead><tr><th>Stage</th><th>Tiered judge calls</th><th>Baseline judge calls</th><th>Per-run sample</th></tr></thead><tbody id="policy-rows"></tbody></table></div>
@@ -59,17 +59,17 @@
 const ids=['commits','prFraction','cases','nights','commitFraction','prSample','rejectFraction'];
 const fractionIds=new Set(['prFraction','commitFraction','prSample','rejectFraction']);
 function getData(){const v={};for(const id of ids){const raw=Number(document.getElementById(id).value);v[id]=fractionIds.has(id)?raw/100:raw}return{commits:v.commits,cases:v.cases,prFraction:v.prFraction,commitFraction:v.commitFraction,prSample:v.prSample,nights:v.nights,rejectFraction:v.rejectFraction,earlyExit:document.getElementById('earlyExit').checked,fastPrice:.002,deepPrice:.02,fastSeconds:3,parallel:20}}
-const dollars=n=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}).format(n);
+const euros=n=>new Intl.NumberFormat('en-IE',{style:'currency',currency:'EUR',maximumFractionDigits:2}).format(n);
 const integer=n=>new Intl.NumberFormat('en-US').format(n);
 function display(){for(const id of ids){const field=document.getElementById(id);document.getElementById(id+'-value').textContent=field.value+(fractionIds.has(id)?'%':'')}
- const r=estimate(getData());document.getElementById('estimated-total').textContent=dollars(r.optimizedCost);
- document.getElementById('estimated-savings').textContent=dollars(r.savings);
+ const r=estimate(getData());document.getElementById('estimated-total').textContent=euros(r.optimizedCost);
+ document.getElementById('estimated-savings').textContent=euros(r.savings);
  document.getElementById('estimated-saving-pct').textContent=(r.savingsFraction*100).toFixed(1)+'% lower than the defined baseline';
  document.getElementById('estimated-wait').textContent=r.latencyBound.toFixed(0)+'s';
  const max=Math.max(r.baselineCost,r.optimizedCost,1),phases=[['commit','Commit','Fast judge'],['pr','Pull request','Fast judge'],['nightly','Nightly','Deep judge']];
  const tracks=[['Tiered policy',r.runs,r.optimizedCost],['Full-judge baseline',r.naive,r.baselineCost]];
- document.getElementById('cost-bars').innerHTML=tracks.map(([name,calls,total],idx)=>'<div><div class="lab-bar-name"><strong>'+name+'</strong><span>'+dollars(total)+'</span></div><div class="lab-track">'+phases.map(([key])=>'<span class="lab-fill" data-kind="'+(idx?'baseline':key)+'" style="width:'+(calls[key]*(key==='nightly'?.02:.002)/max*100).toFixed(4)+'%" title="'+key+': '+integer(calls[key])+' calls"></span>').join('')+'</div></div>').join('');
- document.getElementById('cost-bars').setAttribute('aria-label','Tiered monthly cost '+dollars(r.optimizedCost)+' compared with full-judge baseline '+dollars(r.baselineCost));
+ document.getElementById('cost-bars').innerHTML=tracks.map(([name,calls,total],idx)=>'<div><div class="lab-bar-name"><strong>'+name+'</strong><span>'+euros(total)+'</span></div><div class="lab-track">'+phases.map(([key])=>'<span class="lab-fill" data-kind="'+(idx?'baseline':key)+'" style="width:'+(calls[key]*(key==='nightly'?.02:.002)/max*100).toFixed(4)+'%" title="'+key+': '+integer(calls[key])+' calls"></span>').join('')+'</div></div>').join('');
+ document.getElementById('cost-bars').setAttribute('aria-label','Tiered monthly cost '+euros(r.optimizedCost)+' compared with full-judge baseline '+euros(r.baselineCost));
  document.getElementById('policy-rows').innerHTML=phases.map(([key,title])=>'<tr><th scope="row">'+title+'</th><td>'+integer(r.runs[key])+'</td><td>'+integer(r.naive[key])+'</td><td>'+(r.perRunCoverage[key]*100).toFixed(0)+'%</td></tr>').join('');
 }
 for(const id of ids)document.getElementById(id).addEventListener('input',display);
