@@ -47,3 +47,7 @@
 @media(max-width:700px){.lab-shell .mutation-steps,.lab-shell .mutation-detail,.lab-shell .mutation-source-list{grid-template-columns:1fr}.lab-shell .mutation-evidence{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-shell .mutation-control-line{align-items:stretch}.lab-shell .mutation-choices button{flex-basis:45%}}
 @media(max-width:430px){.lab-shell .mutation-evidence{grid-template-columns:1fr}.lab-shell .mutation-metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-shell .mutation-choices button{flex-basis:100%}}
 @media(prefers-reduced-motion:reduce){.lab-shell .mutation-choices *{scroll-behavior:auto}}
+
+/* Long source IDs and pytest names must wrap on narrow screens instead of widening the viewport. */
+.lab-shell #scenario-id,.lab-shell #scenario-test{display:inline;white-space:normal;overflow-wrap:anywhere;word-break:break-word}
+.lab-shell .mutation-detail>.lab-datum,.lab-shell .mutation-receipt{min-width:0;overflow-wrap:anywhere}
