@@ -61,13 +61,18 @@ home_html = (ROOT / 'index.html').read_text()
 assert 'href="/labs/"' in methods_html, 'Methods & Labs needs a visible full directory route'
 assert 'href="/labs/"' in home_html, 'Home Try the labs must open the canonical directory'
 lab_routes = ['/labs/testing-architecture/', '/labs/fault-injection/',
-              '/labs/ai-evaluation-ci-cd/', '/labs/mutation-gate/']
+              '/labs/ai-evaluation-ci-cd/', '/labs/mutation-gate/',
+              '/labs/github-actions/']
 for route in lab_routes:
     for label, html in [('Methods & Labs', methods_html), ('Labs', labs_html)]:
         assert f'href="{route}"' in html, f'{label} does not expose {route}'
 assert '<section class="fb-method-labs" id="labs">' in methods_html
 assert methods_html.count('href="/labs/mutation-gate/"') == 1
 assert labs_html.count('href="/labs/mutation-gate/"') == 1
+
+# Discovery parity: the fifth interactive lab must appear on both public navigation surfaces.
+assert methods_html.count('href="/labs/github-actions/"') == 1
+assert labs_html.count('href="/labs/github-actions/"') == 1
 
 articles = json.loads((ROOT / 'articles/entries.json').read_text())
 seen = set()

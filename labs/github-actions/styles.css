@@ -1,0 +1,65 @@
+/* GitHub Actions Lab 05. Scoped to this lab; shared AI testing styles are unchanged. */
+.lab-shell .actions-pipeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:20px 0}
+.lab-shell .actions-pipeline>div{min-width:0;border:1px solid #395b70;border-radius:12px;background:#0b1d2b;padding:14px 12px;display:flex;flex-direction:column;gap:7px}
+.lab-shell .actions-pipeline span{color:var(--lab-green);font-size:.74rem;font-weight:800;letter-spacing:.04em}
+.lab-shell .actions-pipeline strong{font-size:.93rem;overflow-wrap:anywhere}
+.lab-shell .actions-pipeline small{color:var(--lab-muted);line-height:1.45}
+.lab-shell .actions-switch{display:flex;flex-wrap:wrap;gap:9px;margin:16px 0}
+.lab-shell .actions-switch button{flex:1 1 210px;text-align:center}
+.lab-shell .actions-overview{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.lab-shell .actions-overview>div,.lab-shell .actions-stats>div{min-width:0;border:1px solid #305268;border-radius:12px;padding:14px;background:#0c2030}
+.lab-shell .actions-overview span,.lab-shell .actions-stats span{display:block;color:var(--lab-muted);font-size:.76rem;margin-bottom:5px}
+.lab-shell .actions-overview strong{display:block;font-size:.9rem;overflow-wrap:anywhere;font-variant-numeric:tabular-nums}
+.lab-shell .actions-verdict[data-status=success]{color:var(--lab-green)}
+.lab-shell .actions-verdict[data-status=failure]{color:var(--lab-red)}
+.lab-shell .actions-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:11px 0}
+.lab-shell .actions-stats strong{display:block;font-size:1.55rem;font-variant-numeric:tabular-nums;color:var(--lab-text)}
+.lab-shell .actions-source-link{margin:14px 0 0;overflow-wrap:anywhere}
+.lab-shell .actions-toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:15px 0}
+.lab-shell .actions-toolbar label{font-weight:700;font-size:.89rem}
+.lab-shell .actions-toolbar select,.lab-shell .actions-toolbar input{min-height:44px;flex:1 1 180px;min-width:0;background:#0e2739;color:#e9f6ff;border:1px solid #54748a;border-radius:10px;padding:10px;font:inherit}
+.lab-shell .actions-browser{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:14px}
+.lab-shell .actions-step-list{max-height:510px;overflow-y:auto;border:1px solid #35566a;border-radius:12px;background:#0a1926;padding:7px}
+.lab-shell .actions-step-list button{display:flex;align-items:center;gap:8px;min-width:0;text-align:left;width:100%;background:transparent;color:var(--lab-text);border:1px solid transparent;border-radius:8px;padding:10px;font-size:.85rem;min-height:44px;cursor:pointer}
+.lab-shell .actions-step-list button:hover{background:#20394c}
+.lab-shell .actions-step-list button[aria-pressed=true]{background:#163b46;border-color:var(--lab-green)}
+.lab-shell .actions-step-list button:focus-visible,.lab-shell .actions-quiz button:focus-visible{outline:3px solid var(--lab-blue);outline-offset:2px}
+.lab-shell .actions-step-list .actions-num{color:var(--lab-muted);font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.74rem}
+.lab-shell .actions-step-list .actions-step-name{flex:1;min-width:0;overflow-wrap:anywhere}
+.lab-shell .actions-mini-status{font-size:.69rem;padding:2px 7px;border:1px solid #52697a;border-radius:100px;white-space:nowrap;font-weight:800}
+.lab-shell .actions-mini-status[data-status=success]{border-color:#408e72;color:#a5edcf}
+.lab-shell .actions-mini-status[data-status=failure]{border-color:#c77c76;color:#ffd2c8}
+.lab-shell .actions-mini-status[data-status=skipped]{border-color:#8b8592;color:#d8cedc}
+.lab-shell .actions-step-info{min-width:0;border:1px solid #35566a;border-radius:12px;background:#0c2232;padding:clamp(14px,2.5vw,24px);align-self:start;overflow-wrap:anywhere}
+.lab-shell .actions-step-info h3{font-size:1.18rem;margin:9px 0 12px}
+.lab-shell .actions-detail-status{font-weight:800;margin-bottom:15px}
+.lab-shell .actions-detail-status[data-status=success]{color:var(--lab-green)}
+.lab-shell .actions-detail-status[data-status=failure]{color:var(--lab-red)}
+.lab-shell .actions-detail-status[data-status=skipped]{color:var(--lab-amber)}
+.lab-shell .actions-conditional{border-left:3px solid #93c5df;padding-left:12px;color:#d6e6ef;font-size:.9rem}
+.lab-shell .actions-conditions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.lab-shell .actions-conditions article{display:flex;gap:9px;align-items:start;min-width:0;padding:11px;background:#0d2435;border:1px solid #365366;border-radius:10px}
+.lab-shell .actions-conditions article strong{font-size:.83rem;flex:1;overflow-wrap:anywhere}
+.lab-shell .actions-conditions article span{font-size:.7rem;border-radius:30px;padding:3px 8px;font-weight:800;white-space:nowrap;background:#182f40;border:1px solid #45657b}
+.lab-shell .actions-conditions article[data-outcome=would-skip] span{color:var(--lab-amber)}
+.lab-shell .actions-conditions article[data-outcome=would-run] span{color:var(--lab-green)}
+.lab-shell .actions-conditions article[data-outcome=depends-on-failure] span{color:var(--lab-blue)}
+.lab-shell .actions-debug{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:16px}
+.lab-shell .actions-debug-screen{background:#101b2a;border:1px solid #395b70;border-radius:12px;padding:18px;min-width:0}
+.lab-shell .actions-debug-screen>span{font-size:.81rem;color:var(--lab-muted)}
+.lab-shell .actions-viewport{width:100%;max-width:220px;height:210px;border:2px solid var(--lab-blue);border-radius:10px;position:relative;margin:14px auto;background:#0e2a3c}
+.lab-shell .actions-overflow{position:absolute;top:65px;left:16px;width:calc(100% + 42px);max-width:none;padding:16px 3px;background:#704345;border:1px solid #ff8b89;color:white;text-align:center;white-space:nowrap;font-size:.8rem}
+.lab-shell .actions-debug-copy{min-width:0;overflow-wrap:anywhere}
+.lab-shell .actions-debug-copy pre{white-space:pre-wrap;overflow-wrap:anywhere}
+.lab-shell .actions-boundary{padding:14px 15px;border-left:3px solid var(--lab-amber);background:rgba(245,195,107,.07);color:#e0e9ee}
+.lab-shell .actions-quiz fieldset{border:1px solid #38566a;border-radius:12px;padding:15px;margin:14px 0;min-width:0}
+.lab-shell .actions-quiz legend{font-weight:750;padding:0 4px}
+.lab-shell .actions-quiz label{display:block;padding:7px 0;cursor:pointer}
+.lab-shell .actions-quiz input{accent-color:var(--lab-green);margin-right:9px;width:19px;height:19px;vertical-align:middle}
+.lab-shell .actions-quiz button{margin:10px 0}
+.lab-shell .actions-glossary{display:flex;flex-wrap:wrap;gap:8px}
+.lab-shell .actions-glossary a{display:inline-flex;align-items:center;border:1px solid #3b647b;background:#112f42;color:#cceaff;border-radius:9px;padding:9px 12px;font-size:.86rem;text-decoration:underline;text-underline-offset:3px;min-height:44px}
+.lab-shell .actions-browser pre,.lab-shell #trigger-receipt{overflow-wrap:anywhere;white-space:pre-wrap}
+@media(max-width:950px){.lab-shell .actions-pipeline{grid-template-columns:repeat(3,minmax(0,1fr))}.lab-shell .actions-overview{grid-template-columns:repeat(3,minmax(0,1fr))}.lab-shell .actions-conditions{grid-template-columns:1fr}}
+@media(max-width:680px){.lab-shell .actions-pipeline,.lab-shell .actions-overview,.lab-shell .actions-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.lab-shell .actions-browser,.lab-shell .actions-debug{grid-template-columns:1fr}.lab-shell .actions-step-list{max-height:330px}}
+@media(max-width:390px){.lab-shell .actions-overview,.lab-shell .actions-stats,.lab-shell .actions-pipeline{grid-template-columns:1fr}}
