@@ -1,5 +1,96 @@
 [
   {
+    "date": "2026-10-18",
+    "state": "SHIPPED",
+    "title": "Mutation Gate and GitHub Actions labs, with one Labs directory",
+    "summary": "Added AI Testing labs 04 and 05. Mutation Gate lets a learner apply 13 controlled software faults, read CAUGHT / ESCAPED / BROKEN results and inspect a five-job CI snapshot. The GitHub Actions lab walks through 35 workflow steps from this site's own CI, debugs a failed mobile test and separates a green CI run from a verified deployment. All labs now share one directory, reachable from Methods & Labs, with existing lab URLs unchanged.",
+    "why_it_matters": "It moves from \"do the tests pass?\" to \"would the tests notice a real fault?\" and \"is green CI the same as a working website?\", two questions that decide whether automated checks deserve trust.",
+    "evidence": [
+      {
+        "label": "Mutation Gate lab",
+        "url": "https://fbratten.github.io/labs/mutation-gate/"
+      },
+      {
+        "label": "GitHub Actions lab",
+        "url": "https://fbratten.github.io/labs/github-actions/"
+      },
+      {
+        "label": "Live Labs directory",
+        "url": "https://fbratten.github.io/labs/"
+      },
+      {
+        "label": "Mutation Gate PR #47",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/47"
+      },
+      {
+        "label": "Labs navigation PR #51",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/51"
+      },
+      {
+        "label": "GitHub Actions lab PR #52",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/52"
+      },
+      {
+        "label": "Passing Pages interaction checks on the merge",
+        "url": "https://github.com/fbratten/fbratten.github.io/actions/runs/39079285904"
+      }
+    ],
+    "tags": [
+      "AI testing",
+      "mutation testing",
+      "GitHub Actions",
+      "CI/CD",
+      "interactive learning"
+    ]
+  },
+  {
+    "date": "2026-10-17",
+    "state": "SHIPPED",
+    "title": "AI Testing labs: testing architecture, fault injection and AI evaluation in CI/CD",
+    "summary": "Shipped three connected, browser-local teaching labs with synthetic models: compare test layers across software, RAG, agents and guardrails; toggle five test gates and follow synthetic failures to evidence receipts; and weigh cheap deterministic tests against sampled model evaluations in CI/CD, with costs shown in euros. Lab terms link to stable anchors in the From Blueprint to Application glossary.",
+    "why_it_matters": "It lets a learner try how a test strategy for AI systems is built, layer by layer, before reading theory: which check to run first, what a gate actually catches, and why model evaluation is sampled rather than exhaustive.",
+    "evidence": [
+      {
+        "label": "Live Labs directory",
+        "url": "https://fbratten.github.io/labs/"
+      },
+      {
+        "label": "Testing architecture lab",
+        "url": "https://fbratten.github.io/labs/testing-architecture/"
+      },
+      {
+        "label": "Fault injection & test gates lab",
+        "url": "https://fbratten.github.io/labs/fault-injection/"
+      },
+      {
+        "label": "AI evaluation & CI/CD lab",
+        "url": "https://fbratten.github.io/labs/ai-evaluation-ci-cd/"
+      },
+      {
+        "label": "Three labs PR #42",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/42"
+      },
+      {
+        "label": "Euro costs PR #43",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/43"
+      },
+      {
+        "label": "Glossary links PR #45",
+        "url": "https://github.com/fbratten/fbratten.github.io/pull/45"
+      },
+      {
+        "label": "From Blueprint to Application glossary",
+        "url": "https://fbratten.github.io/From-Blueprint-to-Application/docs/resources/glossary.html"
+      }
+    ],
+    "tags": [
+      "AI testing",
+      "CI/CD",
+      "evaluation",
+      "interactive learning"
+    ]
+  },
+  {
     "date": "2026-10-15",
     "state": "PUBLISHED",
     "title": "COR: capability reasoning and the boundary between method composition and execution",
