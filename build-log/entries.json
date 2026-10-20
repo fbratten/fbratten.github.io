@@ -1,5 +1,44 @@
 [
   {
+    "date": "2026-10-20",
+    "state": "SHIPPED",
+    "title": "Muse box: Meta Muse Code CLI in a sandbox, phase 1 offline",
+    "summary": "Built a personal sandbox that runs Meta's closed-source Muse Code CLI inside a bubblewrap box: an empty private home directory, no network, a read-only checksum-pinned install that cannot update itself, one writable workspace per run, and refusal of flags that weaken the tool's own sandbox. Phase 1 uses only the offline echo provider; network access and credentials are later phases, each needing separate approval.",
+    "why_it_matters": "It shows how to try a new agent tool without handing it your keys, SSH configuration or other agents' settings, and it states its limits: the box shares the host kernel and does not stop a determined attacker.",
+    "evidence": [
+      {
+        "label": "Public snapshot, source pin and verify receipt",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/muse-box.md"
+      }
+    ],
+    "tags": [
+      "AI agents",
+      "sandboxing",
+      "security",
+      "Meta Muse"
+    ]
+  },
+  {
+    "date": "2026-10-20",
+    "state": "VERIFIED",
+    "title": "Cross-agent investigation: a code-knowledge tool for a teaching demonstrator",
+    "summary": "A ChatGPT lead and a Claude Code peer ran a read-only investigation through a GitHub-issue coordination channel: the peer checked tools and material on the workstation, and the lead reviewed and accepted the findings. The main finding was negative: the local code-knowledge engine was installed but had never indexed anything, so it could not yet support the demonstrator, and a source-only explanation record was chosen instead.",
+    "why_it_matters": "It shows a review loop in which an unfavourable finding is reported and accepted rather than smoothed over, and the next step waits for an explicit human decision.",
+    "evidence": [
+      {
+        "label": "Public summary of the investigation and its boundaries",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/gac-ie-creative-investigation.md"
+      }
+    ],
+    "tags": [
+      "AI agents",
+      "multi-agent",
+      "review",
+      "ChatGPT",
+      "Claude Code"
+    ]
+  },
+  {
     "date": "2026-10-18",
     "state": "SHIPPED",
     "title": "Mutation Gate and GitHub Actions labs, with one Labs directory",
@@ -41,6 +80,25 @@
       "GitHub Actions",
       "CI/CD",
       "interactive learning"
+    ]
+  },
+  {
+    "date": "2026-10-18",
+    "state": "SHIPPED",
+    "title": "Milla: an assistant agent's own follow-through ledger",
+    "summary": "Set up a working record for Milla, an assistant agent running in Grok Bot. It tracks the follow-ups she was asked to watch, what she saw as changed, unchanged or not visible, her own outward actions with read-back, and decisions waiting for the operator. The record points to the systems that own the facts and never claims to be the source of truth or to grant authority.",
+    "why_it_matters": "It makes agent follow-through auditable: what the agent promised to watch, what it actually checked, and where a human decision is still pending.",
+    "evidence": [
+      {
+        "label": "Public snapshot of the ledger design",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/milla-follow-through-ledger.md"
+      }
+    ],
+    "tags": [
+      "AI agents",
+      "auditability",
+      "coordination",
+      "Grok"
     ]
   },
   {
