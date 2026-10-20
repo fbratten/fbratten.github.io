@@ -1,5 +1,23 @@
 [
   {
+    "date": "2026-10-20",
+    "state": "PUBLISHED",
+    "title": "Agent film team: making real agent work understandable",
+    "summary": "Published an overview of the agent film team, an AI instance that observes, interviews and reconstructs real agent work so that an educational film can show how working methods are used in practice. It explains the team's idea (need, meaning, application and observable result before the method's name) and its first story, in which a check found four removed lines and the change was made additive. A 45-second first film test exists privately; no film is published.",
+    "why_it_matters": "Method names alone do not show what a way of working changes. Filming documented events with observed and reported evidence kept apart makes the effect visible, including the corrections, without presenting a reconstruction as a recording.",
+    "evidence": [
+      {
+        "label": "Agent film team overview, first story and evidence boundaries",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/agent-film-team.md"
+      },
+      {
+        "label": "Public Methods & Labs: composition principles",
+        "url": "https://fbratten.github.io/methods/"
+      }
+    ],
+    "tags": ["agent film team", "methods", "education", "evidence", "multi-agent work"]
+  },
+  {
     "date": "2026-10-15",
     "state": "PUBLISHED",
     "title": "COR: capability reasoning and the boundary between method composition and execution",
