@@ -15,9 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 75ee77ff45bd37c4284644ea38886a0d9f7ae593
+          ref: 68684bff15c71fcb864d50998abd2a92926af3f1
           persist-credentials: false
-      - name: Sign and verify the exact 20-file projection
+      - name: Sign and verify the exact 21-file projection
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -25,23 +25,23 @@ jobs:
           import os,json,base64,subprocess,urllib.request,time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
-          source="75ee77ff45bd37c4284644ea38886a0d9f7ae593"
-          tree="5dd9fd06e9ecd280ff5e65eb7b426665749995d2"
-          base="42bb31a95488d8a6d7bf9c010d97e41bad08b63b"
+          source="68684bff15c71fcb864d50998abd2a92926af3f1"
+          tree="8611644d9cba28ff7ab86674973073219acac048"
+          base="2d52e23854964d0f65a25d395ff221249e87fb66"
           target="chatgpt/aristotle-agents-labs-signed-20261103"
-          paths=[".github/workflows/pages-browser-check.yml","all-pages/index.html","labs/index.html","methods/index.html","scripts/build_navigation.py","sitemap.xml","labs/aristotle-to-agents/README.md","labs/aristotle-to-agents/app.js","labs/aristotle-to-agents/data.js","labs/aristotle-to-agents/graph.json","labs/aristotle-to-agents/index.html","labs/aristotle-to-agents/model.js","labs/aristotle-to-agents/original-diagrams/00_syntes_argumentation_llm_agenter.svg","labs/aristotle-to-agents/original-diagrams/01_vagen_fran_aristoteles_till_ai.svg","labs/aristotle-to-agents/original-diagrams/02_fran_argumentationsfel_till_llm.svg","labs/aristotle-to-agents/original-diagrams/03_agentkedja_risk_och_kontroller.svg","labs/aristotle-to-agents/original-graph.json","labs/aristotle-to-agents/style.css","tests/aristotle_agents_model.cjs","tests/aristotle_agents_page.mjs"]
+          paths=[".github/workflows/pages-browser-check.yml","all-pages/index.html","labs/index.html","methods/index.html","scripts/build_navigation.py","sitemap.xml","labs/aristotle-to-agents/README.md","labs/aristotle-to-agents/app.js","labs/aristotle-to-agents/data.js","labs/aristotle-to-agents/graph.json","labs/aristotle-to-agents/index.html","labs/aristotle-to-agents/model.js","labs/aristotle-to-agents/original-diagrams/00_syntes_argumentation_llm_agenter.svg","labs/aristotle-to-agents/original-diagrams/01_vagen_fran_aristoteles_till_ai.svg","labs/aristotle-to-agents/original-diagrams/02_fran_argumentationsfel_till_llm.svg","labs/aristotle-to-agents/original-diagrams/03_agentkedja_risk_och_kontroller.svg","labs/aristotle-to-agents/original-graph.json","labs/aristotle-to-agents/style.css","tests/aristotle_agents_model.cjs","tests/aristotle_agents_page.mjs","tests/navigation_page.mjs"]
           git=lambda *a:subprocess.check_output(["git",*a],text=True).strip()
           assert os.environ["GITHUB_REPOSITORY"]==repo
           assert os.environ["GITHUB_REF"]=="refs/heads/chatgpt/aristotle-agents-signing-bridge-20261103"
           assert git("rev-parse","HEAD")==source
           assert git("rev-parse","HEAD^{tree}")==tree
-          assert len(paths)==len(set(paths))==20
+          assert len(paths)==len(set(paths))==21
           def api(url,body=None):
               headers={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json","User-Agent":"aristotle-atlas-signed-transfer"}
               if body is not None:headers["Content-Type"]="application/json"
               req=urllib.request.Request(url,headers=headers,data=json.dumps(body).encode() if body is not None else None,method="POST" if body is not None else "GET")
               with urllib.request.urlopen(req,timeout=90) as r:return json.load(r)
-          body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"[Tier 3] Add five Aristotle-to-agents maps and interactive labs","body":"Exact 20-file source projection, original graph preserved. Pins CI runner to supported Ubuntu 24.04."},"expectedHeadOid":base,"fileChanges":{"additions":[{"path":p,"contents":base64.b64encode(Path(p).read_bytes()).decode()} for p in paths]}}}}
+          body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"[Tier 3] Add five Aristotle-to-agents maps and interactive labs","body":"Exact 21-file source projection, original graph preserved. Pins CI runner to supported Ubuntu 24.04."},"expectedHeadOid":base,"fileChanges":{"additions":[{"path":p,"contents":base64.b64encode(Path(p).read_bytes()).decode()} for p in paths]}}}}
           result=api("https://api.github.com/graphql",body)
           assert not result.get("errors"),result.get("errors")
           sha=result["data"]["createCommitOnBranch"]["commit"]["oid"]
@@ -52,7 +52,8 @@ jobs:
           assert commit["commit"]["verification"]["verified"],"Signature not verified"
           assert commit["commit"]["tree"]["sha"]==tree,"Tree differs"
           assert [p["sha"] for p in commit["parents"]]==[base],"Parent differs"
-          assert {f["filename"] for f in commit["files"]}==set(paths),"Pathset differs"
+          cumulative=api("https://api.github.com/repos/"+repo+"/compare/42bb31a95488d8a6d7bf9c010d97e41bad08b63b..."+sha)
+          assert {f["filename"] for f in cumulative["files"]}==set(paths),"Pathset differs"
           assert all(f["status"] in ["added","modified"] for f in commit["files"]),"Unexpected removal or rename"
-          print("PASS: signed identical 20-file tree, exact parent, no removed files",sha)
+          print("PASS: signed identical 21-file tree, exact parent, no removed files",sha)
           PY
