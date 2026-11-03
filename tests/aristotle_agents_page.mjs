@@ -45,6 +45,7 @@ try {
  }
  const noJs=await browser.newContext({javaScriptEnabled:false});const page=await noJs.newPage();
  await page.goto(base+'/labs/aristotle-to-agents/');assert(await page.locator('#fallback').isVisible());
+ await page.getByText('Källor, ursprung och öppna data',{exact:true}).click();
  assert.equal(await page.getByRole('link',{name:/Original:/}).count(),4);
  await noJs.close();console.log('PASS: five atlas views, keyboard nodes, live experiments, exports, mobile layout and JavaScript-off fallback.');
 } finally {await browser.close();}
