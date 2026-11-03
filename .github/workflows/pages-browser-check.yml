@@ -54,6 +54,9 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Validate argumentation and agent teaching models
+        run: node tests/aristotle_agents_model.cjs
+
       - name: Install Playwright
         run: |
           npm install --no-save playwright@1.55.0
@@ -78,6 +81,11 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
           NAV_SCREENSHOT_DIR: /tmp/navigation-visuals
         run: node tests/navigation_page.mjs
+
+      - name: Exercise Aristotle to agents maps and labs
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node tests/aristotle_agents_page.mjs
 
       - name: Save navigation visual checks
         if: always()
