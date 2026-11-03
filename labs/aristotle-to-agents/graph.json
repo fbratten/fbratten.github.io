@@ -1,0 +1,2626 @@
+{
+  "metadata": {
+    "titel": "Från Aristoteles till AI, LLM och AI-agenter",
+    "version": "1.1",
+    "datum": "2026-11-03",
+    "språk": "sv",
+    "beskrivning": "Begreppsgraf med explicita typade relationer; inte ett kausalt historieträd",
+    "original_sha256": "0433aed9e536e024cb04c76c1542510dddf6ca58843dfdba35e98471477aa3e8",
+    "original_nodes": 74,
+    "original_edges": 111
+  },
+  "typer": {
+    "historisk_anknytning": {
+      "label": "Historisk anknytning",
+      "color": "#F8C471",
+      "style": "solid",
+      "description": "En historiskt belagd anknytning, inte påstående om hela kedjan."
+    },
+    "tidsföljd": {
+      "label": "Tidsföljd",
+      "color": "#8796A9",
+      "style": "dashed",
+      "description": "A före B; INGEN automatisk orsak eller påverkan."
+    },
+    "tekniskt_beroende": {
+      "label": "Tekniskt samband",
+      "color": "#74C9FF",
+      "style": "solid",
+      "description": "Tekniskt eller arkitektoniskt samband; exakt etikett avgör riktningen."
+    },
+    "analytisk_parallell": {
+      "label": "Analytisk parallell",
+      "color": "#D2B4FF",
+      "style": "dashed",
+      "description": "En modern jämförelse; inte historisk eller fysisk kausalitet."
+    },
+    "riskmekanism": {
+      "label": "Möjlig riskkedja",
+      "color": "#FF9B8C",
+      "style": "solid",
+      "description": "Möjlig mekanism och kontextberoende effekt; inte deterministisk."
+    },
+    "motåtgärd": {
+      "label": "Kan begränsa risk",
+      "color": "#A3EDAF",
+      "style": "solid",
+      "description": "Kontroll som kan begränsa risk; aldrig garanti för sanningshalt."
+    },
+    "del_av": {
+      "label": "Del av",
+      "color": "#94A3B8",
+      "style": "dotted",
+      "description": "Beståndsdel eller klassifikation."
+    }
+  },
+  "kategorier": {
+    "idéhistoria": {
+      "color": "#F8C471",
+      "fill": "#3B2C20",
+      "legend": "Historia / idéer"
+    },
+    "argumentation": {
+      "color": "#FF91B2",
+      "fill": "#44263A",
+      "legend": "Argumentation / retorik"
+    },
+    "kognition": {
+      "color": "#D2B4FF",
+      "fill": "#322743",
+      "legend": "Kognition / mottagare"
+    },
+    "AI_teknik": {
+      "color": "#74C9FF",
+      "fill": "#17364B",
+      "legend": "AI / LLM-teknik"
+    },
+    "AI_agent": {
+      "color": "#76E6D3",
+      "fill": "#154543",
+      "legend": "Agenter / arkitektur"
+    },
+    "AI_risk": {
+      "color": "#FF9B8C",
+      "fill": "#482B32",
+      "legend": "Risk / sårbarhet"
+    },
+    "utfall": {
+      "color": "#F5A6FC",
+      "fill": "#422849",
+      "legend": "Trosbildning / utfall"
+    },
+    "motåtgärd": {
+      "color": "#A3EDAF",
+      "fill": "#24402D",
+      "legend": "Verifiering / kontroll"
+    }
+  },
+  "källor": {
+    "SEP_LOGIC": {
+      "title": "Stanford Encyclopedia of Philosophy - Aristoteles logik",
+      "url": "https://plato.stanford.edu/entries/aristotle-logic/",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "SEP_FALLACIES": {
+      "title": "Stanford Encyclopedia of Philosophy - Fallacies",
+      "url": "https://plato.stanford.edu/entries/fallacies/",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "SEP_METHOD": {
+      "title": "Stanford Encyclopedia of Philosophy - Scientific Method",
+      "url": "https://plato.stanford.edu/entries/scientific-method/",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "SEP_BACON": {
+      "title": "Stanford Encyclopedia of Philosophy - Francis Bacon",
+      "url": "https://plato.stanford.edu/entries/francis-bacon/",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "SEP_HUME": {
+      "title": "Stanford Encyclopedia of Philosophy - David Hume",
+      "url": "https://plato.stanford.edu/entries/hume/",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "SEP_POPPER": {
+      "title": "Stanford Encyclopedia of Philosophy - Karl Popper",
+      "url": "https://plato.stanford.edu/entries/popper/",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "DARTMOUTH_PROPOSAL": {
+      "title": "McCarthy et al. (1955), Dartmouth AI-proposal (AI Magazine)",
+      "url": "https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/1904/0",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "TURING1950": {
+      "title": "A. M. Turing (1950), Computing Machinery and Intelligence",
+      "url": "https://academic.oup.com/mind/article/LIX/236/433/986238",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "DARTMOUTH1956": {
+      "title": "Dartmouth - Artificial Intelligence (AI) Coined at Dartmouth",
+      "url": "https://home.dartmouth.edu/about/artificial-intelligence-ai-coined-dartmouth",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "TRANSFORMER2017": {
+      "title": "Vaswani et al. (2017), Attention Is All You Need",
+      "url": "https://arxiv.org/abs/1706.03762",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "RAG2020": {
+      "title": "Lewis et al. (2020), Retrieval-Augmented Generation",
+      "url": "https://arxiv.org/abs/2005.11401",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "NIST2024": {
+      "title": "NIST AI 600-1 - Generative AI Profile",
+      "url": "https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-generative-artificial-intelligence",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "OWASP_LLM2025": {
+      "title": "OWASP GenAI - Top 10 Risks for LLMs (2025)",
+      "url": "https://genai.owasp.org/llm-top-10/",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "OWASP_AGENTS2026": {
+      "title": "OWASP - Top 10 for Agentic Applications (2026)",
+      "url": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "OWASP_MEMORY2026": {
+      "title": "OWASP (2026), Memory Is a Feature. It Is Also an Attack Surface",
+      "url": "https://genai.owasp.org/2026/05/13/memory-is-a-feature-it-is-also-an-attack-surface/",
+      "review_status": "Ärvd referens från 2026-11-01; ej återgranskad här"
+    },
+    "ANTHROPIC_AGENT2024": {
+      "title": "Anthropic (2024), Building effective agents",
+      "url": "https://www.anthropic.com/research/building-effective-agents",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "ARISTOTLE_PRIMARY": {
+      "title": "Aristotle: On Sophistical Refutations (primary text, translation)",
+      "url": "https://classics.mit.edu/Aristotle/sophist_refut.1.1.html",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "TURING1936_PRIMARY": {
+      "title": "Turing (1936): On Computable Numbers (original paper)",
+      "url": "https://www.cs.virginia.edu/~robins/Turing_Paper_1936.pdf",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "SHANNON1948_PRIMARY": {
+      "title": "Shannon (1948): A Mathematical Theory of Communication",
+      "url": "https://onlinelibrary.wiley.com/doi/10.1002/j.1538-7305.1948.tb00917.x",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "REACT2022": {
+      "title": "Yao et al. (2022/2023): ReAct",
+      "url": "https://arxiv.org/abs/2210.03629",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    },
+    "OWASP_INJECTION": {
+      "title": "OWASP: LLM01:2025 Prompt Injection",
+      "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+      "review_status": "Kontrollerad källa 2026-11-03"
+    }
+  },
+  "noder": [
+    {
+      "id": "aristoteles",
+      "label": "Aristoteles",
+      "kategori": "idéhistoria",
+      "beskrivning": "Antik logik, retorik och analys av skenbara vederläggningar.",
+      "period": "384-322 f.Kr.",
+      "källor": [
+        "SEP_LOGIC",
+        "SEP_FALLACIES",
+        "ARISTOTLE_PRIMARY"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "antika_fallacies",
+      "label": "Sofistiska vederläggningar",
+      "kategori": "idéhistoria",
+      "beskrivning": "Aristoteles undersöker argument som bara ser giltiga ut.",
+      "period": "antiken",
+      "källor": [
+        "SEP_FALLACIES",
+        "ARISTOTLE_PRIMARY"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "formell_logik",
+      "label": "Formalisering av logik",
+      "kategori": "idéhistoria",
+      "beskrivning": "Från naturligt språks argument till alltmer formaliserade logiska system.",
+      "period": "1800-1900-tal",
+      "källor": [
+        "SEP_LOGIC"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "boole_frege",
+      "label": "Boole och Frege",
+      "kategori": "idéhistoria",
+      "beskrivning": "Viktiga milstolpar i matematisk och predikatlogisk formalisering.",
+      "period": "1800-tal",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "empirisk_metod",
+      "label": "Empiri och vetenskaplig metod",
+      "kategori": "idéhistoria",
+      "beskrivning": "Observerbar evidens, kritisk prövning och frågor om kunskapsgrund.",
+      "period": "tidigmodern tid-nutid",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "turing1936",
+      "label": "Beräkningsbarhet",
+      "kategori": "idéhistoria",
+      "beskrivning": "Turingmaskinen som central modell för beräkningsbara processer.",
+      "period": "1936",
+      "källor": [
+        "TURING1936_PRIMARY"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "turing1950",
+      "label": "Turing: imitationsspelet",
+      "kategori": "idéhistoria",
+      "beskrivning": "Frågar om maskinintelligens via ett språkbaserat testförfarande.",
+      "period": "1950",
+      "källor": [
+        "TURING1950"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "dartmouth1956",
+      "label": "Dartmouth / AI som forskningsfält",
+      "kategori": "idéhistoria",
+      "beskrivning": "1956 års forskningsprojekt blev en grundläggande milstolpe för AI-fältet.",
+      "period": "1956",
+      "källor": [
+        "DARTMOUTH1956"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "symbolisk_ai",
+      "label": "Symbolisk AI",
+      "kategori": "AI_teknik",
+      "beskrivning": "Kunskapsrepresentation, explicita regler och logikbaserad problemlösning.",
+      "period": "1950-tal och framåt",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "statistisk_ml",
+      "label": "Statistisk maskininlärning",
+      "kategori": "AI_teknik",
+      "beskrivning": "Lär mönster från data snarare än bara från förskrivna regler.",
+      "period": "1900-tal och framåt",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "neurala_nät",
+      "label": "Djupa neurala nätverk",
+      "kategori": "AI_teknik",
+      "beskrivning": "En viktig familj av lärande modeller bakom många moderna LLM-arkitekturer.",
+      "period": "2000-tal och framåt",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "transformer2017",
+      "label": "Transformer",
+      "kategori": "AI_teknik",
+      "beskrivning": "Attentionbaserad modellarkitektur presenterad 2017.",
+      "period": "2017",
+      "källor": [
+        "TRANSFORMER2017"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "llm",
+      "label": "Stor språkmodell (LLM)",
+      "kategori": "AI_teknik",
+      "beskrivning": "Genererar text och andra tokens från inlärda representationer och kontext.",
+      "period": "2018-",
+      "källor": [
+        "TRANSFORMER2017"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "tokenprediktion",
+      "label": "Tokenprediktion",
+      "kategori": "AI_teknik",
+      "beskrivning": "Språkmodellering optimerar typiskt prediktion av tokens; inte en inbyggd sanningsgaranti.",
+      "period": "modern LLM",
+      "källor": [
+        "NIST2024"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "träning",
+      "label": "Tränings- och efterträningsdata",
+      "kategori": "AI_teknik",
+      "beskrivning": "Data och feedback påverkar mönster, kunskap och beteende.",
+      "period": "modern LLM",
+      "källor": [
+        "NIST2024"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "kontext",
+      "label": "Instruktioner och kontext",
+      "kategori": "AI_teknik",
+      "beskrivning": "Aktuella instruktioner, användartext, dokument och andra kontextdelar.",
+      "period": "modern LLM",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "rag",
+      "label": "RAG / informationshämtning",
+      "kategori": "AI_teknik",
+      "beskrivning": "Hämtar externa dokument som modellens svar kan baseras på; ger inte automatiskt sanningsgaranti.",
+      "period": "2020-",
+      "källor": [
+        "RAG2020"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "källbelägg",
+      "label": "Källbelägg / proveniens",
+      "kategori": "AI_teknik",
+      "beskrivning": "Spårbar referens från ett påstående till ursprungsdata och tidpunkt.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "agent_bas",
+      "label": "Förstärkt LLM",
+      "kategori": "AI_agent",
+      "beskrivning": "LLM med tillgång till bl.a. retrieval, verktyg och ibland minne.",
+      "period": "modern agentarkitektur",
+      "källor": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "workflow",
+      "label": "Workflow / förbestämt flöde",
+      "kategori": "AI_agent",
+      "beskrivning": "Ett orkestrerat förfarande med fördefinierade kontrollsteg.",
+      "period": "modern agentarkitektur",
+      "källor": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "agent",
+      "label": "AI-agent",
+      "kategori": "AI_agent",
+      "beskrivning": "En modell som kan bestämma följande steg och verktygsanvändning inom givna ramar.",
+      "period": "modern agentarkitektur",
+      "källor": [
+        "ANTHROPIC_AGENT2024",
+        "REACT2022"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "planering",
+      "label": "Planering och återkoppling",
+      "kategori": "AI_agent",
+      "beskrivning": "Iterativa mål, utvärderingar och återkoppling från omvärld eller verktyg.",
+      "period": "agentarkitektur",
+      "källor": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "verktyg",
+      "label": "Verktygsanrop / API",
+      "kategori": "AI_agent",
+      "beskrivning": "Operationer som läser, söker, skriver eller ändrar externa resurser.",
+      "period": "agentarkitektur",
+      "källor": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "minne",
+      "label": "Agentminne och återanvänd kontext",
+      "kategori": "AI_agent",
+      "beskrivning": "Bestående eller tillfälligt tillstånd som påverkar senare beslut.",
+      "period": "agentarkitektur",
+      "källor": [
+        "OWASP_MEMORY2026"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "multiagent",
+      "label": "Multi-agent / delegation",
+      "kategori": "AI_agent",
+      "beskrivning": "Flera agenter kommunicerar eller fördelar deluppgifter.",
+      "period": "agentarkitektur",
+      "källor": [
+        "ANTHROPIC_AGENT2024",
+        "OWASP_AGENTS2026"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "platon",
+      "label": "Platon",
+      "kategori": "idéhistoria",
+      "beskrivning": "Viktig föregångare till Aristoteles; dialektik, kunskap och argumentation.",
+      "period": "427-347 f.Kr.",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "stoiker",
+      "label": "Stoikerna",
+      "kategori": "idéhistoria",
+      "beskrivning": "Filosofisk tradition som bland annat utvecklade logik och diskuterade omdömen.",
+      "period": "300-tal f.Kr. - antiken",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "skeptiker",
+      "label": "Skeptiska traditioner",
+      "kategori": "idéhistoria",
+      "beskrivning": "Granskning av anspråk, skäl för omdömen och epistemisk återhållsamhet.",
+      "period": "antiken och framåt",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "medeltida_logik",
+      "label": "Medeltida logiktradition",
+      "kategori": "idéhistoria",
+      "beskrivning": "Tolkningar och vidareutveckling av syllogistik, begreppsanalys och disputation.",
+      "period": "ca 500-1500",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "bacon",
+      "label": "Francis Bacon",
+      "kategori": "idéhistoria",
+      "beskrivning": "Kritik av förhastade generaliseringar; prövning och observation.",
+      "period": "1561-1626",
+      "källor": [
+        "SEP_BACON",
+        "SEP_METHOD"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "hume",
+      "label": "David Hume",
+      "kategori": "idéhistoria",
+      "beskrivning": "Studerade induktionsproblemet och gränser för slutledning från erfarenhet.",
+      "period": "1711-1776",
+      "källor": [
+        "SEP_HUME"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "popper",
+      "label": "Karl Popper",
+      "kategori": "idéhistoria",
+      "beskrivning": "Falsifierbarhet och prövning mot möjliga motexempel.",
+      "period": "1902-1994",
+      "källor": [
+        "SEP_POPPER"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "shannon",
+      "label": "Claude Shannon",
+      "kategori": "idéhistoria",
+      "beskrivning": "Informations- och kommunikationsteori; också medförfattare i Dartmouthförslaget.",
+      "period": "1916-2001",
+      "källor": [
+        "DARTMOUTH_PROPOSAL",
+        "SHANNON1948_PRIMARY"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "mccarthy",
+      "label": "John McCarthy",
+      "kategori": "idéhistoria",
+      "beskrivning": "Ledande initiativtagare till Dartmouthprojektet och begreppet AI.",
+      "period": "1927-2011",
+      "källor": [
+        "DARTMOUTH1956",
+        "DARTMOUTH_PROPOSAL"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "minsky",
+      "label": "Marvin Minsky",
+      "kategori": "idéhistoria",
+      "beskrivning": "Medförfattare till Dartmouthförslaget och central tidig AI-forskare.",
+      "period": "1927-2016",
+      "källor": [
+        "DARTMOUTH_PROPOSAL"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "rochester",
+      "label": "Nathaniel Rochester",
+      "kategori": "idéhistoria",
+      "beskrivning": "Medförfattare till Dartmouthförslaget.",
+      "period": "1919-2001",
+      "källor": [
+        "DARTMOUTH_PROPOSAL"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "informationsteori",
+      "label": "Informationsteori",
+      "kategori": "idéhistoria",
+      "beskrivning": "Matematisk tradition för information och kodning; inte ekvivalent med sanningsprövning.",
+      "period": "1940-tal och framåt",
+      "källor": [
+        "SHANNON1948_PRIMARY"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "sken",
+      "label": "Skenargument",
+      "kategori": "argumentation",
+      "beskrivning": "Resonemang verkar giltigt men har fel i premisser eller slutsats.",
+      "period": "antik till nutid",
+      "källor": [
+        "SEP_FALLACIES",
+        "ARISTOTLE_PRIMARY"
+      ],
+      "föregående_graf_id": "sken",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "tvet",
+      "label": "Tvetydighet",
+      "kategori": "argumentation",
+      "beskrivning": "Ord eller satsstruktur tillåter flera tolkningar; en betydelse kan glida över i en annan.",
+      "period": "antik till nutid",
+      "källor": [
+        "SEP_FALLACIES",
+        "ARISTOTLE_PRIMARY"
+      ],
+      "föregående_graf_id": "tvet",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "ret",
+      "label": "Retoriska knep",
+      "kategori": "argumentation",
+      "beskrivning": "Språk, inramning och känslor kan påverka mottagaren; inte automatiskt felaktiga.",
+      "period": "antik till nutid",
+      "källor": [
+        "SEP_FALLACIES"
+      ],
+      "föregående_graf_id": "ret",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "aukt",
+      "label": "Falsk auktoritet",
+      "kategori": "argumentation",
+      "beskrivning": "Legitimitet lånas från titel, expertstatus eller källa utan relevant stöd.",
+      "period": "modern tematisk kategori",
+      "källor": [],
+      "föregående_graf_id": "aukt",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "evid",
+      "label": "Selektiv evidens",
+      "kategori": "argumentation",
+      "beskrivning": "Bara utvalda belägg visas medan relevant motsägande material saknas.",
+      "period": "modern tematisk kategori",
+      "källor": [],
+      "föregående_graf_id": "evid",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "kognitiv_bias",
+      "label": "Kognitiva bias",
+      "kategori": "kognition",
+      "beskrivning": "Systematiska mönster i hur människor uppmärksammar, bedömer och minns information.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "tilltro",
+      "label": "Trosbildning / tilltro",
+      "kategori": "utfall",
+      "beskrivning": "Mottagaren kan revidera sin uppfattning eller få ökad säkerhet utan fullgod grund.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "social_delning",
+      "label": "Informationsspridning",
+      "kategori": "utfall",
+      "beskrivning": "Innehåll cirkulerar, citeras, återpubliceras och kan få förnyad legitimitet.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "automationsbias",
+      "label": "Automation bias",
+      "kategori": "kognition",
+      "beskrivning": "Övertro på automatiska systems förslag eller resultat kan minska oberoende granskning.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "skenbar_trovärdighet",
+      "label": "Skenbar trovärdighet",
+      "kategori": "utfall",
+      "beskrivning": "Språklig säkerhet, formatering och skenbar auktoritet kan maskera svag evidens.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "osäkerhet",
+      "label": "Osäkerhet och alternativa förklaringar",
+      "kategori": "kognition",
+      "beskrivning": "Att skilja på fakta, osäkerhet, möjligheter och motbevis.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "hallitext",
+      "label": "Konfabulation / hallucination",
+      "kategori": "AI_risk",
+      "beskrivning": "AI kan skapa felaktiga men säkert formulerade påståenden, källor eller citat.",
+      "period": "2020-",
+      "källor": [
+        "NIST2024"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "falskt_citat",
+      "label": "Påhittade eller missvisande referenser",
+      "kategori": "AI_risk",
+      "beskrivning": "En citeringsliknande form kan skapa auktoritet utan stöd i källan.",
+      "period": "LLM",
+      "källor": [
+        "NIST2024",
+        "OWASP_LLM2025"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "kontextglidning",
+      "label": "Instruktions- och definitionsglidning",
+      "kategori": "AI_risk",
+      "beskrivning": "Oklara ord, varierande systemkontext eller skiftad tolkning kan ge fel mål eller svar.",
+      "period": "LLM",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "retorisk_stil",
+      "label": "Övertygande genererad stil",
+      "kategori": "AI_risk",
+      "beskrivning": "Retorisk flyt och säker ton kan tolkas som kvalitet snarare än kommunikationsstil.",
+      "period": "LLM",
+      "källor": [
+        "NIST2024"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "retrieval_bias",
+      "label": "Sned informationshämtning",
+      "kategori": "AI_risk",
+      "beskrivning": "Sökning, urval eller rangordning hämtar ett icke-representativt källunderlag.",
+      "period": "RAG",
+      "källor": [
+        "RAG2020"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "source_laundering",
+      "label": "Källtvätt / återcirkulering",
+      "kategori": "AI_risk",
+      "beskrivning": "AI-genererat påstående kan återpubliceras och senare framträda som oberoende källa.",
+      "period": "ekosystem",
+      "källor": [
+        "OWASP_LLM2025"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "prompt_injection",
+      "label": "Prompt injection",
+      "kategori": "AI_risk",
+      "beskrivning": "Otillförlitlig text behandlas som styrande instruktion, vilket kan ändra systemets beteende.",
+      "period": "LLM/agent",
+      "källor": [
+        "OWASP_LLM2025",
+        "OWASP_INJECTION"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "minnesförgiftning",
+      "label": "Minnes- och kontextförgiftning",
+      "kategori": "AI_risk",
+      "beskrivning": "Osann eller angriparstyrd information sparas och återanvänds vid framtida beslut.",
+      "period": "agent",
+      "källor": [
+        "OWASP_AGENTS2026",
+        "OWASP_MEMORY2026"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "goal_hijack",
+      "label": "Kapning av agentmål",
+      "kategori": "AI_risk",
+      "beskrivning": "Angriparstyrda instruktioner eller signaler leder agentens mål bort från avsett uppdrag.",
+      "period": "agent",
+      "källor": [
+        "OWASP_AGENTS2026"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "excessive_agency",
+      "label": "För omfattande befogenheter",
+      "kategori": "AI_risk",
+      "beskrivning": "Verktyg och rättigheter ökar effekten av fel eller manipulerade beslut.",
+      "period": "agent",
+      "källor": [
+        "OWASP_LLM2025"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "verktygsfel",
+      "label": "Felaktig eller obehörig åtgärd",
+      "kategori": "utfall",
+      "beskrivning": "Åtgärder kan bli fel, överträda tillåtet scope eller påverka verkliga resurser.",
+      "period": "agent",
+      "källor": [
+        "OWASP_AGENTS2026"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "kaskad",
+      "label": "Kaskadfel / agentisk förstärkning",
+      "kategori": "AI_risk",
+      "beskrivning": "Felaktigt output kan bli input i flera steg och få allt större konsekvenser.",
+      "period": "multiagent",
+      "källor": [
+        "OWASP_AGENTS2026"
+      ],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "återkopplingsloop",
+      "label": "Återcirkulerat modellinnehåll",
+      "kategori": "AI_risk",
+      "beskrivning": "Flera system kan ta varandras resultat för nya fakta utan självständig verifiering.",
+      "period": "ekosystem",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "felbeslut",
+      "label": "Felaktigt beslut",
+      "kategori": "utfall",
+      "beskrivning": "Människor eller automation fattar beslut på otillräcklig eller osann grund.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "premissgranskning",
+      "label": "Pröva premisser och inferens",
+      "kategori": "motåtgärd",
+      "beskrivning": "Undersök om slutsatsen följer och om premisserna är belagda.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "definitioner",
+      "label": "Fixera begrepp och uppdrag",
+      "kategori": "motåtgärd",
+      "beskrivning": "Definiera termer, avsikt, tillåtet scope och otydliga instruktioner.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "motbelägg",
+      "label": "Sök motbevis / kontrasterande källor",
+      "kategori": "motåtgärd",
+      "beskrivning": "Kontrollera alternativa förklaringar och relevant information som saknas.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "källverifiering",
+      "label": "Verifiera citat och kompetens",
+      "kategori": "motåtgärd",
+      "beskrivning": "Öppna faktiska källor, kontrollera citat, datum och expertens relevans.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "kalibrering",
+      "label": "Kalibrera osäkerhet",
+      "kategori": "motåtgärd",
+      "beskrivning": "Skilj belägg, hypotes, modellens säkerhetston och observerad noggrannhet.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "rag_proveniens",
+      "label": "RAG med spårbar proveniens",
+      "kategori": "motåtgärd",
+      "beskrivning": "Lagra dokumentversion, uppkomst och källa; kontrollera källkvalitet.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "tillitgränser",
+      "label": "Tillitgränser för externt innehåll",
+      "kategori": "motåtgärd",
+      "beskrivning": "Behandla återfunnet innehåll som data, inte som överordnade instruktioner.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "minimal_rättighet",
+      "label": "Minsta möjliga behörighet",
+      "kategori": "motåtgärd",
+      "beskrivning": "Begränsa agenters verktyg, dataaccess och rätt att ändra system.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "mänskligt_godkännande",
+      "label": "Mänsklig kontroll vid riskåtgärder",
+      "kategori": "motåtgärd",
+      "beskrivning": "Kräv godkännande för högriskändringar, ekonomiska eller irreversibla åtgärder.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "observabilitet",
+      "label": "Spårbarhet och evals",
+      "kategori": "motåtgärd",
+      "beskrivning": "Logga källor, beslut, verktygsresultat; testa kvalitet, injektion och återfall.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "isolera_minne",
+      "label": "Validera och avgränsa minne",
+      "kategori": "motåtgärd",
+      "beskrivning": "Separera verifierad kunskap från inmatad text, följ proveniens på minnesposter.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    },
+    {
+      "id": "oberoende_kontroll",
+      "label": "Oberoende verifiering mellan agenter",
+      "kategori": "motåtgärd",
+      "beskrivning": "Verifierare får andra källor eller separat kontrollprocedur, inte enbart samma sammanfattning.",
+      "period": "",
+      "källor": [],
+      "föregående_graf_id": "",
+      "provenance": "Ursprungsgraf 2026-11-01"
+    }
+  ],
+  "kanter": [
+    {
+      "källa": "aristoteles",
+      "mål": "antika_fallacies",
+      "relation": "behandlar",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "SEP_FALLACIES"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-001",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "aristoteles",
+      "mål": "formell_logik",
+      "relation": "viktig del av logikens historia",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "SEP_LOGIC"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-002",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "formell_logik",
+      "mål": "boole_frege",
+      "relation": "utvecklas och formaliseras vidare",
+      "typ": "historisk_anknytning",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-003",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "boole_frege",
+      "mål": "turing1936",
+      "relation": "tidigare logiktradition",
+      "typ": "tidsföljd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Kronologi och ämnesanknytning, inte ensam historisk orsak.",
+      "id": "edge-004",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "turing1936",
+      "mål": "turing1950",
+      "relation": "samma forskares senare arbete",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "TURING1950"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-005",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "turing1950",
+      "mål": "dartmouth1956",
+      "relation": "1950 föregår 1956",
+      "typ": "tidsföljd",
+      "grundning": "källstött",
+      "referenser": [
+        "TURING1950",
+        "DARTMOUTH1956"
+      ],
+      "förklaring": "Visar kronologi, inte dokumenterad direkt påverkan.",
+      "id": "edge-006",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "dartmouth1956",
+      "mål": "symbolisk_ai",
+      "relation": "AI-fältets tidiga inriktningar",
+      "typ": "historisk_anknytning",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "DARTMOUTH1956"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-007",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "symbolisk_ai",
+      "mål": "statistisk_ml",
+      "relation": "parallella och delvis senare strömningar",
+      "typ": "tidsföljd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Symbolisk AI ersattes inte linjärt; metoderna har samexisterat.",
+      "id": "edge-008",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "statistisk_ml",
+      "mål": "neurala_nät",
+      "relation": "inkluderar lärande paradigmer",
+      "typ": "tekniskt_beroende",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-009",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "neurala_nät",
+      "mål": "transformer2017",
+      "relation": "modellfamiljen möjliggör arkitekturen",
+      "typ": "tekniskt_beroende",
+      "grundning": "källstött",
+      "referenser": [
+        "TRANSFORMER2017"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-010",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "transformer2017",
+      "mål": "llm",
+      "relation": "arkitektur i många LLM:er",
+      "typ": "tekniskt_beroende",
+      "grundning": "källstött",
+      "referenser": [
+        "TRANSFORMER2017"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-011",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "llm",
+      "mål": "tokenprediktion",
+      "relation": "typiskt träningsmål",
+      "typ": "del_av",
+      "grundning": "källstött",
+      "referenser": [
+        "NIST2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-012",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "llm",
+      "mål": "träning",
+      "relation": "formas av",
+      "typ": "del_av",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-013",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "llm",
+      "mål": "kontext",
+      "relation": "konditioneras av",
+      "typ": "del_av",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-014",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "llm",
+      "mål": "agent_bas",
+      "relation": "kan förstärkas till",
+      "typ": "tekniskt_beroende",
+      "grundning": "källstött",
+      "referenser": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-015",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "rag",
+      "mål": "agent_bas",
+      "relation": "kan ge tillgång till källor",
+      "typ": "tekniskt_beroende",
+      "grundning": "källstött",
+      "referenser": [
+        "RAG2020",
+        "ANTHROPIC_AGENT2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-016",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "agent_bas",
+      "mål": "workflow",
+      "relation": "kan användas i fördefinierat flöde",
+      "typ": "tekniskt_beroende",
+      "grundning": "källstött",
+      "referenser": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-017",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "agent_bas",
+      "mål": "agent",
+      "relation": "kan ingå i agentloop",
+      "typ": "tekniskt_beroende",
+      "grundning": "källstött",
+      "referenser": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-018",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "agent",
+      "mål": "planering",
+      "relation": "kan planera och utvärdera",
+      "typ": "del_av",
+      "grundning": "källstött",
+      "referenser": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-019",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "agent",
+      "mål": "verktyg",
+      "relation": "kan anropa verktyg",
+      "typ": "tekniskt_beroende",
+      "grundning": "källstött",
+      "referenser": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-020",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "agent",
+      "mål": "minne",
+      "relation": "kan återanvända kontext",
+      "typ": "del_av",
+      "grundning": "källstött",
+      "referenser": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-021",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "agent",
+      "mål": "multiagent",
+      "relation": "kan organiseras med andra agenter",
+      "typ": "tekniskt_beroende",
+      "grundning": "källstött",
+      "referenser": [
+        "ANTHROPIC_AGENT2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-022",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "multiagent",
+      "mål": "agent",
+      "relation": "koordinerar deltagande agenter",
+      "typ": "del_av",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-023",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "platon",
+      "mål": "aristoteles",
+      "relation": "lärare och efterföljare i Akademien",
+      "typ": "historisk_anknytning",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-024",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "aristoteles",
+      "mål": "medeltida_logik",
+      "relation": "tolkas och vidareutvecklas",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "SEP_METHOD"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-025",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "medeltida_logik",
+      "mål": "formell_logik",
+      "relation": "tidigare logisk tradition",
+      "typ": "tidsföljd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-026",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "bacon",
+      "mål": "empirisk_metod",
+      "relation": "utvecklar induktionsmetodik",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "SEP_BACON",
+        "SEP_METHOD"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-027",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "hume",
+      "mål": "empirisk_metod",
+      "relation": "prövar induktionens grund",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "SEP_HUME"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-028",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "popper",
+      "mål": "empirisk_metod",
+      "relation": "kritik och prövbarhet",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "SEP_POPPER"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-029",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "skeptiker",
+      "mål": "osäkerhet",
+      "relation": "epistemisk återhållsamhet",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-030",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "stoiker",
+      "mål": "kognitiv_bias",
+      "relation": "reflektion över omdömen; inte modern kognitionspsykologi",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-031",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "mccarthy",
+      "mål": "dartmouth1956",
+      "relation": "organiserar och föreslår",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "DARTMOUTH_PROPOSAL"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-032",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "minsky",
+      "mål": "dartmouth1956",
+      "relation": "medförfattare till förslaget",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "DARTMOUTH_PROPOSAL"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-033",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "rochester",
+      "mål": "dartmouth1956",
+      "relation": "medförfattare till förslaget",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "DARTMOUTH_PROPOSAL"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-034",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "shannon",
+      "mål": "dartmouth1956",
+      "relation": "medförfattare till förslaget",
+      "typ": "historisk_anknytning",
+      "grundning": "källstött",
+      "referenser": [
+        "DARTMOUTH_PROPOSAL"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-035",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "shannon",
+      "mål": "informationsteori",
+      "relation": "centralt forskningsbidrag",
+      "typ": "historisk_anknytning",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-036",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "informationsteori",
+      "mål": "tokenprediktion",
+      "relation": "matematiska informationsbegrepp; inte sanningsvärde",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-037",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "popper",
+      "mål": "motbelägg",
+      "relation": "motexempel som kritisk prövning",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_POPPER"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-038",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "bacon",
+      "mål": "motbelägg",
+      "relation": "söker stöd och uteslutande belägg",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_BACON"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-039",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "empirisk_metod",
+      "mål": "källverifiering",
+      "relation": "krav på kontroll av belägg",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_METHOD"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-040",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "empirisk_metod",
+      "mål": "motbelägg",
+      "relation": "söker prövande evidens",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_METHOD"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-041",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "källbelägg",
+      "mål": "rag_proveniens",
+      "relation": "proveniensprincip i modern teknik",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-042",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "ret",
+      "mål": "social_delning",
+      "relation": "starkt inramade budskap kan delas vidare",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-043",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "antika_fallacies",
+      "mål": "sken",
+      "relation": "innehåller förebilder för analys av",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_FALLACIES"
+      ],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-044",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "antika_fallacies",
+      "mål": "tvet",
+      "relation": "analyserar bland annat",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_FALLACIES"
+      ],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-045",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "aristoteles",
+      "mål": "ret",
+      "relation": "analyserar retoriska medel",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_LOGIC"
+      ],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-046",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "sken",
+      "mål": "hallitext",
+      "relation": "tematisk jämförelse: låter riktigt",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_FALLACIES",
+        "NIST2024"
+      ],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-047",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "tvet",
+      "mål": "kontextglidning",
+      "relation": "tematisk jämförelse: betydelse skiftar",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-048",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "ret",
+      "mål": "retorisk_stil",
+      "relation": "tematisk jämförelse: övertygande stil",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-049",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "aukt",
+      "mål": "falskt_citat",
+      "relation": "tematisk jämförelse: lånad auktoritet",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-050",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "evid",
+      "mål": "retrieval_bias",
+      "relation": "tematisk jämförelse: ensidigt urval",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-051",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "aukt",
+      "mål": "skenbar_trovärdighet",
+      "relation": "kan ge sken av expertis",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-052",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "ret",
+      "mål": "skenbar_trovärdighet",
+      "relation": "kan stärka intrycket",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-053",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "sken",
+      "mål": "skenbar_trovärdighet",
+      "relation": "kan ge sken av logik",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-054",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "tvet",
+      "mål": "sken",
+      "relation": "kan dölja en ogiltig inferens",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_FALLACIES"
+      ],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-055",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "evid",
+      "mål": "aukt",
+      "relation": "kan maskeras av prestigefullt citat",
+      "typ": "analytisk_parallell",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "En konceptuell jämförelse mellan filosofiskt/retoriskt problem och AI-situation, inte bevis för identisk mekanism.",
+      "id": "edge-056",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "tokenprediktion",
+      "mål": "hallitext",
+      "relation": "ger inte i sig sanningskontroll",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "NIST2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-057",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "träning",
+      "mål": "hallitext",
+      "relation": "kan medverka till felaktiga påståenden",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "NIST2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-058",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "hallitext",
+      "mål": "falskt_citat",
+      "relation": "kan ta formen av",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "NIST2024"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-059",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "hallitext",
+      "mål": "skenbar_trovärdighet",
+      "relation": "kan presenteras säkert",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "NIST2024",
+        "OWASP_LLM2025"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-060",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "kontext",
+      "mål": "kontextglidning",
+      "relation": "otydlighet kan misstolkas",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-061",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "llm",
+      "mål": "retorisk_stil",
+      "relation": "kan generera övertygande stil",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-062",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "retorisk_stil",
+      "mål": "skenbar_trovärdighet",
+      "relation": "kan stärka uppfattat förtroende",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-063",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "falskt_citat",
+      "mål": "skenbar_trovärdighet",
+      "relation": "kan skapa skenbar källförankring",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-064",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "rag",
+      "mål": "retrieval_bias",
+      "relation": "underlaget kan väljas snett",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-065",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "retrieval_bias",
+      "mål": "skenbar_trovärdighet",
+      "relation": "kan ge ensidigt belagd text",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-066",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "skenbar_trovärdighet",
+      "mål": "automationsbias",
+      "relation": "kan öka övertron på automatiskt svar",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-067",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "automationsbias",
+      "mål": "tilltro",
+      "relation": "kan minska kritisk prövning",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-068",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "kognitiv_bias",
+      "mål": "tilltro",
+      "relation": "kan påverka hur påståenden bedöms",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-069",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "skenbar_trovärdighet",
+      "mål": "tilltro",
+      "relation": "kan påverka",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-070",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "tilltro",
+      "mål": "social_delning",
+      "relation": "kan öka benägenhet att dela",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-071",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "social_delning",
+      "mål": "source_laundering",
+      "relation": "kan bidra till återpublicering",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-072",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "source_laundering",
+      "mål": "återkopplingsloop",
+      "relation": "kan återupptas som extern källa",
+      "typ": "riskmekanism",
+      "grundning": "illustrativt_scenario",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-073",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "återkopplingsloop",
+      "mål": "skenbar_trovärdighet",
+      "relation": "kan förnya skenbar legitimitet",
+      "typ": "riskmekanism",
+      "grundning": "illustrativt_scenario",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-074",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "tilltro",
+      "mål": "felbeslut",
+      "relation": "kan påverka beslut",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-075",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "rag",
+      "mål": "prompt_injection",
+      "relation": "hämtat innehåll kan bära instruktioner",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_LLM2025"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-076",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "prompt_injection",
+      "mål": "goal_hijack",
+      "relation": "kan omdirigera agentmål",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_AGENTS2026"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-077",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "agent",
+      "mål": "goal_hijack",
+      "relation": "sårbar för angriparstyrd omdirigering",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_AGENTS2026"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-078",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "minne",
+      "mål": "minnesförgiftning",
+      "relation": "otillförlitligt innehåll kan lagras",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_MEMORY2026"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-079",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "prompt_injection",
+      "mål": "minnesförgiftning",
+      "relation": "kan bli bestående över tid",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_MEMORY2026"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-080",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "minnesförgiftning",
+      "mål": "goal_hijack",
+      "relation": "kan påverka framtida uppdrag",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "OWASP_AGENTS2026"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-081",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "agent",
+      "mål": "excessive_agency",
+      "relation": "kan ges för vida rättigheter",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_LLM2025"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-082",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "goal_hijack",
+      "mål": "verktygsfel",
+      "relation": "kan ge felaktiga verktygsanrop",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_AGENTS2026"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-083",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "excessive_agency",
+      "mål": "verktygsfel",
+      "relation": "ökar möjlig konsekvens",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_LLM2025"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-084",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "hallitext",
+      "mål": "verktygsfel",
+      "relation": "kan påverka verktygsval",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-085",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "verktyg",
+      "mål": "verktygsfel",
+      "relation": "handling får konsekvens i omvärld",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-086",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "verktygsfel",
+      "mål": "kaskad",
+      "relation": "fel kan fortplanta sig",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_AGENTS2026"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-087",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "multiagent",
+      "mål": "kaskad",
+      "relation": "samarbete kan förstärka följdfel",
+      "typ": "riskmekanism",
+      "grundning": "källstött",
+      "referenser": [
+        "OWASP_AGENTS2026"
+      ],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-088",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "kaskad",
+      "mål": "felbeslut",
+      "relation": "kan slå igenom i resultatet",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-089",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "kaskad",
+      "mål": "social_delning",
+      "relation": "kan också massprida fel",
+      "typ": "riskmekanism",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Läs relationstyp och originalets grundning tillsammans. Pilen anger inte i sig orsak, sannolikhet eller verifiering.",
+      "id": "edge-090",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "premissgranskning",
+      "mål": "sken",
+      "relation": "prövar logisk hållbarhet",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "SEP_FALLACIES"
+      ],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-091",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "definitioner",
+      "mål": "tvet",
+      "relation": "reducerar tolkningsutrymme",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-092",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "definitioner",
+      "mål": "kontextglidning",
+      "relation": "klarlägger instruktioner",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-093",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "motbelägg",
+      "mål": "evid",
+      "relation": "granskar bortvalda uppgifter",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-094",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "motbelägg",
+      "mål": "retrieval_bias",
+      "relation": "kompletterar ensidigt urval",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-095",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "källverifiering",
+      "mål": "falskt_citat",
+      "relation": "kontrollerar faktiska källor",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-096",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "källverifiering",
+      "mål": "aukt",
+      "relation": "prövar relevant kompetens",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-097",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "kalibrering",
+      "mål": "skenbar_trovärdighet",
+      "relation": "skiljer säker ton från evidens",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-098",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "källverifiering",
+      "mål": "hallitext",
+      "relation": "fångar sakfel",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-099",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "rag_proveniens",
+      "mål": "retrieval_bias",
+      "relation": "gör urval granskningsbart",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "RAG2020"
+      ],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-100",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "rag_proveniens",
+      "mål": "source_laundering",
+      "relation": "följer innehållets ursprung",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-101",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "tillitgränser",
+      "mål": "prompt_injection",
+      "relation": "håller data skild från instruktion",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "OWASP_LLM2025"
+      ],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-102",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "minimal_rättighet",
+      "mål": "excessive_agency",
+      "relation": "begränsar verktygseffekt",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "OWASP_LLM2025"
+      ],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-103",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "minimal_rättighet",
+      "mål": "verktygsfel",
+      "relation": "minskar skadlig räckvidd",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-104",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "mänskligt_godkännande",
+      "mål": "verktygsfel",
+      "relation": "pausar riskfyllda åtgärder",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-105",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "observabilitet",
+      "mål": "kaskad",
+      "relation": "kan upptäcka och bromsa följdfel",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "NIST2024"
+      ],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-106",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "observabilitet",
+      "mål": "hallitext",
+      "relation": "upptäcks i test och produktion",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "NIST2024"
+      ],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-107",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "isolera_minne",
+      "mål": "minnesförgiftning",
+      "relation": "validerar minnesposter",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [
+        "OWASP_MEMORY2026"
+      ],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-108",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "oberoende_kontroll",
+      "mål": "kaskad",
+      "relation": "motverkar okritisk överföring",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-109",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "oberoende_kontroll",
+      "mål": "source_laundering",
+      "relation": "jämför oberoende underlag",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-110",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    },
+    {
+      "källa": "kalibrering",
+      "mål": "automationsbias",
+      "relation": "uppmuntrar oberoende bedömning",
+      "typ": "motåtgärd",
+      "grundning": "analytisk_syntes",
+      "referenser": [],
+      "förklaring": "Minskar risk i vissa scenarier, inte en absolut garanti.",
+      "id": "edge-111",
+      "review_status": "Ärvd relation; grundningsetiketten är originalets bedömning"
+    }
+  ],
+  "views": [
+    {
+      "id": "overview",
+      "title": "Helhetskartan",
+      "headline": "Från hållbara argument till kontrollerad handling.",
+      "intro": "Följ fyra lager: hur vi argumenterar, hur AI producerar svar, vad som kan hända och vad vi kan kontrollera.",
+      "columns": [
+        {
+          "title": "Argument och belägg",
+          "nodes": [
+            "aristoteles",
+            "sken",
+            "tvet",
+            "ret",
+            "aukt",
+            "evid"
+          ]
+        },
+        {
+          "title": "Modell och system",
+          "nodes": [
+            "llm",
+            "rag",
+            "agent",
+            "verktyg",
+            "minne",
+            "multiagent"
+          ]
+        },
+        {
+          "title": "Möjliga följder",
+          "nodes": [
+            "hallitext",
+            "falskt_citat",
+            "skenbar_trovärdighet",
+            "felbeslut",
+            "kaskad",
+            "social_delning"
+          ]
+        },
+        {
+          "title": "Prövning och kontroll",
+          "nodes": [
+            "premissgranskning",
+            "motbelägg",
+            "källverifiering",
+            "tillitgränser",
+            "minimal_rättighet",
+            "oberoende_kontroll"
+          ]
+        }
+      ],
+      "lesson": "Giltig form och sanna premisser är två olika frågor. Pröva dem var för sig."
+    },
+    {
+      "id": "history",
+      "title": "Aristoteles till AI",
+      "headline": "En väv av idéer, inte en rak uppfinningskedja.",
+      "intro": "Läs historiska anknytningar, tidsföljd och tekniska samband som olika sorters relationer. Urvalet är en orientering, inte en komplett världshistoria.",
+      "columns": [
+        {
+          "title": "Antik och medeltid",
+          "nodes": [
+            "platon",
+            "aristoteles",
+            "antika_fallacies",
+            "stoiker",
+            "skeptiker",
+            "medeltida_logik"
+          ]
+        },
+        {
+          "title": "Prövning och formalisering",
+          "nodes": [
+            "bacon",
+            "hume",
+            "popper",
+            "formell_logik",
+            "boole_frege",
+            "turing1936"
+          ]
+        },
+        {
+          "title": "Information och AI",
+          "nodes": [
+            "shannon",
+            "informationsteori",
+            "turing1950",
+            "dartmouth1956",
+            "symbolisk_ai",
+            "statistisk_ml"
+          ]
+        },
+        {
+          "title": "Moderna arkitekturer",
+          "nodes": [
+            "neurala_nät",
+            "transformer2017",
+            "llm",
+            "rag",
+            "agent_bas",
+            "agent"
+          ]
+        }
+      ],
+      "lesson": "Boolesk logik kan beräknas exakt. Ett språkligt övertygande svar behöver en annan kontroll."
+    },
+    {
+      "id": "llm",
+      "title": "Argumentationsfel och LLM",
+      "headline": "När välformulerat förväxlas med välgrundat.",
+      "intro": "Jämför fem tematiska kategorier med moderna felmekanismer. De fem kategorierna är vår pedagogiska gruppering, inte Aristoteles ursprungliga taxonomi.",
+      "columns": [
+        {
+          "title": "Argumentation",
+          "nodes": [
+            "sken",
+            "tvet",
+            "ret",
+            "aukt",
+            "evid"
+          ]
+        },
+        {
+          "title": "Analytiska paralleller",
+          "nodes": [
+            "hallitext",
+            "kontextglidning",
+            "retorisk_stil",
+            "falskt_citat",
+            "retrieval_bias"
+          ]
+        },
+        {
+          "title": "Mottagare och spridning",
+          "nodes": [
+            "skenbar_trovärdighet",
+            "automationsbias",
+            "tilltro",
+            "social_delning",
+            "source_laundering"
+          ]
+        },
+        {
+          "title": "Möjliga kontroller",
+          "nodes": [
+            "premissgranskning",
+            "definitioner",
+            "kalibrering",
+            "källverifiering",
+            "motbelägg"
+          ]
+        }
+      ],
+      "lesson": "Fler träffar behöver inte betyda fler oberoende belägg. Inspektera både urval och ursprung."
+    },
+    {
+      "id": "agents",
+      "title": "Agentkedjor och kontroller",
+      "headline": "När ett svar får minne och verktyg.",
+      "intro": "Stega genom ett hypotetiskt agentflöde. Fel kan få konsekvenser när data blir instruktion, minnespost eller verktygsbeslut.",
+      "columns": [
+        {
+          "title": "Arbetsflöde",
+          "nodes": [
+            "rag",
+            "agent",
+            "planering",
+            "minne",
+            "verktyg",
+            "multiagent"
+          ]
+        },
+        {
+          "title": "Angrepps- och felytor",
+          "nodes": [
+            "prompt_injection",
+            "goal_hijack",
+            "minnesförgiftning",
+            "excessive_agency",
+            "kaskad",
+            "verktygsfel"
+          ]
+        },
+        {
+          "title": "Kontrollpunkter",
+          "nodes": [
+            "tillitgränser",
+            "isolera_minne",
+            "minimal_rättighet",
+            "mänskligt_godkännande",
+            "observabilitet",
+            "oberoende_kontroll"
+          ]
+        }
+      ],
+      "lesson": "Olika kontroller stoppar olika fel. En godkännandeknapp ersätter inte källkontroll eller avgränsade rättigheter."
+    },
+    {
+      "id": "interplay",
+      "title": "Samverkan och spridning",
+      "headline": "Ett svagt påstående kan få många röster.",
+      "intro": "Den femte, nya översikten visar samspelet mellan kategorierna: betydelseglidning, lånad auktoritet, selektiv evidens och återcirkulering.",
+      "columns": [
+        {
+          "title": "Första förskjutningen",
+          "nodes": [
+            "tvet",
+            "sken",
+            "aukt",
+            "ret",
+            "evid"
+          ]
+        },
+        {
+          "title": "Förstärkning",
+          "nodes": [
+            "falskt_citat",
+            "retorisk_stil",
+            "retrieval_bias",
+            "skenbar_trovärdighet",
+            "automationsbias"
+          ]
+        },
+        {
+          "title": "Återcirkulering",
+          "nodes": [
+            "tilltro",
+            "social_delning",
+            "source_laundering",
+            "återkopplingsloop",
+            "kaskad"
+          ]
+        },
+        {
+          "title": "Bryt kedjan",
+          "nodes": [
+            "definitioner",
+            "motbelägg",
+            "källverifiering",
+            "rag_proveniens",
+            "oberoende_kontroll"
+          ]
+        }
+      ],
+      "lesson": "Tre återpubliceringar av samma ursprung är fortfarande ett ursprung. Pröva vad en oberoende kontroll ändrar."
+    }
+  ]
+}
