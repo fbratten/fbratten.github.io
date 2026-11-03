@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 68684bff15c71fcb864d50998abd2a92926af3f1
+          ref: 53ad54153841a03c53d18ca5f20cbad9f46c470a
           persist-credentials: false
       - name: Sign and verify the exact 21-file projection
         env:
@@ -25,9 +25,9 @@ jobs:
           import os,json,base64,subprocess,urllib.request,time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
-          source="68684bff15c71fcb864d50998abd2a92926af3f1"
-          tree="8611644d9cba28ff7ab86674973073219acac048"
-          base="2d52e23854964d0f65a25d395ff221249e87fb66"
+          source="53ad54153841a03c53d18ca5f20cbad9f46c470a"
+          tree="703c54ccc64015b24e9ef3f7f9d81013a66cb9ed"
+          base="d8414a633dcf26bad1d1dedd6080d561f82502e8"
           target="chatgpt/aristotle-agents-labs-signed-20261103"
           paths=[".github/workflows/pages-browser-check.yml","all-pages/index.html","labs/index.html","methods/index.html","scripts/build_navigation.py","sitemap.xml","labs/aristotle-to-agents/README.md","labs/aristotle-to-agents/app.js","labs/aristotle-to-agents/data.js","labs/aristotle-to-agents/graph.json","labs/aristotle-to-agents/index.html","labs/aristotle-to-agents/model.js","labs/aristotle-to-agents/original-diagrams/00_syntes_argumentation_llm_agenter.svg","labs/aristotle-to-agents/original-diagrams/01_vagen_fran_aristoteles_till_ai.svg","labs/aristotle-to-agents/original-diagrams/02_fran_argumentationsfel_till_llm.svg","labs/aristotle-to-agents/original-diagrams/03_agentkedja_risk_och_kontroller.svg","labs/aristotle-to-agents/original-graph.json","labs/aristotle-to-agents/style.css","tests/aristotle_agents_model.cjs","tests/aristotle_agents_page.mjs","tests/navigation_page.mjs"]
           git=lambda *a:subprocess.check_output(["git",*a],text=True).strip()
