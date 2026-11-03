@@ -85,12 +85,15 @@ try {
   await page.goto(base + '/');
   await page.locator('a.fb-route[href="/labs/"]').click();
   assert.match(page.url(), /\/labs\/$/);
-  assert.equal(await page.locator('main .fb-route').count(), 11);
+  assert.equal(await page.locator('main .fb-route').count(), 12);
   assert.equal(await page.locator('main .fb-route[href="/labs/mutation-gate/"]').count(), 1);
   await page.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(page.url(), /\/labs\/mutation-gate\/$/);
   assert.ok(await page.getByRole('heading', {name: 'Mutation Gate Lab'}).isVisible());
   assert.ok(await page.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).isVisible());
+
+  // New reasoning atlas is discoverable without changing existing lab routes.
+  assert.equal(await page.locator('main a.fb-route[href="/labs/aristotle-to-agents/"]').count(),1);
 
   // Lab 05 must be reachable through the canonical directory and Methods & Labs.
   await page.goto(base + '/labs/');
@@ -131,7 +134,7 @@ try {
   assert.equal(await fallback.locator('#labs .fb-route').count(), 11);
   await fallback.locator('#labs a[href="/labs/"]').first().click();
   assert.match(fallback.url(), /\/labs\/$/);
-  assert.equal(await fallback.locator('main .fb-route').count(), 11);
+  assert.equal(await fallback.locator('main .fb-route').count(), 12);
   await fallback.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(fallback.url(), /\/labs\/mutation-gate\/$/);
   await fallback.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).click();
