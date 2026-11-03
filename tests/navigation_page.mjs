@@ -92,11 +92,9 @@ try {
   assert.ok(await page.getByRole('heading', {name: 'Mutation Gate Lab'}).isVisible());
   assert.ok(await page.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).isVisible());
 
-  // New reasoning atlas is discoverable without changing existing lab routes.
-  assert.equal(await page.locator('main a.fb-route[href="/labs/aristotle-to-agents/"]').count(),1);
-
   // Lab 05 must be reachable through the canonical directory and Methods & Labs.
   await page.goto(base + '/labs/');
+  assert.equal(await page.locator('main a.fb-route[href="/labs/aristotle-to-agents/"]').count(),1);
   assert.equal(await page.locator('main a.fb-route[href="/labs/github-actions/"]').count(), 1);
   await page.locator('main a.fb-route[href="/labs/github-actions/"]').click();
   assert.match(page.url(), /\/labs\/github-actions\/$/);
