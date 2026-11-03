@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1300" width="1920" height="1300" role="img" aria-label="Svensk konceptgraf från argumentationsfel till AI, LLM, agenter och verifiering">
+<defs>
+  <linearGradient id="base" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0F2035"/><stop offset="1" stop-color="#08111E"/></linearGradient>
+  <linearGradient id="boxfill" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1B2D45"/><stop offset="1" stop-color="#101D30"/></linearGradient>
+  <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="2" stdDeviation="7" flood-opacity="0.42"/></filter>
+  <marker id="arr-purple" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#D2B4FF"/></marker>
+  <marker id="arr-red" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#FF9B8C"/></marker>
+  <marker id="arr-green" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#A3EDAF"/></marker>
+</defs>
+<rect width="1920" height="1300" fill="url(#base)"/>
+<g fill="none" stroke="#243A53" opacity=".5"><path d="M0 177H1920"/><path d="M0 1044H1920"/></g>
+<text x="70" y="72" fill="#F7FAFF" font-size="38" font-weight="700" font-family="DejaVu Sans, sans-serif">Från argumentationsfel till LLM och AI-agenter</text>
+<text x="71" y="110" fill="#B5C9E3" font-size="18" font-family="DejaVu Sans, sans-serif">Fem klassiska kategorier → moderna AI-paralleller → möjliga följder → verifiering och styrning</text>
+<text x="71" y="141" fill="#8EACC9" font-size="14" font-family="DejaVu Sans, sans-serif">Pilarna skiljer analytiska jämförelser från tekniska riskvägar. Ingen pil innebär en oundviklig effekt.</text>
+
+<text x="70" y="207" font-size="21" fill="#FF91B2" font-weight="700" font-family="DejaVu Sans, sans-serif">1. Argumentation</text>
+<text x="70" y="230" font-size="13" fill="#97ADC7" font-weight="400" font-family="DejaVu Sans, sans-serif">klassiska huvudkategorier</text>
+<text x="520" y="207" font-size="21" fill="#74C9FF" font-weight="700" font-family="DejaVu Sans, sans-serif">2. LLM-parallell</text>
+<text x="520" y="230" font-size="13" fill="#97ADC7" font-weight="400" font-family="DejaVu Sans, sans-serif">AI-generering / källhantering</text>
+<text x="1020" y="207" font-size="21" fill="#F5A6FC" font-weight="700" font-family="DejaVu Sans, sans-serif">3. Möjliga effekter</text>
+<text x="1020" y="230" font-size="13" fill="#97ADC7" font-weight="400" font-family="DejaVu Sans, sans-serif">inte en deterministisk kedja</text>
+<text x="1480" y="207" font-size="21" fill="#A3EDAF" font-weight="700" font-family="DejaVu Sans, sans-serif">4. Motåtgärder</text>
+<text x="1480" y="230" font-size="13" fill="#97ADC7" font-weight="400" font-family="DejaVu Sans, sans-serif">granskning, kvalitet, kontroll</text>
+<g class="edge" data-edge-kind="analogy"><path d="M410,327 L500,327" fill="none" stroke="#D2B4FF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-purple)"/></g>
+<text x="455.0" y="319.0" font-size="11" fill="#D2B4FF" font-weight="400" font-family="DejaVu Sans, sans-serif" text-anchor="middle">liknar</text>
+<g class="edge" data-edge-kind="guard"><path d="M1465,358 L911,358" fill="none" stroke="#A3EDAF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-green)"/></g>
+<g class="edge" data-edge-kind="analogy"><path d="M410,477 L500,477" fill="none" stroke="#D2B4FF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-purple)"/></g>
+<text x="455.0" y="469.0" font-size="11" fill="#D2B4FF" font-weight="400" font-family="DejaVu Sans, sans-serif" text-anchor="middle">liknar</text>
+<g class="edge" data-edge-kind="guard"><path d="M1465,508 L911,508" fill="none" stroke="#A3EDAF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-green)"/></g>
+<g class="edge" data-edge-kind="analogy"><path d="M410,627 L500,627" fill="none" stroke="#D2B4FF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-purple)"/></g>
+<text x="455.0" y="619.0" font-size="11" fill="#D2B4FF" font-weight="400" font-family="DejaVu Sans, sans-serif" text-anchor="middle">liknar</text>
+<g class="edge" data-edge-kind="guard"><path d="M1465,658 L911,658" fill="none" stroke="#A3EDAF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-green)"/></g>
+<g class="edge" data-edge-kind="analogy"><path d="M410,777 L500,777" fill="none" stroke="#D2B4FF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-purple)"/></g>
+<text x="455.0" y="769.0" font-size="11" fill="#D2B4FF" font-weight="400" font-family="DejaVu Sans, sans-serif" text-anchor="middle">liknar</text>
+<g class="edge" data-edge-kind="guard"><path d="M1465,808 L911,808" fill="none" stroke="#A3EDAF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-green)"/></g>
+<g class="edge" data-edge-kind="analogy"><path d="M410,927 L500,927" fill="none" stroke="#D2B4FF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-purple)"/></g>
+<text x="455.0" y="919.0" font-size="11" fill="#D2B4FF" font-weight="400" font-family="DejaVu Sans, sans-serif" text-anchor="middle">liknar</text>
+<g class="edge" data-edge-kind="guard"><path d="M1465,958 L911,958" fill="none" stroke="#A3EDAF" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-green)"/></g>
+<g class="edge" data-edge-kind="risk"><path d="M1180,380 L1180,418" fill="none" stroke="#FF9B8C" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-red)"/></g>
+<g class="edge" data-edge-kind="risk"><path d="M1180,530 L1180,568" fill="none" stroke="#FF9B8C" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-red)"/></g>
+<g class="edge" data-edge-kind="risk"><path d="M1180,680 L1180,718" fill="none" stroke="#FF9B8C" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-red)"/></g>
+<g class="edge" data-edge-kind="risk"><path d="M1180,830 L1180,868" fill="none" stroke="#FF9B8C" stroke-width="2.1" opacity="0.86" stroke-dasharray="6 6"
+ marker-end="url(#arr-red)"/></g>
+<g class="edge" data-edge-kind="risk" data-source="hallitext" data-target="skenbar_trovärdighet"><path d="M910,321 C952,321 965,320 1000,320" fill="none" stroke="#FF9B8C" stroke-width="1.4" opacity=".55" stroke-dasharray="3 7" marker-end="url(#arr-red)"/></g>
+<g class="edge" data-edge-kind="risk" data-source="retorisk_stil" data-target="skenbar_trovärdighet"><path d="M910,621 C952,621 965,320 1000,320" fill="none" stroke="#FF9B8C" stroke-width="1.4" opacity=".55" stroke-dasharray="3 7" marker-end="url(#arr-red)"/></g>
+<g class="edge" data-edge-kind="risk" data-source="falskt_citat" data-target="skenbar_trovärdighet"><path d="M910,771 C952,771 965,320 1000,320" fill="none" stroke="#FF9B8C" stroke-width="1.4" opacity=".55" stroke-dasharray="3 7" marker-end="url(#arr-red)"/></g>
+<g class="edge" data-edge-kind="risk" data-source="retrieval_bias" data-target="skenbar_trovärdighet"><path d="M910,921 C952,921 965,320 1000,320" fill="none" stroke="#FF9B8C" stroke-width="1.4" opacity=".55" stroke-dasharray="3 7" marker-end="url(#arr-red)"/></g>
+<g class="node" data-node-id="sken"><title>sken</title>
+<rect x="65" y="275" width="345" height="106" rx="15" fill="url(#boxfill)" stroke="#FF91B2" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="65" y="287" width="5" height="82" rx="2.5" fill="#FF91B2"/>
+<text x="85" y="307" font-size="16" fill="#FF91B2" font-weight="700" font-family="DejaVu Sans, sans-serif">Skenargument</text>
+<text x="85" y="334" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Verkar logiskt trots fel i</text>
+<text x="85" y="351" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">slutsats eller premisser</text>
+</g>
+<g class="node" data-node-id="hallitext"><title>hallitext</title>
+<rect x="500" y="275" width="410" height="106" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="500" y="287" width="5" height="82" rx="2.5" fill="#FF9B8C"/>
+<text x="520" y="307" font-size="16" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Konfabulation / hallucination</text>
+<text x="520" y="334" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Felaktigt påstående kan presenteras</text>
+<text x="520" y="351" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">övertygande</text>
+</g>
+<g class="node" data-node-id="skenbar_trovärdighet"><title>skenbar_trovärdighet</title>
+<rect x="1000" y="275" width="365" height="106" rx="15" fill="url(#boxfill)" stroke="#F5A6FC" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1000" y="287" width="5" height="82" rx="2.5" fill="#F5A6FC"/>
+<text x="1020" y="307" font-size="16" fill="#F5A6FC" font-weight="700" font-family="DejaVu Sans, sans-serif">Skenbar trovärdighet</text>
+<text x="1020" y="334" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Intryck av korrekthet trots</text>
+<text x="1020" y="351" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">ofullständiga belägg</text>
+</g>
+<g class="node" data-node-id="observabilitet"><title>observabilitet</title>
+<rect x="1465" y="275" width="400" height="106" rx="15" fill="url(#boxfill)" stroke="#A3EDAF" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1465" y="287" width="5" height="82" rx="2.5" fill="#A3EDAF"/>
+<text x="1485" y="307" font-size="16" fill="#A3EDAF" font-weight="700" font-family="DejaVu Sans, sans-serif">Spårbarhet och evals</text>
+<text x="1485" y="334" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Mät fel, analysera spår och testa</text>
+<text x="1485" y="351" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">modellen</text>
+</g>
+<g class="node" data-node-id="tvet"><title>tvet</title>
+<rect x="65" y="425" width="345" height="106" rx="15" fill="url(#boxfill)" stroke="#FF91B2" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="65" y="437" width="5" height="82" rx="2.5" fill="#FF91B2"/>
+<text x="85" y="457" font-size="16" fill="#FF91B2" font-weight="700" font-family="DejaVu Sans, sans-serif">Tvetydighet</text>
+<text x="85" y="484" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Begrepp eller uttryck får flera</text>
+<text x="85" y="501" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">tolkningar</text>
+</g>
+<g class="node" data-node-id="kontextglidning"><title>kontextglidning</title>
+<rect x="500" y="425" width="410" height="106" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="500" y="437" width="5" height="82" rx="2.5" fill="#FF9B8C"/>
+<text x="520" y="457" font-size="16" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Instruktions- och</text>
+<text x="520" y="477" font-size="16" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">definitionsglidning</text>
+<text x="520" y="504" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Otydlig kontext kan ändra hur uppdraget</text>
+</g>
+<g class="node" data-node-id="automationsbias"><title>automationsbias</title>
+<rect x="1000" y="425" width="365" height="106" rx="15" fill="url(#boxfill)" stroke="#D2B4FF" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1000" y="437" width="5" height="82" rx="2.5" fill="#D2B4FF"/>
+<text x="1020" y="457" font-size="16" fill="#D2B4FF" font-weight="700" font-family="DejaVu Sans, sans-serif">Automation bias</text>
+<text x="1020" y="484" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Övertro på automatisk bedömning</text>
+</g>
+<g class="node" data-node-id="definitioner"><title>definitioner</title>
+<rect x="1465" y="425" width="400" height="106" rx="15" fill="url(#boxfill)" stroke="#A3EDAF" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1465" y="437" width="5" height="82" rx="2.5" fill="#A3EDAF"/>
+<text x="1485" y="457" font-size="16" fill="#A3EDAF" font-weight="700" font-family="DejaVu Sans, sans-serif">Fixera begrepp och uppdrag</text>
+<text x="1485" y="484" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Klargör termer, kontext och uppdrag</text>
+</g>
+<g class="node" data-node-id="ret"><title>ret</title>
+<rect x="65" y="575" width="345" height="106" rx="15" fill="url(#boxfill)" stroke="#FF91B2" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="65" y="587" width="5" height="82" rx="2.5" fill="#FF91B2"/>
+<text x="85" y="607" font-size="16" fill="#FF91B2" font-weight="700" font-family="DejaVu Sans, sans-serif">Retoriska knep</text>
+<text x="85" y="634" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Ton, känslor och inramning</text>
+<text x="85" y="651" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">påverkar</text>
+</g>
+<g class="node" data-node-id="retorisk_stil"><title>retorisk_stil</title>
+<rect x="500" y="575" width="410" height="106" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="500" y="587" width="5" height="82" rx="2.5" fill="#FF9B8C"/>
+<text x="520" y="607" font-size="16" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Övertygande genererad stil</text>
+<text x="520" y="634" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Flytande formulering kan uppfattas som</text>
+<text x="520" y="651" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">sakkunskap</text>
+</g>
+<g class="node" data-node-id="tilltro"><title>tilltro</title>
+<rect x="1000" y="575" width="365" height="106" rx="15" fill="url(#boxfill)" stroke="#F5A6FC" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1000" y="587" width="5" height="82" rx="2.5" fill="#F5A6FC"/>
+<text x="1020" y="607" font-size="16" fill="#F5A6FC" font-weight="700" font-family="DejaVu Sans, sans-serif">Trosbildning / tilltro</text>
+<text x="1020" y="634" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Mottagaren kan ändra vad den tror</text>
+</g>
+<g class="node" data-node-id="kalibrering"><title>kalibrering</title>
+<rect x="1465" y="575" width="400" height="106" rx="15" fill="url(#boxfill)" stroke="#A3EDAF" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1465" y="587" width="5" height="82" rx="2.5" fill="#A3EDAF"/>
+<text x="1485" y="607" font-size="16" fill="#A3EDAF" font-weight="700" font-family="DejaVu Sans, sans-serif">Kalibrera osäkerhet</text>
+<text x="1485" y="634" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Skilj säker ton från verifierad evidens</text>
+</g>
+<g class="node" data-node-id="aukt"><title>aukt</title>
+<rect x="65" y="725" width="345" height="106" rx="15" fill="url(#boxfill)" stroke="#FF91B2" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="65" y="737" width="5" height="82" rx="2.5" fill="#FF91B2"/>
+<text x="85" y="757" font-size="16" fill="#FF91B2" font-weight="700" font-family="DejaVu Sans, sans-serif">Falsk auktoritet</text>
+<text x="85" y="784" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Källa eller expertstatus antyds</text>
+<text x="85" y="801" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">utan stöd</text>
+</g>
+<g class="node" data-node-id="falskt_citat"><title>falskt_citat</title>
+<rect x="500" y="725" width="410" height="106" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="500" y="737" width="5" height="82" rx="2.5" fill="#FF9B8C"/>
+<text x="520" y="757" font-size="16" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Påhittade eller missvisande</text>
+<text x="520" y="777" font-size="16" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">referenser</text>
+<text x="520" y="804" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Påhittad referens skapar skenbar</text>
+</g>
+<g class="node" data-node-id="social_delning"><title>social_delning</title>
+<rect x="1000" y="725" width="365" height="106" rx="15" fill="url(#boxfill)" stroke="#F5A6FC" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1000" y="737" width="5" height="82" rx="2.5" fill="#F5A6FC"/>
+<text x="1020" y="757" font-size="16" fill="#F5A6FC" font-weight="700" font-family="DejaVu Sans, sans-serif">Informationsspridning</text>
+<text x="1020" y="784" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Innehåll delas, citeras och</text>
+<text x="1020" y="801" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">återanvänds</text>
+</g>
+<g class="node" data-node-id="källverifiering"><title>källverifiering</title>
+<rect x="1465" y="725" width="400" height="106" rx="15" fill="url(#boxfill)" stroke="#A3EDAF" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1465" y="737" width="5" height="82" rx="2.5" fill="#A3EDAF"/>
+<text x="1485" y="757" font-size="16" fill="#A3EDAF" font-weight="700" font-family="DejaVu Sans, sans-serif">Verifiera citat och kompetens</text>
+<text x="1485" y="784" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Öppna källan och kontrollera faktiskt</text>
+<text x="1485" y="801" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">stöd</text>
+</g>
+<g class="node" data-node-id="evid"><title>evid</title>
+<rect x="65" y="875" width="345" height="106" rx="15" fill="url(#boxfill)" stroke="#FF91B2" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="65" y="887" width="5" height="82" rx="2.5" fill="#FF91B2"/>
+<text x="85" y="907" font-size="16" fill="#FF91B2" font-weight="700" font-family="DejaVu Sans, sans-serif">Selektiv evidens</text>
+<text x="85" y="934" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Utvalda belägg lämnar viktig</text>
+<text x="85" y="951" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">evidens utanför</text>
+</g>
+<g class="node" data-node-id="retrieval_bias"><title>retrieval_bias</title>
+<rect x="500" y="875" width="410" height="106" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="500" y="887" width="5" height="82" rx="2.5" fill="#FF9B8C"/>
+<text x="520" y="907" font-size="16" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Sned informationshämtning</text>
+<text x="520" y="934" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">RAG kan hitta ensidigt eller</text>
+<text x="520" y="951" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">otillräckligt material</text>
+</g>
+<g class="node" data-node-id="source_laundering"><title>source_laundering</title>
+<rect x="1000" y="875" width="365" height="106" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1000" y="887" width="5" height="82" rx="2.5" fill="#FF9B8C"/>
+<text x="1020" y="907" font-size="16" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Källtvätt / återcirkulering</text>
+<text x="1020" y="934" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Återpublicerat innehåll kan</text>
+<text x="1020" y="951" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">framstå som extern källa</text>
+</g>
+<g class="node" data-node-id="motbelägg"><title>motbelägg</title>
+<rect x="1465" y="875" width="400" height="106" rx="15" fill="url(#boxfill)" stroke="#A3EDAF" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1465" y="887" width="5" height="82" rx="2.5" fill="#A3EDAF"/>
+<text x="1485" y="907" font-size="16" fill="#A3EDAF" font-weight="700" font-family="DejaVu Sans, sans-serif">Sök motbevis / kontrasterande</text>
+<text x="1485" y="927" font-size="16" fill="#A3EDAF" font-weight="700" font-family="DejaVu Sans, sans-serif">källor</text>
+<text x="1485" y="954" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Sök motexempel, jämför oberoende</text>
+</g>
+<rect x="45" y="1060" width="1830" height="220" rx="20" fill="#121D2D" stroke="#385069" stroke-width="1.3"/>
+<text x="69" y="1095" font-size="22" fill="#76E6D3" font-weight="700" font-family="DejaVu Sans, sans-serif">5. Agentiskt skifte: när information kan bli handling</text>
+<text x="69" y="1119" font-size="14" fill="#ABBFD7" font-weight="400" font-family="DejaVu Sans, sans-serif">Här uppstår dessutom säkerhetsrisker som inte bara är klassiska argumentationsfel.</text>
+<g class="edge" data-edge-kind="risk"><path d="M453,1187 L522,1187" fill="none" stroke="#FF9B8C" stroke-width="2.1" opacity="0.80"
+ marker-end="url(#arr-red)"/></g>
+<text x="487.5" y="1179.0" font-size="11" fill="#FF9B8C" font-weight="400" font-family="DejaVu Sans, sans-serif" text-anchor="middle">kan leda till</text>
+<g class="node" data-node-id="prompt_injection"><title>prompt_injection</title>
+<rect x="67" y="1142" width="386" height="102" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="67" y="1154" width="5" height="78" rx="2.5" fill="#FF9B8C"/>
+<text x="87" y="1174" font-size="14" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Prompt injection</text>
+<text x="87" y="1201" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Extern text kan bli obehörig instruktion</text>
+</g>
+<g class="edge" data-edge-kind="risk"><path d="M908,1187 L977,1187" fill="none" stroke="#FF9B8C" stroke-width="2.1" opacity="0.80"
+ marker-end="url(#arr-red)"/></g>
+<text x="942.5" y="1179.0" font-size="11" fill="#FF9B8C" font-weight="400" font-family="DejaVu Sans, sans-serif" text-anchor="middle">kan leda till</text>
+<g class="node" data-node-id="goal_hijack"><title>goal_hijack</title>
+<rect x="522" y="1142" width="386" height="102" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="522" y="1154" width="5" height="78" rx="2.5" fill="#FF9B8C"/>
+<text x="542" y="1174" font-size="14" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Kapning av agentmål</text>
+<text x="542" y="1201" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Agentens uppdrag kan styras om</text>
+</g>
+<g class="edge" data-edge-kind="risk"><path d="M1363,1187 L1432,1187" fill="none" stroke="#FF9B8C" stroke-width="2.1" opacity="0.80"
+ marker-end="url(#arr-red)"/></g>
+<text x="1397.5" y="1179.0" font-size="11" fill="#FF9B8C" font-weight="400" font-family="DejaVu Sans, sans-serif" text-anchor="middle">kan leda till</text>
+<g class="node" data-node-id="verktygsfel"><title>verktygsfel</title>
+<rect x="977" y="1142" width="386" height="102" rx="15" fill="url(#boxfill)" stroke="#F5A6FC" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="977" y="1154" width="5" height="78" rx="2.5" fill="#F5A6FC"/>
+<text x="997" y="1174" font-size="14" fill="#F5A6FC" font-weight="700" font-family="DejaVu Sans, sans-serif">Felaktig eller obehörig åtgärd</text>
+<text x="997" y="1201" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Verktyg kan påverka verkliga resurser</text>
+</g>
+<g class="node" data-node-id="kaskad"><title>kaskad</title>
+<rect x="1432" y="1142" width="386" height="102" rx="15" fill="url(#boxfill)" stroke="#FF9B8C" stroke-width="1.7" filter="url(#shadow)"/>
+<rect x="1432" y="1154" width="5" height="78" rx="2.5" fill="#FF9B8C"/>
+<text x="1452" y="1174" font-size="14" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">Kaskadfel / agentisk</text>
+<text x="1452" y="1194" font-size="14" fill="#FF9B8C" font-weight="700" font-family="DejaVu Sans, sans-serif">förstärkning</text>
+<text x="1452" y="1221" font-size="13" fill="#CFDEEF" font-weight="400" font-family="DejaVu Sans, sans-serif">Fel kan spridas mellan agentsteg</text>
+</g>
+<text x="69" y="1272" font-size="14" fill="#A3EDAF" font-weight="400" font-family="DejaVu Sans, sans-serif">KONTROLLER: tillitgränser · minsta behörighet · validerat minne · mänskligt godkännande · oberoende verifiering</text>
+</svg>
