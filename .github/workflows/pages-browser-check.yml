@@ -53,6 +53,9 @@ jobs:
       - name: Validate Harnessing Library content and public boundary
         run: python tests/harnessing_library_contract.py
 
+      - name: Check generated English atlas
+        run: python scripts/build_atlas_english.py --check
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -60,6 +63,9 @@ jobs:
 
       - name: Validate argumentation and agent teaching models
         run: node tests/aristotle_agents_model.cjs
+
+      - name: Verify English graph identity and experiment parity
+        run: node tests/atlas_localization_contract.cjs
 
       - name: Install Playwright
         run: |
@@ -90,6 +96,11 @@ jobs:
         env:
           BASE_URL: http://127.0.0.1:4173
         run: node tests/harnessing_library_page.mjs
+
+      - name: Exercise category navigation, large maps and English content
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node tests/portfolio_experience_page.mjs
 
       - name: Exercise Aristotle to agents maps and labs
         env:
