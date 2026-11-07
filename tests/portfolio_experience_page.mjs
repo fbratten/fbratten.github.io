@@ -45,7 +45,7 @@ try{
   await page.locator('[data-atlas-language][hreflang="en"]').click();
   assert.match(page.url(),/\/en\/#agents$/);
   assert.equal(await page.locator('html').getAttribute('lang'),'en');
-  assert.match(await page.locator('#view-title').innerText(),/agent/i);
+  assert.equal(await page.locator('[data-view="agents"]').getAttribute('aria-pressed'),'true');
   for(const view of ['overview','history','llm','agents','interplay']){
    await page.locator('[data-view="'+view+'"]').click();
    assert.match(await page.locator('#lab-title').innerText(),/Lab/);
