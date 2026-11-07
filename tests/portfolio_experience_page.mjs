@@ -35,7 +35,7 @@ try{
   await page.locator('#map-dialog [data-node="aristoteles"]').press('Enter');
   assert.match(await page.locator('#node-detail').innerText(),/Sofistiska|Sophistical/);
   await page.keyboard.press('Escape');assert(!(await page.locator('#map-dialog').isVisible()));
-  assert.equal(await page.evaluate(()=>document.activeElement.id),'expand-map');
+  await page.waitForFunction(()=>document.activeElement.id==='expand-map');
   await page.locator('#zoom-fit').click();
   const fit=await page.locator('#graph').boundingBox();assert(fit.width<=box.width+1);
   await page.locator('#zoom-out').click();assert((await page.locator('#graph').boundingBox()).width<=fit.width+1);
