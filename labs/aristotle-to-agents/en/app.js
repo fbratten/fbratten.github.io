@@ -91,9 +91,10 @@
   $('zoom-fit').onclick=()=>{const box=$('graph-scroll'),vb=$('graph').viewBox.baseVal;zoom=Math.max(.2,Math.min(1,(box.clientWidth-20)/vb.width,(box.clientHeight-20)/vb.height));draw();box.scrollTo(0,0);};
   const workspace=document.querySelector('.atlas-workspace'),dialog=$('map-dialog'),slot=document.createComment('map workspace position');
   workspace.before(slot);
-  $('expand-map').onclick=()=>{$('map-dialog-content').append(workspace);dialog.showModal();$('close-map').focus();};
+  const repaintMap=()=>requestAnimationFrame(()=>requestAnimationFrame(draw));
+  $('expand-map').onclick=()=>{$('map-dialog-content').append(workspace);dialog.showModal();repaintMap();$('close-map').focus();};
   $('close-map').onclick=()=>dialog.close();
-  dialog.addEventListener('close',()=>{slot.after(workspace);$('expand-map').focus();});
+  dialog.addEventListener('close',()=>{slot.after(workspace);repaintMap();$('expand-map').focus();});
   $('sources').innerHTML=Object.values(D.källor).map(s=>`<article class="atlas-source"><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a><small>${esc(s.review_status)}</small></article>`).join('');
   $('fallback').hidden=true;$('atlas-app').hidden=false;setView(location.hash.slice(1),false);window.addEventListener('hashchange',()=>setView(location.hash.slice(1),false));
 })();
