@@ -25,6 +25,7 @@ LABELS = {"/": "Home", "/projects/": "Projects", "/methods/": "Methods & Labs",
           "/labs/mutation-gate/": "Mutation Gate",
           "/labs/github-actions/": "GitHub Actions lab", "/build-log/": "Build log",
           "/labs/aristotle-to-agents/": "Aristoteles till AI-agenter",
+          "/labs/aristotle-to-agents/en/": "Aristotle to AI agents",
           "/blueprint-ai-studio/": "Blueprint AI Studio", "/all-pages/": "All pages",
           "/methods/solutions/": "Solution-space map",
           "/blueprint-ai-studio/labs/rules-authority-enforcement/": "Rules, authority & enforcement",
@@ -74,7 +75,7 @@ def navigation(url):
 <div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation">''' + "".join(links) + '''</nav>
 <a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
 <div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
-<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a></nav>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a><a href="/harnessing/">Harnessing Library</a></nav>
 </div></div></div>'''
 
 
@@ -151,7 +152,7 @@ def directory_html():
                                          ("/labs/ai-evaluation-ci-cd/", "AI evaluation & CI/CD"),
                                           ("/labs/mutation-gate/", "Mutation Gate"),
                                           ("/labs/github-actions/", "GitHub Actions")]),
-        ("Reasoning and agent systems", [("/labs/aristotle-to-agents/", "Aristoteles till AI-agenter: five maps and labs")]),
+        ("Reasoning and agent systems", [("/labs/aristotle-to-agents/", "Aristoteles till AI-agenter: Svenska"), ("/labs/aristotle-to-agents/en/", "Aristotle to AI agents: English")]),
         ("Flagships", [("/intelligence-engine-showcase/", "Intelligence Engine"),
                        ("/mads/", "MADS"), ("/adaptivearts-ai/", "Adaptivearts.ai evidence"), ("/gate-monitor/", "Gate Monitor")]),
         ("Blueprint AI Studio", [("/blueprint-ai-studio/", "Book, LMS and progress"),
@@ -197,7 +198,7 @@ def render():
     pages = [p for p in pages if "node_modules" not in p.parts and ".git" not in p.parts]
     output = {}
     footer = '''<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
-<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a></nav>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a><a href="/harnessing/">Harnessing Library</a></nav>
 <nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
 <nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>'''
     for path in pages:

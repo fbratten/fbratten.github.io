@@ -8,7 +8,7 @@ if (shots) await mkdir(shots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 async function settleVisibleImages(page) {
   await page.locator('img').evaluateAll(images => Promise.all(images
-    .filter(image => image.getBoundingClientRect().top < innerHeight + 150)
+    .filter(image => image.getClientRects().length > 0 && image.getBoundingClientRect().top < innerHeight + 150)
     .map(image => image.decode().catch(() => {}))));
 }
 try {
@@ -85,7 +85,7 @@ try {
   await page.goto(base + '/');
   await page.locator('a.fb-route[href="/labs/"]').click();
   assert.match(page.url(), /\/labs\/$/);
-  assert.equal(await page.locator('main .fb-route').count(), 12);
+  assert.equal(await page.locator('main .fb-route').count(), 14);
   assert.equal(await page.locator('main .fb-route[href="/labs/mutation-gate/"]').count(), 1);
   await page.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(page.url(), /\/labs\/mutation-gate\/$/);
@@ -132,7 +132,7 @@ try {
   assert.equal(await fallback.locator('#labs .fb-route').count(), 11);
   await fallback.locator('#labs a[href="/labs/"]').first().click();
   assert.match(fallback.url(), /\/labs\/$/);
-  assert.equal(await fallback.locator('main .fb-route').count(), 12);
+  assert.equal(await fallback.locator('main .fb-route').count(), 14);
   await fallback.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(fallback.url(), /\/labs\/mutation-gate\/$/);
   await fallback.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).click();
@@ -141,6 +141,9 @@ try {
   await fallback.locator('main a.fb-route[href="/labs/github-actions/"]').click();
   assert.match(fallback.url(), /\/labs\/github-actions\/$/);
   await fallback.goto(base + '/methods/');
+  assert.ok(await fallback.getByRole('heading', { name: 'From methods to practical system capability' }).isVisible());
+  await fallback.getByText('How the methods fit together:', { exact: false }).click();
+  assert.equal(await fallback.locator('.method-overview').getAttribute('open'), null);
   await fallback.getByText('How the methods fit together:', { exact: false }).click();
   assert.ok(await fallback.getByRole('heading', { name: 'From methods to practical system capability' }).isVisible());
   await noJS.close();

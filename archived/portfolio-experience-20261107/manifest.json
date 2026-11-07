@@ -1,0 +1,326 @@
+{
+  "date": "2026-11-07",
+  "owner": "fbratten",
+  "base": "5b961ed6d4f14eb8404b3bf7db40953577079578",
+  "reason": "Preserve original public source before project categories, default-open methods, larger bilingual atlas and shared Harnessing discovery.",
+  "files": [
+    {
+      "original": ".github/workflows/pages-browser-check.yml",
+      "archive": "archived/portfolio-experience-20261107/.github/workflows/pages-browser-check.yml.txt",
+      "git_blob": "88d8b6a7092824112b000f462a251649d36d9dfd",
+      "sha256": "5af9e18d84d8a0e93c2b4e5f14e731c61bb1e5d9d8ebeb6a06d7512ffd0f5573"
+    },
+    {
+      "original": "404.html",
+      "archive": "archived/portfolio-experience-20261107/404.html.txt",
+      "git_blob": "6052d8d8ef1cbef8950bcbcb86a3135019fb8baf",
+      "sha256": "c399e14342ac9b8a1198bff9cd604a06d2736811cc6f584e3e1bf461c14f5899"
+    },
+    {
+      "original": "adaptivearts-ai/index.html",
+      "archive": "archived/portfolio-experience-20261107/adaptivearts-ai/index.html.txt",
+      "git_blob": "06fecbe6d5a4a1486cc6fb93e758e3045251c526",
+      "sha256": "a444f6b0bf32a0ee568bf8a989a08ed1799621b0bad8df43eef876ea7895b80f"
+    },
+    {
+      "original": "all-pages/index.html",
+      "archive": "archived/portfolio-experience-20261107/all-pages/index.html.txt",
+      "git_blob": "7fdf550836b55675c3eea80cd14ff1c614e0e01f",
+      "sha256": "51e1e11d27ac664751c1f14bd047de8da0bf703f721bea3f3f747e3bf64c9a10"
+    },
+    {
+      "original": "articles/index.html",
+      "archive": "archived/portfolio-experience-20261107/articles/index.html.txt",
+      "git_blob": "e3c29db4c73482ac1651dc004031893a60a79c85",
+      "sha256": "26ba61de3b77a50d701c83b051bc57206ef16a042456f9f115c1a8a67f5fa553"
+    },
+    {
+      "original": "assets/site.css",
+      "archive": "archived/portfolio-experience-20261107/assets/site.css.txt",
+      "git_blob": "c3eafcbce6f0b27b9e100ecfcf0375a284938314",
+      "sha256": "f0622bb110559557dc934938f95069110e3744619d0f7055e1eb04b5ba00e99a"
+    },
+    {
+      "original": "assets/site.js",
+      "archive": "archived/portfolio-experience-20261107/assets/site.js.txt",
+      "git_blob": "ccdafb8703b43bb40c0a75f47ef8352dc1c50c6f",
+      "sha256": "a769ab25c38158b4b42a65a1fe02e60f7e5f3e897de88f8ece53c618081edece"
+    },
+    {
+      "original": "blueprint-ai-studio/index.html",
+      "archive": "archived/portfolio-experience-20261107/blueprint-ai-studio/index.html.txt",
+      "git_blob": "3f5d44b3e3088bdede1d0e7f2bd2fab852f2b6b4",
+      "sha256": "d4ce014f20884162f4ff64d3642dca17f35aa63878af07d384fab0677c9690a6"
+    },
+    {
+      "original": "blueprint-ai-studio/labs/rules-authority-enforcement/index.html",
+      "archive": "archived/portfolio-experience-20261107/blueprint-ai-studio/labs/rules-authority-enforcement/index.html.txt",
+      "git_blob": "c51ae882dcd7e3b7e023d6f7e6e0946bc01db839",
+      "sha256": "aafd6790cb1940e05063e61bf031498cf398220e30e6ebcd29e42e77e1aca4eb"
+    },
+    {
+      "original": "broker-lane-sandbox/index.html",
+      "archive": "archived/portfolio-experience-20261107/broker-lane-sandbox/index.html.txt",
+      "git_blob": "1c87c88589925b528d3c34b62e0d512d7cc4268a",
+      "sha256": "2ef0456d8330f9913658df557d932f8004606ba4b3e1433fdd490b728d09d7c8"
+    },
+    {
+      "original": "build-log/index.html",
+      "archive": "archived/portfolio-experience-20261107/build-log/index.html.txt",
+      "git_blob": "37e624112f549b9cf5d679aeb2a637e93024b3b6",
+      "sha256": "f2822b06ee77b7a7c715db09d0399c9fc41c0a50ced0c4904a0651a3b59406ab"
+    },
+    {
+      "original": "gate-monitor/index.html",
+      "archive": "archived/portfolio-experience-20261107/gate-monitor/index.html.txt",
+      "git_blob": "015e2fb5568d83877b87a5059561b86a57f67ed6",
+      "sha256": "523021163af04fa6d7bfbc4f2ab47b54f9608f117d063ff16321e1f353b9420b"
+    },
+    {
+      "original": "harnessing/index.html",
+      "archive": "archived/portfolio-experience-20261107/harnessing/index.html.txt",
+      "git_blob": "6405c5c75f9e2604db8fab2f47310c02927edec9",
+      "sha256": "d87e3fd6f52f98376e37821b312452835601a8df20fcb95a4e11217c44e30b6b"
+    },
+    {
+      "original": "index.html",
+      "archive": "archived/portfolio-experience-20261107/index.html.txt",
+      "git_blob": "e7c475d804094c1b7296daa3fe581846c6922126",
+      "sha256": "601e9f14c5ac3eb5f9e650235fb0d172d2256c3acf652b503382939c6945fb8d"
+    },
+    {
+      "original": "labs/ai-evaluation-ci-cd/index.html",
+      "archive": "archived/portfolio-experience-20261107/labs/ai-evaluation-ci-cd/index.html.txt",
+      "git_blob": "c819d48148ae21bcf7ef19c1ec0c2787ef2a63aa",
+      "sha256": "0629b4901f16825a9aa82b8db5a8e02bc0b060e5378b218354cb00c222e698a0"
+    },
+    {
+      "original": "labs/aristotle-to-agents/README.md",
+      "archive": "archived/portfolio-experience-20261107/labs/aristotle-to-agents/README.md.txt",
+      "git_blob": "c1029926ec7657cd84fb4b02f540e904158d028f",
+      "sha256": "f2883644f3218ffd62bdb3adb2733ec89671802441e529d4c808d4a10e3d41b8"
+    },
+    {
+      "original": "labs/aristotle-to-agents/app.js",
+      "archive": "archived/portfolio-experience-20261107/labs/aristotle-to-agents/app.js.txt",
+      "git_blob": "2457444d18e70b4ac3e8e94aa63bf33b1fb6b86a",
+      "sha256": "226ea50e7a71db6905eafc9a535996adf3c9e3eb6cf0b8323aabb20d919e6185"
+    },
+    {
+      "original": "labs/aristotle-to-agents/index.html",
+      "archive": "archived/portfolio-experience-20261107/labs/aristotle-to-agents/index.html.txt",
+      "git_blob": "4d594514ac57d1857a1947c045e60ff7b6f99b1f",
+      "sha256": "42d946b161991df7832bfd17178ab41ff805cfb281c337d2b7bd3bc91214ad1b"
+    },
+    {
+      "original": "labs/aristotle-to-agents/style.css",
+      "archive": "archived/portfolio-experience-20261107/labs/aristotle-to-agents/style.css.txt",
+      "git_blob": "67ea6f57228d903fb7b01500aa6e837fdffdece9",
+      "sha256": "4787f8c7deeafbffae253c5ba361d95bff042ade95570ad3f39b800384709d5e"
+    },
+    {
+      "original": "labs/fault-injection/index.html",
+      "archive": "archived/portfolio-experience-20261107/labs/fault-injection/index.html.txt",
+      "git_blob": "c68e92fa35cb7ea4a994390bf3c1412324dc37c3",
+      "sha256": "3e8eac87a326e2cc44925d19dceea4001b85dad11722733af53d095eabc9d59a"
+    },
+    {
+      "original": "labs/github-actions/index.html",
+      "archive": "archived/portfolio-experience-20261107/labs/github-actions/index.html.txt",
+      "git_blob": "2d880f571e3262a2f0be6275ecf2576cc7f73fbb",
+      "sha256": "f4196b3a50846d4c20a8809e0406332073b559c4a9ebdee20aa7909b1ee2d99c"
+    },
+    {
+      "original": "labs/index.html",
+      "archive": "archived/portfolio-experience-20261107/labs/index.html.txt",
+      "git_blob": "6430a03595046ffae729581b49ab8633af728c2c",
+      "sha256": "a5d556249d40802e81e9036ce4cde5d94c3698b6e6b6c59ffcea98ec7b56d085"
+    },
+    {
+      "original": "labs/mutation-gate/index.html",
+      "archive": "archived/portfolio-experience-20261107/labs/mutation-gate/index.html.txt",
+      "git_blob": "9da7d467ad16e40116f69b0180d823b0d0676c79",
+      "sha256": "0b3785b440f1433ffa265b8ea19229c05e491646fc3047cf5a55442242abd452"
+    },
+    {
+      "original": "labs/testing-architecture/index.html",
+      "archive": "archived/portfolio-experience-20261107/labs/testing-architecture/index.html.txt",
+      "git_blob": "53c5b3c6fd921d9bcf7e1a9b6f5c9ab183da7ef4",
+      "sha256": "20a4e2a3d7a03fa84d4113cb9c7378403caa6a39b046089233afb3621ccae05c"
+    },
+    {
+      "original": "mads/index.html",
+      "archive": "archived/portfolio-experience-20261107/mads/index.html.txt",
+      "git_blob": "a9f428aeefd993925bf87487333a6cac3ed6ab1f",
+      "sha256": "cf5758ce472ad7dbf459431c07d4f03c130e1c6c8735d15d202fbbbde824d8e4"
+    },
+    {
+      "original": "methods/5pp/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/5pp/index.html.txt",
+      "git_blob": "086e2922ebaf3718b904ad6b67e98173298b4c3e",
+      "sha256": "0110ad1f2fbe751fd98b02a3e5b165fcb8f3443f2f31997293aeaa6a841446b7"
+    },
+    {
+      "original": "methods/aics/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/aics/index.html.txt",
+      "git_blob": "94cd2c46e977ad01e874e8496ead9c92929932c5",
+      "sha256": "92160048ab1c57662a5b9e06dc4cfc18f05fdddda09c3acbc705afe7672161da"
+    },
+    {
+      "original": "methods/capability-gap/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/capability-gap/index.html.txt",
+      "git_blob": "9155f8bf9eafcfac0be6b5314542a5b9fba8f45c",
+      "sha256": "44a16a5b192a5d9378c82f7b2c6099fde7816b405c36fad9511cf2a307535b68"
+    },
+    {
+      "original": "methods/card-pointer/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/card-pointer/index.html.txt",
+      "git_blob": "6601b6cf70f71a0a3e612ca24df9df1042c32a2f",
+      "sha256": "f1e017284b59b843d4369e3f0eb40a556d3d4bc0fa7b9e8ba44694f4995ff223"
+    },
+    {
+      "original": "methods/cbe-ix/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/cbe-ix/index.html.txt",
+      "git_blob": "14793194c8f07ac67ce5b47f45cc7847ead16ce0",
+      "sha256": "b7e2082af694ad8d09ab9b430d906299ebe16b1ad546fcd5fec599d2aa0a342f"
+    },
+    {
+      "original": "methods/cbe/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/cbe/index.html.txt",
+      "git_blob": "1b9dea3581bf155aac015c4c68b82b9c626fdcc2",
+      "sha256": "d7690f0d4f689637e45572c61a114d50db4eb0e7be5116041e44b11ea8f3b923"
+    },
+    {
+      "original": "methods/csr/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/csr/index.html.txt",
+      "git_blob": "0c04ba4b658d949a347d499e0d5dd8437a463ef8",
+      "sha256": "5a2685e91250d128c6d514495ca09fc2af417df4f18a29f03c63397259696f16"
+    },
+    {
+      "original": "methods/dial4/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/dial4/index.html.txt",
+      "git_blob": "2418b5de39ed4dd05ac4c84e0f99eb1e618c8c96",
+      "sha256": "407bad51bbb93c5772158f780552f932c13ee0f631ef9bdeedba159131dc4aab"
+    },
+    {
+      "original": "methods/dial4p-possibility/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/dial4p-possibility/index.html.txt",
+      "git_blob": "c1516ca27f9dca0aa4aabd98784e772eb4ecfec8",
+      "sha256": "2640d97d05f3ad501c01ebad3b2b5f8e1b9343878f863925133b1e20ee2d0d6e"
+    },
+    {
+      "original": "methods/dial4plus/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/dial4plus/index.html.txt",
+      "git_blob": "3f709e7df7b9e0ecc3e48aa3642270a6ec7e8364",
+      "sha256": "bcd59cccbc9ae86a04c21e472e270855640e6b9446c629b5517acf94e715554d"
+    },
+    {
+      "original": "methods/dialectic/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/dialectic/index.html.txt",
+      "git_blob": "ab47cf090044e058bd33a5dd478efc93ccc99b1a",
+      "sha256": "3ce18ea0674d73cba51bce70ed6ea3866da863adc96c469725b8a68507311d63"
+    },
+    {
+      "original": "methods/dialogue-lifecycle/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/dialogue-lifecycle/index.html.txt",
+      "git_blob": "bf09537a1b973b73d062183fdcaf25e3652feebb",
+      "sha256": "6e20055defa363299d1d27b21d2ffd895d07199f9b9c7556c4fc4cf48bdd30de"
+    },
+    {
+      "original": "methods/gdsa/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/gdsa/index.html.txt",
+      "git_blob": "92873cd806d9cf39364c81d97e54f61413e51122",
+      "sha256": "c03fc4ab15c80cb5bd8cba755bfd3b4588b316b26c3ed4dc24bb37689f70f6c5"
+    },
+    {
+      "original": "methods/hermeneutic-didactic/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/hermeneutic-didactic/index.html.txt",
+      "git_blob": "b44236bfd1aac898b9ca35e8b62ccd84bf94405d",
+      "sha256": "2cdc8553883cbb3320bf4402916288e3a93078cd10cee1ce506d84dc67358933"
+    },
+    {
+      "original": "methods/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/index.html.txt",
+      "git_blob": "2c57a499b48c0dfa4ffba3d58df86b2276282c58",
+      "sha256": "3a227e042673004ee6ab043e399da11cec4c6efe0e25129746cc49d54a201d65"
+    },
+    {
+      "original": "methods/ipb/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/ipb/index.html.txt",
+      "git_blob": "4399fdf6fde922eb79e76a49d1660cfe4e6de8da",
+      "sha256": "500a9cfb2a7884959397adfe59d00d010e05a5f96e1f3703d4db28f0a98de0b7"
+    },
+    {
+      "original": "methods/orbit/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/orbit/index.html.txt",
+      "git_blob": "89f109e5a6a870ce9dcc3be39b29c41e9e161952",
+      "sha256": "224dbe650f5df6a9accbfa4537041cc2318491e6c11a8ed681a76e3fe72d6e8a"
+    },
+    {
+      "original": "methods/pisd/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/pisd/index.html.txt",
+      "git_blob": "6f4e4717f3884875407c0071f9548b7347122f9c",
+      "sha256": "f237b474ea1627ae0a46021f1f7bd170b0ceef9d66984b97a9aa583e7e7795fe"
+    },
+    {
+      "original": "methods/rigvedan/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/rigvedan/index.html.txt",
+      "git_blob": "6052530b0d742fb95945719f599810252f7dd64e",
+      "sha256": "f310218ed4b7cef60c7ce1742eeeb6ed04e7f5596de1a80f50878847951b54ab"
+    },
+    {
+      "original": "methods/solutions/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/solutions/index.html.txt",
+      "git_blob": "1bd70b0c94ce408a7a0e5f49c8d9c4ca6cce5216",
+      "sha256": "23fa3a72f5ededed18a21bdd6d99b5b119960393f9fda4d2aaa97e0cdaf7a7be"
+    },
+    {
+      "original": "methods/sorr/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/sorr/index.html.txt",
+      "git_blob": "84216ed84147daf88b757d7c541295a5c5fc874c",
+      "sha256": "b042a7edadfa038166c68a718298e50141ddc9bb985bccd6e786e844871f6523"
+    },
+    {
+      "original": "methods/srcb/index.html",
+      "archive": "archived/portfolio-experience-20261107/methods/srcb/index.html.txt",
+      "git_blob": "ad192ec4eb5c7f2caa24f68abadf794c0c569c3a",
+      "sha256": "c0beeb4ad613e10122dddc71d342aa4be62a5d0af9fb7e6e78faf69d6c61c7f9"
+    },
+    {
+      "original": "projects/index.html",
+      "archive": "archived/portfolio-experience-20261107/projects/index.html.txt",
+      "git_blob": "0718baedcafeee62bc3ae25a32e2693242d22d35",
+      "sha256": "1dbe456bdcf2c2b9deadc9c876419c1006d1b613445e0704ccdd7fcccdef33ce"
+    },
+    {
+      "original": "scripts/build_navigation.py",
+      "archive": "archived/portfolio-experience-20261107/scripts/build_navigation.py.txt",
+      "git_blob": "05efbb500eb90a608921e9ac5c151a83b4aa01d9",
+      "sha256": "d7b06acaceb3a84f3675995acacc626f736a627333425b0743e297f7edc21763"
+    },
+    {
+      "original": "sitemap.xml",
+      "archive": "archived/portfolio-experience-20261107/sitemap.xml.txt",
+      "git_blob": "0de026dfcfafdc0f9d30cbb1f9c075292918d2ba",
+      "sha256": "de4688de85323ed6dbafa5fcb9af84714d365fa94e971fe409a7b8ee7174f4f2"
+    },
+    {
+      "original": "tests/navigation_page.mjs",
+      "archive": "archived/portfolio-experience-20261107/tests/navigation_page.mjs.txt",
+      "git_blob": "934b626d7a831ae033029ac8e0d4518367839a24",
+      "sha256": "40d9ed0464077cbc3c4546b24c80a45e74b77d094fb58770ef360bfdaab3dff3"
+    },
+    {
+      "original": "vertex/index.html",
+      "archive": "archived/portfolio-experience-20261107/vertex/index.html.txt",
+      "git_blob": "c4e537c9caf23ff47ccb408a1bc2cf6396e39275",
+      "sha256": "352b25855c66c2dd9a8dc31df6b83b55b215f6dca0f457873819220b95709e75"
+    },
+    {
+      "original": "worktrace/index.html",
+      "archive": "archived/portfolio-experience-20261107/worktrace/index.html.txt",
+      "git_blob": "f905a0651526217a34c0cd4e6c39a32bac7f9178",
+      "sha256": "4db43dff38fe986bb45507a48cdd3e3b37e7a36157a8637a44caa0fbb9a98860"
+    }
+  ]
+}

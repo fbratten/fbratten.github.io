@@ -299,3 +299,14 @@
 /* Glossary term links (AI testing labs) */
 .glossary-link { color:inherit; text-decoration:underline dotted; text-decoration-thickness:1px; text-underline-offset:3px; text-decoration-color:rgba(94,234,212,.7); cursor:help; }
 .glossary-link:hover, .glossary-link:focus-visible { color:#5eead4; text-decoration-style:solid; }
+
+/* Four project categories are navigable panels with the original static fallback. */
+.fb-project-categories{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:4px 0 36px}
+.fb-project-categories a{display:grid;align-content:start;gap:10px;padding:22px;border:1px solid #304755;border-radius:12px;background:#0e1c28;color:#b9c8d4;min-width:0}
+.fb-project-categories a strong{font-size:18px;color:#edf3f5}
+.fb-project-categories a>span:last-child{font-size:13px;line-height:1.5}
+.fb-project-categories .fb-category-count{font:24px ui-monospace,monospace;color:#5eead4}
+.fb-project-categories a:hover,.fb-project-categories a[aria-selected=true]{border-color:#5eead4;background:#132d2b}
+.fb-projects [data-project-panel]{padding-top:24px}
+@media(max-width:1000px){.fb-project-categories{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.fb-project-categories{gap:10px}.fb-project-categories a{padding:16px}.fb-project-categories a>span:last-child{font-size:12px}}
