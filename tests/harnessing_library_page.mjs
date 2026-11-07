@@ -25,6 +25,7 @@ try {
     for(const m of methods){
       await page.locator(`[data-method-choice="${m.id}"]`).click();
       assert.equal(await page.locator('#method-title').textContent(),m.name);
+      await page.waitForFunction(()=>{const r=document.querySelector('#method-title').getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;});
       assert.equal(await page.locator('#method-reading .workplace-example').count(),2);
     }
     await page.locator('#method-query').fill('no-such-method-5981');
