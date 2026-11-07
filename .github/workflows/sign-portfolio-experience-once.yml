@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: 4e67f7adbcd901998f3bac3e31290a22d3289381
+          ref: 85db5368e2faaf66a5c9f316629421dcd69efa06
           persist-credentials: false
       - name: Sign bounded batches and verify the exact reviewed tree
         env:
@@ -25,11 +25,11 @@ jobs:
           import os,json,base64,subprocess,urllib.request,time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
-          source="4e67f7adbcd901998f3bac3e31290a22d3289381"
-          tree="fe57a03ff5b8646fb711b14d00c57bd5db11055b"
+          source="85db5368e2faaf66a5c9f316629421dcd69efa06"
+          tree="233aee31087db10ea38b83713131d4eb6bed1198"
           base="5b961ed6d4f14eb8404b3bf7db40953577079578"
           target="chatgpt/portfolio-experience-20261107"
-          paths=["tests/navigation_page.mjs"]
+          paths=["tests/portfolio_experience_page.mjs"]
           git=lambda *a:subprocess.check_output(["git",*a],text=True).strip()
           assert os.environ["GITHUB_REPOSITORY"]==repo
           assert os.environ["GITHUB_REF"]=="refs/heads/chatgpt/portfolio-experience-signing-20261107"
@@ -49,7 +49,7 @@ jobs:
                   batches.append(batch);batch=[];size=0
               batch.append({"path":p,"contents":base64.b64encode(data).decode()});size+=len(data)
           if batch:batches.append(batch)
-          parent="0a66598f46a3c3b4ffdabd19f8636b574332e41a"
+          parent="593b02b033dfc323e10cce1990fed7a7201f95fb"
           for index,additions in enumerate(batches):
               body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"Portfolio experience: reviewed projection "+str(index+1)+"/"+str(len(batches)),"body":"Bounded source transfer; original public files preserved, no deletions or history rewriting."},"expectedHeadOid":parent,"fileChanges":{"additions":additions}}}}
               result=api("https://api.github.com/graphql",body)
