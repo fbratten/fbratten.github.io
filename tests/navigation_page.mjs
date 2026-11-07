@@ -8,7 +8,7 @@ if (shots) await mkdir(shots, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 async function settleVisibleImages(page) {
   await page.locator('img').evaluateAll(images => Promise.all(images
-    .filter(image => image.getBoundingClientRect().top < innerHeight + 150)
+    .filter(image => image.getClientRects().length > 0 && image.getBoundingClientRect().top < innerHeight + 150)
     .map(image => image.decode().catch(() => {}))));
 }
 try {
