@@ -1,5 +1,218 @@
 [
   {
+    "date": "2026-11-07",
+    "state": "PUBLISHED",
+    "title": "Harnessing Library: learning by following workplace situations",
+    "summary": "Published an interactive library under Methods & Labs that explains what a harness is: the surrounding system connecting a model to context, tools, working rules, limits and feedback. It holds 15 method entries, 30 workplace examples, 6 pipeline views and 4 first-party field notes.",
+    "why_it_matters": "A capable model is only a starting point. The page asks which source to trust, what may be changed and when to stop, through concrete situations a reader can follow, instead of a list of method names.",
+    "evidence": [
+      {
+        "label": "Harnessing Library",
+        "url": "https://fbratten.github.io/harnessing/"
+      }
+    ],
+    "tags": [
+      "harnessing",
+      "methods",
+      "education",
+      "AI agents"
+    ]
+  },
+  {
+    "date": "2026-11-07",
+    "state": "PUBLISHED",
+    "title": "Agent film team: making real agent work understandable",
+    "summary": "Published an overview of the agent film team, an AI instance that observes, interviews and reconstructs real agent work so that an educational film can show how working methods are used in practice. It explains the team's idea (need, meaning, application and observable result before the method's name) and its first story, in which a check found four removed lines and the change was made additive. Private film tests exist; no film is published.",
+    "why_it_matters": "Method names alone do not show what a way of working changes. Filming documented events with observed and reported evidence kept apart makes the effect visible, including the corrections, without presenting a reconstruction as a recording.",
+    "evidence": [
+      {
+        "label": "Agent film team overview, first story and evidence boundaries",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/agent-film-team.md"
+      },
+      {
+        "label": "Public Methods & Labs: composition principles",
+        "url": "https://fbratten.github.io/methods/"
+      }
+    ],
+    "tags": [
+      "agent film team",
+      "methods",
+      "education",
+      "evidence",
+      "multi-agent work"
+    ]
+  },
+  {
+    "date": "2026-11-06",
+    "state": "SHIPPED",
+    "title": "Canvas skills: building a map, then looking at it",
+    "summary": "Added two Agent Skills: one builds an Obsidian canvas from a data file, and one opens a canvas in the real app on a throwaway copy and corrects it. An end-to-end run in the app passed 49 checks. Validation with three model tiers ended in VALIDATED_WITH_FINDINGS after six rounds, because the last fixes had no further independent review.",
+    "why_it_matters": "The first map behind this work passed 18 structural checks and still had 37 edges crossing cards. It shows why a map needs to be looked at, and it reports the result with its remaining limit.",
+    "evidence": [
+      {
+        "label": "Public summary, checks and limits",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/canvas-skills.md"
+      }
+    ],
+    "tags": [
+      "Agent Skills",
+      "Obsidian",
+      "validation",
+      "AI agents"
+    ]
+  },
+  {
+    "date": "2026-11-05",
+    "state": "VERIFIED",
+    "title": "Verified backup of all 276 GitHub repositories",
+    "summary": "Copied all 276 repositories on one GitHub account to a local machine with GitHub as a read-only source. Every mirror's refs equalled GitHub's, and a restore test of the Git history gave 271 passes, 0 failures and 5 skipped repositories with no commits. Declared gaps include large-file content, Discussions, repository settings and a second disk.",
+    "why_it_matters": "A backup is only worth what a restore shows. Listing what the copy does not cover keeps one good run from being read as complete protection.",
+    "evidence": [
+      {
+        "label": "Public summary of results and declared gaps",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/github-backup.md"
+      }
+    ],
+    "tags": [
+      "backup",
+      "verification",
+      "GitHub",
+      "preservation"
+    ]
+  },
+  {
+    "date": "2026-11-03",
+    "state": "PUBLISHED",
+    "title": "From Aristotle to AI agents: five maps and interactive labs",
+    "summary": "Published five Swedish graph views and five deterministic experiments on argument validity, Boolean logic, retrieval provenance, agent controls and source recirculation, with 74 nodes and 111 typed edges. No model calls are involved. A quality review of the source grounding continues.",
+    "why_it_matters": "It lets a reader follow an idea from classical argument to how an agent acts, and try the logic directly. Grounding labels show what is inherited and what has been reviewed, so the map does not look more settled than it is.",
+    "evidence": [
+      {
+        "label": "From Aristotle to AI agents, maps and labs",
+        "url": "https://fbratten.github.io/labs/aristotle-to-agents/"
+      }
+    ],
+    "tags": [
+      "labs",
+      "education",
+      "logic",
+      "AI agents"
+    ]
+  },
+  {
+    "date": "2026-11-03",
+    "state": "SHIPPED",
+    "title": "Daily Flow: reviewing AI suggestions before they change a plan",
+    "summary": "Versions 2.3.0 and 2.4.0 of a personal planning app. Selected work can be shared with an AI without changing the plan, and revised notes return as a proposal reviewed field by field and approved as the next version of the same task. A conflict stops the whole batch.",
+    "why_it_matters": "It keeps an AI suggestion apart from a change to the plan, and earlier versions are kept. It serves one person, and this entry describes the mechanism, not any planning data.",
+    "evidence": [
+      {
+        "label": "Public summary of the review flow, checks and limits",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/daily-flow.md"
+      }
+    ],
+    "tags": [
+      "personal tools",
+      "human review",
+      "AI assistance"
+    ]
+  },
+  {
+    "date": "2026-10-29",
+    "state": "SHIPPED",
+    "title": "From an idea to a skill that is actually used: six Agent Skills",
+    "summary": "Added skills for separate steps that are easy to mix up: authoring a package, capturing a signal, checking claims, assessing a method, running a bounded pilot and verifying that one consumer really can use a capability. Validation differs per skill, and at least two of them, including the authoring skill, record that the model-tier gate was not performed.",
+    "why_it_matters": "A pilot result is not adoption, and installed is not used. The skills keep those steps apart, and this entry states openly that merging them shows no effect in use.",
+    "evidence": [
+      {
+        "label": "Public summary and what is not claimed",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/skill-authoring-and-adoption.md"
+      }
+    ],
+    "tags": [
+      "Agent Skills",
+      "governance",
+      "verification",
+      "AI agents"
+    ]
+  },
+  {
+    "date": "2026-10-26",
+    "state": "VERIFIED",
+    "title": "Agent Workshop: a bounded loop with a separate checker",
+    "summary": "A way to run a lead, workers, deterministic acceptance and a separate checker on a bounded task, meant to be provider-neutral but still tied to one host. In a recorded rehearsal both work orders ended DONE_VERIFIED. In one, the first attempt passed all 41 acceptance checks, and a checker model still found a real violation, which the lead upheld and the next attempt repaired. It was a rehearsal, the replay was not blind, and no model is ranked.",
+    "why_it_matters": "It shows why passing acceptance is not the last word: a separate checker caught what the acceptance checks missed, and the limits of the result are recorded with it.",
+    "evidence": [
+      {
+        "label": "Public summary of the design, rehearsal and limits",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/agent-workshop.md"
+      }
+    ],
+    "tags": [
+      "AI agents",
+      "verification",
+      "multi-agent work",
+      "evaluation"
+    ]
+  },
+  {
+    "date": "2026-10-22",
+    "state": "SHIPPED",
+    "title": "GAC: keeping the operator out of routine agent relay",
+    "summary": "Routine coordination between AI peers kept reaching the human operator. Rules in the coordination plane now require checking a route where it will actually run, routing routine questions directly to peers, consulting before the affected decision, and escalating only exactly what needs the operator. The effect has not been measured.",
+    "why_it_matters": "A person should not have to carry messages between agents. These are written rules, not enforcement, and their effect is untested.",
+    "evidence": [
+      {
+        "label": "Public summary of the rules and limits",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/gac-continuation-gates.md"
+      }
+    ],
+    "tags": [
+      "AI agents",
+      "multi-agent work",
+      "governance",
+      "human oversight"
+    ]
+  },
+  {
+    "date": "2026-10-20",
+    "state": "SHIPPED",
+    "title": "Skill validation with three model tiers",
+    "summary": "Added a skill that tests how another skill behaves: a script prepares a blind package, the smallest claimed model runs it, a stronger model grades against a withheld key, and the strongest available model reviews the result. An early behavioural run on a review skill returned NOT_VALIDATED and confirmed a defect in that skill, which was then corrected.",
+    "why_it_matters": "A skill can pass structural checks and still mislead a small model. A verdict that can say no is what makes the check useful. A verdict covers the skill's test cases, not every future task.",
+    "evidence": [
+      {
+        "label": "Public summary of the design, results and limits",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/skill-validation-model-tiers.md"
+      }
+    ],
+    "tags": [
+      "Agent Skills",
+      "validation",
+      "evaluation",
+      "AI agents"
+    ]
+  },
+  {
+    "date": "2026-10-20",
+    "state": "SHIPPED",
+    "title": "Muse box phases 2 and 3: allowlisted network and a first real run",
+    "summary": "Added a per-run proxy that allows only api.meta.ai:443, and an API key path that tests show stays out of arguments, the environment and logs. One real run with a harmless prompt exited 0, and the egress log shows 4 tunnels, all to the allowed host. It executed no shell command, so the nested inner sandbox remains unproven.",
+    "why_it_matters": "It moves from an offline box to a real service with the network path observed rather than assumed, and it names what one run could not show.",
+    "evidence": [
+      {
+        "label": "Public snapshot, update and verify receipt",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/main/build-log/muse-box.md"
+      }
+    ],
+    "tags": [
+      "AI agents",
+      "sandboxing",
+      "security",
+      "Meta Muse"
+    ]
+  },
+  {
     "date": "2026-10-20",
     "state": "SHIPPED",
     "title": "Muse box: Meta Muse Code CLI in a sandbox, phase 1 offline",

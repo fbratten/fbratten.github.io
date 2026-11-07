@@ -6,6 +6,8 @@ Muse box runs Meta's closed-source **Muse Code** CLI inside a [bubblewrap](https
 
 The implementation source remains private. This page is a curated snapshot and check receipt, not a source release.
 
+> **Update 2026-11-07:** phases 2 and 3 landed on 2026-10-20. See "Phases 2 and 3" at the end. The sections before it describe phase 1 as written on that date, including its statement that network access and credentials were not yet enabled.
+
 ## What the box enforces in phase 1
 
 | Area | What is built | Boundary |
@@ -40,3 +42,23 @@ Credentials and network access are later phases, and neither is enabled. Sibling
 ## Publication scope
 
 This snapshot contains a high-level description, a source pin, a summarized check result and explicit limits. It includes no source code, local paths, run logs, account details or credentials. The source repository's visibility is unchanged.
+
+## Phases 2 and 3
+
+Build milestone: **2026-10-20**. Public update and check: **2026-11-07**.
+
+| Area | What was added | Boundary |
+|---|---|---|
+| Network | A per-run proxy with a one-host allowlist, `api.meta.ai:443`. Every attempt is logged. Before each online run a probe checks that the proxy refuses another name, an IP literal and plain HTTP. | The box keeps a private network namespace. What Muse sends to that host still leaves the machine by design. |
+| Credential | The API key enters the box through a pipe, and tests with a canary key check that it never appears in arguments, the environment or logs. | The key is stored for use inside the box. This is not a vault. |
+| First real run | One run with a harmless prompt in an empty workspace. It exited 0, and the run phase of the egress log shows 4 tunnels, all to the allowed host, and nothing else. | One run only, in contributor mode. It executed no shell command, so Muse's inner sandbox nested in the box remains unproven. |
+
+| Field | Value |
+|---|---|
+| Inspected source ref | `main` at `1c811346f13fdc17e27c7318976ae420469a8333`, 2026-11-07 |
+| Executed check | `muse-box verify` on 2026-11-07: host, pins, settings and the box checked without starting Muse |
+| Result | PASS, exit code 0: 4 pins match, 55 probe checks pass, 1 host path check vacuous |
+| Source-reported | A test suite of 363 checks, 0 failed and 2 vacuous, and the real run, as recorded in the phase 2 and 3 pull request; not re-run for this update |
+| Not executed | Any new run against Meta's online service |
+
+Further runs against the online service need separate approval.
