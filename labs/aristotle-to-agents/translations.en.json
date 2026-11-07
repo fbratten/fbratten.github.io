@@ -693,7 +693,7 @@
   "source_fingerprint_method": "SHA-256 over exact UTF-8 source bytes; index.html canonicalizes each FB block to its opening marker. Reviewed source changes require explicit translation review and manual fingerprint updates.",
   "source_sha256": {
     "graph.json": "5f13509ba76e7b2361e1f7892653e36a536d29e993759dd055daf565c813d3e7",
-    "app.js": "c93acdb1f10aad9455805e9c4f90dca6285c90ae78ee0d0d1897892dc5319694",
+    "app.js": "1d8d09b3fcae0d411739c044eee9104b0afd3830757b39a208b99c7c07ea43fa",
     "model.js": "80407735c1db2aa2363612cc683fe30bf8a0b5f4458c1e0fdf380c76d1e461a6",
     "index.html": "a61118798a8a16e1bd124eeaaa0ff3491168ecdfd76a70bd6b8d113f46557485"
   }

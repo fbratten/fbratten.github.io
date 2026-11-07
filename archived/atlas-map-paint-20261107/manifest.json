@@ -1,0 +1,39 @@
+{
+  "observed_at": "2026-11-07",
+  "base_commit": "c85cb0216781d2a4e038ea5e79ca933310257391",
+  "records": [
+    {
+      "original": "labs/aristotle-to-agents/app.js",
+      "archive": "archived/atlas-map-paint-20261107/originals/labs/aristotle-to-agents/app.js.txt",
+      "owner": "fbratten/fbratten.github.io",
+      "base_commit": "c85cb0216781d2a4e038ea5e79ca933310257391",
+      "git_blob_sha1": "fd7ea682ff92275d472f23d9e4dbcd909600abd6",
+      "sha256": "c93acdb1f10aad9455805e9c4f90dca6285c90ae78ee0d0d1897892dc5319694",
+      "reason": "Preserve the pre-fix source before repainting the SVG after moving its workspace between the page and native dialog.",
+      "reference_audit": "No live references retargeted. These are byte-identical preservation copies, not live application files.",
+      "restore": "Read this original at base_commit or copy the archived bytes through a new branch and PR; do not rewrite history."
+    },
+    {
+      "original": "labs/aristotle-to-agents/en/app.js",
+      "archive": "archived/atlas-map-paint-20261107/originals/labs/aristotle-to-agents/en/app.js.txt",
+      "owner": "fbratten/fbratten.github.io",
+      "base_commit": "c85cb0216781d2a4e038ea5e79ca933310257391",
+      "git_blob_sha1": "cb4019c4b02c59bf7e8d50b92620061568c61531",
+      "sha256": "51435d5dcaa1e78a7e31f78c704a9d61b503efed0c1433b77640813615534b86",
+      "reason": "Preserve the pre-fix source before repainting the SVG after moving its workspace between the page and native dialog.",
+      "reference_audit": "No live references retargeted. These are byte-identical preservation copies, not live application files.",
+      "restore": "Read this original at base_commit or copy the archived bytes through a new branch and PR; do not rewrite history."
+    },
+    {
+      "original": "labs/aristotle-to-agents/translations.en.json",
+      "archive": "archived/atlas-map-paint-20261107/originals/labs/aristotle-to-agents/translations.en.json.txt",
+      "owner": "fbratten/fbratten.github.io",
+      "base_commit": "c85cb0216781d2a4e038ea5e79ca933310257391",
+      "git_blob_sha1": "55dd85147f7baa1015dac356c8ad75d127c65a3a",
+      "sha256": "a1c10e5d724c2448a2342d33f4bc48c2e1cdb93d73befa877b53573fc31fd5ef",
+      "reason": "Preserve the pre-fix source before repainting the SVG after moving its workspace between the page and native dialog.",
+      "reference_audit": "No live references retargeted. These are byte-identical preservation copies, not live application files.",
+      "restore": "Read this original at base_commit or copy the archived bytes through a new branch and PR; do not rewrite history."
+    }
+  ]
+}
