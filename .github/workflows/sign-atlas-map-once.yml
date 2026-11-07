@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: d7fad4f18b0d84223d6c68d987d4e8e834c242a8
+          ref: d2852a6dbd656257bf3a84f5f9b8bbff80ca02d8
           persist-credentials: false
       - name: Sign and verify the exact reviewed tree
         env:
@@ -26,8 +26,8 @@ jobs:
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
           base="c85cb0216781d2a4e038ea5e79ca933310257391"
-          source="d7fad4f18b0d84223d6c68d987d4e8e834c242a8"
-          tree="3675e3d0e6ce7e98812d74930e4543dc031b675e"
+          source="d2852a6dbd656257bf3a84f5f9b8bbff80ca02d8"
+          tree="ee4eacff09f510a13b19cd27b844434c3e4fb664"
           target="chatgpt/atlas-map-paint-20261107"
           paths=["archived/atlas-map-paint-20261107/README.md","archived/atlas-map-paint-20261107/manifest.json","archived/atlas-map-paint-20261107/originals/labs/aristotle-to-agents/app.js.txt","archived/atlas-map-paint-20261107/originals/labs/aristotle-to-agents/en/app.js.txt","archived/atlas-map-paint-20261107/originals/labs/aristotle-to-agents/translations.en.json.txt","labs/aristotle-to-agents/app.js","labs/aristotle-to-agents/en/app.js","labs/aristotle-to-agents/translations.en.json"]
           git=lambda *a:subprocess.check_output(["git",*a],text=True).strip()
@@ -43,13 +43,13 @@ jobs:
               with urllib.request.urlopen(req,timeout=90) as response:return json.load(response)
           assert api("https://api.github.com/repos/"+repo+"/branches/main")["commit"]["sha"]==base,"Canonical main moved"
           additions=[{"path":p,"contents":base64.b64encode(Path(p).read_bytes()).decode()} for p in paths]
-          body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"Redraw atlas after changing its viewport","body":"Exact reviewed source projection; original public files preserved, no deletions or history rewriting."},"expectedHeadOid":base,"fileChanges":{"additions":additions}}}}
+          body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"Redraw atlas after changing its viewport","body":"Exact reviewed source projection; original public files preserved, no deletions or history rewriting."},"expectedHeadOid":"a99f1dd480e14546f4b69debe008bea79e2e969a","fileChanges":{"additions":additions}}}}
           result=api("https://api.github.com/graphql",body)
           assert not result.get("errors"),result.get("errors")
           sha=result["data"]["createCommitOnBranch"]["commit"]["oid"]
           commit=api("https://api.github.com/repos/"+repo+"/commits/"+sha)
           assert commit["commit"]["verification"]["verified"],"Signature not verified"
-          assert [p["sha"] for p in commit["parents"]]==[base],"Parent differs"
+          assert [p["sha"] for p in commit["parents"]]==["a99f1dd480e14546f4b69debe008bea79e2e969a"],"Parent differs"
           assert commit["commit"]["tree"]["sha"]==tree,"Final tree differs"
           comparison=api("https://api.github.com/repos/"+repo+"/compare/"+base+"..."+sha)
           assert {f["filename"] for f in comparison["files"]}==set(paths),"Final pathset differs"
