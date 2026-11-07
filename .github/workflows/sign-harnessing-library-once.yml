@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: f8aff246a5b22a608f412ee6f2d9e6306e235a38
+          ref: abdf6ad030fc62765cf830353f232829e9474595
           persist-credentials: false
       - name: Sign and verify the mobile reading refinement
         env:
@@ -25,17 +25,17 @@ jobs:
           import os,json,base64,subprocess,urllib.request,time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
-          source="f8aff246a5b22a608f412ee6f2d9e6306e235a38"
-          tree="7747ed5529e7182952f35ee232ccda268caf64a9"
-          base="16ee895fa9bf9fe1ad821a412925849db2db0e85"
+          source="abdf6ad030fc62765cf830353f232829e9474595"
+          tree="44a25478af04c46199192692bfbb9eaf45ad4d29"
+          base="e2c991b1c39f1ad0244cf0bf41bd0353d191748d"
           target="chatgpt/harnessing-library-signed-20261107"
-          paths=["harnessing/index.html","tests/harnessing_library_page.mjs","harnessing/README.md"]
+          paths=["harnessing/index.html","tests/harnessing_library_page.mjs"]
           git=lambda *a:subprocess.check_output(["git",*a],text=True).strip()
           assert os.environ["GITHUB_REPOSITORY"]==repo
           assert os.environ["GITHUB_REF"]=="refs/heads/chatgpt/harnessing-library-signing-20261107"
           assert git("rev-parse","HEAD")==source
           assert git("rev-parse","HEAD^{tree}")==tree
-          assert len(paths)==len(set(paths))==3
+          assert len(paths)==len(set(paths))==2
           def api(url,body=None):
               headers={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json","User-Agent":"harnessing-library-signed-transfer"}
               if body is not None:headers["Content-Type"]="application/json"
