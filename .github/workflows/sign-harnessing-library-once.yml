@@ -15,9 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: f34378b80854481f9e46ef440a70ffd6e266ff5a
+          ref: e38ea9e854de6e7a2a45f25bbd44a249b9de0125
           persist-credentials: false
-      - name: Sign and verify the exact 18-file projection
+      - name: Sign and verify the mobile reading refinement
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -25,24 +25,24 @@ jobs:
           import os,json,base64,subprocess,urllib.request,time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
-          source="f34378b80854481f9e46ef440a70ffd6e266ff5a"
+          source="e38ea9e854de6e7a2a45f25bbd44a249b9de0125"
           tree="e1a16b259c7fa901ce70e0d899fec7f9f0a58ab8"
-          base="c4a7fb61cbb3ba95e4b52bb6254292743f9343fd"
+          base="67e46c1742f8c6aae00a352e22503ab6f2a3d744"
           target="chatgpt/harnessing-library-signed-20261107"
-          paths=["sitemap.xml","tests/harnessing_library_page.mjs","tests/harnessing_library_contract.py","harnessing/index.html","harnessing/README.md","scripts/build_preview.py","scripts/build_navigation.py","all-pages/index.html","methods/index.html","archived/harnessing-publication-20261107/manifest.json","archived/harnessing-publication-20261107/README.md","archived/harnessing-publication-20261107/sitemap.xml.txt","archived/harnessing-publication-20261107/scripts/build_navigation.py.txt","archived/harnessing-publication-20261107/scripts/build_preview.py.txt","archived/harnessing-publication-20261107/all-pages/index.html.txt","archived/harnessing-publication-20261107/methods/index.html.txt","archived/harnessing-publication-20261107/.github/workflows/pages-browser-check.yml.txt",".github/workflows/pages-browser-check.yml"]
+          paths=["harnessing/index.html","tests/harnessing_library_page.mjs","harnessing/README.md"]
           git=lambda *a:subprocess.check_output(["git",*a],text=True).strip()
           assert os.environ["GITHUB_REPOSITORY"]==repo
           assert os.environ["GITHUB_REF"]=="refs/heads/chatgpt/harnessing-library-signing-20261107"
           assert git("rev-parse","HEAD")==source
           assert git("rev-parse","HEAD^{tree}")==tree
-          assert len(paths)==len(set(paths))==18
+          assert len(paths)==len(set(paths))==3
           def api(url,body=None):
               headers={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json","User-Agent":"harnessing-library-signed-transfer"}
               if body is not None:headers["Content-Type"]="application/json"
               req=urllib.request.Request(url,headers=headers,data=json.dumps(body).encode() if body is not None else None,method="POST" if body is not None else "GET")
               with urllib.request.urlopen(req,timeout=90) as r:return json.load(r)
-          assert api("https://api.github.com/repos/"+repo+"/branches/main")["commit"]["sha"]==base,"Canonical main moved"
-          body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"Publish interactive Harnessing Library","body":"Exact reviewed 18-file projection. All source archives and existing routes preserved."},"expectedHeadOid":base,"fileChanges":{"additions":[{"path":p,"contents":base64.b64encode(Path(p).read_bytes()).decode()} for p in paths]}}}}
+          assert api("https://api.github.com/repos/"+repo+"/branches/main")["commit"]["sha"]=="c4a7fb61cbb3ba95e4b52bb6254292743f9343fd","Canonical main moved"
+          body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"Show the selected method directly on mobile","body":"Exact reviewed 18-file projection. All source archives and existing routes preserved."},"expectedHeadOid":base,"fileChanges":{"additions":[{"path":p,"contents":base64.b64encode(Path(p).read_bytes()).decode()} for p in paths]}}}}
           result=api("https://api.github.com/graphql",body)
           assert not result.get("errors"),result.get("errors")
           sha=result["data"]["createCommitOnBranch"]["commit"]["oid"]
@@ -54,7 +54,7 @@ jobs:
           assert commit["commit"]["tree"]["sha"]==tree,"Tree differs"
           assert [p["sha"] for p in commit["parents"]]==[base],"Parent differs"
           cumulative=api("https://api.github.com/repos/"+repo+"/compare/c4a7fb61cbb3ba95e4b52bb6254292743f9343fd..."+sha)
-          assert {f["filename"] for f in cumulative["files"]}==set(paths),"Pathset differs"
+          assert {f["filename"] for f in cumulative["files"]}==set(["sitemap.xml","tests/harnessing_library_page.mjs","tests/harnessing_library_contract.py","harnessing/index.html","harnessing/README.md","scripts/build_preview.py","scripts/build_navigation.py","all-pages/index.html","methods/index.html","archived/harnessing-publication-20261107/manifest.json","archived/harnessing-publication-20261107/README.md","archived/harnessing-publication-20261107/sitemap.xml.txt","archived/harnessing-publication-20261107/scripts/build_navigation.py.txt","archived/harnessing-publication-20261107/scripts/build_preview.py.txt","archived/harnessing-publication-20261107/all-pages/index.html.txt","archived/harnessing-publication-20261107/methods/index.html.txt","archived/harnessing-publication-20261107/.github/workflows/pages-browser-check.yml.txt",".github/workflows/pages-browser-check.yml"]),"Pathset differs"
           assert all(f["status"] in ["added","modified"] for f in commit["files"]),"Unexpected removal or rename"
-          print("PASS: signed identical 18-file tree, exact parent, no removed files",sha)
+          print("PASS: signed identical refined tree, exact parent, no removed files",sha)
           PY
