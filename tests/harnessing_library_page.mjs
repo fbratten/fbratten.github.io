@@ -25,7 +25,12 @@ try {
     for(const m of methods){
       await page.locator(`[data-method-choice="${m.id}"]`).click();
       assert.equal(await page.locator('#method-title').textContent(),m.name);
-      await page.waitForFunction(()=>{const r=document.querySelector('#method-title').getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;});
+      try {
+        await page.waitForFunction(()=>{const r=document.querySelector('#method-title').getBoundingClientRect();return r.top>=0&&r.bottom<=innerHeight;});
+      } catch (error) {
+        const bounds=await page.locator('#method-title').evaluate(el=>({top:el.getBoundingClientRect().top,bottom:el.getBoundingClientRect().bottom,height:innerHeight}));
+        throw new Error(`${width}px ${m.id}: selected heading outside viewport ${JSON.stringify(bounds)}`,{cause:error});
+      }
       assert.equal(await page.locator('#method-reading .workplace-example').count(),2);
     }
     await page.locator('#method-query').fill('no-such-method-5981');
