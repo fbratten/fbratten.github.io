@@ -6,7 +6,7 @@ import re
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
-PAGES = ['/', '/projects/', '/methods/', '/labs/', '/articles/', '/blueprint-ai-studio/', '/all-pages/', '/404.html']
+PAGES = ['/', '/projects/', '/methods/', '/harnessing/', '/labs/', '/articles/', '/blueprint-ai-studio/', '/all-pages/', '/404.html']
 pages = {}
 css = (ROOT / 'assets/site.css').read_text()
 js = (ROOT / 'assets/site.js').read_text()

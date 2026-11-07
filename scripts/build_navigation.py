@@ -18,7 +18,7 @@ ORIGIN = "https://fbratten.github.io"
 NAV = [("Home", "/"), ("Projects", "/projects/"), ("Methods & Labs", "/methods/"),
        ("Writing", "/articles/"), ("Build log", "/build-log/"), ("About", "/#about")]
 LABELS = {"/": "Home", "/projects/": "Projects", "/methods/": "Methods & Labs",
-          "/labs/": "Labs", "/articles/": "Writing",
+          "/harnessing/": "Harnessing Library", "/labs/": "Labs", "/articles/": "Writing",
           "/labs/testing-architecture/": "Testing architecture",
           "/labs/fault-injection/": "Fault injection & test gates",
           "/labs/ai-evaluation-ci-cd/": "AI evaluation & CI/CD",
@@ -55,7 +55,7 @@ def path_url(path):
 
 
 def section_for(url):
-    if url.startswith("/methods/") or url.startswith("/labs/"): return "/methods/"
+    if url.startswith("/methods/") or url.startswith("/labs/") or url == "/harnessing/": return "/methods/"
     if url.startswith("/blueprint-ai-studio/labs/"): return "/methods/"
     if url in ("/blueprint-ai-studio/", "/mads/", "/adaptivearts-ai/", "/gate-monitor/", "/vertex/", "/worktrace/", "/broker-lane-sandbox/"):
         return "/projects/"
@@ -87,7 +87,7 @@ def breadcrumbs(url):
         parts += [("Methods & Labs", "/methods/"), ("Labs", "/labs/")]
     elif url.startswith("/methods/") and url != "/methods/":
         parts.append(("Methods & Labs", "/methods/"))
-    elif url == "/labs/":
+    elif url in ("/labs/", "/harnessing/"):
         parts.append(("Methods & Labs", "/methods/"))
     elif section_for(url) == "/projects/" and url != "/projects/":
         parts.append(("Projects", "/projects/"))
@@ -145,7 +145,7 @@ def resolve_progress(selection=None, public_log=None):
 def directory_html():
     groups = [
         ("Start", [("/", "Home"), ("/projects/", "Projects"), ("/methods/", "Methods & Labs"),
-                   ("/labs/", "Lab directory"), ("/articles/", "Writing"), ("/build-log/", "Build log")]),
+                   ("/harnessing/", "Harnessing Library"), ("/labs/", "Lab directory"), ("/articles/", "Writing"), ("/build-log/", "Build log")]),
         ("Interactive AI testing labs", [("/labs/testing-architecture/", "Testing architecture"),
                                          ("/labs/fault-injection/", "Fault injection & test gates"),
                                          ("/labs/ai-evaluation-ci-cd/", "AI evaluation & CI/CD"),
