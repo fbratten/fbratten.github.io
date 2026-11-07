@@ -91,7 +91,7 @@
   $('zoom-fit').onclick=()=>{const box=$('graph-scroll'),vb=$('graph').viewBox.baseVal;zoom=Math.max(.2,Math.min(1,(box.clientWidth-20)/vb.width,(box.clientHeight-20)/vb.height));draw();box.scrollTo(0,0);};
   const workspace=document.querySelector('.atlas-workspace'),dialog=$('map-dialog'),slot=document.createComment('map workspace position');
   workspace.before(slot);
-  const repaintMap=()=>requestAnimationFrame(()=>{$('graph').getBoundingClientRect();draw();});
+  const repaintMap=()=>requestAnimationFrame(()=>requestAnimationFrame(draw));
   $('expand-map').onclick=()=>{$('map-dialog-content').append(workspace);dialog.showModal();repaintMap();$('close-map').focus();};
   $('close-map').onclick=()=>dialog.close();
   dialog.addEventListener('close',()=>{slot.after(workspace);repaintMap();$('expand-map').focus();});
