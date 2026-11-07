@@ -1,0 +1,38 @@
+{
+  "date": "2026-11-07",
+  "owner": "fbratten",
+  "base": "c4a7fb61cbb3ba95e4b52bb6254292743f9343fd",
+  "reason": "Preserve public source before the additive Harnessing Library integration.",
+  "files": [
+    {
+      "original": "methods/index.html",
+      "archive": "archived/harnessing-publication-20261107/methods/index.html.txt",
+      "sha256": "21677900e4cfb5bf7bcfaf7823b0f4aff3261d578ec0bccbfe5db9743de1463d"
+    },
+    {
+      "original": "scripts/build_navigation.py",
+      "archive": "archived/harnessing-publication-20261107/scripts/build_navigation.py.txt",
+      "sha256": "9d12b576dc303789e32ea11c2c73dc11875aadf6b8f9ebefb0e647baf4cea931"
+    },
+    {
+      "original": "scripts/build_preview.py",
+      "archive": "archived/harnessing-publication-20261107/scripts/build_preview.py.txt",
+      "sha256": "382b495e942b3af4be72a35db21d09b4c7f16f66af4c1ee1d45c52f7e563f2dc"
+    },
+    {
+      "original": ".github/workflows/pages-browser-check.yml",
+      "archive": "archived/harnessing-publication-20261107/.github/workflows/pages-browser-check.yml.txt",
+      "sha256": "aaf7ec58876a6307257c234816551c2b43b7f148676f654ecede22c3129856ca"
+    },
+    {
+      "original": "all-pages/index.html",
+      "archive": "archived/harnessing-publication-20261107/all-pages/index.html.txt",
+      "sha256": "8153e47e1582785b286a71b6d0934b8392580583145ed839823d3a1ec3694670"
+    },
+    {
+      "original": "sitemap.xml",
+      "archive": "archived/harnessing-publication-20261107/sitemap.xml.txt",
+      "sha256": "cfdc5fcb6713b92ea64829586b39fc2d0c2d5beb166c5fe6061ca2aa5f4a04f4"
+    }
+  ]
+}
