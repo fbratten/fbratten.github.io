@@ -8,8 +8,8 @@ pipeline views, four first-party field notes and six small interactive labs.
 CARD and POINTER have independent entries and responsibilities.
 
 The full method selector uses ordinary document scrolling at desktop and mobile
-widths. Search and purpose filters are optional. Selecting a method returns to the reading section; keyboard focus follows
-the selected heading.
+widths. Search and purpose filters are optional. Selecting a method returns to the reading section on desktop and directly to
+the reading card on mobile; keyboard focus follows the selected heading.
 
 The terminal cases and workflow applications are authored scenarios. External
 field notes retain their own source attribution. This page publishes explanatory
