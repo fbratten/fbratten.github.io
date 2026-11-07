@@ -52,7 +52,7 @@ try{
    assert(!/[åäöÅÄÖ]/.test(await page.locator('#lab').innerText()),'Untranslated English lab '+view);
   }
   await page.locator('#all-nodes').check();assert.equal(await page.locator('#graph .node').count(),74);
-  assert(!/Argumentation \/ retorik|Språkmodeller|Verifiering \/ kontroll/.test(await page.locator('#graph').innerText()),'Untranslated node/category text');
+  assert(!/Argumentation \/ retorik|Språkmodeller|Verifiering \/ kontroll/.test(await page.locator('#graph').textContent()),'Untranslated node/category text');
   assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1));
   assert.deepEqual(errors,[]);await page.close();
  }
