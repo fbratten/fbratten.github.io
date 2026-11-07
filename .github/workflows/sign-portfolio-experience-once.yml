@@ -1,0 +1,68 @@
+name: One-time portfolio experience signed transfer
+on:
+  push:
+    branches: [chatgpt/portfolio-experience-signing-20261107]
+permissions:
+  contents: write
+concurrency:
+  group: portfolio-experience-signed-20261107
+  cancel-in-progress: false
+jobs:
+  sign-reviewed-tree:
+    if: github.repository == 'fbratten/fbratten.github.io' && github.ref == 'refs/heads/chatgpt/portfolio-experience-signing-20261107'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: 1e24ea251749ac8a5bc90a3d6f2be02b3fad6483
+          persist-credentials: false
+      - name: Sign bounded batches and verify the exact reviewed tree
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python3 - <<'PY'
+          import os,json,base64,subprocess,urllib.request,time
+          from pathlib import Path
+          repo="fbratten/fbratten.github.io"
+          source="1e24ea251749ac8a5bc90a3d6f2be02b3fad6483"
+          tree="a960963515b4d5619ab27ab7bb36abe47bde1382"
+          base="5b961ed6d4f14eb8404b3bf7db40953577079578"
+          target="chatgpt/portfolio-experience-20261107"
+          paths=[".github/workflows/pages-browser-check.yml","404.html","adaptivearts-ai/index.html","all-pages/index.html","archived/portfolio-experience-20261107/.github/workflows/pages-browser-check.yml.txt","archived/portfolio-experience-20261107/404.html.txt","archived/portfolio-experience-20261107/README.md","archived/portfolio-experience-20261107/adaptivearts-ai/index.html.txt","archived/portfolio-experience-20261107/all-pages/index.html.txt","archived/portfolio-experience-20261107/articles/index.html.txt","archived/portfolio-experience-20261107/assets/site.css.txt","archived/portfolio-experience-20261107/assets/site.js.txt","archived/portfolio-experience-20261107/blueprint-ai-studio/index.html.txt","archived/portfolio-experience-20261107/blueprint-ai-studio/labs/rules-authority-enforcement/index.html.txt","archived/portfolio-experience-20261107/broker-lane-sandbox/index.html.txt","archived/portfolio-experience-20261107/build-log/index.html.txt","archived/portfolio-experience-20261107/gate-monitor/index.html.txt","archived/portfolio-experience-20261107/harnessing/index.html.txt","archived/portfolio-experience-20261107/index.html.txt","archived/portfolio-experience-20261107/labs/ai-evaluation-ci-cd/index.html.txt","archived/portfolio-experience-20261107/labs/aristotle-to-agents/README.md.txt","archived/portfolio-experience-20261107/labs/aristotle-to-agents/app.js.txt","archived/portfolio-experience-20261107/labs/aristotle-to-agents/index.html.txt","archived/portfolio-experience-20261107/labs/aristotle-to-agents/style.css.txt","archived/portfolio-experience-20261107/labs/fault-injection/index.html.txt","archived/portfolio-experience-20261107/labs/github-actions/index.html.txt","archived/portfolio-experience-20261107/labs/index.html.txt","archived/portfolio-experience-20261107/labs/mutation-gate/index.html.txt","archived/portfolio-experience-20261107/labs/testing-architecture/index.html.txt","archived/portfolio-experience-20261107/mads/index.html.txt","archived/portfolio-experience-20261107/manifest.json","archived/portfolio-experience-20261107/methods/5pp/index.html.txt","archived/portfolio-experience-20261107/methods/aics/index.html.txt","archived/portfolio-experience-20261107/methods/capability-gap/index.html.txt","archived/portfolio-experience-20261107/methods/card-pointer/index.html.txt","archived/portfolio-experience-20261107/methods/cbe-ix/index.html.txt","archived/portfolio-experience-20261107/methods/cbe/index.html.txt","archived/portfolio-experience-20261107/methods/csr/index.html.txt","archived/portfolio-experience-20261107/methods/dial4/index.html.txt","archived/portfolio-experience-20261107/methods/dial4p-possibility/index.html.txt","archived/portfolio-experience-20261107/methods/dial4plus/index.html.txt","archived/portfolio-experience-20261107/methods/dialectic/index.html.txt","archived/portfolio-experience-20261107/methods/dialogue-lifecycle/index.html.txt","archived/portfolio-experience-20261107/methods/gdsa/index.html.txt","archived/portfolio-experience-20261107/methods/hermeneutic-didactic/index.html.txt","archived/portfolio-experience-20261107/methods/index.html.txt","archived/portfolio-experience-20261107/methods/ipb/index.html.txt","archived/portfolio-experience-20261107/methods/orbit/index.html.txt","archived/portfolio-experience-20261107/methods/pisd/index.html.txt","archived/portfolio-experience-20261107/methods/rigvedan/index.html.txt","archived/portfolio-experience-20261107/methods/solutions/index.html.txt","archived/portfolio-experience-20261107/methods/sorr/index.html.txt","archived/portfolio-experience-20261107/methods/srcb/index.html.txt","archived/portfolio-experience-20261107/projects/index.html.txt","archived/portfolio-experience-20261107/scripts/build_navigation.py.txt","archived/portfolio-experience-20261107/sitemap.xml.txt","archived/portfolio-experience-20261107/tests/navigation_page.mjs.txt","archived/portfolio-experience-20261107/vertex/index.html.txt","archived/portfolio-experience-20261107/worktrace/index.html.txt","articles/index.html","assets/site.css","assets/site.js","blueprint-ai-studio/index.html","blueprint-ai-studio/labs/rules-authority-enforcement/index.html","broker-lane-sandbox/index.html","build-log/index.html","gate-monitor/index.html","harnessing/index.html","index.html","labs/ai-evaluation-ci-cd/index.html","labs/aristotle-to-agents/README.md","labs/aristotle-to-agents/app.js","labs/aristotle-to-agents/en/app.js","labs/aristotle-to-agents/en/data.js","labs/aristotle-to-agents/en/graph.json","labs/aristotle-to-agents/en/index.html","labs/aristotle-to-agents/en/model.js","labs/aristotle-to-agents/index.html","labs/aristotle-to-agents/style.css","labs/aristotle-to-agents/translations.en.json","labs/fault-injection/index.html","labs/github-actions/index.html","labs/index.html","labs/mutation-gate/index.html","labs/testing-architecture/index.html","mads/index.html","methods/5pp/index.html","methods/aics/index.html","methods/capability-gap/index.html","methods/card-pointer/index.html","methods/cbe-ix/index.html","methods/cbe/index.html","methods/csr/index.html","methods/dial4/index.html","methods/dial4p-possibility/index.html","methods/dial4plus/index.html","methods/dialectic/index.html","methods/dialogue-lifecycle/index.html","methods/gdsa/index.html","methods/hermeneutic-didactic/index.html","methods/index.html","methods/ipb/index.html","methods/orbit/index.html","methods/pisd/index.html","methods/rigvedan/index.html","methods/solutions/index.html","methods/sorr/index.html","methods/srcb/index.html","projects/index.html","scripts/build_atlas_english.py","scripts/build_navigation.py","sitemap.xml","tests/atlas_localization_contract.cjs","tests/navigation_page.mjs","tests/portfolio_experience_page.mjs","vertex/index.html","worktrace/index.html"]
+          git=lambda *a:subprocess.check_output(["git",*a],text=True).strip()
+          assert os.environ["GITHUB_REPOSITORY"]==repo
+          assert os.environ["GITHUB_REF"]=="refs/heads/chatgpt/portfolio-experience-signing-20261107"
+          assert git("rev-parse","HEAD")==source
+          assert git("rev-parse","HEAD^{tree}")==tree
+          assert len(paths)==len(set(paths))==117
+          def api(url,body=None):
+              headers={"Authorization":"Bearer "+os.environ["GH_TOKEN"],"Accept":"application/vnd.github+json","User-Agent":"portfolio-experience-signed-transfer"}
+              if body is not None:headers["Content-Type"]="application/json"
+              req=urllib.request.Request(url,headers=headers,data=json.dumps(body).encode() if body is not None else None,method="POST" if body is not None else "GET")
+              with urllib.request.urlopen(req,timeout=90) as r:return json.load(r)
+          assert api("https://api.github.com/repos/"+repo+"/branches/main")["commit"]["sha"]==base,"Canonical main moved"
+          batches=[];batch=[];size=0
+          for p in paths:
+              data=Path(p).read_bytes()
+              if batch and (size+len(data)>400000 or len(batch)>=25):
+                  batches.append(batch);batch=[];size=0
+              batch.append({"path":p,"contents":base64.b64encode(data).decode()});size+=len(data)
+          if batch:batches.append(batch)
+          parent=base
+          for index,additions in enumerate(batches):
+              body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"Portfolio experience: reviewed projection "+str(index+1)+"/"+str(len(batches)),"body":"Bounded source transfer; original public files preserved, no deletions or history rewriting."},"expectedHeadOid":parent,"fileChanges":{"additions":additions}}}}
+              result=api("https://api.github.com/graphql",body)
+              assert not result.get("errors"),result.get("errors")
+              sha=result["data"]["createCommitOnBranch"]["commit"]["oid"]
+              commit=api("https://api.github.com/repos/"+repo+"/commits/"+sha)
+              assert commit["commit"]["verification"]["verified"],"Signature not verified"
+              assert [p["sha"] for p in commit["parents"]]==[parent],"Parent differs"
+              assert all(f["status"] in ["added","modified"] for f in commit["files"]),"Unexpected removal"
+              parent=sha
+          assert commit["commit"]["tree"]["sha"]==tree,"Final tree differs"
+          cumulative=api("https://api.github.com/repos/"+repo+"/compare/"+base+"..."+parent)
+          assert {f["filename"] for f in cumulative["files"]}==set(paths),"Final pathset differs"
+          assert all(f["status"] in ["added","modified"] for f in cumulative["files"]),"Unexpected deletion"
+          print("PASS: identical reviewed tree; all signed commits; exact pathset; no deletion",parent)
+          PY
