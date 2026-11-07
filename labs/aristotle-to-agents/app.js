@@ -13,12 +13,13 @@
   function el(tag,attrs={},text){const e=document.createElementNS('http://www.w3.org/2000/svg',tag);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,v);if(text!==undefined)e.textContent=text;return e;}
   function keyClick(e,fn){e.addEventListener('click',fn);e.addEventListener('keydown',k=>{if(k.key==='Enter'||k.key===' '){k.preventDefault();fn();}});}
   function draw(){
+    document.querySelector('.atlas-workspace').classList.toggle('has-selection',Boolean(selected||selectedEdge));
     const columns=cols(),ids=viewIds(),edges=edgesFor(ids),q=$('node-search').value.trim().toLocaleLowerCase('sv');
     const matches=new Set(ids.filter(id=>{const n=nodes.get(id);return !q||`${n.label} ${n.beskrivning}`.toLocaleLowerCase('sv').includes(q);}));
     const relevant=new Set(matches);if(q)for(const e of edges)if(matches.has(e.källa)||matches.has(e.mål)){relevant.add(e.källa);relevant.add(e.mål);}
     const near=new Set(selected?[selected]:ids);if(selected)for(const e of edges)if(e.källa===selected||e.mål===selected){near.add(e.källa);near.add(e.mål);}
     const width=columns.length*280+30,height=Math.max(...columns.map(c=>c.nodes.length))*100+80,pos=new Map();
-    const svg=$('graph');svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.style.width=`${zoom*100}%`;svg.style.minWidth=`${$('all-nodes').checked?width*zoom:860*zoom}px`;
+    const svg=$('graph');svg.replaceChildren();svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.style.width=`${width*zoom}px`;svg.style.minWidth=`${width*zoom}px`;
     const title=el('title',{},`${view.title}: ${ids.length} begrepp och ${edges.length} relationer`);svg.append(title);
     const defs=el('defs');for(const [type,t]of Object.entries(D.typer)){const m=el('marker',{id:`arrow-${type}`,viewBox:'0 0 10 10',refX:9,refY:5,markerWidth:6,markerHeight:6,orient:'auto-start-reverse'});m.append(el('path',{d:'M 0 0 L 10 5 L 0 10 z',fill:t.color}));defs.append(m);}svg.append(defs);
     columns.forEach((c,i)=>{svg.append(el('text',{x:i*280+30,y:30,fill:'#c1cde0','font-size':12,'font-weight':600},c.title));c.nodes.forEach((id,j)=>pos.set(id,{x:i*280+20,y:55+j*100}));});
@@ -34,8 +35,8 @@
     for(const id of ids){const p=pos.get(id),n=nodes.get(id),c=cat(id),lines=wrap(n.label);const dim=!relevant.has(id)||selected&&!near.has(id);
       const g=el('g',{class:`node${selected===id?' selected':''}${dim?' dim':''}`,transform:`translate(${p.x},${p.y})`,tabindex:0,role:'button','aria-label':`${n.label}. Visa definition och samband.`,'data-node':id});
       g.append(el('title',{},n.beskrivning));g.append(el('rect',{width:242,height:78,rx:10,fill:c.fill,stroke:c.color,'stroke-width':1.3}));
-      const text=el('text',{x:13,y:lines.length>2?19:25,fill:'#f0f4fb','font-size':12.5,'font-weight':600});lines.slice(0,3).forEach((line,j)=>text.append(el('tspan',{x:13,dy:j?16:0},line)));g.append(text);
-      if(lines.length<=2)g.append(el('text',{x:13,y:64,fill:'#bbc8db','font-size':9.5},n.period||c.legend));keyClick(g,()=>showNode(id));svg.append(g);
+      const text=el('text',{x:13,y:lines.length>2?19:25,fill:'#f0f4fb','font-size':15,'font-weight':600});lines.slice(0,3).forEach((line,j)=>text.append(el('tspan',{x:13,dy:j?16:0},line)));g.append(text);
+      if(lines.length<=2)g.append(el('text',{x:13,y:64,fill:'#bbc8db','font-size':11},n.period||c.legend));keyClick(g,()=>showNode(id));svg.append(g);
     }
     $('graph-count').textContent=q?`${matches.size} sökträffar · ${ids.length} noder i vyn`:`${ids.length} noder · ${edges.length} relationer · klicka för att utforska`;
     $('node-catalog').innerHTML=ids.map(id=>`<button type="button" data-catalog="${esc(id)}">${esc(nodes.get(id).label)}</button>`).join(' ');
@@ -44,15 +45,18 @@
   function showNode(id){selected=id;selectedEdge=null;draw();const n=nodes.get(id),relations=D.kanter.filter(e=>e.källa===id||e.mål===id);
     $('node-detail').innerHTML=`<span class="badge">${esc(cat(id).legend)}</span><h3>${esc(n.label)}</h3><p>${esc(n.beskrivning)}</p><p class="muted">${esc(n.period||'Begrepp utan enskilt årtal')}<br>${esc(n.provenance)}</p><details open><summary>Källor</summary><ul>${sourceLinks(n.källor)}</ul></details><h3 style="margin-top:20px">${relations.length} samband i hela grafen</h3>${relations.map(e=>`<button class="edge-button" type="button" data-edge-id="${e.id}">${esc(nodes.get(e.källa).label)} → ${esc(nodes.get(e.mål).label)}<br><span class="muted">${esc(e.relation)}</span></button>`).join('')}`;
     $('node-detail').querySelectorAll('[data-edge-id]').forEach(b=>b.onclick=()=>showEdge(b.dataset.edgeId));
+    if(matchMedia('(max-width:1100px)').matches)$('node-detail').scrollIntoView({block:'nearest'});
   }
   function showEdge(id){const e=D.kanter.find(e=>e.id===id);selectedEdge=id;selected=null;draw();
     $('node-detail').innerHTML=`<span class="badge">${esc(D.typer[e.typ].label)}</span><h3>${esc(nodes.get(e.källa).label)} → ${esc(nodes.get(e.mål).label)}</h3><p><strong>${esc(e.relation)}</strong></p><p>${esc(D.typer[e.typ].description)}</p><p>${esc(e.förklaring)}</p><p>Originalets bedömning: <strong>${esc(e.grundning)}</strong>.<br>${esc(e.review_status)}.</p><ul>${sourceLinks(e.referenser)}</ul><button class="node-back" data-target="${esc(e.källa)}">Visa startnoden</button> <button class="node-back" data-target="${esc(e.mål)}">Visa målnoden</button>`;
     $('node-detail').querySelectorAll('[data-target]').forEach(b=>b.onclick=()=>showNode(b.dataset.target));
+    if(matchMedia('(max-width:1100px)').matches)$('node-detail').scrollIntoView({block:'nearest'});
   }
   function defaultDetail(){$('node-detail').innerHTML=`<span class="badge">Läs kartan</span><h3>Vad betyder pilen?</h3><p>Välj en nod för definition, källor och alla dess samband. Klicka på en pil för relationens betydelse och grundning.</p><p>Vyn är ett urval. Markera <strong>Visa hela grafen</strong> för att utforska alla 74 begrepp.</p><p>${esc(view.lesson)}</p>`;}
   function setView(id,writeHash=true){view=D.views.find(v=>v.id===id)||D.views[0];selected=selectedEdge=null;zoom=1;agentStep=0;labState={};$('node-search').value='';$('relation-filter').value='all';$('all-nodes').checked=false;
     $('view-title').textContent=view.headline;$('view-intro').textContent=view.intro;$('view-counter').textContent=`Översikt ${D.views.indexOf(view)+1} / 5 · ${view.title}`;
     document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===view.id)));
+    document.querySelectorAll('[data-atlas-language]').forEach(a=>a.hash=view.id);
     if(writeHash)history.replaceState(null,'',`#${view.id}`);draw();defaultDetail();renderLab();
   }
   const select=(id,label,options)=>`<label class="stack-label">${label}<select id="${id}">${options.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></label>`;
@@ -82,7 +86,13 @@
   for(const [id,t]of Object.entries(D.typer)){$('relation-filter').add(new Option(t.label,id));const s=document.createElement('span');s.innerHTML=`<i style="background:${t.color}"></i>${esc(t.label)}`;s.title=t.description;$('legend').append(s);}
   $('node-search').oninput=draw;$('relation-filter').onchange=()=>{selected=selectedEdge=null;draw();defaultDetail();};$('all-nodes').onchange=()=>{selected=selectedEdge=null;zoom=1;draw();defaultDetail();};
   $('clear-focus').onclick=()=>{$('node-search').value='';$('relation-filter').value='all';selected=selectedEdge=null;draw();defaultDetail();};
-  $('zoom-in').onclick=()=>{zoom=Math.min(2.5,zoom+.25);draw();};$('zoom-out').onclick=()=>{zoom=Math.max(.5,zoom-.25);draw();};$('zoom-reset').onclick=()=>{zoom=1;draw();$('graph-scroll').scrollTo(0,0);};
+  $('zoom-in').onclick=()=>{zoom=Math.min(2.5,zoom+.25);draw();};$('zoom-out').onclick=()=>{zoom=Math.max(.2,zoom-.25);draw();};$('zoom-reset').onclick=()=>{zoom=1;draw();$('graph-scroll').scrollTo(0,0);};
+  $('zoom-fit').onclick=()=>{const box=$('graph-scroll'),vb=$('graph').viewBox.baseVal;zoom=Math.max(.2,Math.min(1,(box.clientWidth-20)/vb.width,(box.clientHeight-20)/vb.height));draw();box.scrollTo(0,0);};
+  const workspace=document.querySelector('.atlas-workspace'),dialog=$('map-dialog'),slot=document.createComment('map workspace position');
+  workspace.before(slot);
+  $('expand-map').onclick=()=>{$('map-dialog-content').append(workspace);dialog.showModal();$('close-map').focus();};
+  $('close-map').onclick=()=>dialog.close();
+  dialog.addEventListener('close',()=>{slot.after(workspace);$('expand-map').focus();});
   $('sources').innerHTML=Object.values(D.källor).map(s=>`<article class="atlas-source"><a href="${esc(s.url)}" target="_blank" rel="noopener noreferrer">${esc(s.title)}</a><small>${esc(s.review_status)}</small></article>`).join('');
   $('fallback').hidden=true;$('atlas-app').hidden=false;setView(location.hash.slice(1),false);window.addEventListener('hashchange',()=>setView(location.hash.slice(1),false));
 })();
