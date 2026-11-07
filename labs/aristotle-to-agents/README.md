@@ -60,3 +60,21 @@ Source and content: operator request 2026-11-03, original graph package
 `aristoteles_till_ai_llm_agenter_kunskapsgraf.zip`, and the linked primary sources.
 No private source text, coordination logs, credentials or Library identifiers
 are included in the public projection.
+
++
++## Bilingual reading and map workspace (2026-11-07)
++
++The Swedish route is preserved. `/labs/aristotle-to-agents/en/` provides the
++English variant of the same graph and five experiments. Language links retain
++the selected view. English output is generated from the Swedish sources and
++`translations.en.json` with `python scripts/build_atlas_english.py`; use `--check`
++to detect drift. Source IDs, topology, references and deterministic model
++outcomes retain their responsibilities across the two projections.
++
++The map uses the available page width and a taller, vertically resizable
++workspace. Nodes start at readable native scale. Fit entire map is a deliberate
++overview; 100% restores the readable size. Expand map opens a large keyboard
++accessible dialog, and Escape restores the original workspace. Selecting a node
++reveals its detail panel beside the map on desktop and below it on mobile.
++No original graph data or historical SVG was changed.
++

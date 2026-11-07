@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Explore a real GitHub Actions CI job and failed mobile test. Learn workflow runs, jobs, steps, skipped tasks and verified deployment interactively."><title>GitHub Actions Lab | Fredrik Bratten</title>
+<!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
+<link rel="stylesheet" href="/labs/ai-testing/styles.css"><link rel="stylesheet" href="/labs/github-actions/styles.css">
+</head><body class="fb-page">
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation"><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/" aria-current="true">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/build-log/">Build log</a><a href="/#about">About</a></nav>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
+<div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a></nav>
+</div></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/methods/">Methods &amp; Labs</a></li><li><a href="/labs/">Labs</a></li><li><span aria-current="page">GitHub Actions lab</span></li></ol></nav>
+<!-- /FB:NAV -->
+<main id="main" class="lab-shell">
+<header role="region" aria-label="Page introduction" class="lab-intro">
+ <span class="lab-kicker">Interactive AI testing / 05 / Understand GitHub Actions</span>
+ <h1>GitHub Actions Lab</h1>
+ <p class="lab-lede">From one code change to a verified website: explore a real workflow, inspect 35 job steps and find the bug that made a build go red.</p>
+ <div class="lab-tagline"><strong>A real case, a safe teaching environment.</strong> The recorded run outcomes below come from <code>fbratten/fbratten.github.io</code> on 17 October 2026. The event-switching exercise is a clearly labelled browser-only prediction. This page never executes GitHub workflows, changes code or contacts an API.</div>
+ <nav class="lab-series" aria-label="AI testing lab series">
+  <a href="/labs/testing-architecture/">1. Testing architecture</a>
+  <a href="/labs/fault-injection/">2. Fault injection</a>
+  <a href="/labs/ai-evaluation-ci-cd/">3. AI evaluation &amp; CI/CD</a>
+  <a href="/labs/mutation-gate/">4. Mutation Gate</a>
+  <a href="/labs/github-actions/" aria-current="page">5. GitHub Actions</a>
+ </nav>
+</header>
+<section class="lab-panel" aria-labelledby="overview-title">
+ <h2 id="overview-title">1. What is actually happening in GitHub?</h2>
+ <p>A <strong>workflow</strong> is a reusable recipe stored as a YAML file in <code>.github/workflows/</code>. A <strong>workflow run</strong> is one execution of that recipe. The run can contain several <strong>jobs</strong>, and every job consists of <strong>steps</strong> executed by a <strong>runner</strong>.</p>
+ <div class="actions-pipeline" aria-label="Workflow hierarchy">
+  <div><span>01 / Code</span><strong>Commit + push</strong><small>Save a version of the website and notify GitHub</small></div>
+  <div><span>02 / Workflow</span><strong>pages-browser-check.yml</strong><small>The reusable YAML recipe</small></div>
+  <div><span>03 / Run</span><strong>Run ID</strong><small>One recorded attempt for one commit and event</small></div>
+  <div><span>04 / Job</span><strong>verify</strong><small>A runner executes a collection of steps</small></div>
+  <div><span>05 / Evidence</span><strong>Tests + receipts</strong><small>Browser checks, screenshots and status</small></div>
+ </div>
+ <p class="lab-note">The word <strong>step</strong> is not interchangeable with <strong>job</strong>. Your example ID <code>117505847884</code> identifies one job, not the workflow definition. The enclosing run is <code>39070132534</code>.</p>
+</section>
+<section class="lab-panel" aria-labelledby="run-title">
+ <h2 id="run-title">2. Switch between two actual GitHub runs</h2>
+ <p>Both are preserved historical runs of the same site's workflow. The first failed because a mobile layout became wider than the phone viewport. The later run passed after the CSS was repaired, merged and deployed.</p>
+ <div class="actions-switch" role="group" aria-label="Select a recorded GitHub job">
+  <button type="button" class="lab-button" data-run="success" aria-pressed="true">Successful push to main</button>
+  <button type="button" class="lab-button" data-run="failure" aria-pressed="false">Failed pull request test</button>
+ </div>
+ <div class="actions-overview" aria-live="polite">
+  <div><span>Run ID</span><strong id="run-id"></strong></div>
+  <div><span>Job ID</span><strong id="job-id"></strong></div>
+  <div><span>Commit SHA</span><strong id="run-sha"></strong></div>
+  <div><span>Trigger</span><strong id="run-event"></strong></div>
+  <div><span>Conclusion</span><strong id="run-conclusion" class="actions-verdict"></strong></div>
+ </div>
+ <div class="actions-stats" aria-label="Observed step outcomes">
+  <div><strong id="count-success">0</strong><span>Successful steps</span></div>
+  <div><strong id="count-failure">0</strong><span>Failed steps</span></div>
+  <div><strong id="count-skipped">0</strong><span>Skipped steps</span></div>
+  <div><strong id="count-all">35</strong><span>Reported steps, including cleanup</span></div>
+ </div>
+ <p class="actions-source-link"><a id="run-source" href="https://github.com/fbratten/fbratten.github.io/actions/runs/39070132534" target="_blank" rel="noopener">Open the source run on GitHub</a> <span> | </span><a href="https://github.com/fbratten/fbratten.github.io/blob/c500a6ebdafbc8c0190c47475f1556fae5440490/.github/workflows/pages-browser-check.yml" target="_blank" rel="noopener">Read the actual workflow YAML</a></p>
+</section>
+<section class="lab-panel" aria-labelledby="inspect-title">
+ <h2 id="inspect-title">3. Explore each step and its outcome</h2>
+ <p>These are <strong>real recorded step names and results</strong>, not invented progress bars. Pick a phase or a step to understand what GitHub did and why a result was green, red or skipped.</p>
+ <div class="actions-toolbar">
+  <label for="step-phase">Show phase</label>
+  <select id="step-phase"><option value="all">All phases (35 steps)</option></select>
+  <label for="step-search">Find a step</label>
+  <input id="step-search" type="search" placeholder="e.g. Playwright, live, artifact"/>
+ </div>
+ <div class="actions-browser">
+  <div id="step-list" class="actions-step-list" aria-label="Recorded workflow job steps"></div>
+  <div class="actions-step-info" aria-live="polite">
+   <span class="lab-kicker" id="step-phase-label"></span>
+   <h3 id="step-name"></h3>
+   <div class="actions-detail-status" id="step-status"></div>
+   <p id="step-explanation"></p>
+   <p class="actions-conditional" id="step-condition"></p>
+   <p class="lab-small lab-muted">This is an interpreted explanation of one recorded GitHub step. See the source run for the log and timestamps.</p>
+  </div>
+ </div>
+</section>
+<section class="lab-panel" aria-labelledby="condition-title">
+ <h2 id="condition-title">4. Experiment: change the run trigger</h2>
+ <p>The same workflow can behave differently when started by a <strong>push</strong>, a <strong>pull request</strong> or <strong>workflow_dispatch</strong> (explicit start). Change the event and predict which conditional steps would be eligible to run.</p>
+ <div class="lab-tagline"><strong>Simulation, not another GitHub run.</strong> This exercise interprets explicit workflow <code>if:</code> conditions. It does not predict whether eligible steps would pass, whether deployment would succeed or whether earlier failures would cancel later work.</div>
+ <div class="actions-toolbar">
+  <label for="trigger-select">Choose trigger</label>
+  <select id="trigger-select"><option value="push">push to main</option><option value="pull_request">pull_request</option><option value="workflow_dispatch">workflow_dispatch</option></select>
+ </div>
+ <div id="condition-summary" class="lab-note" aria-live="polite"></div>
+ <div id="condition-list" class="actions-conditions" aria-label="Predicted event-gated steps"></div>
+ <p class="lab-small lab-muted">The condition <code>if: always()</code> allows screenshot-upload steps to run after a failure. <code>if: failure()</code> enables diagnostics only after failure. The exercise marks that dependency rather than inventing a result.</p>
+ <h3>Hypothetical selection receipt</h3>
+ <pre id="trigger-receipt" aria-label="Simulated event-selection receipt"></pre>
+</section>
+<section class="lab-panel" aria-labelledby="bug-title">
+ <h2 id="bug-title">5. Debug a real failed job</h2>
+ <p>During the first Mutation Gate lab rollout, Playwright opened a 390-pixel mobile viewport and found the page was 456 pixels wide. That violates the test's assertion, so the job correctly failed. No GitHub deployment was proven by that run.</p>
+ <div class="actions-debug">
+  <div class="actions-debug-screen" aria-label="Illustration of viewport overflow">
+   <span>390 px phone viewport</span><div class="actions-viewport"><div class="actions-overflow">456 px page content</div></div>
+  </div>
+  <div class="actions-debug-copy">
+   <h3>Actual test failure, 17 October 2026</h3>
+   <pre>AssertionError: Mobile overflow on
+/labs/mutation-gate/
+{"width":456,"viewport":390}</pre>
+   <p><strong>Root symptom:</strong> the page required sideways scrolling on a phone. The subsequent repair made long technical identifiers wrap, followed by another CI run on the corrected code.</p>
+   <p><a href="https://github.com/fbratten/fbratten.github.io/actions/runs/39068541958" target="_blank" rel="noopener">Inspect the original failed run</a></p>
+  </div>
+ </div>
+ <p class="lab-lesson">A failed assertion is useful evidence, not a reason to hide the job or mark it green. The developer changes the code, pushes a new commit and runs the checks again.</p>
+</section>
+<section class="lab-panel" aria-labelledby="deploy-title">
+ <h2 id="deploy-title">6. A green job is not the entire delivery story</h2>
+ <p>For the approved merge commit, a separate GitHub Pages build/deployment run also completed successfully. The <code>verify</code> job then exercised the public website. These are distinct outcomes:</p>
+ <div class="lab-grid-3">
+  <div class="lab-datum"><h3>CI checks</h3><p>Local static and browser tests check the downloaded code. Green tests prove only their declared scope.</p><p><a href="https://github.com/fbratten/fbratten.github.io/actions/runs/39070132534" target="_blank" rel="noopener">Successful verification run</a></p></div>
+  <div class="lab-datum"><h3>Deployment</h3><p>A different workflow builds and publishes the website to GitHub Pages. It has its own run ID and outcome.</p><p><a href="https://github.com/fbratten/fbratten.github.io/actions/runs/39070132389" target="_blank" rel="noopener">Pages deployment run</a></p></div>
+  <div class="lab-datum"><h3>Live acceptance</h3><p>The verification workflow opens the public Pages URL and repeats the browser checks. A checked deployment is not the same as permanent uptime.</p><p><a href="https://fbratten.github.io/labs/mutation-gate/">Visit the published Mutation Gate lab</a></p></div>
+ </div>
+ <p class="actions-boundary"><strong>Evidence boundary:</strong> the run IDs and results are historical snapshots. This lab does not claim that a new deployment is happening now. An uploaded artifact is not a test verdict; a successful build is not proof that every feature is correct.</p>
+</section>
+<section class="lab-panel" aria-labelledby="quiz-title">
+ <h2 id="quiz-title">7. Check your understanding</h2>
+ <div class="actions-quiz">
+  <fieldset><legend>1. What does job ID <code>117505847884</code> identify?</legend>
+   <label><input type="radio" name="q1" value="workflow"> The YAML workflow definition</label>
+   <label><input type="radio" name="q1" value="job"> One job within a recorded workflow run</label>
+   <label><input type="radio" name="q1" value="deployment"> The whole GitHub Pages deployment</label>
+  </fieldset>
+  <fieldset><legend>2. On a push to main, why is the PR review preview step skipped?</legend>
+   <label><input type="radio" name="q2" value="broken"> The runner broke</label>
+   <label><input type="radio" name="q2" value="condition"> Its <code>if:</code> condition requires <code>pull_request</code></label>
+   <label><input type="radio" name="q2" value="unsafe"> All skipped steps are security failures</label>
+  </fieldset>
+  <fieldset><legend>3. What does a green CI job prove?</legend>
+   <label><input type="radio" name="q3" value="everything"> All code is safe and the website will always work</label>
+   <label><input type="radio" name="q3" value="scope"> The checks that ran succeeded for that particular revision</label>
+   <label><input type="radio" name="q3" value="deploy"> The production environment was necessarily deployed</label>
+  </fieldset>
+  <button id="check-quiz" type="button" class="lab-button">Check my answers</button>
+  <p id="quiz-score" class="lab-lesson" aria-live="polite">Choose all three answers, then check your understanding.</p>
+ </div>
+</section>
+<section class="lab-panel" aria-labelledby="terms-title">
+ <h2 id="terms-title">8. Vocabulary and verified sources</h2>
+ <p>Technical expressions link to the existing bilingual <em>From Blueprint to Application</em> glossary. Each link opens the exact entry, with English and plain-language Swedish explanations.</p>
+ <div id="actions-glossary" class="actions-glossary" aria-label="Glossary direct links"></div>
+ <p class="lab-small lab-muted">For deeper testing concepts, continue to <a href="/labs/mutation-gate/">Mutation Gate</a>, <a href="/labs/ai-evaluation-ci-cd/">AI evaluation &amp; CI/CD</a> or return to the <a href="/labs/">Labs directory</a>.</p>
+</section>
+</main>
+<!-- FB:FOOTER -->
+<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a></nav>
+<nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
+<nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>
+<!-- /FB:FOOTER -->
+<script src="/labs/github-actions/model.js" defer></script><script src="/labs/github-actions/app.js" defer></script><script src="/labs/ai-testing/glossary-links.js" defer></script>
+</body></html>
