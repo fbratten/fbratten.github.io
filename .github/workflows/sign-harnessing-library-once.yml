@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: e38ea9e854de6e7a2a45f25bbd44a249b9de0125
+          ref: f8aff246a5b22a608f412ee6f2d9e6306e235a38
           persist-credentials: false
       - name: Sign and verify the mobile reading refinement
         env:
@@ -25,9 +25,9 @@ jobs:
           import os,json,base64,subprocess,urllib.request,time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
-          source="e38ea9e854de6e7a2a45f25bbd44a249b9de0125"
-          tree="e1a16b259c7fa901ce70e0d899fec7f9f0a58ab8"
-          base="67e46c1742f8c6aae00a352e22503ab6f2a3d744"
+          source="f8aff246a5b22a608f412ee6f2d9e6306e235a38"
+          tree="7747ed5529e7182952f35ee232ccda268caf64a9"
+          base="16ee895fa9bf9fe1ad821a412925849db2db0e85"
           target="chatgpt/harnessing-library-signed-20261107"
           paths=["harnessing/index.html","tests/harnessing_library_page.mjs","harnessing/README.md"]
           git=lambda *a:subprocess.check_output(["git",*a],text=True).strip()
