@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: e291a52021f64208e4a2ace1e3e2b724cca668d7
+          ref: 1d3006f0e9893083c7ef10f3d2b6fbd488a50d1d
           persist-credentials: false
       - name: Sign bounded batches and verify the exact reviewed tree
         env:
@@ -25,8 +25,8 @@ jobs:
           import os,json,base64,subprocess,urllib.request,time
           from pathlib import Path
           repo="fbratten/fbratten.github.io"
-          source="e291a52021f64208e4a2ace1e3e2b724cca668d7"
-          tree="ed5b13196f178ef9a36e95193a5aae7ee317ad7c"
+          source="1d3006f0e9893083c7ef10f3d2b6fbd488a50d1d"
+          tree="dc75b0f11e6c6e975e7192559855c35d28798f8f"
           base="5b961ed6d4f14eb8404b3bf7db40953577079578"
           target="chatgpt/portfolio-experience-20261107"
           paths=["tests/portfolio_experience_page.mjs"]
@@ -49,7 +49,7 @@ jobs:
                   batches.append(batch);batch=[];size=0
               batch.append({"path":p,"contents":base64.b64encode(data).decode()});size+=len(data)
           if batch:batches.append(batch)
-          parent="700a0842b3a9320d042586fa1ab7034249287bbe"
+          parent="89aefe8577592e535a3b1f7818714a73f7b1a96c"
           for index,additions in enumerate(batches):
               body={"query":"mutation($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid url}}}","variables":{"input":{"branch":{"repositoryNameWithOwner":repo,"branchName":target},"message":{"headline":"Portfolio experience: reviewed projection "+str(index+1)+"/"+str(len(batches)),"body":"Bounded source transfer; original public files preserved, no deletions or history rewriting."},"expectedHeadOid":parent,"fileChanges":{"additions":additions}}}}
               result=api("https://api.github.com/graphql",body)
