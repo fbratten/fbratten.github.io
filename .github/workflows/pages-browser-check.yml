@@ -2,23 +2,6 @@ name: Pages interaction checks
 
 on:
   pull_request:
-    paths:
-      - "index.html"
-      - "README.md"
-      - "assets/**"
-      - "scripts/**"
-      - "articles/**"
-      - "projects/**"
-      - "labs/**"
-      - "all-pages/**"
-      - "404.html"
-      - "sitemap.xml"
-      - "harnessing/**"
-      - "methods/**"
-      - "blueprint-ai-studio/**"
-      - "build-log/**"
-      - "tests/**"
-      - ".github/workflows/pages-browser-check.yml"
   push:
     branches:
       - main
@@ -26,18 +9,26 @@ on:
 
 permissions:
   contents: read
-  statuses: write
+
+concurrency:
+  group: pages-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false
 
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    timeout-minutes: 35
+    outputs:
+      receipt: ${{ steps.seal.outputs.receipt }}
     steps:
       - name: Check out repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 2
+          persist-credentials: false
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: "3.12"
 
@@ -57,7 +48,7 @@ jobs:
         run: python scripts/build_atlas_english.py --check
 
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: "22"
 
@@ -69,13 +60,31 @@ jobs:
 
       - name: Install Playwright
         run: |
-          npm install --no-save playwright@1.55.0
+          npm ci --ignore-scripts
+          npm run vendor
+          git diff --exit-code -- assets/vendor
           npx playwright install --with-deps chromium
+
+      - name: Stage the tracked public source
+        run: |
+          mkdir _pages_source
+          git archive HEAD | tar -x -C _pages_source
+      - name: Build the Pages site with Jekyll
+        uses: actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697 # v1
+        with:
+          source: ./_pages_source
+          destination: ./_site
+      - name: Apply the browser policy and record tested bytes
+        id: seal
+        run: |
+          cp -R _site "$RUNNER_TEMP/pages-site"
+          receipt=$(python scripts/pages_release.py seal "$RUNNER_TEMP/pages-site" "$GITHUB_SHA")
+          echo "receipt=$receipt" >> "$GITHUB_OUTPUT"
 
       - name: Start local Pages server
         shell: bash
         run: |
-          python -m http.server 4173 --bind 127.0.0.1 > /tmp/pages-server.log 2>&1 &
+          python -m http.server 4173 --directory "$RUNNER_TEMP/pages-site" --bind 127.0.0.1 > /tmp/pages-server.log 2>&1 &
           echo $! > /tmp/pages-server.pid
           for attempt in {1..30}; do
             if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
@@ -109,7 +118,7 @@ jobs:
 
       - name: Save navigation visual checks
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: portfolio-navigation-visuals
           path: /tmp/navigation-visuals/
@@ -123,7 +132,7 @@ jobs:
 
       - name: Save static review preview
         if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: portfolio-navigation-preview
           path: |
@@ -155,7 +164,7 @@ jobs:
 
       - name: Save CBE visual checks
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: cbe-profile-visuals
           path: /tmp/cbe-visuals/
@@ -163,7 +172,7 @@ jobs:
 
       - name: Save solution atlas visual checks
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: solution-atlas-visuals
           path: /tmp/solution-explorer-visuals/
@@ -182,92 +191,121 @@ jobs:
 
       - name: Save AI testing lab visual checks
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: ai-testing-lab-visuals
           path: /tmp/ai-testing-lab-visuals/
           retention-days: 14
 
-      - name: Wait for the merged GitHub Pages build
-        if: github.event_name == 'push'
-        shell: bash
+      - name: Exercise Worktrace, script integrity and browser policy
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node tests/pages_security.mjs
+      - name: Package exactly the tested Pages tree
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
         run: |
-          expected='aria-label="Site navigation"'
-          for attempt in {1..60}; do
-            page="$(curl --fail --silent --show-error --location \
-              -H 'Cache-Control: no-cache' \
-              "https://fbratten.github.io/?build=${GITHUB_SHA}-${attempt}" || true)"
-            if grep --fixed-strings --quiet "$expected" <<< "$page"; then
-              echo "The expected GitHub Pages build is externally visible."
-              exit 0
-            fi
-            echo "Waiting for GitHub Pages propagation: attempt ${attempt}/60"
-            sleep 10
-          done
-          echo "The expected root-page content did not become visible within 10 minutes."
-          exit 1
+          if [[ -n "$(find "$RUNNER_TEMP/pages-site" -type l -print -quit)" ]]; then
+            echo "The deployable artifact must not contain symbolic links." >&2
+            exit 1
+          fi
+          tar --hard-dereference -C "$RUNNER_TEMP/pages-site" -cf "$RUNNER_TEMP/artifact.tar" .
+      - name: Upload tested Pages artifact
+        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: github-pages
+          path: ${{ runner.temp }}/artifact.tar
+          if-no-files-found: error
+          retention-days: 1
+      - name: Show local server log on failure
+        if: failure()
+        run: cat /tmp/pages-server.log || true
 
+  deploy:
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy the tested artifact
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+  live:
+    needs: [verify, deploy]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+      - name: Verify exact published commit and resource bytes
+        env:
+          EXPECTED_RECEIPT: ${{ needs.verify.outputs.receipt }}
+        run: python3 scripts/pages_release.py verify "$EXPECTED_RECEIPT"
+      - name: Install locked browser test dependencies
+        run: |
+          npm ci --ignore-scripts
+          npx playwright install --with-deps chromium
       - name: Exercise live Harnessing Library
-        if: github.event_name == 'push'
         env:
           BASE_URL: https://fbratten.github.io
-        run: |
-          for attempt in {1..60}; do
-            if curl --fail --silent "https://fbratten.github.io/harnessing/?build=${GITHUB_SHA}-${attempt}" | grep 'id="method-menu"' > /dev/null; then
-              node tests/harnessing_library_page.mjs
-              exit $?
-            fi
-            sleep 10
-          done
-          echo "Harnessing Library did not become visible within 10 minutes."
-          exit 1
+        run: node tests/harnessing_library_page.mjs
 
       - name: Exercise live navigation and article directory
-        if: github.event_name == 'push'
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/navigation_page.mjs
 
       - name: Exercise live Build Log
-        if: github.event_name == 'push'
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/build_log_page.mjs
 
       - name: Exercise live GitHub Pages interactions
-        if: github.event_name == 'push'
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/method_interactions.mjs
 
       - name: Exercise live Blueprint authority reader labs
-        if: github.event_name == 'push'
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/blueprint_authority_labs.mjs
 
       - name: Exercise live CBE profiles and lab examples
-        if: github.event_name == 'push'
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/cbe_labs.mjs
 
       - name: Exercise live interactive AI testing labs
-        if: github.event_name == 'push'
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/ai_testing_labs.mjs
 
-      - name: Show local server log on failure
-        if: failure()
-        run: cat /tmp/pages-server.log || true
+      - name: Verify live Worktrace and browser policy
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/pages_security.mjs
 
+  report-status:
+    needs: [verify, deploy, live]
+    if: always() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    permissions:
+      statuses: write
+    steps:
       - name: Publish live acceptance commit status
-        if: github.event_name == 'push' && always()
-        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
-          JOB_STATUS: ${{ job.status }}
+          JOB_STATUS: ${{ needs.live.result }}
         shell: bash
         run: |
           if [[ "$JOB_STATUS" == "success" ]]; then

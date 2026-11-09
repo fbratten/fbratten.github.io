@@ -32,6 +32,8 @@ try{
   const node=await page.locator('[data-node="aristoteles"] rect').boundingBox();
   assert(node.width>=230,'Nodes must start at a readable scale');
   await page.locator('#expand-map').click();assert(await page.locator('#map-dialog').isVisible());
+  // The dialog repaints its SVG on the second frame after opening.
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   await page.locator('#map-dialog [data-node="aristoteles"]').press('Enter');
   assert.match(await page.locator('#node-detail').innerText(),/Sofistiska|Sophistical/);
   await page.keyboard.press('Escape');assert(!(await page.locator('#map-dialog').isVisible()));

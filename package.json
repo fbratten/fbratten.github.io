@@ -1,0 +1,12 @@
+{
+  "name": "portfolio-pages-verification",
+  "private": true,
+  "scripts": {
+    "vendor": "node scripts/build_vendor.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "chart.js": "4.4.7",
+    "three": "0.160.0"
+  }
+}
