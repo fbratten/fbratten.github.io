@@ -1,7 +1,6 @@
 name: Pages interaction checks
 on:
-  push:
-    branches: [codex/pages-gate-negative-20261109]
+  pull_request:
 permissions:
   contents: read
 jobs:
@@ -25,7 +24,7 @@ jobs:
         run: python tests/build_log_contract.py
   deploy:
     needs: verify
-    if: github.ref == 'refs/heads/codex/pages-gate-negative-20261109' && github.event_name != 'pull_request'
+    if: github.head_ref == 'codex/pages-gate-negative-20261109' && github.event_name == 'pull_request'
     runs-on: ubuntu-24.04
     permissions:
       contents: read
