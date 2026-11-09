@@ -108,7 +108,17 @@ jobs:
                   os.environ["GITHUB_REF"] == "refs/heads/" + config["bridge"], "Wrong invocation")
           require(git("rev-parse", "HEAD").decode().strip() == source, "Wrong source commit")
           require(git("rev-parse", "HEAD^{tree}").decode().strip() == config["tree"], "Wrong source tree")
-          require(current_branch(target) == base, "One-time signing target has already advanced")
+          first = "a5d983f92cdae81b4416c08df0f90d70f3fcf22b"
+          require(current_branch(target) == first, "Signed first commit moved")
+          existing = request(api + "/commits/" + first)
+          require(existing["commit"]["verification"]["verified"] and
+                  existing["commit"]["tree"]["sha"] == config["tree"] and
+                  [p["sha"] for p in existing["parents"]] == [base], "First signature or tree differs")
+          compare(base, first, paths)
+          stage = "fad5718cbbfb8160e6aa577a32abeabef9a7fa9d"
+          require(current_branch("codex/pages-security-verified-20261109") == stage, "Reviewed workflow stage moved")
+          staged = request(api + "/contents/" + config["workflow"] + "?ref=" + stage)
+          require(staged["sha"] == "b0f671c3fd7bbb4f7fd4663c7dc785b19a964ccf", "Reviewed workflow blob differs")
           require(len(paths) == len(set(paths)) == 27, "Wrong path manifest")
           compare(base, source, paths)
           contents = {}
@@ -124,8 +134,7 @@ jobs:
               updated = updated.replace(before, after)
           second = updated.encode()
           require(hashlib.sha256(second).hexdigest() == 'd6b62229c90dddb0af3fac37f33c167063a1b2b1fa079c0fa6162169ff9560b3', "Action pin bytes differ")
-          first = transfer(base, contents, "Gate Pages deployment on the verified artifact and harden browser scripts",
-                           config["tree"])
+          require(base64.b64decode(staged["content"]) == second, "Staged workflow bytes differ")
           last = transfer(first, {wf: second}, "Update pinned Pages Actions to their Node.js 24 runtimes",
                           config["finalTree"])
           compare(base, last, paths)
