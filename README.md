@@ -56,3 +56,21 @@ JavaScript. After changing `articles/entries.json`, `blueprint-ai-studio/progres
 or adding a page, run `python scripts/build_navigation.py`. Use `--check` in CI.
 See [navigation review](docs/navigation-review.md) for scope, evidence and the
 public progress update procedure.
+
+## Publishing the tested site
+
+The Pages interaction workflow builds the Jekyll site from the tracked commit,
+applies per-page script hashes, records the release SHA and resource digests,
+and runs the browser checks on that output. Only a successful verification of
+`main` can upload the artifact used by the deployment job. Live acceptance
+compares the published receipt and bytes to the tested artifact.
+
+For the one-time cutover, select **GitHub Actions** as the Pages source and
+require the **verify** PR check on `main`. Preserve the existing review and
+signature rules. After the workflow is on `main`, run it on `main` to deploy
+and verify the first release. A failed pretest must leave the deploy job skipped.
+
+Chart.js and Three.js are served locally. Run `npm ci --ignore-scripts` and
+`npm run vendor` to reproduce the checked-in modules and license files.
+Treat additions under `archived/` as public at first commit. Review the original
+content and its publication classification before adding it to a public branch.

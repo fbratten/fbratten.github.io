@@ -33,3 +33,5 @@ logs/
 .env.*.local
 __pycache__/
 *.py[cod]
+
+node_modules/
