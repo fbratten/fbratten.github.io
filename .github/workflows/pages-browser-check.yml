@@ -1,330 +1,34 @@
 name: Pages interaction checks
-
 on:
-  pull_request:
   push:
-    branches:
-      - main
-  workflow_dispatch:
-
+    branches: [codex/pages-gate-negative-20261109]
 permissions:
   contents: read
-
-concurrency:
-  group: pages-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: false
-
 jobs:
   verify:
     runs-on: ubuntu-24.04
-    timeout-minutes: 35
-    outputs:
-      receipt: ${{ steps.seal.outputs.receipt }}
     steps:
-      - name: Check out repository
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
-          fetch-depth: 2
           persist-credentials: false
-
-      - name: Set up Python
-        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
-        with:
-          python-version: "3.12"
-
-      - name: Run static copy and Canvas regression lint
-        run: python tests/site_copy_and_canvas_lint.py
-
-      - name: Validate public Build Log contract
+      - name: Inject a runner-only invalid Build Log state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("build-log/entries.json")
+          entries = json.loads(path.read_text())
+          entries[0]["state"] = "NEGATIVE_TEST"
+          path.write_text(json.dumps(entries))
+          PY
+      - name: Run the production preflight that must reject it
         run: python tests/build_log_contract.py
-
-      - name: Validate navigation, article directory and progress feed
-        run: python tests/navigation_contract.py
-
-      - name: Validate Harnessing Library content and public boundary
-        run: python tests/harnessing_library_contract.py
-
-      - name: Check generated English atlas
-        run: python scripts/build_atlas_english.py --check
-
-      - name: Set up Node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version: "22"
-
-      - name: Validate argumentation and agent teaching models
-        run: node tests/aristotle_agents_model.cjs
-
-      - name: Verify English graph identity and experiment parity
-        run: node tests/atlas_localization_contract.cjs
-
-      - name: Install Playwright
-        run: |
-          npm ci --ignore-scripts
-          npm run vendor
-          git diff --exit-code -- assets/vendor
-          npx playwright install --with-deps chromium
-
-      - name: Stage the tracked public source
-        run: |
-          mkdir _pages_source
-          git archive HEAD | tar -x -C _pages_source
-      - name: Build the Pages site with Jekyll
-        uses: actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697 # v1
-        with:
-          source: ./_pages_source
-          destination: ./_site
-      - name: Apply the browser policy and record tested bytes
-        id: seal
-        run: |
-          cp -R _site "$RUNNER_TEMP/pages-site"
-          receipt=$(python scripts/pages_release.py seal "$RUNNER_TEMP/pages-site" "$GITHUB_SHA")
-          echo "receipt=$receipt" >> "$GITHUB_OUTPUT"
-
-      - name: Start local Pages server
-        shell: bash
-        run: |
-          python -m http.server 4173 --directory "$RUNNER_TEMP/pages-site" --bind 127.0.0.1 > /tmp/pages-server.log 2>&1 &
-          echo $! > /tmp/pages-server.pid
-          for attempt in {1..30}; do
-            if curl --fail --silent http://127.0.0.1:4173/ > /dev/null; then
-              exit 0
-            fi
-            sleep 1
-          done
-          cat /tmp/pages-server.log
-          exit 1
-
-      - name: Exercise navigation, mobile routes and article filters
-        env:
-          BASE_URL: http://127.0.0.1:4173
-          NAV_SCREENSHOT_DIR: /tmp/navigation-visuals
-        run: node tests/navigation_page.mjs
-
-      - name: Exercise Harnessing Library desktop and mobile
-        env:
-          BASE_URL: http://127.0.0.1:4173
-        run: node tests/harnessing_library_page.mjs
-
-      - name: Exercise category navigation, large maps and English content
-        env:
-          BASE_URL: http://127.0.0.1:4173
-        run: node tests/portfolio_experience_page.mjs
-
-      - name: Exercise Aristotle to agents maps and labs
-        env:
-          BASE_URL: http://127.0.0.1:4173
-        run: node tests/aristotle_agents_page.mjs
-
-      - name: Save navigation visual checks
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: portfolio-navigation-visuals
-          path: /tmp/navigation-visuals/
-          retention-days: 14
-
-      - name: Package static review preview
-        if: github.event_name == 'pull_request'
-        run: |
-          git archive --format=zip HEAD -o /tmp/portfolio-navigation-preview.zip
-          python scripts/build_preview.py /tmp/portfolio-navigation-preview.html
-
-      - name: Save static review preview
-        if: github.event_name == 'pull_request'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: portfolio-navigation-preview
-          path: |
-            /tmp/portfolio-navigation-preview.zip
-            /tmp/portfolio-navigation-preview.html
-          retention-days: 14
-
-      - name: Exercise Build Log locally
-        env:
-          BASE_URL: http://127.0.0.1:4173
-        run: node tests/build_log_page.mjs
-
-      - name: Exercise method Canvas interactions locally
-        env:
-          BASE_URL: http://127.0.0.1:4173
-        run: node tests/method_interactions.mjs
-
-      - name: Exercise solution explorer locally
-        env:
-          BASE_URL: http://127.0.0.1:4173
-          SCREENSHOT_DIR: /tmp/solution-explorer-visuals
-        run: node tests/solution_explorer.mjs
-
-      - name: Exercise CBE profiles and existing lab examples locally
-        env:
-          BASE_URL: http://127.0.0.1:4173
-          CBE_SCREENSHOT_DIR: /tmp/cbe-visuals
-        run: node tests/cbe_labs.mjs
-
-      - name: Save CBE visual checks
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: cbe-profile-visuals
-          path: /tmp/cbe-visuals/
-          retention-days: 7
-
-      - name: Save solution atlas visual checks
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: solution-atlas-visuals
-          path: /tmp/solution-explorer-visuals/
-          retention-days: 7
-
-      - name: Exercise Blueprint authority reader labs locally
-        env:
-          BASE_URL: http://127.0.0.1:4173
-        run: node tests/blueprint_authority_labs.mjs
-
-      - name: Exercise interactive AI testing labs locally
-        env:
-          BASE_URL: http://127.0.0.1:4173
-          LAB_SHOT_DIR: /tmp/ai-testing-lab-visuals
-        run: node tests/ai_testing_labs.mjs
-
-      - name: Save AI testing lab visual checks
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: ai-testing-lab-visuals
-          path: /tmp/ai-testing-lab-visuals/
-          retention-days: 14
-
-      - name: Exercise Worktrace, script integrity and browser policy
-        env:
-          BASE_URL: http://127.0.0.1:4173
-        run: node tests/pages_security.mjs
-      - name: Package exactly the tested Pages tree
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        run: |
-          if [[ -n "$(find "$RUNNER_TEMP/pages-site" -type l -print -quit)" ]]; then
-            echo "The deployable artifact must not contain symbolic links." >&2
-            exit 1
-          fi
-          tar --hard-dereference -C "$RUNNER_TEMP/pages-site" -cf "$RUNNER_TEMP/artifact.tar" .
-      - name: Upload tested Pages artifact
-        if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
-        with:
-          name: github-pages
-          path: ${{ runner.temp }}/artifact.tar
-          if-no-files-found: error
-          retention-days: 1
-      - name: Show local server log on failure
-        if: failure()
-        run: cat /tmp/pages-server.log || true
-
   deploy:
     needs: verify
-    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    if: github.ref == 'refs/heads/codex/pages-gate-negative-20261109' && github.event_name != 'pull_request'
     runs-on: ubuntu-24.04
     permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      contents: read
     steps:
-      - name: Deploy the tested artifact
-        id: deployment
-        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4
-
-  live:
-    needs: [verify, deploy]
-    runs-on: ubuntu-24.04
-    timeout-minutes: 30
-    steps:
-      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
-        with:
-          persist-credentials: false
-      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version: "22"
-      - name: Verify exact published commit and resource bytes
-        env:
-          EXPECTED_RECEIPT: ${{ needs.verify.outputs.receipt }}
-        run: python3 scripts/pages_release.py verify "$EXPECTED_RECEIPT"
-      - name: Install locked browser test dependencies
-        run: |
-          npm ci --ignore-scripts
-          npx playwright install --with-deps chromium
-      - name: Exercise live Harnessing Library
-        env:
-          BASE_URL: https://fbratten.github.io
-        run: node tests/harnessing_library_page.mjs
-
-      - name: Exercise live navigation and article directory
-        env:
-          BASE_URL: https://fbratten.github.io
-        run: node tests/navigation_page.mjs
-
-      - name: Exercise live Build Log
-        env:
-          BASE_URL: https://fbratten.github.io
-        run: node tests/build_log_page.mjs
-
-      - name: Exercise live GitHub Pages interactions
-        env:
-          BASE_URL: https://fbratten.github.io
-        run: node tests/method_interactions.mjs
-
-      - name: Exercise live Blueprint authority reader labs
-        env:
-          BASE_URL: https://fbratten.github.io
-        run: node tests/blueprint_authority_labs.mjs
-
-      - name: Exercise live CBE profiles and lab examples
-        env:
-          BASE_URL: https://fbratten.github.io
-        run: node tests/cbe_labs.mjs
-
-      - name: Exercise live interactive AI testing labs
-        env:
-          BASE_URL: https://fbratten.github.io
-        run: node tests/ai_testing_labs.mjs
-
-      - name: Verify live Worktrace and browser policy
-        env:
-          BASE_URL: https://fbratten.github.io
-        run: node tests/pages_security.mjs
-
-  report-status:
-    needs: [verify, deploy, live]
-    if: always() && github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
-    runs-on: ubuntu-24.04
-    permissions:
-      statuses: write
-    steps:
-      - name: Publish live acceptance commit status
-        env:
-          GH_TOKEN: ${{ github.token }}
-          JOB_STATUS: ${{ needs.live.result }}
-        shell: bash
-        run: |
-          if [[ "$JOB_STATUS" == "success" ]]; then
-            state="success"
-            description="Live root, Build Log, methods and Blueprint reader labs passed"
-          else
-            state="failure"
-            description="Live GitHub Pages acceptance failed"
-          fi
-          payload="$(jq -n \
-            --arg state "$state" \
-            --arg context "pages/live-interactions" \
-            --arg description "$description" \
-            --arg target_url "https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" \
-            '{state:$state,context:$context,description:$description,target_url:$target_url}')"
-          curl --fail --silent --show-error --location \
-            --request POST \
-            --header "Authorization: Bearer ${GH_TOKEN}" \
-            --header "Accept: application/vnd.github+json" \
-            --header "X-GitHub-Api-Version: 2022-11-28" \
-            --data "$payload" \
-            "https://api.github.com/repos/${GITHUB_REPOSITORY}/statuses/${GITHUB_SHA}"
+      - name: Fail if the simulated publication is reached
+        run: exit 1

@@ -1,7 +1,6 @@
 name: Pages gate negative control
 on:
-  push:
-    branches: [codex/pages-gate-negative-20261109]
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
