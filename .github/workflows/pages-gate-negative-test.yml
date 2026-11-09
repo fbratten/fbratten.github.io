@@ -1,0 +1,33 @@
+name: Pages gate negative control
+on:
+  push:
+    branches: [codex/pages-gate-negative-20261109]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - name: Inject a runner-only invalid Build Log state
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          path = Path("build-log/entries.json")
+          entries = json.loads(path.read_text())
+          entries[0]["state"] = "NEGATIVE_TEST"
+          path.write_text(json.dumps(entries))
+          PY
+      - name: Run the production preflight that must reject it
+        run: python tests/build_log_contract.py
+  deploy:
+    needs: verify
+    if: github.ref == 'refs/heads/codex/pages-gate-negative-20261109' && github.event_name != 'pull_request'
+    runs-on: ubuntu-24.04
+    permissions: {}
+    steps:
+      - name: Fail if the simulated publication is reached
+        run: exit 1
