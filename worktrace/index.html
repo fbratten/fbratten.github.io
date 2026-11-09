@@ -65,7 +65,19 @@ declared project context -> attribution claim -> reconcile with observed evidenc
     const el=id=>document.getElementById(id),eventsEl=el('events'),statusEl=el('status');
     function safeText(v){return String(v??'').trim().slice(0,300)}
     function canonicalRef(kind,raw){let r=safeText(raw);if(kind==='url'){try{const u=new URL(r);u.username='';u.password='';u.hash='';u.search='';return{value:u.toString(),redactions:'url_query=1,url_fragment=1'}}catch{return{error:'The URL is not valid.'}}}if(kind==='path'){r=r.replace(/\\/g,'/').replace(/^\.\//,'');return{value:r,redactions:'path_form=1'}}if(kind==='command'){const parts=r.split(/\s+/);return{value:parts[0]||'command',redactions:parts.length>1?'command_arguments=1':'none'}}return{value:r,redactions:'none'}}
-    function temporal(basis){const now=new Date();if(basis==='source-exact'||basis==='collection-time')return{occurred_at:now.toISOString(),local_day:now.toISOString().slice(0,10),time_precision:'instant',occurred_not_before:'',occurred_not_after:'',source_sequence:null};if(basis==='source-interval'){const before=new Date(now-20*60000),after=new Date(now-5*60000);return{occurred_at:'',local_day:now.toISOString().slice(0,10),time_precision:'interval',occurred_not_before:before.toISOString(),occurred_not_after:after.toISOString(),source_sequence:null};return{occurred_at:'',local_day:'',time_precision:'unknown',occurred_not_before:'',occurred_not_after:'',source_sequence:++seq}}
+    function temporal(basis) {
+      const now = new Date();
+      const values = { occurred_at: '', local_day: '', time_precision: 'unknown',
+        occurred_not_before: '', occurred_not_after: '', source_sequence: null };
+      if (basis === 'order-only') return { ...values, source_sequence: ++seq };
+      values.local_day = now.toISOString().slice(0, 10);
+      if (basis === 'source-interval') {
+        return { ...values, time_precision: 'interval',
+          occurred_not_before: new Date(now.getTime() - 20 * 60000).toISOString(),
+          occurred_not_after: new Date(now.getTime() - 5 * 60000).toISOString() };
+      }
+      return { ...values, occurred_at: now.toISOString(), time_precision: 'instant' };
+    }
     function record(input){const combined=[input.ref,input.project,input.note].join('\n');if(secretPatterns.some(p=>p.test(combined))){show('Secret-shaped input refused. No event was created.',false);return}const norm=canonicalRef(input.kind,input.ref);if(norm.error){show(norm.error,false);return}const time=temporal(input.basis);const event={event_id:`demo_${crypto.randomUUID().slice(0,12)}`,event_envelope_version:2,ledger_schema_version:6,schema_version:2,payload_version:2,producer:'worktrace/0.4.2-demo',recorded_at:new Date().toISOString(),event_type:`demo.${input.kind}.recorded`,source:'synthetic-browser',machine:'demo-machine',environment:'browser-only',resource_type:input.kind,resource_ref:norm.value,operation:input.kind==='url'?'visit':input.kind==='command'?'invoked':'referenced',confidence:'observed',sensitivity:'internal',retention:'standard',redactions:norm.redactions,project_id:safeText(input.project),session_id:'cs_synthetic',note:safeText(input.note),time_basis:input.basis,...time};rows.push(event);render();show('Synthetic evidence recorded. No content or credential was stored.',true)}
     function show(msg,ok){statusEl.textContent=msg;statusEl.className=`status ${ok?'ok':'error'}`}
     function render(){if(!rows.length){eventsEl.innerHTML='<div class="empty">No synthetic evidence recorded yet.</div>';return}eventsEl.innerHTML='';[...rows].reverse().forEach(r=>{const d=document.createElement('article');d.className='event';const cls=r.time_basis==='source-exact'?'exact':r.time_basis==='collection-time'?'collection':r.time_basis==='source-interval'?'interval':'order';d.innerHTML=`<div class="event-head"><span class="event-type">${r.event_type}</span><span class="pill ${cls}">${r.time_basis}</span></div><pre>${escapeHtml(JSON.stringify(r,null,2))}</pre>`;eventsEl.appendChild(d)})}
