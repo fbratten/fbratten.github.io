@@ -1,0 +1,118 @@
+name: Sign reviewed Farbar Explore placement
+on:
+  push:
+    branches: [codex/footer-farbar-explore-signing-20261111]
+permissions: {}
+concurrency:
+  group: sign-footer-farbar-explore-20261111
+  cancel-in-progress: false
+jobs:
+  sign-reviewed-footer:
+    if: github.repository == 'fbratten/fbratten.github.io' && github.ref == 'refs/heads/codex/footer-farbar-explore-signing-20261111' && github.actor == 'fbratten'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - name: Check out the reviewed template revision
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          ref: ee16e653beff0ba311290c1ae952096c53adb93d
+          fetch-depth: 2
+          persist-credentials: false
+      - name: Verify and sign the exact footer link relocation
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          PATHS = ['404.html', 'adaptivearts-ai/index.html', 'all-pages/index.html', 'articles/index.html', 'blueprint-ai-studio/index.html', 'blueprint-ai-studio/labs/rules-authority-enforcement/index.html', 'broker-lane-sandbox/index.html', 'build-log/index.html', 'gate-monitor/index.html', 'harnessing/index.html', 'index.html', 'labs/ai-evaluation-ci-cd/index.html', 'labs/aristotle-to-agents/en/index.html', 'labs/aristotle-to-agents/index.html', 'labs/fault-injection/index.html', 'labs/github-actions/index.html', 'labs/index.html', 'labs/mutation-gate/index.html', 'labs/testing-architecture/index.html', 'mads/index.html', 'methods/5pp/index.html', 'methods/aics/index.html', 'methods/capability-gap/index.html', 'methods/card-pointer/index.html', 'methods/cbe-ix/index.html', 'methods/cbe/index.html', 'methods/csr/index.html', 'methods/dial4/index.html', 'methods/dial4p-possibility/index.html', 'methods/dial4plus/index.html', 'methods/dialectic/index.html', 'methods/dialogue-lifecycle/index.html', 'methods/gdsa/index.html', 'methods/hermeneutic-didactic/index.html', 'methods/index.html', 'methods/ipb/index.html', 'methods/orbit/index.html', 'methods/pisd/index.html', 'methods/rigvedan/index.html', 'methods/solutions/index.html', 'methods/sorr/index.html', 'methods/srcb/index.html', 'projects/index.html', 'scripts/build_navigation.py', 'vertex/index.html', 'worktrace/index.html']
+          import base64
+          import json
+          import os
+          import subprocess
+          import urllib.request
+          
+          REPO = 'fbratten/fbratten.github.io'
+          BASE = 'ee16e653beff0ba311290c1ae952096c53adb93d'
+          SOURCE = BASE
+          TREE = '90bd628507ccea86ee9fd26eca945ce736a968cb'
+          TARGET = 'codex/footer-farbar-explore-20261111'
+          LINK = b'<a href="https://farbar.se/">farbar.se &#8599;</a>'
+          API = 'https://api.github.com/repos/' + REPO
+          
+          def git(*args):
+              return subprocess.check_output(['git', *args])
+          
+          def request(url, data=None):
+              headers = {'Authorization': 'Bearer ' + os.environ['GH_TOKEN'],
+                         'Accept': 'application/vnd.github+json',
+                         'Content-Type': 'application/json'}
+              req = urllib.request.Request(url, data=None if data is None else json.dumps(data).encode(), headers=headers)
+              with urllib.request.urlopen(req, timeout=90) as response:
+                  return json.load(response)
+          
+          def head(branch):
+              return request(API + '/branches/' + branch)['commit']['sha']
+          
+          assert os.environ['GITHUB_REPOSITORY'] == REPO
+          assert os.environ['GITHUB_REF'] == 'refs/heads/codex/footer-farbar-explore-signing-20261111'
+          assert git('rev-parse', 'HEAD').decode().strip() == SOURCE
+          from pathlib import Path
+          import re
+          p = Path('scripts/build_navigation.py')
+          text = p.read_bytes()
+          assert text.count(LINK) == 1
+          text = text.replace(LINK, b'')
+          start = text.index(b"    footer = '''")
+          marker = b'<a href="/harnessing/">Harnessing Library</a></nav>'
+          i = text.index(marker, start)
+          text = text[:i] + text[i:].replace(marker, b'<a href="/harnessing/">Harnessing Library</a>' + LINK + b'</nav>', 1)
+          p.write_bytes(text)
+          
+          subprocess.run(['python3', 'scripts/build_navigation.py'], check=True)
+          paths = git('diff', '--name-only', BASE).decode().splitlines()
+          assert len(paths) == 46 and paths == sorted(PATHS)
+          contents = {}
+          for path in paths:
+              with open(path, 'rb') as file:
+                  contents[path] = file.read()
+              before = git('show', BASE + ':' + path)
+              assert contents[path].count(LINK) == 1, path
+              assert before.count(LINK) == 1, path
+              assert contents[path].replace(LINK, b'') == before.replace(LINK, b''), path
+              explore = re.search(rb'<nav aria-label="Explore">.*?</nav>', contents[path]).group()
+              initiative = re.search(rb'<nav aria-label="Initiatives">.*?</nav>', contents[path]).group()
+              assert LINK in explore and LINK not in initiative, path
+              if path.endswith('.html'):
+                  footer = contents[path].split(b'<!-- FB:FOOTER -->', 1)[1].split(b'<!-- /FB:FOOTER -->', 1)[0]
+                  assert LINK in footer, path
+          for command in [
+              ['python3', 'scripts/build_navigation.py', '--check'],
+              ['python3', 'scripts/build_atlas_english.py', '--check'],
+              ['python3', 'tests/navigation_contract.py'],
+              ['python3', 'tests/site_copy_and_canvas_lint.py']
+          ]:
+              subprocess.run(command, check=True)
+          subprocess.run(['git', 'add', '--', *paths], check=True)
+          assert git('write-tree').decode().strip() == TREE
+          assert head('main') == BASE
+          assert head(TARGET) == BASE
+          query = 'mutation Sign($input:CreateCommitOnBranchInput!){createCommitOnBranch(input:$input){commit{oid}}}'
+          body = {'branch': {'repositoryNameWithOwner': REPO, 'branchName': TARGET},
+                  'expectedHeadOid': BASE,
+                  'message': {'headline': 'Move farbar.se into Explore in the shared footer'},
+                  'fileChanges': {'additions': [{'path': path, 'contents': base64.b64encode(content).decode()}
+                                                for path, content in contents.items()]}}
+          result = request('https://api.github.com/graphql', {'query': query, 'variables': {'input': body}})
+          assert not result.get('errors'), result.get('errors')
+          sha = result['data']['createCommitOnBranch']['commit']['oid']
+          commit = request(API + '/commits/' + sha)
+          assert commit['commit']['verification']['verified']
+          assert commit['commit']['tree']['sha'] == TREE
+          assert [p['sha'] for p in commit['parents']] == [BASE]
+          changed = request(API + '/compare/' + BASE + '...' + sha)['files']
+          assert sorted(f['filename'] for f in changed) == sorted(PATHS)
+          assert all(f['status'] == 'modified' for f in changed)
+          print('PASS: signed commit', sha, 'matches exact reviewed tree', TREE, 'and only relocates the anchor within all 46 files')
+          PYTHON
