@@ -310,3 +310,12 @@
 .fb-projects [data-project-panel]{padding-top:24px}
 @media(max-width:1000px){.fb-project-categories{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.fb-project-categories{gap:10px}.fb-project-categories a{padding:16px}.fb-project-categories a>span:last-child{font-size:12px}}
+
+/* Local method links share the breadcrumb gutter, without a second header bar. */
+.fb-local-context.site-header{box-sizing:border-box;width:100%;max-width:1440px;margin:0 auto;padding:10px 64px 0!important;border:0;background:transparent;backdrop-filter:none;box-shadow:none;z-index:auto}
+.fb-local-context.site-header .header-inner{width:100%;max-width:none;min-height:0;margin:0;padding:0}
+.fb-local-context.site-header nav{display:flex;flex-wrap:wrap;gap:8px 20px;line-height:1.5}
+.fb-local-context.site-header nav a{display:inline-flex;padding:6px 0;font-size:13px;text-decoration:none}
+.fb-local-context.site-header nav a:hover{text-decoration:underline;text-underline-offset:4px;color:#b6f6dc}
+@media(max-width:1100px){.fb-local-context.site-header{padding:10px 32px 0!important}}
+@media(max-width:760px){.fb-local-context.site-header{padding:8px 20px 0!important}}

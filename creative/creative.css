@@ -22,3 +22,12 @@
 
 /* Local film and original production references. */
 .film-player video{display:block;width:100%;max-width:100%;aspect-ratio:16/9;background:#080809;border-radius:8px}.film-player .fine{margin:12px 0}.film-still{display:block;width:100%;height:auto;border-radius:8px}.process-gallery{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}.process-gallery figure{margin:0;min-width:0}.process-gallery img{display:block;width:100%;height:auto;border-radius:6px}.process-gallery figcaption{font-size:14px;line-height:1.5;color:var(--muted);margin-top:10px}@media(max-width:600px){.process-gallery{grid-template-columns:1fr}}
+
+/* Keep the vocal story balanced and the album announcement compact. */
+.vocals-panel h2{max-width:100%;font-size:clamp(30px,3.6vw,46px)}
+.vocal-copy{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:32px;margin-top:24px}
+.vocal-copy p{margin:0;line-height:1.65}
+.album-note{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);align-items:center;gap:28px;margin-top:28px;padding:24px 28px;border:1px solid #c8cfc3;border-radius:8px;background:#e6eadf}
+.album-note .eyebrow{margin-bottom:8px}.album-note h3{font-size:clamp(24px,2.6vw,32px);line-height:1.15}
+.album-note p{margin:0;line-height:1.6}.vocal-closing{margin-top:20px;font-size:14px;line-height:1.6}
+@media(max-width:640px){.vocal-copy{grid-template-columns:1fr;gap:18px;margin-top:20px}.album-note{grid-template-columns:1fr;gap:16px;padding:20px;margin-top:24px}}
