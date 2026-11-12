@@ -14,6 +14,28 @@
     "cover": "/creative/media/hud-mot-hud.jpeg"
   },
   {
+    "id": "awaken-wired",
+    "title": "Awaken Wired (Chalumeau, Sul)",
+    "kind": "Music / Composition notebook",
+    "desc": "A 36-bar introduction in five phases, with the complete original composition instructions.",
+    "intro": "Explore the instrumental writing, layers and dramatic shape of the introduction, then read the complete composition notebook.",
+    "angle": "36 bars, 7/8 time and five phases from a barely audible room to a chamber-orchestra crescendo.",
+    "suno": "03f72637-ce31-4334-8eee-0e5d761414a3",
+    "cover": "/creative/media/awaken-wired.jpeg",
+    "body_source_section": "awaken"
+  },
+  {
+    "id": "superposition-baby",
+    "title": "Superposition Baby, more Concepts than You got Cells",
+    "kind": "Music / Learn through music",
+    "desc": "A rap battle about AI concepts, with the explanations and research behind the wordplay.",
+    "intro": "Competing voices turn an argument about weights, neurons and features into a musical exchange. Follow the concepts and the correction behind the hook.",
+    "angle": "Music as a way to explore and explain AI concepts.",
+    "suno": "791d21b2-c908-4a1e-8861-ff300ae66461",
+    "cover": "/creative/media/superposition-baby.jpeg",
+    "body_source_section": "learning"
+  },
+  {
     "id": "take-em-all",
     "title": "Take ’em All",
     "kind": "Music / Music video",

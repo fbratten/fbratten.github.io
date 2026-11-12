@@ -106,7 +106,9 @@
       "observed_playback_seconds": 93.481172,
       "duration_seconds": 301.84,
       "media_error": null,
-      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening."
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening.",
+      "local_cover": "creative/media/superposition-baby.jpeg",
+      "cover_sha256": "2d6db83f8496ef880fb10a4ae347807a136bc562db34c8b1e2f731f7d545a030"
     },
     {
       "suno_id": "03f72637-ce31-4334-8eee-0e5d761414a3",
@@ -115,7 +117,9 @@
       "observed_playback_seconds": 34.457406,
       "duration_seconds": 957.32,
       "media_error": null,
-      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening."
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening.",
+      "local_cover": "creative/media/awaken-wired.jpeg",
+      "cover_sha256": "cf26eeaf12171e1a886546fd7da540eed675407908553391d8c95bf5871cec3b"
     }
   ],
   "integrated_preview": {

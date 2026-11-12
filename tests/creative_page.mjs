@@ -31,7 +31,23 @@ try {
       assert.equal(await page.locator('iframe').count(), 0);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${route}: overflow at ${width}`);
       if (route === '/creative/') {
-        assert.equal(await page.locator('.work-card').count(), 7);
+        assert.equal(await page.locator('.work-card').count(), 9);
+        for (const id of ['awaken-wired', 'superposition-baby']) {
+          const card = page.locator(`.work-card[href="/creative/${id}/"]`);
+          assert.equal(await card.count(), 1);
+          await card.click();
+          await page.locator('h1').waitFor();
+          assert.equal(await page.getByRole('button', {name:'Load Suno player', exact:true}).count(), 1);
+          assert.equal(await page.locator('details:not([open])').count(), 0);
+          if (id === 'awaken-wired') {
+            assert((await page.locator('.intro-source').innerText()).includes('Intro - Phase 3:'));
+            await page.locator('.intro-source').scrollIntoViewIfNeeded();
+            assert(await page.locator('.intro-source').isVisible());
+          } else {
+            assert.equal(await page.locator('.learning-terms details').count(), 3);
+          }
+          await page.goto(base + '/creative/');
+        }
         if (width === 390) {
           await page.getByRole('button', {name:'Menu', exact:true}).click();
           await page.getByRole('navigation', {name:'Site navigation'}).getByRole('link', {name:'Music & Film'}).click();
