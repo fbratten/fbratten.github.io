@@ -46,7 +46,7 @@ assert hashlib.sha256((ROOT / 'creative/archived/preview-20261108.html').read_by
 assert 'url=/creative/' in (ROOT / 'creative/preview.html').read_text()
 evidence = json.loads((ROOT / 'docs/music-film-media-evidence-20261112.json').read_text())
 works = json.loads((ROOT / 'creative/source/works.json').read_text())
-assert len(works) == 7
+assert len(works) == 9
 for work in works:
     html = (ROOT / 'creative' / work['id'] / 'index.html').read_text()
     if work.get('suno'):
@@ -74,6 +74,22 @@ for path in public:
                    'cannot be substantiated', 'går inte att belägga', 'uppgifter saknas']:
         assert phrase.lower() not in text.lower(), (path, phrase)
 
+# Guard the two formerly hidden works as first-class routes with complete content.
+from html import unescape
+home = (ROOT / 'creative/index.html').read_text()
+for route in ['awaken-wired', 'superposition-baby']:
+    assert f'class="work-card" href="/creative/{route}/"' in home
+    page = (ROOT / 'creative' / route / 'index.html').read_text()
+    assert '<details' in page and '<details open' in page
+awaken = (ROOT / 'creative/awaken-wired/index.html').read_text()
+intro = re.search(r'<pre class="intro-source"><code>([\s\S]*?)</code></pre>', awaken).group(1)
+assert unescape(intro).strip() == (ROOT / 'creative/source/awaken-wired-intro.txt').read_text().strip()
+for section_id, route in [('awaken', 'awaken-wired'), ('learning', 'superposition-baby')]:
+    pattern = r'<section\b[^>]*\bid="' + section_id + r'"[^>]*>[\s\S]*?</section>'
+    original = re.search(pattern, (ROOT / 'creative/source/home.html.txt').read_text()).group()
+    page_section = re.search(pattern, (ROOT / 'creative' / route / 'index.html').read_text()).group()
+    assert page_section.replace('<details open', '<details') == original
+
 # Translation must preserve the synthesis program, not silently change the seed.
 def synthesis_tree(filename):
     tree = ast.parse((ROOT / 'creative/source' / filename).read_text())
@@ -85,4 +101,4 @@ assert synthesis_tree('hud_mot_hud_seed.py') == synthesis_tree('hud_mot_hud_seed
 studio = json.loads((ROOT / 'docs/music-film-studio-evidence-20261112.json').read_text())
 for item in studio['published_assets']:
     assert hashlib.sha256((ROOT / item['path']).read_bytes()).hexdigest() == item['sha256']
-print('PASS: preserved originals, media identities, English editorial copy, seven works, creative-only media policy.')
+print('PASS: preserved originals, media identities, English editorial copy, nine works, creative-only media policy.')

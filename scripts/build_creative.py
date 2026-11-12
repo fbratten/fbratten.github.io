@@ -37,6 +37,7 @@ def page(title, description, route, body):
 
 def render():
     works = json.loads((ROOT / 'creative/source/works.json').read_text())
+    home_source = (ROOT / 'creative/source/home.html.txt').read_text()
     cards = []
     output = {}
     for w in works:
@@ -50,20 +51,28 @@ def render():
             media += player('youtube', w['youtube'], w['title'] + ' - ' + label)
         action = 'Listen &amp; watch' if media else 'Explore the production'
         media_section = f'<section class="article-grid" id="listen"><h2>Listen &amp; watch</h2><div class="article-body">{media}</div></section>' if media else '<div id="listen"></div>'
+        if w.get('body_source_section'):
+            section_id = w['body_source_section']
+            match = re.search(r'<section\b[^>]*\bid="' + re.escape(section_id) + r'"[^>]*>[\s\S]*?</section>', home_source)
+            assert match, section_id
+            # Reuse the complete existing section; show its details immediately.
+            content = re.sub(r'<details(?=[ >])', '<details open', match.group())
+        else:
+            content = w['body_html']
         body = f'''<div class="shell"><section class="work-hero"><div><span class="eyebrow">{escape(w['kind'])}</span><h1>{title}</h1>
 <p class="artist">By Fredrik Brattén · Artist name: Ragnar Bratten</p><p class="intro">{escape(w['intro'])}</p>
 <div class="actions"><a class="button primary" href="#listen">{action} ↓</a><a class="button" href="/creative/#works">All works</a></div>
 <p class="fine">{escape(w['angle'])}</p></div><figure>{cover}</figure></section>
 {media_section}
-{w['body_html']}<div class="bottom-cta"><p>Music, moving images and the decisions behind them.</p><a class="button" href="/creative/#works">Explore the collection →</a></div></div>'''
+{content}<div class="bottom-cta"><p>Music, moving images and the decisions behind them.</p><a class="button" href="/creative/#works">Explore the collection →</a></div></div>'''
         output[ROOT / route.strip('/') / 'index.html'] = page(w['title'], w['desc'], route, body)
-    home = (ROOT / 'creative/source/home.html.txt').read_text()
+    home = home_source
     home = home.replace('<!-- CREATIVE:WORKS -->', '<div class="works" id="work-grid">' + '\n'.join(cards) + '</div>')
     for item_id, title in [('791d21b2-c908-4a1e-8861-ff300ae66461', 'Superposition Baby, more Concepts than You got Cells'), ('03f72637-ce31-4334-8eee-0e5d761414a3', 'Awaken Wired (Chalumeau, Sul)')]:
         pattern = r'<div class="actions"><a[^>]+href="https://suno.com/song/' + item_id + r'"[^>]*>.*?</a></div>'
         home, count = re.subn(pattern, lambda _: player('suno', item_id, title), home, count=1)
         assert count == 1, item_id
-    output[ROOT / 'creative/index.html'] = page('Music & Film', 'Music, film and the creative decisions behind them. Seven works by Fredrik Brattén, with music credited to Ragnar Bratten.', '/creative/', home)
+    output[ROOT / 'creative/index.html'] = page('Music & Film', 'Music, film and the creative decisions behind them. Nine works by Fredrik Brattén, with music credited to Ragnar Bratten.', '/creative/', home)
     return output
 
 
@@ -102,4 +111,4 @@ if __name__ == '__main__':
             path.write_text(content)
         for path, content in build_navigation.render().items():
             path.write_text(content)
-    print('Music & Film: eight static routes are current.')
+    print('Music & Film: ten static routes are current.')
