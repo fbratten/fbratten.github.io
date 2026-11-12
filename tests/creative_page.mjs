@@ -60,8 +60,14 @@ try {
         }
         if (width === 390) {
           await page.getByRole('button', {name:'Menu', exact:true}).click();
-          await page.getByRole('navigation', {name:'Site navigation'}).getByRole('link', {name:'Music & Film'}).click();
+          // This link reloads the same URL. Await the new document and its
+          // deferred menu script before reading the no-JS fallback attribute.
+          await Promise.all([
+            page.waitForNavigation({waitUntil:'load', timeout:15000}),
+            page.getByRole('navigation', {name:'Site navigation'}).getByRole('link', {name:'Music & Film'}).click()
+          ]);
           assert.equal(await page.locator('.fb-menu-button').getAttribute('aria-expanded'), 'false');
+          assert(await page.locator('.fb-menu-panel').evaluate(panel => panel.hidden));
         }
         await page.screenshot({path: `${shots}/creative-${width}.png`, fullPage:true});
       }
