@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ChangePlane | The record behind an AI-assisted change</title>
+<meta name="description" content="A Git-backed control plane for AI-assisted development: record intent and evidence, verify integrity and replay a captured change. Explore a hands-on integrity demonstration.">
+<link rel="canonical" href="https://fbratten.github.io/changeplane/"><link rel="stylesheet" href="/changeplane/style.css"><script src="/changeplane/demo.js" defer></script><!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
+</head>
+<body>
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation"><a href="/">Home</a><a href="/projects/" aria-current="true">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/creative/">Music &amp; Film</a><a href="/build-log/">Build log</a><a href="/#about">About</a></nav>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
+<div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a><a href="/harnessing/">Harnessing Library</a></nav>
+</div></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/projects/">Projects</a></li><li><span aria-current="page">ChangePlane</span></li></ol></nav>
+<!-- /FB:NAV -->
+<main id="main">
+<section class="hero wrap"><p class="eyebrow">AI-assisted development / Provenance</p><h1>ChangePlane</h1><p class="tagline">Keep the story behind every code change.</p><p class="lead">A code diff shows what changed. ChangePlane connects it to the intent, recorded actions, checks and decisions that produced it. The result is a local record you can inspect, seal and carry into a replay.</p><div class="badges"><span class="badge">Python + SQLite</span><span class="badge">Local-first</span><span class="badge">CLI + MCP</span><span class="badge">SHA-256 integrity</span></div><div class="hero-actions"><a class="action" href="#integrity">Try the integrity demo ↓</a><a href="#workflow">Follow a change</a><a href="#implementation">Explore the implementation</a></div></section>
+
+<section class="wrap" id="workflow"><p class="eyebrow">From an agent session to a reviewable record</p><h2>Make the work inspectable.</h2><p class="intro">Imagine an agent adding retry logic. A useful review needs the patch, the reason for it and the checks that followed. ChangePlane keeps those pieces connected.</p><div class="grid three">
+<article class="card"><span class="step">01 / Record</span><h3>Keep intent and actions together</h3><p>A run identifies the task. Its event ledger records actions and results, while Git capture binds the base, head and tracked-file diff to a patchset.</p></article>
+<article class="card"><span class="step">02 / Evaluate &amp; seal</span><h3>Bind the record to its evidence</h3><p>Evaluation combines scored dimensions with hard gates. A seal binds hashes of the recorded artifacts, including optional protocol and harness-invocation records.</p></article>
+<article class="card"><span class="step">03 / Inspect &amp; replay</span><h3>Carry a change into a fresh worktree</h3><p>A replay bundle carries the captured patch and supporting record. Replay applies the patch in a fresh worktree by default and produces its own verification report.</p></article>
+</div></section>
+
+<section class="demo-section" id="integrity"><div class="wrap"><p class="eyebrow">Interactive illustration · fictional data</p><h2>Change one record. Check the seal.</h2><p class="intro">This small browser demonstration hashes three fictional artifacts. Choose a change made after sealing and compare the current record with the original fingerprints.</p>
+<div class="demo-shell"><div class="controls"><h3>A fictional retry change</h3><div class="preset-row" role="group" aria-label="Integrity scenarios">
+<button class="preset" data-case="intact" aria-pressed="true" disabled>Original record</button><button class="preset" data-case="event" aria-pressed="false" disabled>Edit the event</button><button class="preset" data-case="patch" aria-pressed="false" disabled>Edit the patch</button><button class="preset" data-case="intent" aria-pressed="false" disabled>Edit the intent</button></div>
+<p class="small-note">Each case starts from the same original seal.</p>
+<div class="artifact"><h4>Run intent</h4><pre id="artifact-intent">Add a bounded retry to the fetcher.</pre></div>
+<div class="artifact"><h4>Recorded event</h4><pre id="artifact-event">Three checks passed, including the timeout case.</pre></div>
+<div class="artifact"><h4>Captured patch</h4><pre id="artifact-patch">retry_limit = 2</pre></div></div>
+<div class="decision" aria-live="polite" aria-atomic="true"><p class="eyebrow">Integrity result</p><h3 class="state" id="integrity-state">Ready to compare</h3><p id="integrity-summary">The original seal is prepared when this page loads.</p><div id="hash-comparison" class="hash-list"></div><p class="small-note">A matching fingerprint means the selected artifact matches what was sealed. Review still determines whether the original work was correct.</p></div></div>
+<noscript><p class="boundary">With the original record, all three fingerprints match. Editing the event, patch or intent changes that artifact’s fingerprint. Enable JavaScript to try each case.</p></noscript>
+<p class="boundary">This illustration runs entirely in your browser with synthetic data. The Python implementation seals a richer record. Version 1 uses unkeyed SHA-256: someone able to rewrite both the artifacts and their seal can recompute the hashes.</p></div></section>
+
+<section class="wrap" id="implementation"><p class="eyebrow">Inside the project</p><h2>One record, several ways to inspect it.</h2><div class="grid two">
+<article class="card"><h3>A local ledger around Git</h3><p>Python’s standard library and SQLite provide the core. Git remains responsible for commits, branches and worktrees. ChangePlane adds typed records of the surrounding development work.</p></article>
+<article class="card"><h3>Protocols as structured records</h3><p>5PP phases, DIALECTIC exchanges and DIAL-4 claims can become part of a run’s protocol trace. DIAL-4P produces views such as a developer handoff or seal report from that record.</p></article>
+<article class="card"><h3>Available capabilities and actual use</h3><p>The harness registry describes capabilities. Invocation records capture their use in a run. The capability router recommends tools and workflows; the operator and execution tools perform the work.</p></article>
+<article class="card"><h3>Interfaces for people and agents</h3><p>The command-line interface and stdio MCP server expose run creation, event recording, capture, evaluation, sealing, inspection and replay bundles. The autopilot surface currently plans bounded experiments in dry-run mode.</p></article>
+</div><details class="technical"><summary>See the core command sequence</summary><pre>changeplane init
+changeplane start --intent "add a bounded retry"
+changeplane event --type note --summary "reviewed the timeout path"
+changeplane git capture
+changeplane seal --decision APPROVE
+changeplane seal verify
+changeplane inspect</pre><p>The decision supplied to sealing is an explicit recorded decision. It is not an automatic approval or a Git merge.</p></details></section>
+
+<section class="wrap" id="evidence"><p class="eyebrow">Implementation check / 12 November 2026</p><h2>Four integrity cases, exercised in Python.</h2><p class="intro">The actual sealing and verification functions were exercised against temporary synthetic records at source revision <code>32cb7840915d</code>. The expected outcome was observed in all four cases.</p><div class="table-wrap"><table class="evidence"><thead><tr><th>Case</th><th>Expected verification</th><th>Observed</th></tr></thead><tbody><tr><td>Original record</td><td>Matches the seal</td><td>PASS</td></tr><tr><td>Event edited after sealing</td><td>Event-log mismatch</td><td>PASS</td></tr><tr><td>Intent edited after sealing</td><td>Run-metadata mismatch</td><td>PASS</td></tr><tr><td>Patch edited after sealing</td><td>Patch-content mismatch</td><td>PASS</td></tr></tbody></table></div><p class="small-note">These are focused integrity checks. The browser demonstration is a separate, simplified explanation.</p><div class="hero-actions"><a href="/changeplane/evidence.json">Read the verification receipt ↗</a><a href="/changeplane/README.md">Read the technical note ↗</a></div></section>
+
+<section class="wrap"><p class="eyebrow">Related work</p><h2>Connect runtime decisions to recorded changes.</h2><div class="grid three"><a class="card related" href="/gate-monitor/"><h3>Gate Monitor →</h3><p>Explore policy and decision states during an agent session.</p></a><a class="card related" href="/harnessing/"><h3>Harnessing Library →</h3><p>Explore the controls and capabilities around agent work.</p></a><a class="card related" href="/vertex/"><h3>Vertex →</h3><p>Explore scene-driven evidence views and visual replay.</p></a></div></section>
+</main><!-- FB:FOOTER -->
+<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/creative/">Music &amp; Film</a><a href="/all-pages/">All pages</a><a href="/harnessing/">Harnessing Library</a><a href="https://farbar.se/">farbar.se &#8599;</a></nav>
+<nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
+<nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>
+<!-- /FB:FOOTER -->
+</body></html>

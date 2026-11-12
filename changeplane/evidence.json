@@ -1,0 +1,59 @@
+{
+  "project": "ChangePlane",
+  "source_repository": "fbratten/changeplane",
+  "source_visibility": "private",
+  "source_commit": "32cb7840915df7f0d527044e37242cd6123801e7",
+  "verified_on": "2026-11-12",
+  "branch_audit": {
+    "scope": "FULL",
+    "default_branch": "main",
+    "branches": [
+      "main"
+    ],
+    "open_pull_requests": 0
+  },
+  "verification_scope": "Direct execution of create_seal and verify_seal with temporary synthetic inputs; not the complete project test suite.",
+  "cases": [
+    {
+      "case": "unchanged record",
+      "expected_verifies": true,
+      "actual_verifies": true,
+      "mismatch_fields": [],
+      "result": "PASS"
+    },
+    {
+      "case": "edited event",
+      "expected_verifies": false,
+      "actual_verifies": false,
+      "mismatch_fields": [
+        "event_log_sha256"
+      ],
+      "result": "PASS"
+    },
+    {
+      "case": "edited intent",
+      "expected_verifies": false,
+      "actual_verifies": false,
+      "mismatch_fields": [
+        "run_metadata_sha256"
+      ],
+      "result": "PASS"
+    },
+    {
+      "case": "edited patch",
+      "expected_verifies": false,
+      "actual_verifies": false,
+      "mismatch_fields": [
+        "diff_sha256"
+      ],
+      "result": "PASS"
+    }
+  ],
+  "source_files": [
+    "src/changeplane/seals/seal.py",
+    "src/changeplane/core/models.py",
+    "src/changeplane/core/ids.py"
+  ],
+  "browser_scope": "Independent browser-only illustration using synthetic artifacts; no Git, MCP or private repository connection."
+}
+

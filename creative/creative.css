@@ -31,3 +31,9 @@
 .album-note .eyebrow{margin-bottom:8px}.album-note h3{font-size:clamp(24px,2.6vw,32px);line-height:1.15}
 .album-note p{margin:0;line-height:1.6}.vocal-closing{margin-top:20px;font-size:14px;line-height:1.6}
 @media(max-width:640px){.vocal-copy{grid-template-columns:1fr;gap:18px;margin-top:20px}.album-note{grid-template-columns:1fr;gap:16px;padding:20px;margin-top:24px}}
+
+/* Three compact, fully linked works sit below the larger selection. */
+.works--compact{margin-top:32px;padding-top:24px;border-top:1px solid var(--line);align-items:start}
+.work-card--compact{display:grid;grid-template-columns:20% minmax(0,1fr);gap:16px;align-items:start}
+.work-card--compact figure{margin:0}.work-card--compact h3{font-size:18px;line-height:1.25;margin:0 0 8px}
+.work-card--compact p{font-size:13px;line-height:1.5}.work-card--compact .meta{font-size:10px;margin-top:10px}
