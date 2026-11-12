@@ -1,0 +1,131 @@
+{
+  "recorded_at": "2026-11-12",
+  "source": {
+    "filename": "Studio-NY-80s-Ateljen-v6b.mp4",
+    "sha256": "49d093688bc57eb4d93603af27d6998b8f4ab18242de58f259d3c5c3f02c88ce",
+    "bytes": 36639889,
+    "origin": "Operator-owned Library asset, latest v6b atelier edit"
+  },
+  "source_package": {
+    "filename": "Studio-NY-80s-Ateljen-redigeringspaket.zip",
+    "contents_used": [
+      "production.json",
+      "refs/lead.jpg",
+      "refs/camera.jpg",
+      "refs/pattern.jpg",
+      "work/Studio-NY-English.srt"
+    ],
+    "note": "v6 base-edit package; the later v6b film refines the opening"
+  },
+  "published_assets": [
+    {
+      "path": "creative/media/studio-new-york-camera.jpg",
+      "sha256": "25e062e86555c698552feccef53795c7dab09cafcdb1410c204a6a893f22299e",
+      "bytes": 60929
+    },
+    {
+      "path": "creative/media/studio-new-york-lead.jpg",
+      "sha256": "ce79b9a1c68cd224c883380cea4ec5976f1d9df27e7f677c6b2c66af119e1546",
+      "bytes": 62884
+    },
+    {
+      "path": "creative/media/studio-new-york-pattern.jpg",
+      "sha256": "1db803d01b08ac4034f90699154f6e6a9d845b1c0dbb59ccce0157cd0c9e8a5a",
+      "bytes": 60690
+    },
+    {
+      "path": "creative/media/studio-new-york.en.vtt",
+      "sha256": "490ab7a2604e5292f37290474bb678d571c578d59359cc3e9dd8a6576bfac59f",
+      "bytes": 1337
+    }
+  ],
+  "rights": {
+    "source": "Explicit operator statement in this task on 2026-11-12",
+    "statement": "Operator created the imagery and films and confirms usage rights."
+  },
+  "fal_receipts": [
+    {
+      "request_id": "01a1c382-c77c-7251-af28-25995dec85e0",
+      "endpoint_id": "fal-ai/sync-lipsync/v3",
+      "started_at": "2026-11-10T03:31:30.442Z",
+      "status_code": 200
+    },
+    {
+      "request_id": "01a1c37f-8732-7a40-89df-da6ed52e9605",
+      "endpoint_id": "fal-ai/sync-lipsync/v2/pro",
+      "started_at": "2026-11-10T03:27:57.632Z",
+      "status_code": 200
+    },
+    {
+      "request_id": "01a1c37c-4396-7a51-9a5b-230bde4092c8",
+      "endpoint_id": "fal-ai/kling-video/v4/image-to-video",
+      "started_at": "2026-11-10T03:24:23.733Z",
+      "status_code": 200
+    },
+    {
+      "request_id": "01a1c31f-11a6-72a3-a397-e625363aeae2",
+      "endpoint_id": "fal-ai/kling-video/v4/image-to-video",
+      "started_at": "2026-11-10T01:42:36.183Z",
+      "status_code": 200
+    },
+    {
+      "request_id": "01a1c31a-bc16-72e3-be6e-f7e4325ce391",
+      "endpoint_id": "fal-ai/kling-video/ai-avatar/v2/pro",
+      "started_at": "2026-11-10T01:37:51.791Z",
+      "status_code": 200
+    }
+  ],
+  "model_scope": "Kling 4.0 and Kling Avatar v2 Pro appear in the v6 production package. Sync v2 Pro and v3 opening refinements are confirmed successful requests. The page describes these as runs/trials, without attributing every tested model to the final cut.",
+  "method_scope": {
+    "selection": "Studio conversation, operator instruction 2026-11-09T22:31:09Z: Dialogue Lifecycle and 5PP Variation A; recovered via personal-context search.",
+    "execution_evidence": "production.json, timeline.csv, alignment files and export metrics in the saved package.",
+    "public_profiles": [
+      "/methods/dialogue-lifecycle/",
+      "/methods/5pp/"
+    ],
+    "not_claimed": "No deterministic 5pp-gate run or additional named agents/frameworks is inferred."
+  },
+  "why_was_love_sources": [
+    {
+      "title": "02-Argon-WWL-GEM-0005-via-Fredrik.txt",
+      "drive_id": "1Bnve1YsgcatbdNmEZBbkYdM9qGT7VhBj",
+      "read": "2026-11-12",
+      "supports": "Fredrik relay; Gemini/Argon jacket concept; ChatGPT lead and brief."
+    },
+    {
+      "title": "04-Audove-Pilot-Result-2026-10-29.txt",
+      "drive_id": "1m3_jh4IDIn_Mu245b_DKmFgJfZqva3yx",
+      "read": "2026-11-12",
+      "supports": "Three storyboard concepts with nine images each; Jacket Relay chosen. The public page uses this directly supported result rather than a later 40-scene claim."
+    }
+  ],
+  "release_scope": "2026-11-12: Publish production story and stills. No video file is uploaded or included in this release. Existing local film and its historical verification remain preserved.",
+  "historical_local_encoding": {
+    "video": "libx264, CRF 26, slow, faststart",
+    "audio": "AAC stream copied unchanged",
+    "audio_packet_hash": "SHA256=0db416647f6d1351af6867836e78b88cc7cd476a87aad16f1ee92c5dea62795c",
+    "full_decode": "PASS",
+    "probe": {
+      "programs": [],
+      "stream_groups": [],
+      "streams": [
+        {
+          "codec_name": "h264",
+          "width": 1280,
+          "height": 720,
+          "r_frame_rate": "24/1",
+          "nb_frames": "1920"
+        },
+        {
+          "codec_name": "aac",
+          "r_frame_rate": "0/0",
+          "nb_frames": "3751"
+        }
+      ],
+      "format": {
+        "duration": "80.000000",
+        "size": "10902091"
+      }
+    }
+  }
+}

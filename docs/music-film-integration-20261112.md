@@ -72,6 +72,34 @@ version lineage are not invented or relabelled as finished work.
 
 Next entry point: this PR's `verify` run and `docs/music-film-media-evidence-20261112.json`.
 
+## Editorial and Studio film follow-up
+
+The operator requested fully English visitor copy, removal of internal evidence-gap
+commentary, explicit creative collaboration examples, and the 80-second Studio film.
+He also explicitly confirmed ownership and usage rights for his images and films.
+
+- Rewrote the six case studies around supported creative decisions. Translated the
+  Hud sound-brief quotation and visible Python comments. The original Python remains
+  unchanged; an AST comparison checks the English companion preserves synthesis.
+- Removed unsupported or unavailable production detail from visitor pages. RISE now
+  presents Official Audio. Why Was Love describes the directly read three-by-nine
+  storyboard result, Fredrik's relay of Gemini/Argon, and ChatGPT's coordinating role.
+- Added the original v6b 80-second Studio film as a same-origin web encode, with
+  original stills and optional English subtitles. The source film remains intact.
+  Full decoding passes, duration is 80 seconds / 1920 frames, and AAC packet hashes
+  match the original. See `music-film-studio-evidence-20261112.json` for asset hashes,
+  source provenance, bounded Fal receipts and method-use scope.
+- Studio's public process account covers Kling 4.0 motion, Kling Avatar v2 Pro
+  performance, and Sync Lipsync opening trials. It documents the operator's chosen
+  Dialogue Lifecycle / 5PP Variation A and the concrete tasks and checks. It does
+  not imply a 5pp-gate validation or invent named subordinate agents.
+- Archived the original preview byte-for-byte at
+  `creative/archived/preview-20261108.html`; the old preview address now forwards
+  to `/creative/`. No source is lost. The collection now has seven works / eight routes.
+
+The previous YouTube playback gate remains independent of these editorial changes.
+This follow-up does not claim it passed or broaden the security policy.
+
 ## Browser evidence and handover
 
 [PR #69](https://github.com/fbratten/fbratten.github.io/pull/69) remains draft for
@@ -104,3 +132,25 @@ Open `http://127.0.0.1:4173/creative/take-em-all/` and
 `http://127.0.0.1:4173/creative/rise-together-or-we-fall/`. Load each YouTube player,
 press Play, and confirm advancing playback time and sound. Record browser/version
 and outcome against the exact PR head. The archive is a review aid, not deployment.
+
+### Follow-up verification before remote CI
+
+- PASS: English copy regression guard; preserved preview/WAV/cover hashes; English
+  Python AST equals the original synthesis; all new Studio asset hashes.
+- PASS: creative/navigation generation checks, navigation contract (53 pages),
+  existing site copy/canvas lint, and whitespace check.
+- PASS: real local Studio film played from 0 to 80 seconds and ended without a
+  media error in the cloud browser, under the release CSP.
+- PASS: 390 px outer frame (375 px content with scrollbar), advancing playback
+  observed at 35.29 seconds, no horizontal overflow; original stills render.
+- CI extends actual film checks to start, seeking past 52 seconds, the end,
+  subtitles, and desktop/mobile layout. Provider fixtures remain distinct from
+  external playback evidence.
+
+![Studio film desktop](media/music-film-studio-desktop-20261112.jpg)
+
+![Studio film playing in narrow viewport](media/music-film-studio-mobile-20261112.jpg)
+
+## Release decision, 2026-11-12
+
+Operator explicitly authorized immediate merge after editorial corrections, with no video/Base64 handling. The Studio page ships as a production story with original stills. No MP4 is included or linked. Existing Suno/YouTube players and direct provider links remain. Prior local film verification above is historical, not a claim about this release. External YouTube playback in the cloud browser remains unverified and is accepted as a non-blocking provider check for this release. Branch audit SCOPED: main, #69, preserved #58, and open navigation/Build Log lanes; no foreign branch is changed.

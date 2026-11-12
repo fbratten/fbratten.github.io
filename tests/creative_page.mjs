@@ -31,7 +31,7 @@ try {
       assert.equal(await page.locator('iframe').count(), 0);
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${route}: overflow at ${width}`);
       if (route === '/creative/') {
-        assert.equal(await page.locator('.work-card').count(), 6);
+        assert.equal(await page.locator('.work-card').count(), 7);
         if (width === 390) {
           await page.getByRole('button', {name:'Menu', exact:true}).click();
           await page.getByRole('navigation', {name:'Site navigation'}).getByRole('link', {name:'Music & Film'}).click();
@@ -44,10 +44,12 @@ try {
   assert.deepEqual(external, [], 'No provider connection before a click');
   for (const work of works) {
     await page.goto(base + '/creative/' + work.id + '/');
+    if (work.suno) {
     await page.getByRole('button', {name:'Load Suno player', exact:true}).click();
     const suno = page.locator('[data-provider="suno"] iframe');
     assert.equal(await suno.getAttribute('src'), 'https://suno.com/embed/' + work.suno);
     await page.frameLocator('[data-provider="suno"] iframe').getByText('Allowed frame loaded.').waitFor();
+    }
     if (work.youtube) {
       await page.getByRole('button', {name:'Load YouTube player', exact:true}).click();
       await page.frameLocator('[data-provider="youtube"] iframe').getByText('Allowed frame loaded.').waitFor();

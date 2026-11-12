@@ -41,17 +41,20 @@ def render():
     output = {}
     for w in works:
         title, route = escape(w['title']), '/creative/' + w['id'] + '/'
-        cover = f'<img class="cover-image" src="{w["cover"]}" alt="{title} artwork from the selected Suno version" width="800" height="800" loading="lazy" decoding="async">'
+        alt = escape(w.get('cover_alt', w['title'] + ' artwork'), quote=True)
+        cover = f'<img class="cover-image" src="{w["cover"]}" alt="{alt}" width="800" height="800" loading="lazy" decoding="async">'
         cards.append(f'<a class="work-card" href="{route}"><figure>{cover}</figure><h3>{title}</h3><p>{escape(w["desc"])}</p><span class="meta">{escape(w["kind"])} →</span></a>')
-        media = player('suno', w['suno'], w['title'])
+        media = player('suno', w['suno'], w['title']) if w.get('suno') else ''
         if w.get('youtube'):
             label = 'Official Music Video' if w['id'] == 'take-em-all' else 'Official Audio'
             media += player('youtube', w['youtube'], w['title'] + ' - ' + label)
+        action = 'Listen &amp; watch' if media else 'Explore the production'
+        media_section = f'<section class="article-grid" id="listen"><h2>Listen &amp; watch</h2><div class="article-body">{media}</div></section>' if media else '<div id="listen"></div>'
         body = f'''<div class="shell"><section class="work-hero"><div><span class="eyebrow">{escape(w['kind'])}</span><h1>{title}</h1>
 <p class="artist">By Fredrik Brattén · Artist name: Ragnar Bratten</p><p class="intro">{escape(w['intro'])}</p>
-<div class="actions"><a class="button primary" href="#listen">Listen &amp; watch ↓</a><a class="button" href="/creative/#works">All six works</a></div>
+<div class="actions"><a class="button primary" href="#listen">{action} ↓</a><a class="button" href="/creative/#works">All works</a></div>
 <p class="fine">{escape(w['angle'])}</p></div><figure>{cover}</figure></section>
-<section class="article-grid" id="listen"><h2>Listen &amp; watch</h2><div class="article-body">{media}</div></section>
+{media_section}
 {w['body_html']}<div class="bottom-cta"><p>Music, moving images and the decisions behind them.</p><a class="button" href="/creative/#works">Explore the collection →</a></div></div>'''
         output[ROOT / route.strip('/') / 'index.html'] = page(w['title'], w['desc'], route, body)
     home = (ROOT / 'creative/source/home.html.txt').read_text()
@@ -60,7 +63,7 @@ def render():
         pattern = r'<div class="actions"><a[^>]+href="https://suno.com/song/' + item_id + r'"[^>]*>.*?</a></div>'
         home, count = re.subn(pattern, lambda _: player('suno', item_id, title), home, count=1)
         assert count == 1, item_id
-    output[ROOT / 'creative/index.html'] = page('Music & Film', 'Music, film and the creative decisions behind them. Six works by Fredrik Brattén, with music credited to Ragnar Bratten.', '/creative/', home)
+    output[ROOT / 'creative/index.html'] = page('Music & Film', 'Music, film and the creative decisions behind them. Seven works by Fredrik Brattén, with music credited to Ragnar Bratten.', '/creative/', home)
     return output
 
 
@@ -99,4 +102,4 @@ if __name__ == '__main__':
             path.write_text(content)
         for path, content in build_navigation.render().items():
             path.write_text(content)
-    print('Music & Film: seven static routes are current.')
+    print('Music & Film: eight static routes are current.')
