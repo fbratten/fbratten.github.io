@@ -1,0 +1,188 @@
+{
+  "observed_on": "2026-11-12",
+  "timezone": "Europe/Stockholm",
+  "method": "Browser UI play action followed by read-only media DOM currentTime, duration and error inspection; original cover bytes downloaded from the observed image URLs.",
+  "records": [
+    {
+      "suno_id": "27b2fcda-20f0-457e-beb9-dcde7f2dca8a",
+      "page": "https://suno.com/embed/27b2fcda-20f0-457e-beb9-dcde7f2dca8a",
+      "cover_url": "https://cdn2.suno.ai/video_upload_0872f2a7-f7ad-4217-bc54-1cbf96705d3e_video_upload_0872f2a7-f7ad-4217-bc54-1cbf96705d3e_cover_snapshot_0s_1793846801_image.jpeg",
+      "observed_playback_seconds": 26.235518,
+      "duration_seconds": 316.583,
+      "media_error": null,
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening.",
+      "local_cover": "creative/media/hud-mot-hud.jpeg",
+      "cover_bytes": 85094,
+      "cover_sha256": "afeb7ab9f28056df029724b343aa61d987572d6c26919adbc0348d32477cdb07",
+      "cover_dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "suno_id": "48b70cbf-aba7-4a31-b357-c82982c6a6af",
+      "page": "https://suno.com/embed/48b70cbf-aba7-4a31-b357-c82982c6a6af",
+      "cover_url": "https://cdn2.suno.ai/image_48b70cbf-aba7-4a31-b357-c82982c6a6af.jpeg",
+      "observed_playback_seconds": 17.470206,
+      "duration_seconds": 266.588,
+      "media_error": null,
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening.",
+      "local_cover": "creative/media/take-em-all.jpeg",
+      "cover_bytes": 11833,
+      "cover_sha256": "c27536a6809f155c4d43c01dcb8ce54ff6ee3ef847aa799617deb2e907aed37e",
+      "cover_dimensions": [
+        360,
+        360
+      ]
+    },
+    {
+      "suno_id": "b7a89df3-b842-46d8-85d9-e9196831b5fd",
+      "page": "https://suno.com/embed/b7a89df3-b842-46d8-85d9-e9196831b5fd",
+      "cover_url": "https://cdn2.suno.ai/image_b7a89df3-b842-46d8-85d9-e9196831b5fd.jpeg",
+      "observed_playback_seconds": 43.107953,
+      "duration_seconds": 305.48,
+      "media_error": null,
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening.",
+      "local_cover": "creative/media/same-wet-reeds.jpeg",
+      "cover_bytes": 7271,
+      "cover_sha256": "7878500293130689fc871bc4dcfabf0272329e90845a892161cf0b7ca1407e91",
+      "cover_dimensions": [
+        360,
+        360
+      ]
+    },
+    {
+      "suno_id": "316b7424-57aa-403a-bf23-addeb0b87d07",
+      "page": "https://suno.com/embed/316b7424-57aa-403a-bf23-addeb0b87d07",
+      "cover_url": "https://cdn2.suno.ai/video_upload_59e55dfd-d4e0-4cdb-8787-9f78d0160962_video_upload_59e55dfd-d4e0-4cdb-8787-9f78d0160962_cover_snapshot_0s_1790005173_image.jpeg",
+      "observed_playback_seconds": 25.930337,
+      "duration_seconds": 429.215,
+      "media_error": null,
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening.",
+      "local_cover": "creative/media/low-orbit-high-standards.jpeg",
+      "cover_bytes": 63046,
+      "cover_sha256": "1fe57820fa4a6b2b369d68c21548fd59c1372049cd3c5020a6f24885aee5aef5",
+      "cover_dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "suno_id": "61c78e3c-fb07-4f14-bac8-dbc88a305c1c",
+      "page": "https://suno.com/embed/61c78e3c-fb07-4f14-bac8-dbc88a305c1c",
+      "cover_url": "https://cdn2.suno.ai/061c0aa8-eebf-47f5-9a58-395fb8126a21.jpeg",
+      "observed_playback_seconds": 79.585223,
+      "duration_seconds": 302.546,
+      "media_error": null,
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening.",
+      "local_cover": "creative/media/why-was-love.jpeg",
+      "cover_bytes": 302366,
+      "cover_sha256": "3a1084878b12f974149bf9ff10dd5445aed282e232de5eb141df459916fd8f9d",
+      "cover_dimensions": [
+        1072,
+        1072
+      ]
+    },
+    {
+      "suno_id": "330db2fc-14be-4820-8816-e663c8246dad",
+      "page": "https://suno.com/embed/330db2fc-14be-4820-8816-e663c8246dad",
+      "cover_url": "https://cdn2.suno.ai/video_upload_fd340c0a-4a5c-4aef-aa67-144717625ef7_video_upload_fd340c0a-4a5c-4aef-aa67-144717625ef7_cover_snapshot_0s_1768260928_image.jpeg",
+      "observed_playback_seconds": 49.754508,
+      "duration_seconds": 642.179,
+      "media_error": null,
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening.",
+      "local_cover": "creative/media/rise-together-or-we-fall.jpeg",
+      "cover_bytes": 83829,
+      "cover_sha256": "dca006eb87ad5a6100120ee8fd3fb502f2cb38593a3b46a708ae83effff8743f",
+      "cover_dimensions": [
+        1280,
+        1280
+      ]
+    },
+    {
+      "suno_id": "791d21b2-c908-4a1e-8861-ff300ae66461",
+      "page": "https://suno.com/embed/791d21b2-c908-4a1e-8861-ff300ae66461",
+      "cover_url": "https://cdn2.suno.ai/image_791d21b2-c908-4a1e-8861-ff300ae66461.jpeg",
+      "observed_playback_seconds": 93.481172,
+      "duration_seconds": 301.84,
+      "media_error": null,
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening."
+    },
+    {
+      "suno_id": "03f72637-ce31-4334-8eee-0e5d761414a3",
+      "page": "https://suno.com/embed/03f72637-ce31-4334-8eee-0e5d761414a3",
+      "cover_url": "https://cdn2.suno.ai/6e33200e-151b-4761-869a-29d59be01ffa.jpeg",
+      "observed_playback_seconds": 34.457406,
+      "duration_seconds": 957.32,
+      "media_error": null,
+      "scope": "Public Suno embed, direct page; no sign-in. Playback start/progress, not full-song listening."
+    }
+  ],
+  "integrated_preview": {
+    "origin": "http://127.0.0.1:4173",
+    "policy": "scripts/pages_release.py.add_policy(..., creative=True), same function used by the production seal",
+    "suno": {
+      "route": "/creative/hud-mot-hud/",
+      "time_seconds": 47.520958,
+      "duration_seconds": 316.583,
+      "paused": false,
+      "error": null
+    },
+    "wav": {
+      "route": "/creative/hud-mot-hud/",
+      "time_seconds": 12.631565,
+      "duration_seconds": 12.631565,
+      "ended": true,
+      "error": null
+    },
+    "youtube": [
+      {
+        "id": "FdY08dFDC7M",
+        "route": "/creative/take-em-all/",
+        "frame_loaded": true,
+        "time_seconds": 0,
+        "duration_seconds": 267,
+        "readyState": 0,
+        "error": null,
+        "result": "Playback not verified: player loads but time does not advance in cloud browser."
+      },
+      {
+        "id": "e7yjXGIg0g8",
+        "route": "/creative/rise-together-or-we-fall/",
+        "frame_loaded": true,
+        "time_seconds": 0,
+        "duration_seconds": 642,
+        "readyState": 0,
+        "error": null,
+        "result": "Playback not verified: player loads but time does not advance in cloud browser."
+      }
+    ],
+    "mobile_suno": {
+      "viewport_frame_width": 390,
+      "document_client_width": 375,
+      "document_scroll_width": 375,
+      "route": "/creative/hud-mot-hud/",
+      "time_seconds": 25.30809,
+      "duration_seconds": 316.583,
+      "paused": false,
+      "error": null,
+      "scope": "Narrow iframe viewport with desktop browser; not a physical phone."
+    }
+  },
+  "youtube_direct_control": {
+    "url": "https://www.youtube.com/watch?v=FdY08dFDC7M",
+    "time_seconds": 0,
+    "duration_seconds": 267,
+    "readyState": 0,
+    "paused": false,
+    "error": null,
+    "result": "Same buffering behavior directly on YouTube outside the site; this does not establish the underlying cause."
+  },
+  "ci": {
+    "run_id": 43235226061,
+    "head_sha": "325a366c07abcd380487118366c3be7cce438343",
+    "verify": "success",
+    "deploy": "skipped",
+    "scope": "Full suite on sealed Jekyll output, including actual local WAV and all creative routes at 1365/390/320 px; external frame fixtures are not provider playback."
+  }
+}

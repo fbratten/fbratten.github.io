@@ -15,7 +15,8 @@ try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
   await page.goto(base + '/');
   await page.getByRole('navigation', { name: 'Site navigation', exact: true }).waitFor();
-  assert.equal(await page.locator('.fb-links a').count(), 6);
+  assert.equal(await page.locator('.fb-links a').count(), 7);
+  assert.equal(await page.locator('.fb-links a[href="/creative/"]').count(), 1);
   assert.equal(await page.locator('[data-article]').count(), 3);
   await page.getByRole('link', { name: 'All 46 articles' }).click();
   assert.match(page.url(), /\/articles\/$/);

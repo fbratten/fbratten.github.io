@@ -39,7 +39,7 @@ class InlineScripts(HTMLParser):
             self.hashes.add("'sha256-" + base64.b64encode(digest).decode() + "'")
 
 
-def add_policy(page):
+def add_policy(page, *, creative=False):
     html = page.read_text(encoding="utf-8")
     scripts = InlineScripts()
     scripts.feed(html)
@@ -51,6 +51,10 @@ def add_policy(page):
         "img-src 'self' data: blob: https://adaptivearts.ai https://rqparchqgvrfvbumvccl.supabase.co",
         "font-src 'self' data:",
         "connect-src 'self'",
+        # Only Music & Film opts into media. Source audio stays same-origin;
+        # the preserved review preview still uses its original data: WAV.
+        "media-src 'self' data:" if creative else "media-src 'none'",
+        "frame-src https://www.youtube-nocookie.com https://suno.com" if creative else "frame-src 'none'",
         "object-src 'none'", "base-uri 'none'", "form-action 'none'",
     ])
     meta = '<meta http-equiv="Content-Security-Policy" content="' + escape(policy, quote=True) + '">'
@@ -71,7 +75,7 @@ def seal(output, sha):
     tracked = git("ls-files")
     for name in tracked:
         if name.endswith(".html"):
-            add_policy(output / name)
+            add_policy(output / name, creative=Path(name).parts[0] == 'creative')
     changed = git("diff", "--name-only", "--diff-filter=AM", "HEAD^1", "HEAD")
     probes = ["index.html"]
     for name in changed:

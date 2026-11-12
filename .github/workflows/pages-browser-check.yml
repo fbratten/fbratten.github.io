@@ -41,6 +41,11 @@ jobs:
       - name: Validate navigation, article directory and progress feed
         run: python tests/navigation_contract.py
 
+      - name: Validate Music and Film source, media and policy boundaries
+        run: |
+          python scripts/build_creative.py --check
+          python tests/creative_contract.py
+
       - name: Validate Harnessing Library content and public boundary
         run: python tests/harnessing_library_contract.py
 
@@ -106,6 +111,12 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node tests/harnessing_library_page.mjs
 
+      - name: Exercise Music and Film media, mobile and no-JavaScript routes
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          NAV_SCREENSHOT_DIR: /tmp/navigation-visuals
+        run: node tests/creative_page.mjs
+
       - name: Exercise category navigation, large maps and English content
         env:
           BASE_URL: http://127.0.0.1:4173
@@ -129,6 +140,16 @@ jobs:
         run: |
           git archive --format=zip HEAD -o /tmp/portfolio-navigation-preview.zip
           python scripts/build_preview.py /tmp/portfolio-navigation-preview.html
+          python - <<'PYZIP'
+          import os
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_DEFLATED
+          root = Path(os.environ['RUNNER_TEMP']) / 'pages-site'
+          with ZipFile('/tmp/portfolio-tested-site.zip', 'w', ZIP_DEFLATED) as archive:
+              for path in sorted(root.rglob('*')):
+                  if path.is_file():
+                      archive.write(path, path.relative_to(root))
+          PYZIP
 
       - name: Save static review preview
         if: github.event_name == 'pull_request'
@@ -138,6 +159,7 @@ jobs:
           path: |
             /tmp/portfolio-navigation-preview.zip
             /tmp/portfolio-navigation-preview.html
+            /tmp/portfolio-tested-site.zip
           retention-days: 14
 
       - name: Exercise Build Log locally
@@ -294,6 +316,11 @@ jobs:
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/pages_security.mjs
+
+      - name: Verify live Music and Film integration
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/creative_page.mjs
 
   report-status:
     needs: [verify, deploy, live]

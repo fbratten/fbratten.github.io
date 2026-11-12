@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = "https://fbratten.github.io"
 NAV = [("Home", "/"), ("Projects", "/projects/"), ("Methods & Labs", "/methods/"),
-       ("Writing", "/articles/"), ("Build log", "/build-log/"), ("About", "/#about")]
+       ("Writing", "/articles/"), ("Music & Film", "/creative/"), ("Build log", "/build-log/"), ("About", "/#about")]
 LABELS = {"/": "Home", "/projects/": "Projects", "/methods/": "Methods & Labs",
           "/harnessing/": "Harnessing Library", "/labs/": "Labs", "/articles/": "Writing",
           "/labs/testing-architecture/": "Testing architecture",
@@ -30,6 +30,10 @@ LABELS = {"/": "Home", "/projects/": "Projects", "/methods/": "Methods & Labs",
           "/methods/solutions/": "Solution-space map",
           "/blueprint-ai-studio/labs/rules-authority-enforcement/": "Rules, authority & enforcement",
           "/404.html": "Page not found"}
+LABELS["/creative/"] = "Music & Film"
+for work in json.loads((ROOT / "creative/source/works.json").read_text()):
+    LABELS["/creative/" + work["id"] + "/"] = work["title"]
+
 METHOD_NAMES = {"5pp": "5PP", "aics": "AICS", "dial4": "DIAL-4", "dial4plus": "DIAL-4+",
                 "dial4p-possibility": "DIAL-4P Possibility", "cbe": "CBE", "cbe-ix": "CBE-IX",
                 "card-pointer": "CARD & POINTER", "csr": "CSR", "gdsa": "GDSA",
@@ -56,6 +60,7 @@ def path_url(path):
 
 
 def section_for(url):
+    if url.startswith("/creative/"): return "/creative/"
     if url.startswith("/methods/") or url.startswith("/labs/") or url == "/harnessing/": return "/methods/"
     if url.startswith("/blueprint-ai-studio/labs/"): return "/methods/"
     if url in ("/blueprint-ai-studio/", "/mads/", "/adaptivearts-ai/", "/gate-monitor/", "/vertex/", "/worktrace/", "/broker-lane-sandbox/"):
@@ -82,7 +87,9 @@ def navigation(url):
 def breadcrumbs(url):
     if url == "/": return ""
     parts = [("Home", "/")]
-    if url.startswith("/blueprint-ai-studio/labs/"):
+    if url.startswith("/creative/") and url != "/creative/":
+        parts.append(("Music & Film", "/creative/"))
+    elif url.startswith("/blueprint-ai-studio/labs/"):
         parts += [("Methods & Labs", "/methods/"), ("Labs", "/labs/")]
     elif url.startswith("/labs/") and url != "/labs/":
         parts += [("Methods & Labs", "/methods/"), ("Labs", "/labs/")]
@@ -147,6 +154,7 @@ def directory_html():
     groups = [
         ("Start", [("/", "Home"), ("/projects/", "Projects"), ("/methods/", "Methods & Labs"),
                    ("/harnessing/", "Harnessing Library"), ("/labs/", "Lab directory"), ("/articles/", "Writing"), ("/build-log/", "Build log")]),
+        ("Music & Film", [("/creative/", "Collection: listen, watch and explore")]+[("/creative/"+w["id"]+"/", w["title"]) for w in json.loads((ROOT / "creative/source/works.json").read_text())]),
         ("Interactive AI testing labs", [("/labs/testing-architecture/", "Testing architecture"),
                                          ("/labs/fault-injection/", "Fault injection & test gates"),
                                          ("/labs/ai-evaluation-ci-cd/", "AI evaluation & CI/CD"),
@@ -198,7 +206,7 @@ def render():
     pages = [p for p in pages if "node_modules" not in p.parts and ".git" not in p.parts]
     output = {}
     footer = '''<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
-<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/all-pages/">All pages</a><a href="/harnessing/">Harnessing Library</a><a href="https://farbar.se/">farbar.se &#8599;</a></nav>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/creative/">Music &amp; Film</a><a href="/all-pages/">All pages</a><a href="/harnessing/">Harnessing Library</a><a href="https://farbar.se/">farbar.se &#8599;</a></nav>
 <nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
 <nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>'''
     for path in pages:

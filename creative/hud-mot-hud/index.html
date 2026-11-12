@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hud mot hud | Fredrik Brattén</title><meta name="description" content="An intimate Swedish song developed from a programmed rhythm and bass seed.">
+<link rel="canonical" href="https://fbratten.github.io/creative/hud-mot-hud/">
+<link rel="stylesheet" href="/creative/creative.css"><script src="/creative/players.js" defer></script>
+<!-- FB:HEAD -->
+<link rel="stylesheet" href="/assets/site.css"><script src="/assets/site.js" defer></script>
+<!-- /FB:HEAD -->
+</head><body class="creative-page">
+<!-- FB:NAV -->
+<a class="fb-skip" href="#main">Skip to content</a>
+<div class="fb-header" role="banner"><div class="fb-header-inner">
+<a class="fb-brand" href="/" aria-label="Fredrik Bratten - Home"><span class="fb-monogram" aria-hidden="true">FB</span>Fredrik Bratten</a>
+<button class="fb-menu-button" type="button" aria-controls="fb-primary" aria-expanded="true" hidden>Menu</button>
+<div class="fb-menu-panel" id="fb-primary"><nav class="fb-links" aria-label="Site navigation"><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/creative/" aria-current="true">Music &amp; Film</a><a href="/build-log/">Build log</a><a href="/#about">About</a></nav>
+<a class="fb-initiative" href="https://adaptivearts.ai/">Adaptivearts.ai<sup>®</sup> <span aria-hidden="true">&#8599;</span></a>
+<div class="fb-mobile-project"><span class="fb-menu-label">Now building</span><a href="/blueprint-ai-studio/"><strong>Blueprint AI Studio</strong><span>In development - follow the progress &#8594;</span></a></div>
+<nav class="fb-mobile-extra" aria-label="More destinations"><a href="https://github.com/fbratten">GitHub &#8599;</a><a href="/all-pages/">All pages</a><a href="/harnessing/">Harnessing Library</a></nav>
+</div></div></div><nav class="fb-breadcrumbs" aria-label="Breadcrumb"><ol><li><a href="/">Home</a></li><li><a href="/creative/">Music &amp; Film</a></li><li><span aria-current="page">Hud mot hud</span></li></ol></nav>
+<!-- /FB:NAV -->
+<main id="main" tabindex="-1"><div class="shell"><section class="work-hero"><div><span class="eyebrow">Music / Production story</span><h1>Hud mot hud</h1>
+<p class="artist">By Fredrik Brattén · Artist name: Ragnar Bratten</p><p class="intro">Everyday details and the things that matter most, held together by a search for closeness, weight and air.</p>
+<div class="actions"><a class="button primary" href="#listen">Listen &amp; watch ↓</a><a class="button" href="/creative/#works">All works</a></div>
+<p class="fine">From sound brief to Python seed and Suno Extend.</p></div><figure><img class="cover-image" src="/creative/media/hud-mot-hud.jpeg" alt="Hud mot hud artwork" width="800" height="800" loading="lazy" decoding="async"></figure></section>
+<section class="article-grid" id="listen"><h2>Listen &amp; watch</h2><div class="article-body"><div class="player-box" data-provider="suno" data-media-id="27b2fcda-20f0-457e-beb9-dcde7f2dca8a" data-title="Hud mot hud">
+<div data-player-slot><h3>Hud mot hud</h3><p>The player connects to Suno only when you choose to load it.</p><button class="button primary" type="button" data-load-player>Load Suno player</button></div>
+<a class="player-fallback" href="https://suno.com/song/27b2fcda-20f0-457e-beb9-dcde7f2dca8a" target="_blank" rel="noopener">Open on Suno ↗</a>
+<noscript><p>Use the link above to listen without JavaScript.</p></noscript></div></div></section>
+<section class="article-grid"><h2>The idea</h2><div class="article-body"><p>The sound brief puts two textures in tension: a deep, urban bass foundation and fragile, almost pastoral woodwinds. Fredrik wanted a close, life-affirming female voice and lyrics moving between ordinary domestic details and the feeling that time together matters.</p><p>The structure is part of that idea: a longer opening, a chorus before the first verse, and two instrumental breaks with a sustained, rolling weight.</p><details><summary>Read a passage from the sound brief</summary><div><blockquote class="quote" style="color:var(--text);font-size:23px">“the unorthodox friction between a heavy, urban low end and fragile, almost pastoral acoustic woodwinds”</blockquote><p>English translation of Fredrik’s sound brief.</p></div></details></div></section><section class="article-grid"><h2>Make the groove tangible</h2><div class="article-body"><p>A short loop made the rhythmic direction concrete before the full song was developed. Working with ChatGPT, Fredrik turned the idea into a Python program: NumPy synthesises the sounds and Python’s wave module writes the audio file.</p><div class="audio-box"><span class="eyebrow">Production material</span><h3>The four-bar seed</h3><p>76 BPM · 4 bars · 12.63 seconds · mono WAV</p><audio controls preload="none" aria-label="Play the original Hud mot hud rhythm and bass seed" src="/creative/media/hud-mot-hud-seed.wav"></audio><div class="actions"><a class="button" href="/creative/media/hud-mot-hud-seed.wav" download="hud_mot_hud_seed_76bpm.wav">Download original WAV ↓</a><a class="button" href="/creative/source/hud_mot_hud_seed.en.py" download="hud_mot_hud_seed.py">Download Python source in English ↓</a></div></div><p>The program synthesises a kick, a short woodblock-like rim sound, noise-based ticks and sliding bass tones. Deliberate timing offsets give the groove its pocket: the rim sits about 38 milliseconds behind the beat and the bass about 55 milliseconds behind, with small random variations on percussion hits.</p><details><summary>Look inside the Python program</summary><div><p>English comments accompany the original synthesis and timing code.</p><pre><code>import wave
+import numpy as np
+
+# 1. Basic settings
+sr = 44100
+bpm = 76.0
+beat_sec = 60.0 / bpm
+bar_sec = beat_sec * 4
+bars = 4
+total_sec = bar_sec * bars
+audio = np.zeros(int(total_sec * sr), dtype=np.float32)
+
+def add_sound(buf, sound, start_sec):
+    idx = int(start_sec * sr)
+    if idx &lt; 0 or idx &gt;= len(buf):
+        return
+    end = min(idx + len(sound), len(buf))
+    buf[idx:end] += sound[:end - idx]
+
+# 2. Sound generators (dry sounds, no reverb; arrangement aims to leave midrange space)
+def make_kick(dur=0.18):
+    t = np.linspace(0, dur, int(sr * dur), endpoint=False)
+    freq = 42.0 + 68.0 * np.exp(-35.0 * t)
+    phase = 2 * np.pi * np.cumsum(freq) / sr
+    env = np.exp(-16.0 * t)
+    return (np.sin(phase) * env * 0.75).astype(np.float32)
+
+def make_woodblock_rim(dur=0.045):
+    t = np.linspace(0, dur, int(sr * dur), endpoint=False)
+    click = np.sin(2 * np.pi * 1850 * t) * 0.6 + np.sin(2 * np.pi * 2920 * t) * 0.4
+    env = np.exp(-85.0 * t)
+    return (click * env * 0.55).astype(np.float32)
+
+def make_palm_mute_hat(dur=0.025, amp=0.18):
+    t = np.linspace(0, dur, int(sr * dur), endpoint=False)
+    noise = np.random.uniform(-1, 1, len(t))
+    hp_noise = np.diff(noise, prepend=0)
+    env = np.exp(-120.0 * t)
+    return (hp_noise * env * amp).astype(np.float32)
+
+def make_fretless_sub(f_start, f_end, dur):
+    t = np.linspace(0, dur, int(sr * dur), endpoint=False)
+    freq = np.linspace(f_start, f_end, len(t))
+    phase = 2 * np.pi * np.cumsum(freq) / sr
+    wave_sig = np.sin(phase) * 0.85 + np.sin(2 * phase) * 0.15
+    env = np.ones_like(t)
+    attack = int(0.025 * sr)
+    release = int(0.08 * sr)
+    env[:attack] = np.linspace(0, 1, attack)
+    env[-release:] = np.linspace(1, 0, release)
+    return (wave_sig * env * 0.65).astype(np.float32)
+
+# 3. Build a four-bar pocket groove with microtiming
+np.random.seed(42)
+swing_offset = (beat_sec / 2.0) * 0.26  # ~63% MPC-swing
+rim_layback = 0.038                     # 38 ms behind the beat on beats two and four
+bass_layback = 0.055                    # 55 ms behind the beat on the bass
+
+for bar in range(bars):
+    b_start = bar * bar_sec
+
+    # Kick: beat one and a delayed syncopation
+    add_sound(audio, make_kick(), b_start + 0.0)
+    add_sound(audio, make_kick(), b_start + beat_sec * 2.5 + swing_offset)
+
+    # Woodblock / rimshot: beats two and four, laid back
+    for beat in [1, 3]:
+        jitter = np.random.uniform(-0.004, 0.004)
+        add_sound(audio, make_woodblock_rim(), b_start + beat * beat_sec + rim_layback + jitter)
+
+    # Hi-hat / muted click: eighth notes with heavy swing
+    for eighth in range(8):
+        pos = b_start + eighth * (beat_sec / 2.0)
+        if eighth % 2 == 1:
+            pos += swing_offset
+        jitter = np.random.uniform(-0.003, 0.005)
+        amp = 0.22 if eighth % 2 == 1 else 0.12
+        add_sound(audio, make_palm_mute_hat(amp=amp), pos + jitter)
+
+    # Fretless-style sub-bass (D minor with glissando)
+    add_sound(audio, make_fretless_sub(73.42, 73.42, beat_sec * 1.4), b_start + 0.0 + bass_layback)
+    add_sound(audio, make_fretless_sub(87.31, 98.00, beat_sec * 1.1), b_start + beat_sec * 1.5 + swing_offset + bass_layback)
+    if bar % 2 == 0:
+        add_sound(audio, make_fretless_sub(110.00, 73.42, beat_sec * 1.2), b_start + beat_sec * 2.75 + bass_layback)
+    else:
+        add_sound(audio, make_fretless_sub(87.31, 55.00, beat_sec * 1.2), b_start + beat_sec * 2.75 + bass_layback)
+
+# Normalise and save with the built-in wave module
+audio = audio / np.max(np.abs(audio)) * 0.84
+pcm_data = (audio * 32767).astype(np.int16)
+
+with wave.open(&quot;hud_mot_hud_seed_76bpm.wav&quot;, &quot;w&quot;) as wf:
+    wf.setnchannels(1)
+    wf.setsampwidth(2)
+    wf.setframerate(sr)
+    wf.writeframes(pcm_data.tobytes())
+
+print(&quot;Done! Created &#x27;hud_mot_hud_seed_76bpm.wav&#x27;.&quot;)
+</code></pre></div></details></div></section><section class="article-grid"><h2>From seed<br>to song</h2><div class="article-body"><p>The loop was uploaded to Suno as <code>hud_mot_hud_seed_76bpm</code> and used with Extend. Keeping the dry rhythmic pocket in the instructions gave the subsequent experiments a shared starting point.</p><div class="stage"><div><span class="small">01 / SOURCE</span><b>The Python seed</b><p>Four bars of rhythm and bass turn the sound idea into something to hear.</p></div><div><span class="small">02 / DEVELOPMENT</span><b>Upload &amp; Extend</b><p>Suno extends the uploaded seed into longer musical ideas.</p></div><div><span class="small">03 / PRESENTATION</span><b>Listen to the song</b><p>The selected Studio export is available in the player above.</p></div></div><div class="actions"><a class="button" href="https://suno.com/song/4f4be878-d1cf-425f-a7e6-e96134a24fc2" target="_blank" rel="noopener">Explore the uploaded seed on Suno ↗</a></div></div></section><section class="article-grid"><h2>Directing the arrangement</h2><div class="article-body"><p>The preparation turns a feeling into decisions about register, timing, vocal proximity and stereo width.</p><h3>Give instruments a purpose</h3><p>The brief gives recorder and transverse flute melodic and atmospheric roles in the opening. It introduces đàn bầu for long bends and replies in the instrumental breaks.</p><h3>Build contrast into the form</h3><p>Close, sparsely accompanied verses make space for the voice. The chorus direction opens outward with supporting voices. A longer intro, an early chorus and rolling breaks provide anticipation, recognition, intimacy and release.</p></div></section><section class="article-grid"><h2>People &amp; tools</h2><div class="article-body"><dl><div class="credit"><dt>Creative direction</dt><dd>Fredrik Brattén</dd></div><div class="credit"><dt>Artist name</dt><dd>Ragnar Bratten</dd></div><div class="credit"><dt>AI collaboration</dt><dd>Sound and arrangement development; Python seed creation with ChatGPT.</dd></div><div class="credit"><dt>Seed synthesis</dt><dd>Python, NumPy and the wave module.</dd></div><div class="credit"><dt>Music development</dt><dd>Suno upload, Extend and Studio.</dd></div></dl></div></section><div class="bottom-cta"><p>Music, moving images and the decisions behind them.</p><a class="button" href="/creative/#works">Explore the collection →</a></div></div></main><!-- FB:FOOTER -->
+<footer class="fb-footer"><div class="fb-footer-brand"><strong>Fredrik Bratten</strong><p>Applied AI, automation, security and reliable agent systems.</p></div>
+<nav aria-label="Explore"><strong>Explore</strong><a href="/">Home</a><a href="/projects/">Projects</a><a href="/methods/">Methods &amp; Labs</a><a href="/articles/">Writing</a><a href="/creative/">Music &amp; Film</a><a href="/all-pages/">All pages</a><a href="/harnessing/">Harnessing Library</a><a href="https://farbar.se/">farbar.se &#8599;</a></nav>
+<nav aria-label="Initiatives"><strong>Initiative</strong><a href="https://adaptivearts.ai/">Adaptivearts.ai &#8599;</a><a href="/blueprint-ai-studio/">Blueprint AI Studio</a><a href="https://adaptivearts.ai/book/">From Blueprint to Application &#8599;</a></nav>
+<nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>
+<!-- /FB:FOOTER -->
+</body></html>
