@@ -51,9 +51,10 @@ Their unique diffs were inspected; they are not imported into this change.
 | Integrated Suno with release CSP | PASS | Hud mot hud played past 47 seconds under the release policy |
 | Integrated WAV with release CSP | PASS | Played to end, 12.631565 seconds, no media error |
 | YouTube frames admitted | PASS | Both actual players load their correct titles and durations under release CSP |
-| YouTube actual playback | FAIL / OPEN | Both remain at 0:00, `readyState=0`, no media error in cloud browser. Cause is not established; do not claim video playback passes |
+| YouTube actual playback | FAIL / OPEN | Both remain at 0:00, `readyState=0`, no media error in cloud browser. The Take ’em All control also stays at 0:00 directly on YouTube, outside our site. Cause is not established; do not claim video playback passes |
 | Local source/static contracts | PASS | Creative, navigation, copy, Build Log, Harnessing, generated atlas and model contracts |
-| Browser CI, built Jekyll output, mobile | PENDING | Required `verify` must run on the exact PR head |
+| Browser CI, built Jekyll output, mobile | PASS | Full `verify` run 43235226061 on head `325a366c07abcd380487118366c3be7cce438343`; deployment skipped |
+| Manual mobile layout and Suno playback | PASS | 390 px frame, no document overflow, six covers loaded, menu opens/closes, Hud mot hud played past 25 seconds |
 
 The deterministic frame fixture in `tests/creative_page.mjs` verifies the parent
 CSP and opt-in player integration, not provider availability or video decoding.
@@ -70,3 +71,36 @@ separate from its incomplete video pilot; unavailable pilot excerpts and unknown
 version lineage are not invented or relabelled as finished work.
 
 Next entry point: this PR's `verify` run and `docs/music-film-media-evidence-20261112.json`.
+
+## Browser evidence and handover
+
+[PR #69](https://github.com/fbratten/fbratten.github.io/pull/69) remains draft for
+the YouTube playback gate. [Verified CI run](https://github.com/fbratten/fbratten.github.io/actions/runs/43235226061)
+passed the complete static and browser suite; deployment is intentionally skipped
+for a PR. This follow-up adds test evidence and a sealed preview archive; it does not alter
+the site implementation. The newest PR head must also pass `verify`.
+
+![Desktop collection](media/music-film-desktop-20261112.jpg)
+
+![Narrow viewport with active Suno playback](media/music-film-mobile-20261112.jpg)
+
+The direct YouTube control also remained buffering at 0:00, so the observed failure
+is not confined to our embedded player. The provider/browser/network cause remains
+unknown. A browser that can play the source YouTube video is the next entry point
+for the final playback acceptance check. Do not broaden CSP further without evidence.
+
+### Repeat the last media check outside the cloud browser
+
+In the latest successful PR Actions run, download the
+`portfolio-navigation-preview` artifact. Extract `portfolio-tested-site.zip` into
+a separate folder. This contains the actual Jekyll output with release CSP,
+including local covers and the original WAV. From that folder run:
+
+```sh
+python -m http.server 4173 --bind 127.0.0.1
+```
+
+Open `http://127.0.0.1:4173/creative/take-em-all/` and
+`http://127.0.0.1:4173/creative/rise-together-or-we-fall/`. Load each YouTube player,
+press Play, and confirm advancing playback time and sound. Record browser/version
+and outcome against the exact PR head. The archive is a review aid, not deployment.

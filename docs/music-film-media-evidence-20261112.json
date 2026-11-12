@@ -156,6 +156,33 @@
         "error": null,
         "result": "Playback not verified: player loads but time does not advance in cloud browser."
       }
-    ]
+    ],
+    "mobile_suno": {
+      "viewport_frame_width": 390,
+      "document_client_width": 375,
+      "document_scroll_width": 375,
+      "route": "/creative/hud-mot-hud/",
+      "time_seconds": 25.30809,
+      "duration_seconds": 316.583,
+      "paused": false,
+      "error": null,
+      "scope": "Narrow iframe viewport with desktop browser; not a physical phone."
+    }
+  },
+  "youtube_direct_control": {
+    "url": "https://www.youtube.com/watch?v=FdY08dFDC7M",
+    "time_seconds": 0,
+    "duration_seconds": 267,
+    "readyState": 0,
+    "paused": false,
+    "error": null,
+    "result": "Same buffering behavior directly on YouTube outside the site; this does not establish the underlying cause."
+  },
+  "ci": {
+    "run_id": 43235226061,
+    "head_sha": "325a366c07abcd380487118366c3be7cce438343",
+    "verify": "success",
+    "deploy": "skipped",
+    "scope": "Full suite on sealed Jekyll output, including actual local WAV and all creative routes at 1365/390/320 px; external frame fixtures are not provider playback."
   }
 }

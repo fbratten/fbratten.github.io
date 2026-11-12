@@ -140,6 +140,16 @@ jobs:
         run: |
           git archive --format=zip HEAD -o /tmp/portfolio-navigation-preview.zip
           python scripts/build_preview.py /tmp/portfolio-navigation-preview.html
+          python - <<'PYZIP'
+          import os
+          from pathlib import Path
+          from zipfile import ZipFile, ZIP_DEFLATED
+          root = Path(os.environ['RUNNER_TEMP']) / 'pages-site'
+          with ZipFile('/tmp/portfolio-tested-site.zip', 'w', ZIP_DEFLATED) as archive:
+              for path in sorted(root.rglob('*')):
+                  if path.is_file():
+                      archive.write(path, path.relative_to(root))
+          PYZIP
 
       - name: Save static review preview
         if: github.event_name == 'pull_request'
@@ -149,6 +159,7 @@ jobs:
           path: |
             /tmp/portfolio-navigation-preview.zip
             /tmp/portfolio-navigation-preview.html
+            /tmp/portfolio-tested-site.zip
           retention-days: 14
 
       - name: Exercise Build Log locally
