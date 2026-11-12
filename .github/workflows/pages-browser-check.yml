@@ -41,6 +41,11 @@ jobs:
       - name: Validate navigation, article directory and progress feed
         run: python tests/navigation_contract.py
 
+      - name: Validate Music and Film source, media and policy boundaries
+        run: |
+          python scripts/build_creative.py --check
+          python tests/creative_contract.py
+
       - name: Validate Harnessing Library content and public boundary
         run: python tests/harnessing_library_contract.py
 
@@ -105,6 +110,12 @@ jobs:
         env:
           BASE_URL: http://127.0.0.1:4173
         run: node tests/harnessing_library_page.mjs
+
+      - name: Exercise Music and Film media, mobile and no-JavaScript routes
+        env:
+          BASE_URL: http://127.0.0.1:4173
+          NAV_SCREENSHOT_DIR: /tmp/navigation-visuals
+        run: node tests/creative_page.mjs
 
       - name: Exercise category navigation, large maps and English content
         env:
@@ -294,6 +305,11 @@ jobs:
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/pages_security.mjs
+
+      - name: Verify live Music and Film integration
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/creative_page.mjs
 
   report-status:
     needs: [verify, deploy, live]
