@@ -32,6 +32,16 @@ try {
       assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${route}: overflow at ${width}`);
       if (route === '/creative/') {
         assert.equal(await page.locator('.work-card').count(), 9);
+        assert.equal(await page.locator('#work-grid .work-card').count(), 6);
+        const mainImage=await page.locator('#work-grid .work-card figure').first().boundingBox();
+        for(const id of ['take-em-all','rise-together-or-we-fall','low-orbit-high-standards']){
+          const card=page.locator('.works--compact .work-card[href="/creative/'+id+'/"]');
+          assert.equal(await card.count(),1);
+          const image=await card.locator('figure').boundingBox();
+          assert(Math.abs(image.width/mainImage.width-.2)<.01,'Compact image must be one fifth of full image width');
+          const mainGrid=await page.locator('#work-grid').boundingBox();
+          assert(image.y>=mainGrid.y+mainGrid.height,'Compact covers must follow the main collection');
+        }
         for (const id of ['awaken-wired', 'superposition-baby']) {
           const card = page.locator(`.work-card[href="/creative/${id}/"]`);
           assert.equal(await card.count(), 1);

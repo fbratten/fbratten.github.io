@@ -44,7 +44,7 @@ METHOD_NAMES = {"5pp": "5PP", "aics": "AICS", "dial4": "DIAL-4", "dial4plus": "D
 LABELS.update({f"/methods/{slug}/": name for slug, name in METHOD_NAMES.items()})
 LABELS.update({f"/{slug}/": name for slug, name in [
     ("mads", "MADS"), ("adaptivearts-ai", "Adaptivearts.ai evidence"),
-    ("gate-monitor", "Gate Monitor"), ("vertex", "Vertex"),
+    ("gate-monitor", "Gate Monitor"), ("changeplane", "ChangePlane"), ("vertex", "Vertex"),
     ("worktrace", "Worktrace"), ("broker-lane-sandbox", "Broker Lane Sandbox")]})
 
 
@@ -63,7 +63,7 @@ def section_for(url):
     if url.startswith("/creative/"): return "/creative/"
     if url.startswith("/methods/") or url.startswith("/labs/") or url == "/harnessing/": return "/methods/"
     if url.startswith("/blueprint-ai-studio/labs/"): return "/methods/"
-    if url in ("/blueprint-ai-studio/", "/mads/", "/adaptivearts-ai/", "/gate-monitor/", "/vertex/", "/worktrace/", "/broker-lane-sandbox/"):
+    if url in ("/blueprint-ai-studio/", "/mads/", "/adaptivearts-ai/", "/gate-monitor/", "/changeplane/", "/vertex/", "/worktrace/", "/broker-lane-sandbox/"):
         return "/projects/"
     return url
 
@@ -165,7 +165,7 @@ def directory_html():
                        ("/mads/", "MADS"), ("/adaptivearts-ai/", "Adaptivearts.ai evidence"), ("/gate-monitor/", "Gate Monitor")]),
         ("Blueprint AI Studio", [("/blueprint-ai-studio/", "Book, LMS and progress"),
                                   ("/blueprint-ai-studio/labs/rules-authority-enforcement/", "Rules, Authority & Enforcement reader labs")]),
-        ("Supporting proofs", [("/vertex/", "Vertex"), ("/worktrace/", "Worktrace"),
+        ("Supporting proofs", [("/changeplane/", "ChangePlane"), ("/vertex/", "Vertex"), ("/worktrace/", "Worktrace"),
                               ("/broker-lane-sandbox/", "Broker Lane Sandbox"),
                               ("/spine-showcase/recruiter-proof/", "SPINE evidence"),
                               ("/Adaptive-MCP-Orchestrator-Blueprint-Showcase/recruiter-proof/", "Orchestrator evidence")]),

@@ -122,6 +122,11 @@ jobs:
           BASE_URL: http://127.0.0.1:4173
         run: node tests/portfolio_experience_page.mjs
 
+      - name: Exercise ChangePlane integrity demonstration
+        env:
+          BASE_URL: http://127.0.0.1:4173
+        run: node tests/changeplane_page.mjs
+
       - name: Exercise Aristotle to agents maps and labs
         env:
           BASE_URL: http://127.0.0.1:4173
@@ -321,6 +326,11 @@ jobs:
         env:
           BASE_URL: https://fbratten.github.io
         run: node tests/creative_page.mjs
+
+      - name: Verify live ChangePlane demonstration
+        env:
+          BASE_URL: https://fbratten.github.io
+        run: node tests/changeplane_page.mjs
 
   report-status:
     needs: [verify, deploy, live]

@@ -39,12 +39,17 @@ def render():
     works = json.loads((ROOT / 'creative/source/works.json').read_text())
     home_source = (ROOT / 'creative/source/home.html.txt').read_text()
     cards = []
+    compact_cards = []
+    compact_ids = {'take-em-all', 'rise-together-or-we-fall', 'low-orbit-high-standards'}
     output = {}
     for w in works:
         title, route = escape(w['title']), '/creative/' + w['id'] + '/'
         alt = escape(w.get('cover_alt', w['title'] + ' artwork'), quote=True)
         cover = f'<img class="cover-image" src="{w["cover"]}" alt="{alt}" width="800" height="800" loading="lazy" decoding="async">'
-        cards.append(f'<a class="work-card" href="{route}"><figure>{cover}</figure><h3>{title}</h3><p>{escape(w["desc"])}</p><span class="meta">{escape(w["kind"])} →</span></a>')
+        if w['id'] in compact_ids:
+            compact_cards.append(f'<a class="work-card work-card--compact" href="{route}"><figure>{cover}</figure><div><h3>{title}</h3><p>{escape(w["desc"])}</p><span class="meta">{escape(w["kind"])} →</span></div></a>')
+        else:
+            cards.append(f'<a class="work-card" href="{route}"><figure>{cover}</figure><h3>{title}</h3><p>{escape(w["desc"])}</p><span class="meta">{escape(w["kind"])} →</span></a>')
         media = player('suno', w['suno'], w['title']) if w.get('suno') else ''
         if w.get('youtube'):
             label = 'Official Music Video' if w['id'] == 'take-em-all' else 'Official Audio'
@@ -67,7 +72,7 @@ def render():
 {content}<div class="bottom-cta"><p>Music, moving images and the decisions behind them.</p><a class="button" href="/creative/#works">Explore the collection →</a></div></div>'''
         output[ROOT / route.strip('/') / 'index.html'] = page(w['title'], w['desc'], route, body)
     home = home_source
-    home = home.replace('<!-- CREATIVE:WORKS -->', '<div class="works" id="work-grid">' + '\n'.join(cards) + '</div>')
+    home = home.replace('<!-- CREATIVE:WORKS -->', '<div class="works" id="work-grid">' + '\n'.join(cards) + '</div><div class="works works--compact" aria-label="More music">' + '\n'.join(compact_cards) + '</div>')
     for item_id, title in [('791d21b2-c908-4a1e-8861-ff300ae66461', 'Superposition Baby, more Concepts than You got Cells'), ('03f72637-ce31-4334-8eee-0e5d761414a3', 'Awaken Wired (Chalumeau, Sul)')]:
         pattern = r'<div class="actions"><a[^>]+href="https://suno.com/song/' + item_id + r'"[^>]*>.*?</a></div>'
         home, count = re.subn(pattern, lambda _: player('suno', item_id, title), home, count=1)

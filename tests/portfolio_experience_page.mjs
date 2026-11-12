@@ -7,7 +7,7 @@ try{
   const page=await browser.newPage({viewport:{width,height:960},reducedMotion:'reduce'});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/projects/');
-  const groups=['flagships','development','supporting','archive'],counts=[4,1,5,11];
+  const groups=['flagships','development','supporting','archive'],counts=[4,1,6,11];
   assert.equal(await page.locator('[role=tab]').count(),4);
   for(let i=0;i<groups.length;i++){
    await page.locator('#category-'+groups[i]).click();
