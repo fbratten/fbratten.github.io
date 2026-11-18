@@ -202,7 +202,7 @@ function startMap() {
     });
   }
   document.addEventListener('pointerdown',e=>{if(pinned && !preview.contains(e.target) && !e.target.closest('.cm-node')) hidePreview();});
-  map.addEventListener('keydown',e=>{if(e.key==='Escape') hidePreview();});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape' && active) hidePreview();});
   controls.addEventListener('start',hidePreview);
   controls.addEventListener('change',invalidate);
   tools.querySelector('button').addEventListener('click',()=>{controls.reset();hidePreview();});
