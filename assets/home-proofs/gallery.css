@@ -1,0 +1,31 @@
+.fb-proof-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 27rem), 1fr));
+  gap: .75rem 1.25rem;
+}
+.fb-home .fb-proof-preview {
+  display: grid;
+  grid-template-columns: clamp(5.5rem, 10vw, 8.5rem) 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: .75rem;
+  border: 1px solid #2b414d;
+  border-radius: .75rem;
+  background: #0e1c28;
+  color: inherit;
+  text-decoration: none;
+}
+.fb-proof-preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.65;
+  object-fit: cover;
+  object-position: left top;
+  border: 1px solid #334755;
+  border-radius: .35rem;
+}
+.fb-home .fb-proof-preview h3 { margin: 0; color: #eff5f8; font-size: 1.05rem; line-height: 1.25; }
+.fb-home .fb-proof-preview p { margin: .35rem 0 0; color: #b7c7cf; font-size: .91rem; line-height: 1.45; }
+.fb-home .fb-proof-preview:hover, .fb-home .fb-proof-preview:focus-visible { border-color: #5eead4; }
+.fb-home .fb-proof-preview:focus-visible { outline: 2px solid #5eead4; outline-offset: 3px; }
