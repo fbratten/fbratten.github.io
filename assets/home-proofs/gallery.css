@@ -31,10 +31,11 @@
 
 .fb-proof-motion {
   background: transparent;
-  color: #c6d6dc;
-  border: 1px solid #48616d;
-  border-radius: .35rem;
-  padding: .4rem .7rem;
+  appearance: none;
+  color: #899096;
+  border: 0;
+  box-shadow: none;
+  padding: .4rem 0;
   font: inherit;
   cursor: pointer;
 }
