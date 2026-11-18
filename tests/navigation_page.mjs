@@ -60,8 +60,8 @@ try {
   assert.equal(await openPage.getAttribute('href'),base+'/labs/');
   const box = await openPage.boundingBox();
   assert.ok(box.x>=0 && box.x+box.width<=390);
-  await openPage.tap();
-  assert.equal(new URL(mobileMap.url()).pathname,'/labs/');
+  await Promise.all([mobileMap.waitForURL(base + '/labs/'), openPage.tap()]);
+  await mobileMap.getByRole('heading', {level:1}).waitFor();
   await touch.close();
   await page.goto(base + '/');
   await page.getByRole('link', { name: 'All 46 articles' }).click();
