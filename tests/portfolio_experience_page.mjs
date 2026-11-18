@@ -7,7 +7,7 @@ try{
   const page=await browser.newPage({viewport:{width,height:960},reducedMotion:'reduce'});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/projects/');
-  const groups=['flagships','development','supporting','archive'],counts=[4,1,6,11];
+  const groups=['flagships','development','supporting','archive'],counts=[4,1,7,11];
   assert.equal(await page.locator('[role=tab]').count(),4);
   for(let i=0;i<groups.length;i++){
    await page.locator('#category-'+groups[i]).click();
@@ -21,6 +21,12 @@ try{
   await page.locator('#category-flagships').press('ArrowRight');
   assert.equal(await page.locator('#category-development').getAttribute('aria-selected'),'true');
   await page.goto(base+'/projects/#supporting');assert(await page.locator('#supporting').isVisible());
+  await page.locator('#supporting a[href="/agentradar/"]').click();
+  assert.equal(await page.locator('main h1').textContent(),'AgentRadar');
+  assert.equal(await page.locator('main a[hreflang="en"]').getAttribute('href'),'/agentradar-showcase/en/');
+  assert.equal(await page.locator('main a[hreflang="sv"]').getAttribute('href'),'/agentradar-showcase/');
+  await page.goto(base+'/all-pages/');
+  assert.equal(await page.getByRole('link',{name:'AgentRadar',exact:true}).getAttribute('href'),'/agentradar/');
   await page.goto(base+'/methods/');assert.notEqual(await page.locator('.method-overview').getAttribute('open'),null);
   for(const route of ['/','/projects/','/methods/','/labs/','/all-pages/']){
    await page.goto(base+route);
