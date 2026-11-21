@@ -132,7 +132,8 @@ try {
   await page.goto(base + '/');
   await page.locator('a.fb-route[href="/labs/"]').click();
   assert.match(page.url(), /\/labs\/$/);
-  assert.equal(await page.locator('main .fb-route').count(), 14);
+  // 14 method/reader labs + 3 Interactive history routes (The First Americans: EN, SV, source)
+  assert.equal(await page.locator('main .fb-route').count(), 17);
   assert.equal(await page.locator('main .fb-route[href="/labs/mutation-gate/"]').count(), 1);
   await page.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(page.url(), /\/labs\/mutation-gate\/$/);
