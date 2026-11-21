@@ -1,0 +1,44 @@
+# Fredrik Brattén | AI harness engineering, methods and applied systems
+
+> Fredrik Brattén develops methods for governing AI-assisted work and turns them into instruction contracts, executable checks, workflow controls and interactive labs. This portfolio shows how those pieces can be combined to help agents find the right source, act within their authority and leave evidence that a person can inspect.
+
+A harness is the system around a model that supplies context, tools, permissions, execution rules and feedback. Start with the Harnessing Library for a concrete workflow. Use Solution Space to see which methods address a particular failure or decision. For implementation and release claims, follow the dated evidence in the project or Build Log and distinguish source-inspected code, synthetic demonstrations and recorded runs.
+
+## Harness engineering
+
+- [Harnessing Library](https://fbratten.github.io/harnessing/): Start here. Workplace scenarios, two freight-terminal cases, pipeline walkthroughs and small interactive labs show when to use a method and how to check the handoff to the next stage.
+- [Harnessing Library overview (Markdown)](https://fbratten.github.io/harnessing/README.md): A text summary of the library, its scenarios, public scope and verification checks.
+- [Solution Space](https://fbratten.github.io/methods/solutions/): Explore reusable combinations of methods by problem, lifecycle stage and operating scale.
+- [Rules, Authority & Enforcement](https://fbratten.github.io/blueprint-ai-studio/labs/rules-authority-enforcement/): Explore how instructions, authority, enforcement, verification and preservation work together.
+- [Mutation Gate Lab](https://fbratten.github.io/labs/mutation-gate/): Interactive fault scenarios and CI evidence illustrate how to check whether a protection actually detects a failure.
+
+## Methods, protocols and method design
+
+- [Methods and Labs](https://fbratten.github.io/methods/): Browse the method profiles and their applications. Profiles link to source references, composition examples and exercises.
+- [Dialogue Lifecycle](https://fbratten.github.io/methods/dialogue-lifecycle/): Six stages from exploration to closure, with explicit decisions before authorized execution and verification before closure.
+- [Five-Point Protocol (5PP)](https://fbratten.github.io/methods/5pp/): Clarify the objective, lock measurable constraints, plan, execute and audit the result. The profile links to the deterministic record checks in 5pp-gate.
+- [AICS](https://fbratten.github.io/methods/aics/): A versioned instruction contract that can be rendered as a conversation, repository artifact or execution report, with round-trip and bounded changeset labs.
+- [CARD & POINTER](https://fbratten.github.io/methods/card-pointer/): Orient a reader to a subject and express how it relates to a specific source or target.
+- [ORBIT](https://fbratten.github.io/methods/orbit/): Navigate structured orientation maps and trace their entries to the sources that own the claims.
+- [SORR](https://fbratten.github.io/methods/sorr/): Resolve what an artifact or reference denotes, how it relates to other representations and what evidence supports the resolution.
+- [Capability Surface Reconciliation](https://fbratten.github.io/methods/csr/): Determine where a capability exists, what part of a need it covers and which intervention is sufficient.
+- [Capability Boundary Expander (CBE)](https://fbratten.github.io/methods/cbe/): Expand a capability from a demonstrated gap while preserving the responsibilities and limits of the surrounding system.
+- [CBE-IX](https://fbratten.github.io/methods/cbe-ix/): Track newly discovered gaps in a bounded iteration and inspect the reason it stops.
+- [RigVedan / EBNF-RV](https://fbratten.github.io/methods/rigvedan/): A grammar and tooling for representing knowledge units and their context, with parser and round-trip exercises.
+- [From Aristotle to AI agents](https://fbratten.github.io/labs/aristotle-to-agents/en/): An interactive atlas connecting traditions of reasoning and interpretation to problems in agent design.
+
+## Applied systems and evidence
+
+- [Gate Monitor](https://fbratten.github.io/gate-monitor/): Source-pinned account of runtime policy decisions for long-running agent sessions, with a browser simulation.
+- [ChangePlane](https://fbratten.github.io/changeplane/): Git-backed run records, integrity checks and replay for AI-assisted changes. See the four source-executed integrity cases and the scope of the browser demo.
+- [Worktrace evidence notes](https://fbratten.github.io/worktrace/README.md): A local-first record of what was handled, when each fact became known and which claims the evidence supports.
+- [Capability & Opportunity Reasoning (COR)](https://fbratten.github.io/build-log/cor.md): An implementation and offline benchmark case for relating capabilities, explicit needs and testable hypotheses across several domains.
+- [Projects](https://fbratten.github.io/projects/): Explore flagships, work in development, focused evidence packages and earlier projects.
+- [Build Log entries (JSON)](https://fbratten.github.io/build-log/entries.json): Dated publication milestones, summaries and links to supporting evidence.
+
+## Optional
+
+- [Blueprint AI Studio](https://fbratten.github.io/blueprint-ai-studio/): Public reader labs and development milestones for the learning platform accompanying *From Blueprint to Application*, by Fredrik Brattén and Sasa Popovic.
+- [Writing](https://fbratten.github.io/articles/): Article index and links to original publications.
+- [Music and Film](https://fbratten.github.io/creative/): Original music, vocal recordings and production notes on AI-assisted creative work.
+- [Studio - New York - New York](https://fbratten.github.io/creative/studio-new-york-new-york/): A music-video case study on scene direction and coordinating ChatGPT, agents and Fal.
