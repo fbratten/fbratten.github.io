@@ -11,7 +11,7 @@ import xml.etree.ElementTree as ET
 ROOT = Path(__file__).resolve().parents[1]
 ORIGIN = 'https://fbratten.github.io'
 # These destinations are served by separate GitHub Pages repositories.
-PROJECT_SITES = set('agentradar-showcase intelligence-engine-showcase 8me-showcase spine-showcase Adaptive-MCP-Orchestrator-Blueprint-Showcase arbiter-showcase Security-Audit-MCP-Server-Showcase agentspool-showcase switchcore-showcase vigil-showcase spawn-showcase music-video-creator-showcase AI-Human-Admin-Dashboard From-Blueprint-to-Application'.split())
+PROJECT_SITES = set('agentradar-showcase intelligence-engine-showcase 8me-showcase spine-showcase Adaptive-MCP-Orchestrator-Blueprint-Showcase arbiter-showcase Security-Audit-MCP-Server-Showcase agentspool-showcase switchcore-showcase vigil-showcase spawn-showcase music-video-creator-showcase AI-Human-Admin-Dashboard From-Blueprint-to-Application interactive-pedagogicals'.split())
 
 
 class Page(HTMLParser):

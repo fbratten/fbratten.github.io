@@ -161,6 +161,8 @@ def directory_html():
                                           ("/labs/mutation-gate/", "Mutation Gate"),
                                           ("/labs/github-actions/", "GitHub Actions")]),
         ("Reasoning and agent systems", [("/labs/aristotle-to-agents/", "Aristoteles till AI-agenter: Svenska"), ("/labs/aristotle-to-agents/en/", "Aristotle to AI agents: English")]),
+        ("Interactive history", [("/interactive-pedagogicals/forsta-amerikanerna/?lang=en", "The First Americans: English"),
+                                 ("/interactive-pedagogicals/forsta-amerikanerna/?lang=sv", "De första amerikanerna: Svenska")]),
         ("Flagships", [("/intelligence-engine-showcase/", "Intelligence Engine"),
                        ("/mads/", "MADS"), ("/adaptivearts-ai/", "Adaptivearts.ai evidence"), ("/gate-monitor/", "Gate Monitor")]),
         ("Blueprint AI Studio", [("/blueprint-ai-studio/", "Book, LMS and progress"),

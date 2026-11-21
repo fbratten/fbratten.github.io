@@ -132,7 +132,8 @@ try {
   await page.goto(base + '/');
   await page.locator('a.fb-route[href="/labs/"]').click();
   assert.match(page.url(), /\/labs\/$/);
-  assert.equal(await page.locator('main .fb-route').count(), 14);
+  // 14 method/reader labs + 3 Interactive history routes (The First Americans: EN, SV, source)
+  assert.equal(await page.locator('main .fb-route').count(), 17);
   assert.equal(await page.locator('main .fb-route[href="/labs/mutation-gate/"]').count(), 1);
   await page.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(page.url(), /\/labs\/mutation-gate\/$/);
@@ -179,7 +180,7 @@ try {
   assert.equal(await fallback.locator('#labs .fb-route').count(), 11);
   await fallback.locator('#labs a[href="/labs/"]').first().click();
   assert.match(fallback.url(), /\/labs\/$/);
-  assert.equal(await fallback.locator('main .fb-route').count(), 14);
+  assert.equal(await fallback.locator('main .fb-route').count(), 17); // no-JS fallback sees the same 17 routes
   await fallback.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(fallback.url(), /\/labs\/mutation-gate\/$/);
   await fallback.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).click();

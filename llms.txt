@@ -26,6 +26,7 @@ A harness is the system around a model that supplies context, tools, permissions
 - [CBE-IX](https://fbratten.github.io/methods/cbe-ix/): Track newly discovered gaps in a bounded iteration and inspect the reason it stops.
 - [RigVedan / EBNF-RV](https://fbratten.github.io/methods/rigvedan/): A grammar and tooling for representing knowledge units and their context, with parser and round-trip exercises.
 - [From Aristotle to AI agents](https://fbratten.github.io/labs/aristotle-to-agents/en/): An interactive atlas connecting traditions of reasoning and interpretation to problems in agent design.
+- [The First Americans](https://fbratten.github.io/interactive-pedagogicals/forsta-amerikanerna/?lang=en): An interactive globe and timeline of how people reached the Americas, from the oldest traces the finds suggest to 1500, with archaeology and genetics side by side and every event linked to its sources (also in Swedish).
 
 ## Applied systems and evidence
 
