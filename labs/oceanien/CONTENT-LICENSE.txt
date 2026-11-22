@@ -1,0 +1,11 @@
+Oceaniens folk / The Peoples of Oceania
+Copyright 2026 Fredrik Brattén
+https://fbratten.github.io/labs/oceanien/
+
+Exhibit text, original illustrations and story data are available under Creative Commons Attribution 4.0 International:
+https://creativecommons.org/licenses/by/4.0/
+
+Coastlines, lakes and bathymetry use public-domain Natural Earth data:
+https://www.naturalearthdata.com/about/terms-of-use/
+
+Cited publications belong to their respective authors and publishers. The exhibit's code is covered by LICENSE.txt.
