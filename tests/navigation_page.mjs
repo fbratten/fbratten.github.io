@@ -147,7 +147,8 @@ try {
       const exhibit = await exhibitBrowser.newPage();
       await exhibit.goto(base + '/labs/');
       await exhibit.locator(`main a[href="/labs/oceanien/?lang=${language}"]`).click();
-      assert.equal(await exhibit.locator('html').getAttribute('lang'), language);
+      await exhibit.waitForURL(url => url.pathname === '/labs/oceanien/' && url.searchParams.get('lang') === language, { waitUntil: 'load' });
+      await exhibit.waitForFunction(expected => document.documentElement.lang === expected, language);
       await exhibit.click('#start');
       const start = await exhibit.locator('#scrub').inputValue();
       await exhibit.waitForFunction(initial => Number(document.querySelector('#scrub').value) > initial, Number(start));
