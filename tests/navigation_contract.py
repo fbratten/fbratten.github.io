@@ -36,9 +36,13 @@ for path in pages:
     page = Page(text)
     rel = path.relative_to(ROOT).as_posix()
     if len(page.ids) != len(set(page.ids)): errors.append(f'{rel}: duplicate IDs')
-    if text.count('aria-label="Site navigation"') != 1: errors.append(f'{rel}: shared navigation missing or duplicated')
-    if rel != 'index.html' and 'aria-label="Breadcrumb"' not in text: errors.append(f'{rel}: breadcrumb missing')
-    if 'id="main"' not in text: errors.append(f'{rel}: skip-link target missing')
+    if rel == 'labs/oceanien/index.html':
+        for control in ['globe', 'start', 'play', 'scrub', 'lang', 'tab-tree', 'tab-about']:
+            if control not in page.ids: errors.append(f'{rel}: missing exhibit control {control}')
+    else:
+        if text.count('aria-label="Site navigation"') != 1: errors.append(f'{rel}: shared navigation missing or duplicated')
+        if rel != 'index.html' and 'aria-label="Breadcrumb"' not in text: errors.append(f'{rel}: breadcrumb missing')
+        if 'id="main"' not in text: errors.append(f'{rel}: skip-link target missing')
     if re.search(r'<nav\b[^>]*>\s*</nav>', text): errors.append(f'{rel}: empty navigation landmark')
     for link in page.links:
         url = urlsplit(urljoin(ORIGIN + '/' + rel, link))
@@ -73,6 +77,9 @@ assert labs_html.count('href="/labs/mutation-gate/"') == 1
 # Discovery parity: the fifth interactive lab must appear on both public navigation surfaces.
 assert methods_html.count('href="/labs/github-actions/"') == 1
 assert labs_html.count('href="/labs/github-actions/"') == 1
+for language in ['en', 'sv']:
+    assert f'href="/labs/oceanien/?lang={language}"' in labs_html
+
 
 articles = json.loads((ROOT / 'articles/entries.json').read_text())
 seen = set()

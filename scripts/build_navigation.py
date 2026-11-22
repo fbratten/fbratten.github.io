@@ -19,6 +19,7 @@ NAV = [("Home", "/"), ("Projects", "/projects/"), ("Methods & Labs", "/methods/"
        ("Writing", "/articles/"), ("Music & Film", "/creative/"), ("Build log", "/build-log/"), ("About", "/#about")]
 LABELS = {"/": "Home", "/projects/": "Projects", "/methods/": "Methods & Labs",
           "/harnessing/": "Harnessing Library", "/labs/": "Labs", "/articles/": "Writing",
+          "/labs/oceanien/": "The Peoples of Oceania",
           "/labs/testing-architecture/": "Testing architecture",
           "/labs/fault-injection/": "Fault injection & test gates",
           "/labs/ai-evaluation-ci-cd/": "AI evaluation & CI/CD",
@@ -161,7 +162,9 @@ def directory_html():
                                           ("/labs/mutation-gate/", "Mutation Gate"),
                                           ("/labs/github-actions/", "GitHub Actions")]),
         ("Reasoning and agent systems", [("/labs/aristotle-to-agents/", "Aristoteles till AI-agenter: Svenska"), ("/labs/aristotle-to-agents/en/", "Aristotle to AI agents: English")]),
-        ("Interactive history", [("/interactive-pedagogicals/forsta-amerikanerna/?lang=en", "The First Americans: English"),
+        ("Interactive history", [("/labs/oceanien/?lang=en", "The Peoples of Oceania: English"),
+                                 ("/labs/oceanien/?lang=sv", "Oceaniens folk: Svenska"),
+                                 ("/interactive-pedagogicals/forsta-amerikanerna/?lang=en", "The First Americans: English"),
                                  ("/interactive-pedagogicals/forsta-amerikanerna/?lang=sv", "De första amerikanerna: Svenska")]),
         ("Flagships", [("/intelligence-engine-showcase/", "Intelligence Engine"),
                        ("/mads/", "MADS"), ("/adaptivearts-ai/", "Adaptivearts.ai evidence"), ("/gate-monitor/", "Gate Monitor")]),
@@ -213,6 +216,9 @@ def render():
 <nav aria-label="Evidence"><strong>Evidence</strong><a href="/build-log/">Build log</a><a href="https://github.com/fbratten">GitHub &#8599;</a></nav></footer>'''
     for path in pages:
         url = path_url(path)
+        # Preserve the full-screen exhibit as exported by its source project.
+        if url == "/labs/oceanien/":
+            continue
         text = path.read_text()
         # Old context bars may have no destinations after shared navigation moved in.
         text = re.sub(r'<nav\b[^>]*>\s*</nav>', '', text)

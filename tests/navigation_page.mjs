@@ -132,13 +132,33 @@ try {
   await page.goto(base + '/');
   await page.locator('a.fb-route[href="/labs/"]').click();
   assert.match(page.url(), /\/labs\/$/);
-  // 14 method/reader labs + 3 Interactive history routes (The First Americans: EN, SV, source)
-  assert.equal(await page.locator('main .fb-route').count(), 17);
+  // 14 method/reader labs + 3 First Americans routes + 2 Oceania languages
+  assert.equal(await page.locator('main .fb-route').count(), 19);
   assert.equal(await page.locator('main .fb-route[href="/labs/mutation-gate/"]').count(), 1);
   await page.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(page.url(), /\/labs\/mutation-gate\/$/);
   assert.ok(await page.getByRole('heading', {name: 'Mutation Gate Lab'}).isVisible());
   assert.ok(await page.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).isVisible());
+
+  // Follow each published card and start the actual globe under the Pages policy.
+  const exhibitBrowser = await chromium.launch({ args: ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'] });
+  try {
+    for (const language of ['sv', 'en']) {
+      const exhibit = await exhibitBrowser.newPage();
+      await exhibit.goto(base + '/labs/');
+      await exhibit.locator(`main a[href="/labs/oceanien/?lang=${language}"]`).click();
+      await exhibit.waitForURL(url => url.pathname === '/labs/oceanien/' && url.searchParams.get('lang') === language, { waitUntil: 'load' });
+      await exhibit.waitForFunction(expected => document.documentElement.lang === expected, language);
+      await exhibit.click('#start');
+      const start = await exhibit.locator('#scrub').inputValue();
+      await exhibit.waitForFunction(initial => Number(document.querySelector('#scrub').value) > initial, Number(start));
+      assert.equal(await exhibit.locator('#nogl').isHidden(), true);
+      assert.ok(await exhibit.locator('#globe').evaluate(canvas => !!canvas.getContext('webgl')));
+      await exhibit.close();
+    }
+  } finally {
+    await exhibitBrowser.close();
+  }
 
   // Lab 05 must be reachable through the canonical directory and Methods & Labs.
   await page.goto(base + '/labs/');
@@ -180,7 +200,7 @@ try {
   assert.equal(await fallback.locator('#labs .fb-route').count(), 11);
   await fallback.locator('#labs a[href="/labs/"]').first().click();
   assert.match(fallback.url(), /\/labs\/$/);
-  assert.equal(await fallback.locator('main .fb-route').count(), 17); // no-JS fallback sees the same 17 routes
+  assert.equal(await fallback.locator('main .fb-route').count(), 19); // no-JS fallback sees the same 19 routes
   await fallback.locator('main .fb-route[href="/labs/mutation-gate/"]').click();
   assert.match(fallback.url(), /\/labs\/mutation-gate\/$/);
   await fallback.getByRole('navigation', {name: 'Breadcrumb'}).getByRole('link', {name: 'Labs', exact: true}).click();
