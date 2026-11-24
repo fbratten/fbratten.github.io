@@ -7,7 +7,7 @@ try{
   const page=await browser.newPage({viewport:{width,height:960},reducedMotion:'reduce'});
   const errors=[];page.on('pageerror',e=>errors.push(e.message));
   await page.goto(base+'/projects/');
-  const groups=['flagships','development','supporting','archive'],counts=[4,1,7,11];
+  const groups=['flagships','development','supporting','archive'],counts=[4,1,8,11];
   assert.equal(await page.locator('[role=tab]').count(),4);
   for(let i=0;i<groups.length;i++){
    await page.locator('#category-'+groups[i]).click();
@@ -21,6 +21,9 @@ try{
   await page.locator('#category-flagships').press('ArrowRight');
   assert.equal(await page.locator('#category-development').getAttribute('aria-selected'),'true');
   await page.goto(base+'/projects/#supporting');assert(await page.locator('#supporting').isVisible());
+  const workflowDemo=page.locator('#supporting').getByRole('link',{name:/tachylite-mcp/});
+  assert(await workflowDemo.isVisible());
+  assert.equal(await workflowDemo.getAttribute('href'),'https://tachylite-mcp-workflow-simulator.freecherry2.chatgpt.site/');
   await page.locator('#supporting a[href="/agentradar/"]').click();
   assert.equal(await page.locator('main h1').textContent(),'AgentRadar');
   assert.equal(await page.locator('main a[hreflang="en"]').getAttribute('href'),'/agentradar-showcase/en/');
