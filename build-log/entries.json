@@ -1,5 +1,25 @@
 [
   {
+    "date": "2026-11-12",
+    "state": "SHIPPED",
+    "title": "Build Log updates: evidence checks and history preservation",
+    "summary": "Delivered a reusable agent skill for adding one evidence-grounded public Build Log entry, with checks for publication authority, public sources and duplicates. Its insertion checker preserves previous entries and passed nine regression tests; validation across smaller model tiers remains a follow-up.",
+    "why_it_matters": "It gives agents a repeatable way to explain completed work publicly while preserving the log's history and distinguishing source integration from deployment and live verification.",
+    "evidence": [
+      {
+        "label": "Public delivery summary, checks and validation scope",
+        "url": "https://github.com/fbratten/fbratten.github.io/blob/c39f73f6e576aec5f909ab18875b893679c6885e/build-log/build-log-entry-skill.md"
+      }
+    ],
+    "tags": [
+      "agent skills",
+      "build log",
+      "evidence",
+      "publication",
+      "preservation"
+    ]
+  },
+  {
     "date": "2026-11-07",
     "state": "PUBLISHED",
     "title": "Harnessing Library: learning by following workplace situations",
